@@ -20,13 +20,13 @@ int	main(int argc, char **argv,  char **env)
 	t_token	*token;
 			t_cmdl *cmd;
 	struct						s_envp * envp;
-// 	envp = (struct	s_envp *)malloc((1) * sizeof(	struct	s_envp));
+	envp = (struct	s_envp *)malloc((1) * sizeof(	struct	s_envp));
 	int itre = 0;
 	int args = 0 ;
 				// cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (data.side - 1));
 				// cmd->args = malloc(sizeof(char *) * 10);
 // 				/////
-//  ft_copy_1st_env(envp, env);
+ ft_copy_1st_env(envp, env);
 	if (argc == 1)
 	{
 		while (1)
@@ -37,6 +37,8 @@ int	main(int argc, char **argv,  char **env)
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
 			if (ft_strlen(data.cmd_line))
 				ft_token(token, &data, data.cmd_line);
+					pass_to_exec(token);
+
 ////
 	// 		while (token)
 	// {

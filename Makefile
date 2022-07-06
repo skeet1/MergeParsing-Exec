@@ -51,7 +51,8 @@ SRC = ./exec/builtins.c \
 	./libft/ft_strtrim.c \
 	./parsing/parse.c \
 	./libft/ft_strcmp.c \
-
+	./parsing/pass_to_exec.c \
+	
 OBJ = $(SRC:.c=.o)
 # ./exec/builtins.o \
 # 	./exec/ft_env.o \
