@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:34:37 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 10:44:56 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 11:53:06 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,8 @@ void reset() {
 
 int	ft_check_syntax(char *s)
 {
-	// if (check_quotes(s) || check_pipes(s)
-	// 	|| check_red(s))
-	// 	return (1);
-	// red();
-	// if (check_pipes(s) || check_quotes(s) || check_red(s) || last_char(s))
-	// 	return (reset(), 1);
+	red();
+	if (check_pipes(s) || check_quotes(s) || check_red(s))
+		return (reset(), 1);
 	return (reset(), 0);
 }
