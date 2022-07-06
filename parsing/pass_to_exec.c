@@ -13,6 +13,32 @@
 #include "../minishell.h"
 #include "parse.h"
 
+int fill_cmd(t_token *token, int pipenbr, struct s_envp *envp, int cmds, int iteration, 	t_cmdl	*cmd)
+{
+	while (token)
+	{
+		if (token->type == 8 && iteration == 0)
+		{
+			cmd[cmds].cmd = token->value;
+			printf("CMD is %s\t\n", cmd[iteration].cmd);
+		}
+		if (token->type == 8 && iteration > 0)
+		{
+			cmd->args[iteration] = strdup(token->value);
+			printf("ARGS is %s\t\n", cmd->args[iteration]);
+			iteration++;
+		}
+		if (token->type == 6)
+		{
+            		token = token->next;
+
+            fill_cmd(token , pipenbr, envp, cmds + 1, 0 , cmd);
+        }
+		iteration++;
+		token = token->next;
+	}
+    return 0;
+}
 void	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 {
 	t_cmdl	*cmd;
@@ -25,23 +51,7 @@ void	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	// print_token(token);
 	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr));
 	cmd->args = (char **)malloc(sizeof(char *) * (pipenbr));
-	while (token)
-	{
-		if (token->type == 8 && itre == 0)
-		{
-			cmd[itre].cmd = token->value;
-			// printf("CMD is %s\t\n", cmd[itre].cmd);
-		}
-		if (token->type == 8 && itre > 0)
-		{
-			
-				cmd->args[args] = strdup(token->value);
-				// printf("ARGS is %s\t\n", cmd->args[itre]);
-				args++;
-		}
-		itre++;
-		token = token->next;
-	}
+        fill_cmd(token, pipenbr, envp, 0, 0, cmd);
 	cmd->cmd_nbr = pipenbr;
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->cmd_iteration = 0;
