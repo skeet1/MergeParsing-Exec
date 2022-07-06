@@ -125,5 +125,7 @@ int	ft_isalnum(int c);
 char	*ft_strcat(char *dest, char *src);
 int	is_special(char c);
 void	remove_quotes(t_token *token);
+void	print_token(t_token *token);
+void	list_files(t_token *token);
 
 #endif

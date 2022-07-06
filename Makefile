@@ -89,6 +89,8 @@ clean :
 	rm *.o
 		cd ./libft; \
 			rm *.o
+		cd ./parsing; \
+	rm *.o
 	
 fclean : clean
 	rm $(NAME)

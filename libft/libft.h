@@ -74,4 +74,5 @@ void	ft_lstadd_back(t_l **alst, t_l *new);
 void	ft_lstdelone(t_l *lst, void (*del)(void *));
 void	ft_lstclear(t_l **lst, void (*del)(void *));
 void	ft_lstiter(t_l *lst, void (*f)(void *));
+int	ft_strcmp(const char *s1, const char *s2);
 #endif

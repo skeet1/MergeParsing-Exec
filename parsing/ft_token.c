@@ -222,8 +222,7 @@ void	ft_token_side(t_token *token, t_data *data, char *s)
 	}
 	add_file_type(token);
 	remove_quotes(token);
-	print_token(token);
-	list_files(token);
+
 }
 
 void	ft_token(t_token *token, t_data *data, char *s)
