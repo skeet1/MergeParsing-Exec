@@ -33,7 +33,9 @@ typedef enum e_token
 	RED_OUT_APP,
 	PIPE,
 	FILEE,
-	WORD
+	WORD,
+	CMD,
+	ARG
 }					t_e_token;
 
 /* ----------- START STRUCT FOR SPLIT ----------- */
