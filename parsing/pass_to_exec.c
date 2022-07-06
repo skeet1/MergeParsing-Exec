@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 20:27:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 20:55:45 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 		if (token->type == 9)
 		{
 			cmd[cmd->cmd_iteration].cmd = token->value;
-
 			printf(" cmd  %s   \n", cmd[cmd->cmd_iteration].cmd);
+			
 		}
 		if (token->type == 10)
 		{
@@ -56,15 +56,20 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 			printf(" args  %s        \n \n", cmd[cmd->cmd_iteration].args[i]);
 			i++;
 		}
-		if (token->type == 2)
+
+			if (token->type == 3)
 		{
+									cmd->type[i] = token->value;
+
 					token = token->next;
 
 			cmd->file[i] = token->value;
-						printf(" FILE IN  %s        \n \n", cmd->file[i]);
+			i++;
+
+						// printf(" FILE OUT %s  type is  %s        \n \n", cmd->file[i], cmd->type[i]);
 
 		}
-			if (token->type == 3)
+				if (token->type == 2)
 		{
 									cmd->type[i] = token->value;
 
@@ -80,6 +85,7 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 	}
 	cmd->type[i] = NULL;
 	cmd[cmd->cmd_iteration].args[i] = NULL;
+
 	return (0);
 }
 int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)

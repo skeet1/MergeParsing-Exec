@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_others.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/01 09:06:35 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 20:53:37 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp)
 
 	bin = ft_strjoin(list->new[i], "/");
 	looping_through_split_path(list, i, bin, last, envp);
-	write(2, "MINISHELL command not found\n", 28);
+	write(1, "MINISHELL command not found\n", 28);
 	// g_exit_status = 127;
 	exit(127);
 }
