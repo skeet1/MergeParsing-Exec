@@ -3,38 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   pass_to_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 10:36:20 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 14:57:21 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parse.h"
 
-int fill_cmd(t_token *token, int pipenbr, struct s_envp *envp, int cmds, int iteration, 	t_cmdl	*cmd)
+int fill_cmd(t_token *token, int pipenbr,	t_cmdl	*cmd)
 {
 	while (token)
 	{
-		if (token->type == 8 && iteration == 0)
-		{
-			cmd[cmds].cmd = token->value;
-			printf("CMD is %s\t\n", cmd[iteration].cmd);
-		}
-		if (token->type == 8 && iteration > 0)
-		{
-			cmd->args[iteration] = strdup(token->value);
-			printf("ARGS is %s\t\n", cmd->args[iteration]);
-			iteration++;
-		}
-		// if (token->type == 6)
-		// {
-        //     		token = token->next;
+		printf("cmd = %s and args = %s", token->value);
+				printf("cmd = %s and args = %s", token->type);
 
-        //     fill_cmd(token , pipenbr, envp, cmds + 1, 0 , cmd);
-        // }
-		iteration++;
 		token = token->next;
 	}
     return 0;
@@ -51,8 +36,7 @@ void	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	// print_token(token);
 	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr));
 	cmd->args = (char **)malloc(sizeof(char *) * (pipenbr + 1));
-        fill_cmd(token, pipenbr, envp, itre, args, cmd);
-        itre++;
+        fill_cmd(token, pipenbr, cmd);
 	cmd->cmd_nbr = pipenbr;
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->cmd_iteration = 0;

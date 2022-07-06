@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:23:01 by mkarim            #+#    #+#             */
-/*   Updated: 2022/06/27 20:41:40 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 14:58:11 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 int	ft_strlen(char const *s)
 {
 	int		i;
-
+	if(s == NULL)
+	return 0;
 	i = 0;
 	while (s[i])
 		i++;
