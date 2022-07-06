@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 16:40:20 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 18:34:50 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	mark_cmd(t_token *tok)
 {
 	t_token	*token;
 	int		pipe;
-
+int ssdd;
 	pipe = 1;
 	token = tok;
 	while (token)

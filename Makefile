@@ -6,21 +6,13 @@
 #    By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/06 17:24:05 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/06 18:36:59 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-
 CC = gcc
-
-FLAGS =
-#  -Wall -Werror -Wextra
-
-HEADER = ./minishell.h \
-		./parsing/parse.h \
-		./libft/libft.h
-
+CFALGS = -Wall -Werror -Wextra
 SRC = ./exec/builtins.c \
 	./exec/ft_env.c \
 	./libft/ft_strlen.c  \
@@ -60,73 +52,58 @@ SRC = ./exec/builtins.c \
 	./parsing/parse.c \
 	./libft/ft_strcmp.c \
 	./parsing/pass_to_exec.c \
-	
-OBJ = $(SRC:.c=.o)
-# ./exec/builtins.o \
-# 	./exec/ft_env.o \
-# 	./exec/tools.o \
-# 	./exec/redirections.o \
-# 	./libft/ft_strnstr.o  \
-# 	./exec/ft_unset.o \
-# 	./exec/ft_export.o \
-# 	./exec/ft_others.o \
-# 	./exec/ft_readline.o \
-# 	./exec/ft_init.o \
-# 	./libft/ft_putchar_fd.o \
-# 	./libft/ft_putstr_fd.o \
-# 	./libft/ft_putendl_fd.o \
-# 	./exec/ftpipe.o \
-# 	./exec/libft.o \
-# 	./exec/ft_one_command.o \
-# 	./exec/ft_multi_cmds.o \
-# 	./exec/ft_split.o \
-# 	./exec/ft_here_doc.o \
-# 	./exec/parse.o \
-# 	./exec/utils.o \
-# 	./exec/ft_search_path.o \
-# 	./exec/is_builtin.o \
-# 	./exec/ft_exit.o \
-# 	./exec/ftcd.o \
-# 	./exec/ft_copy_1st_env.o \
 
-define HEADER_G
-
-
-████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-█░░░░░░██████████░░░░░░█░░░░░░░░░░█░░░░░░██████████░░░░░░█░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░█░░░░░░█████████░░░░░░█████████
-█░░▄▀░░░░░░░░░░░░░░▄▀░░█░░▄▀▄▀▄▀░░█░░▄▀░░░░░░░░░░██░░▄▀░░█░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░█████████░░▄▀░░█████████
-█░░▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀░░█░░░░▄▀░░░░█░░▄▀▄▀▄▀▄▀▄▀░░██░░▄▀░░█░░░░▄▀░░░░█░░▄▀░░░░░░░░░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░█████████░░▄▀░░█████████
-█░░▄▀░░░░░░▄▀░░░░░░▄▀░░███░░▄▀░░███░░▄▀░░░░░░▄▀░░██░░▄▀░░███░░▄▀░░███░░▄▀░░█████████░░▄▀░░██░░▄▀░░█░░▄▀░░█████████░░▄▀░░█████████░░▄▀░░█████████
-█░░▄▀░░██░░▄▀░░██░░▄▀░░███░░▄▀░░███░░▄▀░░██░░▄▀░░██░░▄▀░░███░░▄▀░░███░░▄▀░░░░░░░░░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░█████████░░▄▀░░█████████
-█░░▄▀░░██░░▄▀░░██░░▄▀░░███░░▄▀░░███░░▄▀░░██░░▄▀░░██░░▄▀░░███░░▄▀░░███░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░█████████░░▄▀░░█████████
-█░░▄▀░░██░░░░░░██░░▄▀░░███░░▄▀░░███░░▄▀░░██░░▄▀░░██░░▄▀░░███░░▄▀░░███░░░░░░░░░░▄▀░░█░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░█████████░░▄▀░░█████████
-█░░▄▀░░██████████░░▄▀░░███░░▄▀░░███░░▄▀░░██░░▄▀░░░░░░▄▀░░███░░▄▀░░███████████░░▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀░░█████████░░▄▀░░█████████░░▄▀░░█████████
-█░░▄▀░░██████████░░▄▀░░█░░░░▄▀░░░░█░░▄▀░░██░░▄▀▄▀▄▀▄▀▄▀░░█░░░░▄▀░░░░█░░░░░░░░░░▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░░░░░█░░▄▀░░░░░░░░░░█
-█░░▄▀░░██████████░░▄▀░░█░░▄▀▄▀▄▀░░█░░▄▀░░██░░░░░░░░░░▄▀░░█░░▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀░░██░░▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░█
-█░░░░░░██████████░░░░░░█░░░░░░░░░░█░░░░░░██████████░░░░░░█░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░██░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█░░░░░░░░░░░░░░█
-████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████
-
-endef
-export	HEADER_G
-
+OBJ = builtins.o \
+	 ft_env.o \
+	 ft_strlen.o  \
+	 redirections.o \
+	 ft_strnstr.o \
+	 ft_unset.o \
+	 ft_export.o \
+	 ft_others.o \
+	 ft_readline.o \
+	 ft_init.o  \
+	 ft_putchar_fd.o \
+	 ft_putstr_fd.o \
+	 ft_putendl_fd.o \
+	 ftpipe.o \
+	 ft_one_command.o \
+	 ft_multi_cmds.o   \
+	 ft_strdup.o  \
+	 ft_atoi.o  \
+	 ft_isdigit.o  \
+	 ft_here_doc.o \
+	 ft_search_path.o \
+	 is_builtin.o \
+	 ft_exit.o \
+	 ftcd.o \
+	 ft_copy_1st_env.o \
+	 ft_export_tools.o \
+	 ft_strncmp.o  \
+	 ft_itoa.o  \
+	 ft_strjoin.o  \
+	 ft_substr.o  \
+	 ft_split.o \
+	 ft_check_syntax.o \
+	 ft_token.o \
+	 remove_quotes.o \
+	 ft_strlcpy.o \
+	 ft_strtrim.o \
+	 parse.o \
+	 ft_strcmp.o \
+	 pass_to_exec.o \
+	 
 all : $(NAME)
+$(OBJ) :
+	 $(CC) $(CFALGS) -c $(SRC)
 
 $(NAME) : $(OBJ)
-	$(CC)  $(FALGS) -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib -I 	/goinfre/$(USER)/.brew/opt/readline/include -o $(NAME)
-	@echo "\033[1;31m$$HEADER_G"
-	@echo "\033[0;32m \033[1m minishell is created successfully\033[0m"
-	
-%.o:%.c $(HEADER)
-	$(CC)  -c  $< $(FLAGS)
-	
+	$(CC)   $(OBJ) -o $(NAME)  -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib -I 	/goinfre/$(USER)/.brew/opt/readline/include 
+
 clean :
-	rm $(OBJ)
-	@echo "\033[1;33m>> all objects files are deleted.\033[0m"
+	rm -f *.o	
 	
 fclean : clean
 	rm $(NAME)
-	@echo "\033[0;31m>> $(NAME) is deleted.\033[0m"
 
 re : fclean all
-
-

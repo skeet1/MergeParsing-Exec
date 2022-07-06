@@ -6,7 +6,7 @@
 #    By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/06 16:10:41 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/06 17:33:59 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,15 @@ NAME = minishell
 
 CC = gcc
 
-FALGS = -Wall -Werror -Wextra
+FLAGS =
+#  -Wall -Werror -Wextra
 
 HEADER = ./minishell.h \
 		./parsing/parse.h \
 		./libft/libft.h
 
-SRC = ./exec/builtins.c \
+SRC = 	./parsing/parse.c \
+	./exec/builtins.c \
 	./exec/ft_env.c \
 	./libft/ft_strlen.c  \
 	./exec/redirections.c \
@@ -56,7 +58,6 @@ SRC = ./exec/builtins.c \
 	./parsing/remove_quotes.c \
 	./libft/ft_strlcpy.c \
 	./libft/ft_strtrim.c \
-	./parsing/parse.c \
 	./libft/ft_strcmp.c \
 	./parsing/pass_to_exec.c \
 	
@@ -111,9 +112,13 @@ export	HEADER_G
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(FALGS) $(OBJ) -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib -I 	/goinfre/$(USER)/.brew/opt/readline/include -o $(NAME)
+	$(CC) -o $(NAME)  $(FALGS) -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib 
 	@echo "\033[1;31m$$HEADER_G"
 	@echo "\033[0;32m \033[1m minishell is created successfully\033[0m"
+	
+%.o:%.c $(HEADER)
+	$(CC)  -c  $< $(FLAGS) -I 	/goinfre/$(USER)/.brew/opt/readline/include 
+	
 clean :
 	rm $(OBJ)
 	@echo "\033[1;33m>> all objects files are deleted.\033[0m"
@@ -123,4 +128,5 @@ fclean : clean
 	@echo "\033[0;31m>> $(NAME) is deleted.\033[0m"
 
 re : fclean all
+
 

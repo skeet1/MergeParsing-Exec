@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_one_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/01 09:06:34 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 18:16:08 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	one_cmd_1(t_cmdl *list, struct s_envp *envp)
 {
 	int	i;
-
+	int trew;
 	i = 0;
 	if (fork() == 0)
 	{
