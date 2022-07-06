@@ -6,7 +6,7 @@
 #    By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/06 17:24:05 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/06 16:10:41 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME = minishell
 
 CC = gcc
 
-FLAGS =
-#  -Wall -Werror -Wextra
+FALGS = -Wall -Werror -Wextra
 
 HEADER = ./minishell.h \
 		./parsing/parse.h \
@@ -112,13 +111,9 @@ export	HEADER_G
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC)  $(FALGS) -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib -I 	/goinfre/$(USER)/.brew/opt/readline/include -o $(NAME)
+	$(CC) $(FALGS) $(OBJ) -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib -I 	/goinfre/$(USER)/.brew/opt/readline/include -o $(NAME)
 	@echo "\033[1;31m$$HEADER_G"
 	@echo "\033[0;32m \033[1m minishell is created successfully\033[0m"
-	
-%.o:%.c $(HEADER)
-	$(CC)  -c  $< $(FLAGS)
-	
 clean :
 	rm $(OBJ)
 	@echo "\033[1;33m>> all objects files are deleted.\033[0m"
@@ -128,5 +123,4 @@ fclean : clean
 	@echo "\033[0;31m>> $(NAME) is deleted.\033[0m"
 
 re : fclean all
-
 
