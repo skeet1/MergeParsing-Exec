@@ -14,6 +14,28 @@
 #include "../minishell.h"
 #include "parse.h"
 
+void	mark_cmd(t_token *tok)
+{
+	t_token	*token;
+	int		pipe;
+
+	pipe = 1;
+	token = tok;
+	while (token)
+	{
+		if (pipe && token->type == WORD)
+		{
+			token->type = CMD;
+			pipe = 0;
+		}
+		else if (token->type == WORD)
+			token->type = ARG;
+		else if (token->type == PIPE)
+			pipe = 1;
+		token = token->next;
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data data;
@@ -33,7 +55,10 @@ int	main(int argc, char **argv, char **env)
 			add_history(data.cmd_line);
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
 			if (ft_strlen(data.cmd_line))
+			{
 				token = ft_token(token, &data, data.cmd_line);
+				mark_cmd(token);
+			}
 			pipenbr = data.side;
 			pass_to_exec(token, pipenbr, envp);
 		}
