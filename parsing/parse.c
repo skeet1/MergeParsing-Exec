@@ -36,7 +36,7 @@ int	main(int argc, char **argv,  char **env)
 			add_history(data.cmd_line);
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
 			if (ft_strlen(data.cmd_line))
-				ft_token(token, &data, data.cmd_line);
+				token = ft_token(token, &data, data.cmd_line);
 					pass_to_exec(token);
 
 ////

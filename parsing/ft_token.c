@@ -173,7 +173,7 @@ void	incr_quotes(char c, int *a, int *b)
 		(*b)++;
 }
 
-void	ft_token_side(t_token *token, t_data *data, char *s)
+t_token	*	ft_token_side(t_token *token, t_data *data, char *s)
 {
 	int		j;
 	int		start;
@@ -225,9 +225,10 @@ void	ft_token_side(t_token *token, t_data *data, char *s)
 	remove_quotes(token);
 	// list_files(token);
 	// pass_to_exec(token);
+	return token;
 }
 
-void	ft_token(t_token *token, t_data *data, char *s)
+t_token	*	ft_token(t_token *token, t_data *data, char *s)
 {
 	int     i;
 	int		start;
@@ -238,6 +239,7 @@ void	ft_token(t_token *token, t_data *data, char *s)
 	ft_num_cmd_side(data, s);
 	data->cmd_sides = ft_split(s, '|');
 	if (ft_check_syntax(data->cmd_line))
-		return ;
-	ft_token_side(token, data, data->cmd_line);
+		return NULL;
+	token = ft_token_side(token, data, data->cmd_line);
+	return token;
 }

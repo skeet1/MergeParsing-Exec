@@ -14,6 +14,6 @@
 
 void    pass_to_exec(t_token *token)
 {
-    printf("from pass to exec\n");
+    printf("HERE from pass to exec\n");
     print_token(token);
 }

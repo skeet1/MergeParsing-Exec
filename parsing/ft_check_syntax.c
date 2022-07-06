@@ -108,8 +108,8 @@ int	ft_check_syntax(char *s)
 	// if (check_quotes(s) || check_pipes(s)
 	// 	|| check_red(s))
 	// 	return (1);
-	red();
-	if (check_pipes(s) || check_quotes(s) || check_red(s) || last_char(s))
-		return (reset(), 1);
+	// red();
+	// if (check_pipes(s) || check_quotes(s) || check_red(s) || last_char(s))
+	// 	return (reset(), 1);
 	return (reset(), 0);
 }

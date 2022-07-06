@@ -116,7 +116,7 @@ int	    check_err_pipe(char *s);
 // char	*ft_strtrim(char *s1, char *set);
 // size_t	ft_strlcpy(char *dst, char *src, size_t size);
 int	ft_isspace(int c);
-void	ft_token(t_token *token, t_data *data, char *s);
+t_token	*	ft_token(t_token *token, t_data *data, char *s);
 // char	**ft_split(char *s, char c);
 // int	ft_strcmp(char *s1, char *s2);
 int    ft_check_syntax(char *s);
@@ -127,10 +127,6 @@ int	is_special(char c);
 void	remove_quotes(t_token *token);
 void	print_token(t_token *token);
 void	list_files(t_token *token);
-<<<<<<< HEAD
-void    pass_to_exec(t_token *token);
-=======
 void	pass_to_exec(t_token *token);
 
->>>>>>> 2ddb703eb946fac61bbf3b08efac10ab750e64a9
 #endif
