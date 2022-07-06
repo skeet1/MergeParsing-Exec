@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 09:13:06 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 10:38:07 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int	main(int argc, char **argv,  char **env)
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
 			if (ft_strlen(data.cmd_line))
 				ft_token(token, &data, data.cmd_line);
-					print_token(token);
-				list_files(token);
 ////
 	// 		while (token)
 	// {
