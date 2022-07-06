@@ -80,6 +80,12 @@ typedef struct t_list
 	void					*next;
 }							t_list;
 static int					g_exit_status;
+/* ----------- START PREEXEC ----------- */
+
+void	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp); 
+
+
+/* ----------- END ----------- */
 
 void						handler(int sig);
 int							prompt_and_parse(char **upstream, char **downstream,
