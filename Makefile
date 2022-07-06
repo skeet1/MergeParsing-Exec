@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+         #
+#    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/06 16:10:41 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/06 16:56:22 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = gcc
 
-FALGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 HEADER = ./minishell.h \
 		./parsing/parse.h \
@@ -114,6 +114,8 @@ $(NAME) : $(OBJ)
 	$(CC) $(FALGS) $(OBJ) -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib -I 	/goinfre/$(USER)/.brew/opt/readline/include -o $(NAME)
 	@echo "\033[1;31m$$HEADER_G"
 	@echo "\033[0;32m \033[1m minishell is created successfully\033[0m"
+%.o : %.c $(HEADER)
+	$(CC) $(FLAGS) -I. -c $<
 clean :
 	rm $(OBJ)
 	@echo "\033[1;33m>> all objects files are deleted.\033[0m"
@@ -123,4 +125,5 @@ fclean : clean
 	@echo "\033[0;31m>> $(NAME) is deleted.\033[0m"
 
 re : fclean all
+
 
