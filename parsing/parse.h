@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 09:13:36 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 10:42:26 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data {
 typedef	struct s_token {
 	int		type;
 	char	*value;
-	int		dbl_qt;
+	int		dbl_st;
 	struct	s_token *next;
 }				t_token;
 
@@ -127,5 +127,6 @@ int	is_special(char c);
 void	remove_quotes(t_token *token);
 void	print_token(t_token *token);
 void	list_files(t_token *token);
+void	pass_to_exec(t_token *token);
 
 #endif
