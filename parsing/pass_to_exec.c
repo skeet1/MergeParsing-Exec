@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 20:55:45 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 22:31:18 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,25 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 	cmd->file =  (char **)malloc(sizeof(char *) * (i + 1));
 		cmd->type =  (char **)malloc(sizeof(char *) * (i + 1));
 
+// cmd[cmd->cmd_iteration].cmd = NULL;
+// cmd->file[i]  = NULL;
+// cmd->type[i]  = NULL;
 
-	i = 0;
-	while (token)
+// cmd[i].cmd = NULL;
+// cmd[i].args = NULL;
+// 	i = 0;
+	while (token != NULL)
 	{
 		if (token->type == 9)
 		{
 			cmd[cmd->cmd_iteration].cmd = token->value;
-			printf(" cmd  %s   \n", cmd[cmd->cmd_iteration].cmd);
+			printf(" cmd  %s\n", cmd[cmd->cmd_iteration].cmd);
 			
 		}
 		if (token->type == 10)
 		{
 			cmd[cmd->cmd_iteration].args[i] = token->value;
-			printf(" args  %s        \n \n", cmd[cmd->cmd_iteration].args[i]);
+			printf(" args  %s\n \n", cmd[cmd->cmd_iteration].args[i]);
 			i++;
 		}
 
@@ -84,7 +89,7 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 		token = token->next;
 	}
 	cmd->type[i] = NULL;
-	cmd[cmd->cmd_iteration].args[i] = NULL;
+	// cmd[cmd->cmd_iteration].args[i] = NULL;
 
 	return (0);
 }
