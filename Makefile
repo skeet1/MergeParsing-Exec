@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
+#    By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/06 15:29:17 by mkarim           ###   ########.fr        #
+#    Updated: 2022/07/06 16:10:41 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 CC = gcc
 
-FALGS = -Wall -Werorr -Wextra
+FALGS = -Wall -Werror -Wextra
 
 HEADER = ./minishell.h \
 		./parsing/parse.h \

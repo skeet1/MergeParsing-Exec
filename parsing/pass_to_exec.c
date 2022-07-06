@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 14:57:21 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:10:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,23 @@
 
 int fill_cmd(t_token *token, int pipenbr,	t_cmdl	*cmd)
 {
+	int i = 0;
 	while (token)
-	{
-		printf("cmd = %s and args = %s", token->value);
-				printf("cmd = %s and args = %s", token->type);
+	{ i = 0;
+		if(token->type == 9)
+		{
+			cmd[cmd->cmd_iteration].cmd =  token->value;
+		}
+		if(token->type == 10 )
+		{
+			
+			cmd[cmd->cmd_iteration].args[i] =  token->value;
 
+				i++;
+
+			}
+		
+		// 		printf("cmd = %d\n", token->type);
 		token = token->next;
 	}
     return 0;
