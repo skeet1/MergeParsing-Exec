@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:50:59 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/06 20:08:52 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 20:16:50 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int	redirections(t_cmdl *list)
 
 		i++;
 	}
-	// printf("i %d \n\n\n", i);
+	printf("i %d \n\n\n", i);
 	return (0);
 }

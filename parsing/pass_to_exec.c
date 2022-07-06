@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 19:59:09 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 20:27:19 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,14 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 					token = token->next;
 
 			cmd->file[i] = token->value;
+			i++;
 
 						// printf(" FILE OUT %s  type is  %s        \n \n", cmd->file[i], cmd->type[i]);
 
 		}
 		token = token->next;
 	}
+	cmd->type[i] = NULL;
 	cmd[cmd->cmd_iteration].args[i] = NULL;
 	return (0);
 }
@@ -100,6 +102,8 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	{
 		// heredoc_without_cmd(cmd);
 		one_cmd(cmd, envp);
+		free2d(cmd->args);
+		
 	}
 	// else if (cmd->cmd_nbr > 1)
 	// {
