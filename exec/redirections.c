@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:50:59 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/02 08:48:40 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 19:43:52 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	redirections(t_cmdl *list)
 	{
 		// input = dup(0);
 		// output = dup(1);
-		if (ft_strncmp(list[0].type[i], RDOUT, 7) == 0)
+		if (ft_strncmp(list[0].type[i], ">", 7) == 0)
 		{
 			list->fd_out = open(list[0].file[i], O_RDWR | O_CREAT | O_TRUNC,
 					0600);
@@ -32,22 +32,22 @@ int	redirections(t_cmdl *list)
 				printf("bash: No such file or directory\n");
 			}
 		}
-		if (ft_strncmp(list[0].type[i] , RDIN, 6) == 0)
-		{	
-			list->fd_in = open(list[0].file[i], O_RDONLY, 0);
-			if (list->fd_in == -1)
-			{
-				printf("bash: No such file or directory\n");
-			}
-		}
-		if (ft_strncmp(list[0].type[i] , RDAPPEND, 10) == 0)
-		{
-			list->fd_out = open(list[0].file[i], O_RDWR | O_CREAT | O_APPEND, 0600);	
-		}
-		if (ft_strncmp(list[0].type[i] , HEREDOC, 7) == 0)
-		{
-			list->fd_in = open("f1", O_RDWR | O_CREAT | O_TRUNC, 0600);	
-		}
+		// if (ft_strncmp(list[0].type[i] , RDIN, 6) == 0)
+		// {	
+		// 	list->fd_in = open(list[0].file[i], O_RDONLY, 0);
+		// 	if (list->fd_in == -1)
+		// 	{
+		// 		printf("bash: No such file or directory\n");
+		// 	}
+		// }
+		// if (ft_strncmp(list[0].type[i] , RDAPPEND, 10) == 0)
+		// {
+		// 	list->fd_out = open(list[0].file[i], O_RDWR | O_CREAT | O_APPEND, 0600);	
+		// }
+		// if (ft_strncmp(list[0].type[i] , HEREDOC, 7) == 0)
+		// {
+		// 	list->fd_in = open("f1", O_RDWR | O_CREAT | O_TRUNC, 0600);	
+		// }
 	
 
 		i++;

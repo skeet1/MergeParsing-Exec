@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 19:09:50 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 19:43:18 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,69 @@
 int	strlen_list(t_token *token, int pipenbr, t_cmdl *cmd)
 {
 	int	i;
-	
+
 	i = 0;
 	while (token)
 	{
-		
 		if (token->type == 10)
 		{
-
-
 			i++;
 		}
 		token = token->next;
 	}
-					
 	return (i);
 }
 
 int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 {
 	int	i;
-	
+
 	i = 0;
-	i = strlen_list(token,pipenbr, cmd);
+	i = strlen_list(token, pipenbr, cmd);
 	// printf(" args NB %d   \n", i);
-	cmd->args = 	 (char* *)malloc(sizeof(char *) * (i + 1));
+	cmd->args = (char **)malloc(sizeof(char *) * (i + 1));
+	// cmd->type =  (char **)malloc(sizeof(char *) * (i + 1));
+	cmd->file =  (char **)malloc(sizeof(char *) * (i + 1));
+		cmd->type =  (char **)malloc(sizeof(char *) * (i + 1));
+
+
 	i = 0;
 	while (token)
 	{
 		if (token->type == 9)
 		{
 			cmd[cmd->cmd_iteration].cmd = token->value;
-					printf(" cmd  %s   \n", cmd[cmd->cmd_iteration].cmd);
+
+			printf(" cmd  %s   \n", cmd[cmd->cmd_iteration].cmd);
 		}
 		if (token->type == 10)
 		{
 			cmd[cmd->cmd_iteration].args[i] = token->value;
 			printf(" args  %s        \n \n", cmd[cmd->cmd_iteration].args[i]);
-
 			i++;
+		}
+		if (token->type == 2)
+		{
+					token = token->next;
+
+			cmd->file[i] = token->value;
+						printf(" FILE IN  %s        \n \n", cmd->file[i]);
+
+		}
+			if (token->type == 3)
+		{
+									cmd->type[i] = token->value;
+
+					token = token->next;
+
+			cmd->file[i] = token->value;
+
+						printf(" FILE OUT  type is %s %s        \n \n", cmd->file[i], cmd->type[i]);
+
 		}
 		token = token->next;
 	}
-					cmd[cmd->cmd_iteration].args[i] = NULL;
-	
-
+	cmd[cmd->cmd_iteration].args[i] = NULL;
 	return (0);
 }
 int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
@@ -73,8 +91,6 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	// printf("pipe nb %d cmd nbr %d\n", pipenbr - 1, pipenbr );
 	// print_token(token);
 	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr));
-	
-	
 	fill_cmd(token, pipenbr, cmd);
 	cmd->cmd_nbr = pipenbr;
 	cmd->there_is_pipe = pipenbr - 1;
@@ -90,5 +106,5 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 		// grep 1337 exec/*.c problem
 		ft_pipe(cmd, envp);
 	}
-	return 0;
+	return (0);
 }

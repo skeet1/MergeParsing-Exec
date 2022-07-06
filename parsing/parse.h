@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 10:42:26 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 19:33:51 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ typedef struct t_cmdl
 	char			*out_red;
 	int				cmd_iteration;
 	int				cmd_nbr;
-	char			*type[50];
-	char			*file[50];
+	char			**type;
+	char			**file;
 	int				fd_out;
 	int				fd_in;
 	char			**environ;
