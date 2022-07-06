@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/06 16:32:16 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 20:12:09 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int	ft_pwd(int fd_out)
 	char	*pwd;
 	int		len;
 
-	fd_out = 1;
 	len = 0;
 	pwd = getcwd(pw, PATH_MAX);
 	len = ft_strlen(pwd);

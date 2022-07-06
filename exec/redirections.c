@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:50:59 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/06 19:43:52 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 20:08:52 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@ int	redirections(t_cmdl *list)
 	int i = 0;
 	int input;
 	int output;
+
 	while (list[0].type[i] != NULL)
 	{
+
 		// input = dup(0);
 		// output = dup(1);
-		if (ft_strncmp(list[0].type[i], ">", 7) == 0)
+		if (ft_strncmp(list->type[i], ">", 1) == 0)
 		{
-			list->fd_out = open(list[0].file[i], O_RDWR | O_CREAT | O_TRUNC,
+												printf("inside red FILE OUT %s  type is  %s        \n \n", list->file[i], list->type[i]);
+
+			list->fd_out = open(list->file[i], O_RDWR | O_CREAT | O_TRUNC,
 					0600);
 			if (list->fd_out == -1)
 			{
@@ -52,35 +56,6 @@ int	redirections(t_cmdl *list)
 
 		i++;
 	}
+	// printf("i %d \n\n\n", i);
 	return (0);
-}
-
-// not mine is from a course i use it to accelerate work
-
-int	prompt_and_parse(char **upstream, char **downstream, char *line)
-{
-	downstream[0] = NULL;
-	line = readline("MINISHELL BETA $ ");
-	if (line == NULL)
-	{
-		write(2, "exit\n", 5);
-		// rl_clear_history();
-		free(line);
-		exit(1);
-	}
-	add_history(line);
-	*upstream++ = strtok(line, " \t");
-	while ((*upstream = strtok(NULL, " \t")))
-	{
-		if (strcmp(*upstream, "|") == 0)
-		{
-			*upstream = NULL;
-			while ((*downstream++ = strtok(NULL, " |")))
-				;
-			return (1);
-		}
-		upstream++;
-	}
-	downstream[0] = NULL;
-	return (1);
 }

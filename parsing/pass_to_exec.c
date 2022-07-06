@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 19:43:18 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 19:59:09 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 
 			cmd->file[i] = token->value;
 
-						printf(" FILE OUT  type is %s %s        \n \n", cmd->file[i], cmd->type[i]);
+						// printf(" FILE OUT %s  type is  %s        \n \n", cmd->file[i], cmd->type[i]);
 
 		}
 		token = token->next;
@@ -94,17 +94,18 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	fill_cmd(token, pipenbr, cmd);
 	cmd->cmd_nbr = pipenbr;
 	cmd->there_is_pipe = pipenbr - 1;
+	cmd->fd_out = 1;
 	cmd->cmd_iteration = 0;
 	if (cmd->cmd_nbr == 1 && cmd[0].cmd != NULL)
 	{
 		// heredoc_without_cmd(cmd);
 		one_cmd(cmd, envp);
 	}
-	else if (cmd->cmd_nbr > 1)
-	{
-		//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
-		// grep 1337 exec/*.c problem
-		ft_pipe(cmd, envp);
-	}
+	// else if (cmd->cmd_nbr > 1)
+	// {
+	// 	//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
+	// 	// grep 1337 exec/*.c problem
+	// 	ft_pipe(cmd, envp);
+	// }
 	return (0);
 }
