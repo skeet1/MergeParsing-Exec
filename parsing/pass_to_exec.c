@@ -28,12 +28,12 @@ int fill_cmd(t_token *token, int pipenbr, struct s_envp *envp, int cmds, int ite
 			printf("ARGS is %s\t\n", cmd->args[iteration]);
 			iteration++;
 		}
-		if (token->type == 6)
-		{
-            		token = token->next;
+		// if (token->type == 6)
+		// {
+        //     		token = token->next;
 
-            fill_cmd(token , pipenbr, envp, cmds + 1, 0 , cmd);
-        }
+        //     fill_cmd(token , pipenbr, envp, cmds + 1, 0 , cmd);
+        // }
 		iteration++;
 		token = token->next;
 	}
@@ -50,8 +50,9 @@ void	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	// printf("pipe nb %d cmd nbr %d\n", pipenbr - 1, pipenbr );
 	// print_token(token);
 	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr));
-	cmd->args = (char **)malloc(sizeof(char *) * (pipenbr));
-        fill_cmd(token, pipenbr, envp, 0, 0, cmd);
+	cmd->args = (char **)malloc(sizeof(char *) * (pipenbr + 1));
+        fill_cmd(token, pipenbr, envp, itre, args, cmd);
+        itre++;
 	cmd->cmd_nbr = pipenbr;
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->cmd_iteration = 0;
