@@ -6,39 +6,60 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 18:13:58 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 19:09:50 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parse.h"
+int	strlen_list(t_token *token, int pipenbr, t_cmdl *cmd)
+{
+	int	i;
+	
+	i = 0;
+	while (token)
+	{
+		
+		if (token->type == 10)
+		{
+
+
+			i++;
+		}
+		token = token->next;
+	}
+					
+	return (i);
+}
 
 int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 {
 	int	i;
 	
 	i = 0;
-	cmd->args = 	 (char* *)malloc(sizeof(char) * (122));
-int g= 0;
+	i = strlen_list(token,pipenbr, cmd);
+	// printf(" args NB %d   \n", i);
+	cmd->args = 	 (char* *)malloc(sizeof(char *) * (i + 1));
+	i = 0;
 	while (token)
 	{
 		if (token->type == 9)
 		{
 			cmd[cmd->cmd_iteration].cmd = token->value;
-
+					printf(" cmd  %s   \n", cmd[cmd->cmd_iteration].cmd);
 		}
 		if (token->type == 10)
 		{
 			cmd[cmd->cmd_iteration].args[i] = token->value;
+			printf(" args  %s        \n \n", cmd[cmd->cmd_iteration].args[i]);
 
 			i++;
 		}
 		token = token->next;
 	}
-					// cmd[cmd->cmd_iteration].args[i] = NULL;
+					cmd[cmd->cmd_iteration].args[i] = NULL;
 	
 
-					cmd->cmd_iteration++;
 	return (0);
 }
 int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)

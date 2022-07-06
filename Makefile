@@ -6,13 +6,14 @@
 #    By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/06 18:36:59 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/06 18:46:42 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-CFALGS = -Wall -Werror -Wextra
+CFALGS =
+#  -Wall -Werror -Wextra
 SRC = ./exec/builtins.c \
 	./exec/ft_env.c \
 	./libft/ft_strlen.c  \

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 18:34:50 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 19:13:55 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,13 @@ int	main(int argc, char **argv, char **env)
 			token = NULL;
 			data.cmd_line = readline(PROMPT);
 			add_history(data.cmd_line);
+			if(data.cmd_line == NULL)
+			{
+				exit(1);
+			}
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
+						add_history(data.cmd_line);
+
 			if (ft_strlen(data.cmd_line))
 			{
 				token = ft_token(token, &data, data.cmd_line);
