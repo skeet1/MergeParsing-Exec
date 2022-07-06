@@ -6,11 +6,12 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:36:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/05 22:50:26 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:29:42 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../parsing/parse.h"
 
 int	ft_is_alpha_mod(char c)
 {

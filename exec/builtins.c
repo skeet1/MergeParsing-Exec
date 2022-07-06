@@ -6,12 +6,14 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/02 18:08:58 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:32:16 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
+#include "../parsing/parse.h"
+
 int	ft_echo(t_cmdl *list, int fd)
 {
 	int	len;

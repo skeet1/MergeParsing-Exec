@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/05 22:47:48 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:41:22 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct t_list
 static int					g_exit_status;
 /* ----------- START PREEXEC ----------- */
 
-void	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp); 
+int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp); 
 
 
 /* ----------- END ----------- */

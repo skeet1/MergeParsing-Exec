@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 10:38:07 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 16:40:20 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ int	main(int argc, char **argv, char **env)
 			}
 			pipenbr = data.side;
 			pass_to_exec(token, pipenbr, envp);
+					free(	data.cmd_line);
+
 		}
 	}
+	
+	return 0;
 }
