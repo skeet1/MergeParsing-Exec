@@ -27,72 +27,66 @@ int	strlen_list(t_token *token, int pipenbr, t_cmdl *cmd)
 	}
 	return (i);
 }
-
-int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
+int	file_list(t_token *token, int pipenbr, t_cmdl *cmd)
 {
 	int	i;
 
 	i = 0;
-	i = strlen_list(token, pipenbr, cmd);
-	// printf(" args NB %d   \n", i);
-	cmd->args = (char **)malloc(sizeof(char *) * (i + 1));
-	// cmd->type =  (char **)malloc(sizeof(char *) * (i + 1));
-	cmd->file =  (char **)malloc(sizeof(char *) * (i + 1));
-		cmd->type =  (char **)malloc(sizeof(char *) * (i + 1));
-
-// cmd[cmd->cmd_iteration].cmd = NULL;
-// cmd->file[i]  = NULL;
-// cmd->type[i]  = NULL;
-
-// cmd[i].cmd = NULL;
-// cmd[i].args = NULL;
-// 	i = 0;
-	while (token != NULL)
+	while (token)
 	{
-		if (token->type == 9)
+		if (token->type == 7)
 		{
-			cmd[cmd->cmd_iteration].cmd = token->value;
-			printf(" cmd  %s\n", cmd[cmd->cmd_iteration].cmd);
-			
-		}
-		if (token->type == 10)
-		{
-			cmd[cmd->cmd_iteration].args[i] = token->value;
-			printf(" args  %s\n \n", cmd[cmd->cmd_iteration].args[i]);
 			i++;
-		}
-
-			if (token->type == 3)
-		{
-									cmd->type[i] = token->value;
-
-					token = token->next;
-
-			cmd->file[i] = token->value;
-			i++;
-
-						// printf(" FILE OUT %s  type is  %s        \n \n", cmd->file[i], cmd->type[i]);
-
-		}
-				if (token->type == 2)
-		{
-									cmd->type[i] = token->value;
-
-					token = token->next;
-
-			cmd->file[i] = token->value;
-			i++;
-
-						// printf(" FILE OUT %s  type is  %s        \n \n", cmd->file[i], cmd->type[i]);
-
 		}
 		token = token->next;
 	}
-	cmd->type[i] = NULL;
-	// cmd[cmd->cmd_iteration].args[i] = NULL;
+	return (i);
+}
 
+int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
+{
+	int	i;
+	int	args;
+	int	file;
+
+	i = 0;
+	args = strlen_list(token, pipenbr, cmd);
+	file = file_list(token, pipenbr, cmd);
+	printf("files %d\n", file);
+	cmd->file = (char **)malloc(sizeof(char *) * (file));
+	cmd->type = (char **)malloc(sizeof(char *) * (file));
+	cmd[cmd->cmd_iteration].args = (char **)malloc(sizeof(char *) * (args + 1));
+	args   = 0 ;
+	while (token != NULL)
+	{
+		if (token->type == CMD)
+		{
+			cmd[cmd->cmd_iteration].cmd = token->value;
+		}
+		if (token->type == ARG)
+		{
+			cmd[cmd->cmd_iteration].args[args] = token->value;
+			args++;
+		}
+		if (token->type == RED_OUT)
+		{
+			cmd[cmd->cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd->cmd_iteration].file[i] = token->value;
+			i++;
+		}
+		if (token->type == RED_IN)
+		{
+			cmd[cmd->cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd->cmd_iteration].file[i] = token->value;
+			i++;
+		}
+		token = token->next;
+	}
 	return (0);
 }
+
 int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 {
 	t_cmdl	*cmd;
@@ -114,7 +108,6 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 		// heredoc_without_cmd(cmd);
 		one_cmd(cmd, envp);
 		free2d(cmd->args);
-		
 	}
 	// else if (cmd->cmd_nbr > 1)
 	// {
