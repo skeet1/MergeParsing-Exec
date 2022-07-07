@@ -97,7 +97,7 @@ OBJ = builtins.o \
 	 
 all : $(NAME)
 $(OBJ) :
-	 $(CC) $(CFALGS) -c $(SRC)
+	 $(CC) $(CFALGS) -c $(SRC) 
 
 $(NAME) : $(OBJ)
 	$(CC)   $(OBJ) -o $(NAME)  -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib -I 	/goinfre/$(USER)/.brew/opt/readline/include 

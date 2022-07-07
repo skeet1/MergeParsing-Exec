@@ -17,8 +17,8 @@ int	strlen_list(t_token *token, int pipenbr, t_cmdl *cmd)
 	int	i;
 
 	i = 0;
-	if(token == NULL)
-	return 0 ;
+	if (token == NULL)
+		return (0);
 	while (token)
 	{
 		if (token->type == 10)
@@ -34,8 +34,8 @@ int	file_list(t_token *token, int pipenbr, t_cmdl *cmd)
 	int	i;
 
 	i = 0;
-	if(token == NULL)
-	return 0 ;
+	if (token == NULL)
+		return (0);
 	while (token)
 	{
 		if (token->type == 7)
@@ -63,6 +63,7 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 	cmd->count_redire = file;
 	cmd[cmd_iteration].args = (char **)malloc(sizeof(char *) * (args + 1));
 	args = 0;
+	cmd[cmd_iteration].type[i] = "";
 	while (token != NULL)
 	{
 		if (token->type == CMD)
@@ -96,18 +97,19 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 			cmd[cmd_iteration].file[i] = token->value;
 			i++;
 		}
-			if (token->type == RED_OUT_APP)
+		if (token->type == RED_OUT_APP)
 		{
 			cmd[cmd_iteration].type[i] = token->value;
 			token = token->next;
 			cmd[cmd_iteration].file[i] = token->value;
 			i++;
 		}
-			if (token->type == RED_IN_APP)
+		if (token->type == RED_IN_APP)
 		{
 			cmd[cmd_iteration].type[i] = token->value;
 			token = token->next;
 			cmd[cmd_iteration].delimiter = token->value;
+			// wc << d
 			i++;
 		}
 		token = token->next;
@@ -128,19 +130,19 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr + 1));
 	cmd->cmd_nbr = 0;
 	fill_cmd(token, pipenbr, cmd);
-	
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->fd_out = 1;
 	cmd->cmd_iteration = 0;
 	// printf("cmd nbr %d \n", cmd->cmd_nbr);
-	if(cmd->cmd_nbr == 0)
+	if (cmd->cmd_nbr == 0)
 	{
-			heredoc_without_cmd(cmd);
-				if(redirections(cmd) == 3)
-			return 3;
+		heredoc_without_cmd(cmd);
+		if (redirections(cmd) == 3)
+			return (3);
 	}
 	if (cmd->cmd_nbr == 1 && cmd[0].cmd != NULL)
 	{
+		// heredoc_without_cmd(cmd);
 		one_cmd(cmd, envp);
 		free2d(cmd->args);
 	}

@@ -22,11 +22,11 @@ void	handler_in_heredoc(int sig)
 }
 int	heredoc_without_cmd( t_cmdl *list) //sigfault
 {
-	printf(" delimter");
+	// printf(" delimter");
 	int i = 0;
 	if (ft_strncmp(list[list->cmd_iteration].type[i], "<<", 3) == 0)
 		{
-			printf(" delimter  = %s \n",list[list->cmd_iteration].delimiter );
+			// printf(" delimter  = %s \n",list[list->cmd_iteration].delimiter );
 	if (fork() == 0)
 	{
 		//i must loop here
@@ -63,12 +63,8 @@ int	heredoc_without_cmd( t_cmdl *list) //sigfault
 			free(line);
 			close(fd);
 			exit(0);
-		// else
-		// {
-		// 	exit(0);
-		// }
+
 		i++;
-		// }
 	}
 	else
 	{
