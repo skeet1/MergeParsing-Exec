@@ -1,13 +1,7 @@
 Makefile
 builtins.o
-d
-d1
-d2
-d3
-d4
 exec
 f3
-fa
 ft_atoi.o
 ft_check_syntax.o
 ft_copy_1st_env.o
@@ -52,4 +46,5 @@ parsing
 pass_to_exec.o
 redirections.o
 remove_quotes.o
+sa
 tmp

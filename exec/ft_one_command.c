@@ -21,7 +21,7 @@ int	one_cmd_1(t_cmdl *list, struct s_envp *envp)
 		if(redirections(list) == 3)
 			return 3;
 		// heredoc_without_cmd(list);
-		while (list[0].type[i] != NULL)
+		while (	i < list->count_redire)
 		{
 			if (ft_strncmp(list[0].type[i],  "<<", 3) == 0)
 				dup2(list->fd_in, 0);

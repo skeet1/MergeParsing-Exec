@@ -35,11 +35,11 @@ int	ft_echo(t_cmdl *list, int fd)
 				printf(" %d \n", g_exit_status);
 			}
 			len = ft_strlen(list->args[i]);
-			write(1, " ", 1);
-			write(1, list->args[i], len);
+			write(fd, " ", 1);
+			write(fd, list->args[i], len);
 			i++;
 		}
-		write(1, "\n", 1);
+		write(fd, "\n", 1);
 				return (0);
 
 	}

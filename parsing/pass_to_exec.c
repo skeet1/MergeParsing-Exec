@@ -68,6 +68,7 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 		if (token->type == CMD)
 		{
 			cmd[cmd_iteration].cmd = token->value;
+			cmd->cmd_nbr++;
 		}
 		if (token->type == ARG)
 		{
@@ -125,13 +126,19 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	// printf("pipe nb %d cmd nbr %d\n", pipenbr - 1, pipenbr );
 	// print_token(token);
 	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr + 1));
+	cmd->cmd_nbr = 0;
 	fill_cmd(token, pipenbr, cmd);
-	cmd->cmd_nbr = pipenbr;
+	
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->fd_out = 1;
 	cmd->cmd_iteration = 0;
+	printf("cmd nbr %d \n", cmd->cmd_nbr);
 	if(cmd->cmd_nbr == 0)
+	{
 			heredoc_without_cmd(cmd);
+				if(redirections(cmd) == 3)
+			return 3;
+	}
 	if (cmd->cmd_nbr == 1 && cmd[0].cmd != NULL)
 	{
 		one_cmd(cmd, envp);

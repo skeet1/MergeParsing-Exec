@@ -65,7 +65,7 @@ int	main(int argc, char **argv, char **env)
 				token = ft_token(token, &data, data.cmd_line);
 				mark_cmd(token);
 			}
-			
+			// print_token(token);
 				pipenbr = data.side;
 				pass_to_exec(token, pipenbr, envp);
 			

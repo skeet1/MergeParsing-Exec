@@ -40,6 +40,8 @@ int	redirections(t_cmdl *list)
 			if (list->fd_in == -1)
 			{
 				printf("bash: No such file or directory\n");
+								return (3);
+
 			}
 		}
 		if (ft_strncmp(list[0].type[i], ">>", 3) == 0)

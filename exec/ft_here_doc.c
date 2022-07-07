@@ -22,6 +22,7 @@ void	handler_in_heredoc(int sig)
 }
 int	heredoc_without_cmd( t_cmdl *list) //sigfault
 {
+	printf(" delimter");
 	int i = 0;
 	if (ft_strncmp(list[list->cmd_iteration].type[i], "<<", 3) == 0)
 		{
@@ -36,7 +37,7 @@ int	heredoc_without_cmd( t_cmdl *list) //sigfault
 			// signal(SIGQUIT, SIG_IGN);
 			int fd;
 			char *line;
-			fd = open("f3", O_RDWR | O_CREAT | O_TRUNC, 0777);
+			fd = open("/tmp/", O_RDWR | O_CREAT | O_TRUNC, 0777);
 
 			while (1)
 			{
@@ -72,8 +73,9 @@ int	heredoc_without_cmd( t_cmdl *list) //sigfault
 	else
 	{
 		wait(&g_exit_status);
+			return (g_exit_status);
+
 	}
 }
-
-	return (g_exit_status);
+return 0;
 }
