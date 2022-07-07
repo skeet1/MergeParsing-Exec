@@ -1,5 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory '/mnt/s/minishell/MergeParsing-Exec'
-make: Nothing to be done for 'all'.
-make: Leaving directory '/mnt/s/minishell/MergeParsing-Exec'
- 

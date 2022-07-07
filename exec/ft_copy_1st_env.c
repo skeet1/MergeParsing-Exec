@@ -87,7 +87,7 @@ int	ft_copy_env(struct s_envp *envp, char **env)
 			nbb = ft_itoa(nb + 1);
 			joined = ft_strjoin("SHLVL=", nbb);
 			envp->environment[x] = joined;
-			free(nbb);
+			// free(nbb);
 			x++;
 		}
 		envp->environment[x] = env[x];

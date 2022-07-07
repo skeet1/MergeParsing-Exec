@@ -73,25 +73,27 @@ void	ft_pipe(t_cmdl *list, struct						s_envp * envp)
 	fd_in = 0;
 	list->fd_in = 0;
 	list->cmd_iteration = 0;
+			printf("here cmd nbr %d\n", list->cmd_nbr);
+
 	while (list->cmd_iteration < list->cmd_nbr)
 	{
 		pipe(list->fd);
 		id = fork();
 		if (id == 0)
 		{
+			printf("list->there_is_pipe %d\n", list->there_is_pipe);
 			// redire_2(list);
 			// set_rd(list);
 			dup2(list->fd_in, 0);
-			if ((list->cmd_iteration < list->there_is_pipe
-					&& list[0].type[0] == NULL)
-				|| (list->cmd_iteration < list->there_is_pipe
-					&& ft_strncmp(list[0].type[0], RDOUT, 7) != 0))
+			if (list->cmd_iteration < list->there_is_pipe)
+				// || (list->cmd_iteration < list->there_is_pipe
+				// 	&& ft_strncmp(list[0].type[0], ">", 2) != 0))
 				dup2(list->fd[1], 1);
 			close(list->fd[0]);
 			if(ft_is_built_in(list, envp) == 1)
 			exit(g_exit_status);
 			ft_bin_usr_sbin(list, envp);
-			// run_builtin(list, envp);
+			run_builtin(list, envp);
 		}
 		else
 		{
