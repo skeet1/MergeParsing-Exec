@@ -6,12 +6,13 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 22:31:18 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 15:20:32 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parse.h"
+
 int	strlen_list(t_token *token, int pipenbr, t_cmdl *cmd)
 {
 	int	i;
@@ -57,6 +58,7 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 	cmd_iteration = 0;
 	i = 0;
 	args = strlen_list(token, pipenbr, cmd);
+	cmd->count_args = args;
 	file = file_list(token, pipenbr, cmd);
 	cmd->file = (char **)malloc(sizeof(char *) * (file + 1));
 	cmd->type = (char **)malloc(sizeof(char *) * (file + 1));
@@ -70,16 +72,14 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 		if (token->type == CMD)
 		{
 			cmd[cmd_iteration].cmd = token->value;
-				cmd->cmd_nbr++;
-					// printf("cmd nbr  = %d\n\n\n", 	cmd->cmd_nbr);
-
+			cmd->cmd_nbr++;
+			printf("cmd   = %s\n\n\n", cmd[cmd_iteration].cmd );
 		}
 		if (token->type == ARG)
 		{
 			cmd[cmd_iteration].args[args] = token->value;
 			args++;
-	// cmd[cmd_iteration].args[args] = NULL;
-
+			// cmd[cmd_iteration].args[args] = NULL;
 		}
 		if (token->type == RED_OUT)
 		{
@@ -117,17 +117,43 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 			// wc << d
 			i++;
 		}
-			if (token->type == PIPE)
+		if (token->type == PIPE)
 		{
-			cmd->cmd_iteration++;
-			cmd[cmd_iteration].type[i] = token->value;
+			cmd_iteration++;
 			i = 0;
 			args = 0;
+				cmd->count_args = args;
+	cmd[cmd_iteration].file = (char **)malloc(sizeof(char *) * (file + 1));
+	cmd[cmd_iteration].type = (char **)malloc(sizeof(char *) * (file + 1));
 			// wc << d
+				cmd[cmd_iteration].args = (char **)malloc(sizeof(char *) * (args + 1));
+
 		}
 		token = token->next;
 	}
 	return (0);
+}
+void	free_it(t_cmdl *cmd, t_token *token, int pipenbr)
+{
+	int	i;
+	int	args;
+	int	x;
+
+	i = 0;
+	args = strlen_list(token, pipenbr, cmd);
+	while (i < cmd->cmd_nbr)
+	{
+		x = 0;
+		while (x < args)
+		{
+			free(cmd[i].args[x]);
+			x++;
+		}
+			free(cmd[i].cmd);
+		free(cmd[i].args);
+		i++;
+	}
+	free(cmd);
 }
 
 int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
@@ -136,6 +162,7 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	int		itre;
 	int		args;
 
+	cmd = NULL;
 	itre = 0;
 	args = 0;
 	// printf("pipe nb %d cmd nbr %d\n", pipenbr - 1, pipenbr );
@@ -158,12 +185,18 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 		// heredoc_without_cmd(cmd);
 		one_cmd(cmd, envp);
 		free2d(cmd->args);
+				
+
+			// free_it(cmd, token, pipenbr);
+
 	}
 	else if (cmd->cmd_nbr > 1)
 	{
 		//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
 		// grep 1337 exec/*.c problem
 		ft_pipe(cmd, envp);
+			// free_it(cmd, token, pipenbr);
+
 	}
 	return (0);
 }

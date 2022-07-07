@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 19:13:55 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 14:30:08 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ int	main(int argc, char **argv, char **env)
 				mark_cmd(token);
 			}
 			// print_token(token);
+			if(data.cmd_line != NULL)
+			{
 				pipenbr = data.side;
 				pass_to_exec(token, pipenbr, envp);
-			
+			}
 					free(	data.cmd_line);
 
 		}

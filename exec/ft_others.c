@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/06 20:53:37 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 15:10:19 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ char	**create_argv_for_execve(t_cmdl *list)
 
 	len = 0;
 		i = 0;
-			len = cmd_args_len(list);
+			// len = cmd_args_len(list);
+						len = list->count_args;
+
 	if(len == 0)
 	{
 			list->args_execve = (char**)malloc(sizeof(char *) * (len + 2));
@@ -82,12 +84,14 @@ int	ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp)
 	int		i;
 	char	*last;
 	i = 0;
+	
 	ft_check_programs(list, envp);
 	ftcheck_nopath(list, envp);
 
 	bin = ft_strjoin(list->new[i], "/");
 	looping_through_split_path(list, i, bin, last, envp);
-	write(1, "MINISHELL command not found\n", 28);
+	// write(1, "MINISHELL %s command not found\n", 28);
+	printf("MINISHELL %s command not found", list[list->cmd_iteration].cmd);
 	// g_exit_status = 127;
 	exit(127);
 }
