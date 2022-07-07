@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 18:28:39 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 20:01:46 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	mark_cmd(t_token *tok)
 {
 	t_token	*token;
 	int		pipe;
-int ssdd;
+	int 	ssdd;
 	pipe = 1;
 	token = tok;
 	while (token)
@@ -34,6 +34,48 @@ int ssdd;
 			pipe = 1;
 		token = token->next;
 	}
+}
+
+void	exp_change_value(struct s_envp *envp, t_token *token)
+{
+	struct s_envp	*env;
+	int				i;
+	int				len;
+	
+	len = 0;
+	// printf("change value\n");
+	// while (token)
+	// {
+	// 	i = 0;
+	// 	env = envp;
+	// 	len = (int)ft_strlen(ft_strchrr(token->value, '$'));
+	// 	if (token->type == WORD && !token->sgl_qt)
+	// 	{
+	// 		while (i < env->envpitems)
+	// 		{
+	// 			// if (ft_strncmp(ft_strchrr(token->value, '$'), env->name[i], len) == 0)
+	// 			// {
+	// 				// printf("%s\t", env->name[i]);
+	// 				// printf("len is: %d\t", len);
+	// 				printf("before: %s\t", token->value);
+	// 				// printf("before CHR: %s\n", ft_strchrr(token->value, '$'));
+	// 				// printf("dif is %d\n", ft_strncmp(env->name[i], ft_strchrr(token->value, '$'), len));
+	// 				if (ft_strncmp(env->name[i], ft_strchrr(token->value, '$'), len) == 0)
+	// 				{
+	// 					token->value = env->value[i];
+	// 				// token->value = env->value[i];
+	// 					printf("After: %s\n", token->value);
+	// 				}	
+	// 			// }
+	// 			// printf("%d\n", ft_strlen(ft_strchrr(token->value, '$')));
+	// 			// printf("%s\n", ft_strchrr(token->value, '$'));
+	// 			// if (ft_strchrr(token->value, '$') == env->name[i])
+	// 			// 	printf("found\n");
+	// 			i++;
+	// 		}
+	// 	}
+	// 	token = token->next;
+	// }
 }
 
 int	main(int argc, char **argv, char **env)
@@ -58,11 +100,10 @@ int	main(int argc, char **argv, char **env)
 				exit(1);
 			}
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
-						add_history(data.cmd_line);
-
 			if (ft_strlen(data.cmd_line))
 			{
 				token = ft_token(token, &data, data.cmd_line);
+				// exp_change_value(envp, token);
 				mark_cmd(token);
 			}
 			// print_token(token);
@@ -75,6 +116,5 @@ int	main(int argc, char **argv, char **env)
 
 		}
 	}
-	
-	return 0;
+	return (0);
 }

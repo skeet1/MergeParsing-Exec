@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_token.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:42:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 16:38:02 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 19:57:13 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,9 @@ t_token	*ft_new_node(char *value)
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (new);
-	new->dbl_qt = 0;
+	new->sgl_qt = 0;
 	if (value[0] == '"')
-		new->dbl_qt = 1;
+		new->sgl_qt = 1;
 	new->value = value;
 	new->type = ft_token_type(value);
 	new->next = NULL;
