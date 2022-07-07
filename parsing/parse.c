@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 20:01:46 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/07 20:16:13 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	mark_cmd(t_token *tok)
 	t_token	*token;
 	int		pipe;
 	int 	ssdd;
+	
 	pipe = 1;
 	token = tok;
 	while (token)
 	{
+		token->args_num = 0;
 		if (pipe && token->type == WORD)
 		{
 			token->type = CMD;
@@ -78,6 +80,31 @@ void	exp_change_value(struct s_envp *envp, t_token *token)
 	// }
 }
 
+void	num_of_args(t_token *token)
+{
+	t_token	*tok;
+	int		arg_num;
+
+	while (token)
+	{
+		arg_num = 0;
+		if (token->type == CMD)
+		{
+			tok = token;
+			while (tok)
+			{
+				if (tok->type == ARG)
+					arg_num++;
+				else if (tok->type == PIPE)
+					break;
+				tok = tok->next;
+			}
+		}
+		token->args_num = arg_num;
+		token = token->next;
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data data;
@@ -105,6 +132,7 @@ int	main(int argc, char **argv, char **env)
 				token = ft_token(token, &data, data.cmd_line);
 				// exp_change_value(envp, token);
 				mark_cmd(token);
+				num_of_args(token);
 			}
 			// print_token(token);
 			if(data.cmd_line != NULL && data.error == 0 && token != NULL)
