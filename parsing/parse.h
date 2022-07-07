@@ -61,7 +61,7 @@ typedef struct s_token
 {
 	int				type;
 	char			*value;
-	int				dbl_st;
+	int		dbl_qt;
 	struct s_token	*next;
 }					t_token;
 
@@ -110,6 +110,7 @@ typedef struct t_cmdl
 	char			**envvariables;
 	int				envvarpos;
 	char			*delimiter;
+	int count_redire;
 }					t_cmdl;
 
 int					ft_is_alpha(char c);
@@ -132,5 +133,8 @@ int					is_special(char c);
 void				remove_quotes(t_token *token);
 void				print_token(t_token *token);
 void				list_files(t_token *token);
+int    ft_check_syntax(char *s);
 
+void	incr_quotes(char c, int *a, int *b);
+void	print_token(t_token *token);
 #endif

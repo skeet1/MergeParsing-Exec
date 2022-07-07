@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../minishell.h"
 #include "parse.h"
 
 int	len_without_quotes(char *s)

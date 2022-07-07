@@ -17,6 +17,8 @@ int	strlen_list(t_token *token, int pipenbr, t_cmdl *cmd)
 	int	i;
 
 	i = 0;
+	if(token == NULL)
+	return 0 ;
 	while (token)
 	{
 		if (token->type == 10)
@@ -32,6 +34,8 @@ int	file_list(t_token *token, int pipenbr, t_cmdl *cmd)
 	int	i;
 
 	i = 0;
+	if(token == NULL)
+	return 0 ;
 	while (token)
 	{
 		if (token->type == 7)
@@ -54,9 +58,9 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 	i = 0;
 	args = strlen_list(token, pipenbr, cmd);
 	file = file_list(token, pipenbr, cmd);
-	printf("files %d\n", file);
-	cmd->file = (char **)malloc(sizeof(char *) * (file));
-	cmd->type = (char **)malloc(sizeof(char *) * (file));
+	cmd->file = (char **)malloc(sizeof(char *) * (file + 1));
+	cmd->type = (char **)malloc(sizeof(char *) * (file + 1));
+	cmd->count_redire = file;
 	cmd[cmd_iteration].args = (char **)malloc(sizeof(char *) * (args + 1));
 	args = 0;
 	while (token != NULL)
@@ -120,14 +124,14 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	args = 0;
 	// printf("pipe nb %d cmd nbr %d\n", pipenbr - 1, pipenbr );
 	// print_token(token);
-	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr));
+	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr + 1));
 	fill_cmd(token, pipenbr, cmd);
 	cmd->cmd_nbr = pipenbr;
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->fd_out = 1;
 	cmd->cmd_iteration = 0;
-	// if(cmd->cmd_nbr == 0)
-	// 		heredoc_without_cmd(cmd);
+	if(cmd->cmd_nbr == 0)
+			heredoc_without_cmd(cmd);
 	if (cmd->cmd_nbr == 1 && cmd[0].cmd != NULL)
 	{
 		one_cmd(cmd, envp);

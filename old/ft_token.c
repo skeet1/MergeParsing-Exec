@@ -6,18 +6,12 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:42:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 08:09:23 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 10:44:21 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-
-int	is_special(char c)
-{
-	if (c == '|' || c == '<' || c == '>')
-			return (1);
-	return (0);
-}
+#include "../libft/libft.h"
 
 void	ft_num_cmd_side(t_data *data, char *s)
 {
@@ -140,7 +134,11 @@ t_token	*ft_new_node(char *value)
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (new);
+	new->dbl_st = 0;
+	if (value[0] == '\'')
+		new->dbl_st = 1;
 	new->value = value;
+	// printf("%d\n", new->dbl_st);
 	new->type = ft_token_type(value);
 	new->next = NULL;
 	return (new);
@@ -175,17 +173,14 @@ void	incr_quotes(char c, int *a, int *b)
 		(*b)++;
 }
 
-void	ft_token_side(t_data *data, char *s)
+t_token	*	ft_token_side(t_token *token, t_data *data, char *s)
 {
 	int		j;
 	int		start;
 	int		quotes[2];
-	t_token	*token;
-		t_cmds *cmd;
 
 	j = 0;
 	start = 0;
-	token = NULL;
 	quotes[0] = 0;
 	quotes[1] = 0;
 	int node= 0;
@@ -228,60 +223,23 @@ void	ft_token_side(t_data *data, char *s)
 	}
 	add_file_type(token);
 	remove_quotes(token);
-	// print_token(token);
-	list_files(token);
-/////////////////////////////////////////////////
-
-	int itre = 0;
-	int args = 0 ;
-				cmd = (t_cmds *)malloc(sizeof(t_cmds) * (data->side - 1));
-				cmd->args = malloc(sizeof(char *) * 10);
-				while (token)
-	{
-		if(token->type == 8 && itre == 0)
-		{
-			cmd->cmd =  token->value;
-				
-					
-					printf("CMD is %s\t\n",cmd[itre].cmd);
-
-
-		}
-				if(token->type == 8 && itre > 0)
-				{
-					
-
-						cmd->args[itre] = strdup( token->value);
-				
-					printf("ARGS is %s\t\n",cmd->args[itre]);
-					args++;
-
-				}
-
-
-
-			itre++;
-		token = token->next;
-	}
-
-	
-	printf("%d\n", args);
-/////////////////////////////////////////
+	// list_files(token);
+	// pass_to_exec(token);
+	return token;
 }
 
-void	ft_token(t_data *data, char *s)
+t_token	*	ft_token(t_token *token, t_data *data, char *s)
 {
 	int     i;
 	int		start;
-	int		token = 0;
 	int		side = 1;
 
 	i = 0;
 	start = i;
 	ft_num_cmd_side(data, s);
 	data->cmd_sides = ft_split(s, '|');
-	// make_cmd_perfect(data, s);
 	if (ft_check_syntax(data->cmd_line))
-		return ;
-	ft_token_side(data, data->cmd_line);
+		return NULL;
+	token = ft_token_side(token, data, data->cmd_line);
+	return token;
 }

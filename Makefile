@@ -53,7 +53,8 @@ SRC = ./exec/builtins.c \
 	./parsing/parse.c \
 	./libft/ft_strcmp.c \
 	./parsing/pass_to_exec.c \
-
+	./parsing/ft_check_syntax.c  \
+	
 OBJ = builtins.o \
 	 ft_env.o \
 	 ft_strlen.o  \

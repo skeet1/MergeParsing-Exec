@@ -6,12 +6,13 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:42:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 10:44:21 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/06 11:35:58 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
+#include "parse.h"
 
 void	ft_num_cmd_side(t_data *data, char *s)
 {
@@ -134,11 +135,10 @@ t_token	*ft_new_node(char *value)
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (new);
-	new->dbl_st = 0;
-	if (value[0] == '\'')
-		new->dbl_st = 1;
+	new->dbl_qt = 0;
+	if (value[0] == '"')
+		new->dbl_qt = 1;
 	new->value = value;
-	// printf("%d\n", new->dbl_st);
 	new->type = ft_token_type(value);
 	new->next = NULL;
 	return (new);
@@ -173,7 +173,7 @@ void	incr_quotes(char c, int *a, int *b)
 		(*b)++;
 }
 
-t_token	*	ft_token_side(t_token *token, t_data *data, char *s)
+t_token *ft_token_side(t_token *token, t_data *data, char *s)
 {
 	int		j;
 	int		start;
@@ -223,12 +223,11 @@ t_token	*	ft_token_side(t_token *token, t_data *data, char *s)
 	}
 	add_file_type(token);
 	remove_quotes(token);
-	// list_files(token);
-	// pass_to_exec(token);
-	return token;
+	list_files(token);
+	return (token);
 }
 
-t_token	*	ft_token(t_token *token, t_data *data, char *s)
+t_token	*ft_token(t_token *token, t_data *data, char *s)
 {
 	int     i;
 	int		start;
@@ -238,8 +237,8 @@ t_token	*	ft_token(t_token *token, t_data *data, char *s)
 	start = i;
 	ft_num_cmd_side(data, s);
 	data->cmd_sides = ft_split(s, '|');
+	// make_cmd_perfect(data, s);
 	if (ft_check_syntax(data->cmd_line))
-		return NULL;
-	token = ft_token_side(token, data, data->cmd_line);
-	return token;
+		return (0);
+	return (ft_token_side(token, data, data->cmd_line));
 }

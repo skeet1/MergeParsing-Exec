@@ -20,7 +20,7 @@ int	redirections(t_cmdl *list)
 	int	output;
 
 	i = 0;
-	while (list[0].type[i] != NULL)
+	while (i < list->count_redire)
 	{
 		// input = dup(0);
 		// output = dup(1);
