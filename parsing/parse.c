@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 20:16:13 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/07 21:01:52 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,30 +80,6 @@ void	exp_change_value(struct s_envp *envp, t_token *token)
 	// }
 }
 
-void	num_of_args(t_token *token)
-{
-	t_token	*tok;
-	int		arg_num;
-
-	while (token)
-	{
-		arg_num = 0;
-		if (token->type == CMD)
-		{
-			tok = token;
-			while (tok)
-			{
-				if (tok->type == ARG)
-					arg_num++;
-				else if (tok->type == PIPE)
-					break;
-				tok = tok->next;
-			}
-		}
-		token->args_num = arg_num;
-		token = token->next;
-	}
-}
 
 int	main(int argc, char **argv, char **env)
 {

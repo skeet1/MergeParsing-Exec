@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_token.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:42:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 19:57:13 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/07 20:47:59 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_token(t_token *token)
 {
 	while (token)
 	{
-		printf("type is %dWALO value is%sWALO\n", token->type, token->value);
+		printf("type is %d value is %s\n", token->type, token->value);
 		token = token->next;
 	}
 }
