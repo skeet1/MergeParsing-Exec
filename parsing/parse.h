@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 19:33:51 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 13:51:25 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_data
 	char			*cmd_line;
 	int				side;
 	char			**cmd_sides;
+	int				error;
 }					t_data;
 
 typedef struct s_token
@@ -125,7 +126,7 @@ int					ft_isspace(int c);
 t_token				*ft_token(t_token *token, t_data *data, char *s);
 // char	**ft_split(char *s, char c);
 // int	ft_strcmp(char *s1, char *s2);
-int					ft_check_syntax(char *s);
+int					ft_check_syntax(t_data *data, char *s);
 // void    make_cmd_perfect(t_data *data, char *s);
 int					ft_isalnum(int c);
 char				*ft_strcat(char *dest, char *src);
@@ -133,7 +134,6 @@ int					is_special(char c);
 void				remove_quotes(t_token *token);
 void				print_token(t_token *token);
 void				list_files(t_token *token);
-int    ft_check_syntax(char *s);
 
 void	incr_quotes(char c, int *a, int *b);
 void	print_token(t_token *token);

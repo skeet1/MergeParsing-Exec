@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:42:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/06 11:35:58 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/07 13:50:25 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ t_token	*ft_token(t_token *token, t_data *data, char *s)
 	ft_num_cmd_side(data, s);
 	data->cmd_sides = ft_split(s, '|');
 	// make_cmd_perfect(data, s);
-	if (ft_check_syntax(data->cmd_line))
+	if (ft_check_syntax(data, data->cmd_line))
 		return (0);
 	return (ft_token_side(token, data, data->cmd_line));
 }
