@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/07 15:38:25 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 18:57:04 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	redire_2(t_cmdl *list)
 
 	i = 0;
 	ret = 0;
-	while (list[list->cmd_iteration].type[i] != NULL)
+	while (i < list->count_redire)
 	{
 		if (ft_strncmp(list[0].type[i], "<<", 3) == 0)
 		{
@@ -72,6 +72,7 @@ void	ft_pipe(t_cmdl *list, struct						s_envp * envp)
 	i = 0;
 	fd_in = 0;
 	list->fd_in = 0;
+	list->fd_out = 1;
 	list->cmd_iteration = 0;
 
 	while (list->cmd_iteration < list->cmd_nbr)
@@ -83,13 +84,15 @@ void	ft_pipe(t_cmdl *list, struct						s_envp * envp)
 			printf("here cmd nbr %d  iteration %d  , args %d\n", list->cmd_nbr, list->cmd_iteration,	list->count_args );
 
 			printf("list->there_is_pipe %d\n", list->there_is_pipe);
-			redire_2(list);
+		redire_2(list);
 			set_rd(list);
 			dup2(list->fd_in, 0);
-			if (list->cmd_iteration < list->there_is_pipe
-				|| (list->cmd_iteration < list->there_is_pipe
-					&& ft_strncmp(list[0].type[0], ">", 2) != 0))
+			if((list->cmd_iteration < list->there_is_pipe ))
+				// && list[0].type[0] == NULL)
+				// || (list->cmd_iteration < list->there_is_pipe
+				// 	&& ft_strncmp(list[0].type[0], ">", 2) != 0))
 				dup2(list->fd[1], 1);
+					
 			close(list->fd[0]);
 			ft_is_built_in(list, envp);
 			ft_bin_usr_sbin(list, envp);
