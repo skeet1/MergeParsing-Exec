@@ -223,7 +223,7 @@ t_token *ft_token_side(t_token *token, t_data *data, char *s)
 	}
 	add_file_type(token);
 	remove_quotes(token);
-	list_files(token);
+	// list_files(token);
 	return (token);
 }
 

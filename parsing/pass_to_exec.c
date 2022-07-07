@@ -132,7 +132,7 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->fd_out = 1;
 	cmd->cmd_iteration = 0;
-	printf("cmd nbr %d \n", cmd->cmd_nbr);
+	// printf("cmd nbr %d \n", cmd->cmd_nbr);
 	if(cmd->cmd_nbr == 0)
 	{
 			heredoc_without_cmd(cmd);
