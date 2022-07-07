@@ -109,6 +109,7 @@ typedef struct t_cmdl
 	char			**envsplited;
 	char			**envvariables;
 	int				envvarpos;
+	char			*delimiter;
 }					t_cmdl;
 
 int					ft_is_alpha(char c);

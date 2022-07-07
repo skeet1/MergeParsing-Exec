@@ -11,6 +11,9 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../parsing/parse.h"
+#include "../libft/libft.h"
+
 //<< EOF without command
 void	handler_in_heredoc(int sig)
 {
@@ -19,53 +22,58 @@ void	handler_in_heredoc(int sig)
 }
 int	heredoc_without_cmd( t_cmdl *list) //sigfault
 {
-// 	int i = 0;
-// 	if (fork() == 0)
-// 	{
-// 		//i must loop here
-// 		while(list[list->cmd_iteration].type[i] != NULL)
-// 		{
-// 		if (ft_strncmp(HEREDOC, list[list->cmd_iteration].type[i], 7) == 0)
-// 		{
-// 			// signal(SIGINT, handler_in_heredoc);
-// 			// signal(SIGQUIT, SIG_IGN);
-// 			int fd;
-// 			char *line;
-// 			fd = open("f3", O_RDWR | O_CREAT | O_TRUNC, 0777);
+	int i = 0;
+	if (ft_strncmp(list[list->cmd_iteration].type[i], "<<", 3) == 0)
+		{
+			printf(" delimter  = %s \n",list[list->cmd_iteration].delimiter );
+	if (fork() == 0)
+	{
+		//i must loop here
+		// while(list[list->cmd_iteration].type[i] != NULL)
+		// {
+		
+			// signal(SIGINT, handler_in_heredoc);
+			// signal(SIGQUIT, SIG_IGN);
+			int fd;
+			char *line;
+			fd = open("f3", O_RDWR | O_CREAT | O_TRUNC, 0777);
 
-// 			while (1)
-// 			{
-// 				signal(SIGQUIT, SIG_IGN);
-// 				signal(SIGQUIT, handler_in_heredoc);
+			while (1)
+			{
+				signal(SIGQUIT, SIG_IGN);
+				signal(SIGQUIT, handler_in_heredoc);
 
-// 				line = readline(">");
+				line = readline(">");
+				if (line == NULL)
+				{
+					return (1);
+				}
+				int len  = 0;
+				len = ft_strlen(list[list->cmd_iteration].delimiter) + 1;
+				if (ft_strncmp(list[list->cmd_iteration].delimiter, line, len ) == 0)
+				{
+					break ;
+				}
+				
+				write(fd, line, ft_strlen(line));
+				write(fd, "\n", 1);
+				free(line);
+			}
+			free(line);
+			close(fd);
+			exit(0);
+		// else
+		// {
+		// 	exit(0);
+		// }
+		i++;
+		// }
+	}
+	else
+	{
+		wait(&g_exit_status);
+	}
+}
 
-// 				if (ft_strncmp(line, "EOF", 4) == 0)
-// 				{
-// 					break ;
-// 				}
-// 				if (line == NULL)
-// 				{
-// 					return (1);
-// 				}
-// 				write(fd, line, ft_strlen(line));
-// 				write(fd, "\n", 1);
-// 				free(line);
-// 			}
-// 			free(line);
-// 			close(fd);
-// 			exit(0);
-// 		}
-// 		// else
-// 		// {
-// 		// 	exit(0);
-// 		// }
-// 		i++;
-// 		}
-// 	}
-// 	else
-// 	{
-// 		wait(&g_exit_status);
-// 	}
 	return (g_exit_status);
 }

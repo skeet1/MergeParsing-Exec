@@ -91,6 +91,20 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 			cmd[cmd_iteration].file[i] = token->value;
 			i++;
 		}
+			if (token->type == RED_OUT_APP)
+		{
+			cmd[cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd_iteration].file[i] = token->value;
+			i++;
+		}
+			if (token->type == RED_IN_APP)
+		{
+			cmd[cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd_iteration].delimiter = token->value;
+			i++;
+		}
 		token = token->next;
 	}
 	return (0);
@@ -112,9 +126,10 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->fd_out = 1;
 	cmd->cmd_iteration = 0;
+	// if(cmd->cmd_nbr == 0)
+	// 		heredoc_without_cmd(cmd);
 	if (cmd->cmd_nbr == 1 && cmd[0].cmd != NULL)
 	{
-		// heredoc_without_cmd(cmd);
 		one_cmd(cmd, envp);
 		free2d(cmd->args);
 	}

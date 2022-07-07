@@ -114,7 +114,7 @@ int	ft_split_env(struct s_envp *envp, char **env);
 int							run_builtin(t_cmdl *list, struct s_envp *envp);
 /// redirections I/O
 int							redirections(t_cmdl *list);
-// int							heredoc_without_cmd(struct s_list *list);
+int							heredoc_without_cmd(t_cmdl *list);
 // Other
 int							ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp);
 char						**ft_search_for_path(t_cmdl *list,
