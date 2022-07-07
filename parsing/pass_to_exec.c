@@ -6,18 +6,42 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 22:14:54 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 22:42:02 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parse.h"
 
-void	num_of_args(t_token *token)
+void	num_of_files(t_token *token)
 {
 	t_token	*tok;
 	int		arg_num;
 
+	while (token)
+	{
+		arg_num = 0;
+		if (token->type == RED_IN || token->type ==  RED_OUT || token->type ==  RED_IN_APP ||token->type ==  RED_OUT_APP)
+		{
+			tok = token;
+			while (tok)
+			{
+				if (tok->type == FILEE)
+					arg_num++;
+				else if (tok->type == PIPE)
+					break;
+				tok = tok->next;
+			}
+		}
+		token->file_num = arg_num;
+		token = token->next;
+	}
+}
+void	num_of_args(t_token *token)
+{
+	t_token	*tok;
+	int		arg_num;
+num_of_files(token);
 	while (token)
 	{
 		arg_num = 0;
@@ -37,30 +61,7 @@ void	num_of_args(t_token *token)
 		token = token->next;
 	}
 }
-void	num_of_files(t_token *token)
-{
-	t_token	*tok;
-	int		arg_num;
 
-	while (token)
-	{
-		arg_num = 0;
-		if (token->type == CMD)
-		{
-			tok = token;
-			while (tok)
-			{
-				if (tok->type == FILEE)
-					arg_num++;
-				else if (tok->type == PIPE)
-					break;
-				tok = tok->next;
-			}
-		}
-		token->file_num = arg_num;
-		token = token->next;
-	}
-}
 // int	strlen_list(t_token *token, int pipenbr, t_cmdl *cmd)
 // {
 // 	int	i;
@@ -109,16 +110,25 @@ t_cmdl * loop(t_token *token, int pipenbr, t_cmdl *cmd)
 		int	cmd_iteration = 0;
 	while(token)
 	{
-		if(token->type == 9)
+		if(token->type == 9 )
 		{
 			cmd[cmd_iteration].count_args =token->args_num;
-			cmd[cmd_iteration].count_redire =token->file_num;
+			// cmd[cmd_iteration].count_redire =token->file_num;
 
 					printf("ARGS new = %d redirection file %d \n", cmd[cmd_iteration].count_args);
 					cmd[cmd_iteration].args = (char **)malloc(sizeof(char ) * (	cmd[cmd_iteration].count_args + 1));
+		}
+		if(token->type == RED_IN || token->type == RED_OUT || token->type == RED_IN_APP || token->type ==RED_OUT_APP )
+{
+
+				cmd[cmd_iteration].count_redire =token->file_num;
+			cmd[cmd_iteration].type = (char **)malloc(sizeof(char* ) * (	cmd[cmd_iteration].count_redire + 1));
+				cmd[cmd_iteration].file = (char **)malloc(sizeof(char* ) * (	cmd[cmd_iteration].count_redire + 1));
+
+}
 					cmd_iteration++;
 
-		}
+	
 				token  = token->next;
 
 	}
@@ -137,10 +147,10 @@ loop(token,pipenbr, cmd );
 	// args = strlen_list(token, pipenbr, cmd);
 	// cmd->count_args = args;
 	// file = file_list(token, pipenbr, cmd);
-	cmd->file = (char **)malloc(sizeof(char *) * (21 + 1));
-	cmd->type = (char **)malloc(sizeof(char *) * (0 + 1));
+	// cmd->file = (char **)malloc(sizeof(char *) * (21 + 1));
+	// cmd->type = (char **)malloc(sizeof(char *) * (0 + 1));
 	cmd[cmd_iteration].type[i] = NULL;
-	// cmd->cmd_nbr = 0;
+	cmd->cmd_nbr = 0;
 	cmd->count_redire = 0;
 
 
