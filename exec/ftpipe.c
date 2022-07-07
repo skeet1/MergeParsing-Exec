@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/07 15:22:10 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 15:38:25 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	redire_2(t_cmdl *list)
 	ret = 0;
 	while (list[list->cmd_iteration].type[i] != NULL)
 	{
-		if (ft_strncmp(list[0].type[i], HEREDOC, 7) == 0)
+		if (ft_strncmp(list[0].type[i], "<<", 3) == 0)
 		{
-			list->fd_in = open("f1", O_RDWR | O_CREAT | O_TRUNC, 0600);
+			list->fd_in = open("/tmp/tmpherdoc", O_RDWR | O_CREAT | O_TRUNC, 0600);
 		}
-		if (ft_strncmp(list[list->cmd_iteration].type[i], RDOUT, 7) == 0)
+		if (ft_strncmp(list[list->cmd_iteration].type[i], ">", 2) == 0)
 		{
 			list->fd_out = open(list[list->cmd_iteration].file[i],
 					O_RDWR | O_CREAT | O_TRUNC, 0600);
@@ -42,7 +42,7 @@ int	redire_2(t_cmdl *list)
 			}
 			ret = 1;
 		}
-		if (ft_strncmp(list[list->cmd_iteration].type[i], RDIN, 6) == 0)
+		if (ft_strncmp(list[list->cmd_iteration].type[i], "<", 2) == 0)
 		{
 			list->fd_in = open(list[list->cmd_iteration].file[i], O_RDONLY, 0);
 			if (list->fd_in == -1)
@@ -51,7 +51,7 @@ int	redire_2(t_cmdl *list)
 			}
 			ret = 1;
 		}
-		if (ft_strncmp(list[list->cmd_iteration].type[i], RDAPPEND, 10) == 0)
+		if (ft_strncmp(list[list->cmd_iteration].type[i], ">>", 3) == 0)
 		{
 			list->fd_out = open(list[list->cmd_iteration].file[i],
 								O_RDWR | O_CREAT | O_APPEND,
@@ -83,18 +83,16 @@ void	ft_pipe(t_cmdl *list, struct						s_envp * envp)
 			printf("here cmd nbr %d  iteration %d  , args %d\n", list->cmd_nbr, list->cmd_iteration,	list->count_args );
 
 			printf("list->there_is_pipe %d\n", list->there_is_pipe);
-			// redire_2(list);
-			// set_rd(list);
+			redire_2(list);
+			set_rd(list);
 			dup2(list->fd_in, 0);
-			if (list->cmd_iteration < list->there_is_pipe)
-				// || (list->cmd_iteration < list->there_is_pipe
-				// 	&& ft_strncmp(list[0].type[0], ">", 2) != 0))
+			if (list->cmd_iteration < list->there_is_pipe
+				|| (list->cmd_iteration < list->there_is_pipe
+					&& ft_strncmp(list[0].type[0], ">", 2) != 0))
 				dup2(list->fd[1], 1);
 			close(list->fd[0]);
-			if(ft_is_built_in(list, envp) == 1)
-			exit(g_exit_status);
+			ft_is_built_in(list, envp);
 			ft_bin_usr_sbin(list, envp);
-			// run_builtin(list, envp);
 		}
 		else
 		{

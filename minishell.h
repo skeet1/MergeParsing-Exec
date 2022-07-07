@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/06 20:12:22 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/07 15:28:45 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int							is_builtin(t_cmdl *list, int i);
 int							one_cmd(t_cmdl *list, struct s_envp *envp);
 char						*ft_itoa(int n);
 int	ft_split_env(struct s_envp *envp, char **env);
-// int							set_rd(struct s_list *list);
+int							set_rd(t_cmdl  *list);
 int							run_builtin(t_cmdl *list, struct s_envp *envp);
 /// redirections I/O
 int							redirections(t_cmdl *list);
