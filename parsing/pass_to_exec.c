@@ -48,38 +48,47 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 	int	i;
 	int	args;
 	int	file;
+	int	cmd_iteration;
 
+	cmd_iteration = 0;
 	i = 0;
 	args = strlen_list(token, pipenbr, cmd);
 	file = file_list(token, pipenbr, cmd);
 	printf("files %d\n", file);
 	cmd->file = (char **)malloc(sizeof(char *) * (file));
 	cmd->type = (char **)malloc(sizeof(char *) * (file));
-	cmd[cmd->cmd_iteration].args = (char **)malloc(sizeof(char *) * (args + 1));
-	args   = 0 ;
+	cmd[cmd_iteration].args = (char **)malloc(sizeof(char *) * (args + 1));
+	args = 0;
 	while (token != NULL)
 	{
 		if (token->type == CMD)
 		{
-			cmd[cmd->cmd_iteration].cmd = token->value;
+			cmd[cmd_iteration].cmd = token->value;
 		}
 		if (token->type == ARG)
 		{
-			cmd[cmd->cmd_iteration].args[args] = token->value;
+			cmd[cmd_iteration].args[args] = token->value;
 			args++;
 		}
 		if (token->type == RED_OUT)
 		{
-			cmd[cmd->cmd_iteration].type[i] = token->value;
+			cmd[cmd_iteration].type[i] = token->value;
 			token = token->next;
-			cmd[cmd->cmd_iteration].file[i] = token->value;
+			cmd[cmd_iteration].file[i] = token->value;
 			i++;
 		}
 		if (token->type == RED_IN)
 		{
-			cmd[cmd->cmd_iteration].type[i] = token->value;
+			cmd[cmd_iteration].type[i] = token->value;
 			token = token->next;
-			cmd[cmd->cmd_iteration].file[i] = token->value;
+			cmd[cmd_iteration].file[i] = token->value;
+			i++;
+		}
+		if (token->type == RED_IN)
+		{
+			cmd[cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd_iteration].file[i] = token->value;
 			i++;
 		}
 		token = token->next;
