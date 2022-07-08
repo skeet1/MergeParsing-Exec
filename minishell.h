@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 20:33:23 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 21:15:10 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ void			rl_clear_history(void);
 // Builtin Commands
 int				ft_pwd(int fd_out);
 int				builtcheck_1(t_cmd *cmd, struct s_envp *envp);
-int				ftexit(t_cmdl *cmd, struct s_envp *envp);
+int				ftexit(t_cmd *cmd, struct s_envp *envp);
 int				builtcheck(struct s_envp *envp,  t_cmd *cmds);
 int				ftcd(t_cmd *cmd, struct s_envp *envp);
 int				ft_export_1(struct s_envp *envp, t_cmd *cmd);
-int				ft_env(struct s_envp *envp, t_cmdl *list);
+int				ft_env(struct s_envp *envp, t_cmd *list);
 int				ft_echo( t_cmd *cmds, int fd);
 int				ft_is_built_in( struct s_envp *envp,  t_cmd *cmds);
-int				ft_unset(struct s_envp *envp, t_cmdl *list, int arg);
-int				ft_export(struct s_envp *envp, t_cmdl *cmd, int i);
+int				ft_unset(struct s_envp *envp, t_cmd *list, int arg);
+int				ft_export(struct s_envp *envp, t_cmd *cmd, int i);
 //exece
 int				is_builtin( t_cmd *cmds, int i);
 int				one_cmd(struct s_envp *envp, t_token *token, t_cmd *cmds);
@@ -126,10 +126,10 @@ void			handler(int sig);
 //export tools
 char			**join_name_and_value(struct s_envp *envp, t_cmd *cmd);
 char			**ft_sort_env(struct s_envp *envp, t_cmd *cmd);
-int				check_name_is_valid(char **split, int i, t_cmdl *cmd);
-int				modify_name(struct s_envp *envp, t_cmdl *cmd, char **split,
+int				check_name_is_valid(char **split, int i, t_cmd *cmd);
+int				modify_name(struct s_envp *envp, t_cmd *cmd, char **split,
 					int i);
-int				ft_equal_sign(struct s_envp *envp, t_cmdl *list, int arg);
+int				ft_equal_sign(struct s_envp *envp, t_cmd *list, int arg);
 //free
 int				free2d(char **s);
 int				ft_is_alpha_mod(char c);

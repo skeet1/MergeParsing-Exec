@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:41:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 13:09:49 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 21:18:41 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	free2d(char **s)
 	return (0);
 }
 
-int	check_exit_no_args(t_cmdl *cmd, struct s_envp *envp)
+int	check_exit_no_args(t_cmd *cmd, struct s_envp *envp)
 {
-	if (cmd[cmd->cmd_iteration].args[0] == NULL)
+	if (cmd->cmd[1] == NULL)
 	{
 		printf("exit\n");
 		rl_clear_history();
@@ -42,31 +42,31 @@ int	check_exit_no_args(t_cmdl *cmd, struct s_envp *envp)
 	return (0);
 }
 
-int	check_exit_with_args(t_cmdl *cmd, struct s_envp *envp)
+int	check_exit_with_args(t_cmd *cmd, struct s_envp *envp)
 {
 	int	i;
 	int	exit_value;
 
 	i = 0;
-	if (cmd->args[1] == NULL)
+	if (cmd->cmd[2] == NULL)
 	{
 		i = 0;
-		while (cmd[cmd->cmd_iteration].args[0])
+		while (cmd->cmd[1])
 		{
-			while (cmd[cmd->cmd_iteration].args[0][i])
+			while (cmd->cmd[1][i])
 			{
-				if (!(ft_isdigit(cmd[cmd->cmd_iteration].args[0][i])))
+				if (!(ft_isdigit(cmd->cmd[1][i])))
 				{
 					printf("exit\n");
 					printf("Minishell: exit: %s: numeric argument required\n",
-						cmd[cmd->cmd_iteration].cmd);
+						cmd->cmd[1]);
 					free2d(envp->name);
 					free2d(envp->value);
 					exit(255);
 				}
 				i++;
 			}
-			exit_value = ft_atoi(cmd[cmd->cmd_iteration].args[0]);
+			exit_value = ft_atoi(cmd->cmd[1]);
 			free2d(envp->name);
 			free2d(envp->value);
 			exit(exit_value);
@@ -75,7 +75,7 @@ int	check_exit_with_args(t_cmdl *cmd, struct s_envp *envp)
 	return (0);
 }
 
-int	ftexit(t_cmdl *cmd, struct s_envp *envp)
+int	ftexit(t_cmd *cmd, struct s_envp *envp)
 {
 	check_exit_no_args(cmd, envp);
 	check_exit_with_args(cmd, envp);

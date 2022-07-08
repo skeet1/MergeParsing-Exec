@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 20:07:15 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 21:05:58 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ typedef struct s_cmd {
 					int				cmd_iteration;
 						char			*error;
 
-
+int  envvarpos;
 
 
 	struct s_cmd		*next;
