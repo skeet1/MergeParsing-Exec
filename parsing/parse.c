@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 19:51:15 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 22:21:22 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,19 +188,21 @@ void	print_cmd(t_cmd *cmd)
 {
 	while (cmd)
 	{
-		printf("\ncmd  :  \n");
+		// printf("\ncmd  :  \n");
 		int i = 0;
 		while (cmd && cmd->cmd[i])
 		{
-			printf("%s\n", cmd->cmd[i++]);
-		}
-		printf("\nfiles:\n\n");
-		i = 0;
-		while (cmd && cmd->f_name[i] && cmd->f_type[i])
-		{
-			printf("type is : %d -- name is : %s\n", cmd->f_type[i], cmd->f_name[i]);
+			// printf("%s\n", cmd->cmd[i++]);
+			cmd->count_args = i;
 			i++;
 		}
+		printf(" %d   \n\n", cmd->count_args);
+		// i = 0;
+		// while (cmd && cmd->f_name[i] && cmd->f_type[i])
+		// {
+		// 	printf("type is : %d -- name is : %s\n", cmd->f_type[i], cmd->f_name[i]);
+		// 	i++;
+		// }
 		cmd = cmd->next;
 	}
 }

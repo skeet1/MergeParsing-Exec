@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 21:20:58 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 21:54:49 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int				is_builtin( t_cmd *cmds, int i);
 int				one_cmd(struct s_envp *envp, t_token *token, t_cmd *cmds);
 char			*ft_itoa(int n);
 int				ft_split_env(struct s_envp *envp, char **env);
-int				set_rd(t_cmdl *list);
+int				set_rd(t_cmd *list);
 // int							run_builtin(t_cmdl *list, struct s_envp *envp);
 // int				builtcheck(t_cmdl *cmd, struct s_envp *envp,  t_cmd *cmds);
 int				builtcheck_next(t_cmd *cmd, struct s_envp *envp);
@@ -80,14 +80,14 @@ int				redirections(t_cmd *list, t_token *token);
 int				heredoc_without_cmd(t_cmdl *list);
 void			num_of_args(t_token *token, t_cmdl *cmd);
 // Other
-int				ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp);
-char	**ft_search_for_path(t_cmdl *list,
+int				ft_bin_usr_sbin(t_cmd *cmd, struct s_envp *envp);
+char	**ft_search_for_path(t_cmd *list,
 							struct s_envp *envp);
-void			ftcheck_nopath(t_cmdl *list, struct s_envp *envp);
-void			looping_through_split_path(t_cmdl *list, int i, char *bin,
+void			ftcheck_nopath(t_cmd *list, struct s_envp *envp);
+void			looping_through_split_path(t_cmd *list, int i, char *bin,
 					char *last, struct s_envp *envp);
-char			**create_argv_for_execve(t_cmdl *list);
-int	ft_check_programs(t_cmdl *list,
+char			**create_argv_for_execve(t_cmd *list);
+int	ft_check_programs(t_cmd *list,
 						struct s_envp *envp);
 //env
 int				ft_copy_1st_env(struct s_envp *envp, char **env);
@@ -118,7 +118,7 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putendl_fd(char *s, int fd);
 // pipes
-void			ft_pipe(t_cmdl *list, struct s_envp *envp);
+void			ft_pipe(t_cmd *list, struct s_envp *envp);
 // signals
 void			handler(int sig);
 // init data

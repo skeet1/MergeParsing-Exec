@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 21:28:05 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 22:20:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	ft_lstsize(t_cmd *lst)
 }
 int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp, 	t_cmd *cmds)
 {
-	t_cmdl	*cmd;
 
-// print_cmd(cmds);
+print_cmd(cmds);
 int nbr = ft_lstsize(cmds);
 cmds->cmdnbr = 0;
+
 	cmds->cmdnbr = nbr;
 	// cmd = NULL;
 	// itre = 0;
@@ -79,7 +79,7 @@ cmds->cmdnbr = 0;
 	// 	if (redirections(cmd, token) == 3)
 	// 		return (3);
 	// }
-	cmds->fd_out = 0;
+	// cmds->fd_out = 0;
 	if (nbr == 1)
 	{
 		one_cmd( envp, token, cmds);

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 21:31:11 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 22:09:22 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,26 +88,26 @@ void				ft_putendl(char *s);
 // 	char	*out_red;
 // }		t_cmdl;
 
-typedef struct s_cmd {
-	char				**cmd;
-	int cmdnbr;
-	char				**f_name;
-	int					*f_type;
+typedef struct s_cmd
+{
+	char			**cmd;
+	int				cmdnbr;
+	char			**f_name;
+	int				*f_type;
 	//mine
-	int fd_out;
-		int				fd_in;
-			char			*delimiter;
-				char			*findhome;
-					int				cmd_iteration;
+	int				fd_out;
+	int				fd_in;
+	char			*delimiter;
+	char			*findhome;
+	int				cmd_iteration;
+	char			**new;
+	char			*error;
+	int				count_args;
+char **args_execve;
+	int				envvarpos;
 
-						char			*error;
-
-int  envvarpos;
-
-
-	struct s_cmd		*next;
-}	t_cmd;
-
+	struct s_cmd	*next;
+}					t_cmd;
 
 typedef struct t_cmdl
 {

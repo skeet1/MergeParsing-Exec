@@ -6,14 +6,14 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/02 17:57:55 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 22:16:32 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../libft/libft.h"
 
-char	**ft_search_for_path(t_cmdl *list,  struct s_envp *envp)
+char	**ft_search_for_path(t_cmd *list,  struct s_envp *envp)
 {
 	int		x;
 	char	**new;
@@ -42,11 +42,11 @@ char	**ft_search_for_path(t_cmdl *list,  struct s_envp *envp)
 			i++;
 		}
 	}
-	// new[i] = NULL;
+	
 	return (new);
 }
 
-void	ftcheck_nopath(t_cmdl *list,  struct s_envp *envp)
+void	ftcheck_nopath(t_cmd *list,  struct s_envp *envp)
 {
 	list->new = ft_search_for_path(list, envp);
 	if (list->new == NULL)
@@ -57,12 +57,12 @@ void	ftcheck_nopath(t_cmdl *list,  struct s_envp *envp)
 	}
 }
 
-void	looping_through_split_path(t_cmdl *list, int i, char *bin, char *last, struct s_envp *envp)
+void	looping_through_split_path(t_cmd *list, int i, char *bin, char *last, struct s_envp *envp)
 {
 	i = 0;
 	while (list->new[i])
 	{
-		last = ft_strjoin(bin, list[list->cmd_iteration].cmd);
+		last = ft_strjoin(bin,list->cmd[0]);
 		if (access(last, F_OK) == 0)
 		{
 			list->args_execve = create_argv_for_execve(list);
@@ -72,7 +72,7 @@ void	looping_through_split_path(t_cmdl *list, int i, char *bin, char *last, stru
 		else
 		{
 			bin = ft_strjoin(list->new[i], "/");
-			last = ft_strjoin(bin, list[list->cmd_iteration].cmd);
+			last = ft_strjoin(bin, list->cmd[0]);
 			i++;
 		}
 	}
