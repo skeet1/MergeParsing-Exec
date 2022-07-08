@@ -75,7 +75,7 @@ OBJ = builtins.o \
 	 ft_tolower.o\
 	 ftpipe.o \
 	 ft_one_command.o \
-	./libft/ft_calloc.o \
+	 ft_calloc.o \
 	 ft_multi_cmds.o   \
 	 ft_strdup.o  \
 	 ft_atoi.o  \
