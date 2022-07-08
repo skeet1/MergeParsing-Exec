@@ -221,6 +221,7 @@ int	main(int argc, char **argv, char **env)
 			signal(SIGQUIT, SIG_IGN);
 			signal(SIGINT, handler);
 			token = NULL;
+			cmd = NULL;
 			data.cmd_line = readline(PROMPT);
 			add_history(data.cmd_line);
 			if(data.cmd_line == NULL)
