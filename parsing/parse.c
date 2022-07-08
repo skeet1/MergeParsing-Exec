@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 13:17:59 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/08 13:34:32 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ void	node_per_cmd(t_token *token)
 
 	a = 0;
 	ft = 0;
+	i[0] = 0;
+	i[1] = 0;
 	while (token)
 	{
 		tok = token;
@@ -105,6 +107,23 @@ void	node_per_cmd(t_token *token)
 			else if (tok->type == FILEE)
 				ft++;
 			tok = tok->next;
+		}
+		args = malloc(sizeof(char *) * a);
+		file_name = malloc(sizeof(char *) * ft);
+		file_type = malloc(sizeof(int) * ft);
+		while (token)
+		{
+			while (token && token->type != PIPE)
+			{
+				if (token->type == WORD)
+					args[i[0]++] = token->value;
+				else if (token->type >= 2 && token->type <= 5)
+				{
+					file_type[i[1]] = tok->type;
+					token = token->next;
+					file_name[i[1]++] = token->value;
+				}
+			}
 		}
 	}
 }
