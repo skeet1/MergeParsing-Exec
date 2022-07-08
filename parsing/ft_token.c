@@ -136,7 +136,7 @@ t_token	*ft_new_node(char *value)
 	if (!new)
 		return (new);
 	new->sgl_qt = 0;
-	if (value[0] == '"')
+	if (value[0] == '\'')
 		new->sgl_qt = 1;
 	new->value = value;
 	new->type = ft_token_type(value);
