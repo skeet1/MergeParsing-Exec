@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
+#    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/08 12:46:54 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/08 13:27:22 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,14 @@ SRC = ./exec/builtins.c \
 	./libft/ft_putchar_fd.c \
 	./libft/ft_putstr_fd.c \
 	./libft/ft_putendl_fd.c \
+	./libft/ft_tolower.c \
 	./exec/ftpipe.c \
 	./exec/ft_one_command.c \
 	./exec/ft_multi_cmds.c   \
 	./libft/ft_strdup.c  \
 	./libft/ft_atoi.c  \
 	./libft/ft_isdigit.c  \
+	./libft/ft_tolower.c \
 	./exec/ft_here_doc.c \
 	./exec/ft_search_path.c \
 	./exec/is_builtin.c \
@@ -69,6 +71,7 @@ OBJ = builtins.o \
 	 ft_putchar_fd.o \
 	 ft_putstr_fd.o \
 	 ft_putendl_fd.o \
+	 ft_tolower.o\
 	 ftpipe.o \
 	 ft_one_command.o \
 	 ft_multi_cmds.o   \

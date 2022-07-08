@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 21:13:31 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 13:19:50 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,12 @@ void				ft_putendl(char *s);
 // 	char	*in_red;
 // 	char	*out_red;
 // }		t_cmdl;
+
+typedef struct s_cmd {
+	char				**cmd;
+	int					type;
+	struct s_cmd		*next;
+}	t_cmd;
 
 typedef struct t_cmdl
 {
