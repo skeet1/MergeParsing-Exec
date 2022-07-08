@@ -205,6 +205,23 @@ void	print_cmd(t_cmd *cmd)
 	}
 }
 
+void	free_cmd(t_cmd **cmd)
+{
+	t_cmd *c;
+
+	c = *cmd;
+	while (c)
+	{
+		if (c->cmd)
+			free(c->cmd);
+		if (c->f_name)
+			free(c->f_name);
+		if (c->f_type)
+			free(c->f_type);
+		c = c->next;
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data data;
@@ -244,7 +261,7 @@ int	main(int argc, char **argv, char **env)
 			// 	pass_to_exec(token, pipenbr, envp);
 			// }
 			// 		free(	data.cmd_line);
-
+			free_cmd(&cmd);
 		}
 	}
 	return (0);
