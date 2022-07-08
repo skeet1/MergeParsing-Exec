@@ -115,7 +115,7 @@ int							run_builtin(t_cmdl *list, struct s_envp *envp);
 /// redirections I/O
 int							redirections(t_cmdl *list);
 int							heredoc_without_cmd(t_cmdl *list);
-void	num_of_args(t_token *token);
+void	num_of_args(t_token *token, t_cmdl *cmd);
 // Other
 int							ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp);
 char						**ft_search_for_path(t_cmdl *list,

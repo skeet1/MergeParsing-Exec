@@ -108,7 +108,6 @@ int	main(int argc, char **argv, char **env)
 				token = ft_token(token, &data, data.cmd_line);
 				// exp_change_value(envp, token);
 				mark_cmd(token);
-				num_of_args(token);
 			}
 			// print_token(token);
 			if(data.cmd_line != NULL && data.error == 0 && token != NULL)

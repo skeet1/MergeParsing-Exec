@@ -64,7 +64,8 @@ typedef struct s_token
 	char			*value;
 	int				sgl_qt;
 	int				args_num;
-	int				file_num;
+	int				redi;
+	int 			files;
 	struct s_token	*next;
 }					t_token;
 
@@ -115,6 +116,7 @@ typedef struct t_cmdl
 	char			*delimiter;
 	int count_redire;
 	int count_args;
+	int 	count_files;
 		struct s_token	*tmpnext;
 }					t_cmdl;
 
@@ -138,7 +140,7 @@ int					is_special(char c);
 void				remove_quotes(t_token *token);
 void				print_token(t_token *token);
 void				list_files(t_token *token);
-
+void	num_of_rd(t_token *token, t_cmdl *cmd);
 void	incr_quotes(char c, int *a, int *b);
 void	print_token(t_token *token);
 #endif
