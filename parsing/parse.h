@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 13:19:50 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/08 16:15:45 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ void				ft_putendl(char *s);
 
 typedef struct s_cmd {
 	char				**cmd;
-	int					type;
+	char				**f_name;
+	int					*f_type;
 	struct s_cmd		*next;
 }	t_cmd;
 
