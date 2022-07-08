@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 16:56:51 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/08 17:32:55 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,25 +145,32 @@ t_cmd	*node_per_cmd(t_token *token)
 				ft++;
 			tok = tok->next;
 		}
-		args = ft_calloc(sizeof(char *), a);
-		file_name = ft_calloc(sizeof(char *), ft);
-		file_type = ft_calloc(sizeof(int), ft);
+		// printf("cmd is %d -- file is %d\n", a, ft);
+		args = ft_calloc(sizeof(char *), a + 1);
+		file_name = ft_calloc(sizeof(char *), ft + 1);
+		file_type = ft_calloc(sizeof(int), ft + 1);
 		while (token)
 		{
 			while (token && token->type != PIPE)
 			{
 				if (token->type == WORD)
+				{
+					// printf("mcd here : %s\n", token->value);
 					args[i[0]++] = token->value;
+				}
 				else if (token->type >= 2 && token->type <= 5)
 				{
 					file_type[i[1]] = token->type;
-					token = token->next;
-					file_name[i[1]++] = token->value;
 				}
+				else if (token->type == FILEE)
+					file_name[i[1]++] = token->value;
 				token = token->next;
 			}
 			break;
 		}
+		args[i[0]] = NULL;
+		file_type[i[1]] = 0;
+		file_name[i[1]] = NULL;
 		// i[0] = 0;
 		// i[1] = 0;
 		// while (args[i[0]])
@@ -183,13 +190,13 @@ void	print_cmd(t_cmd *cmd)
 	{
 		printf("\ncmd  :  \n");
 		int i = 0;
-		while (cmd->cmd[i])
+		while (cmd && cmd->cmd[i])
 		{
 			printf("%s\n", cmd->cmd[i++]);
 		}
 		printf("\nfiles:\n\n");
 		i = 0;
-		while (cmd->f_name[i])
+		while (cmd && cmd->f_name[i] && cmd->f_type[i])
 		{
 			printf("type is : %d -- name is : %s\n", cmd->f_type[i], cmd->f_name[i]);
 			i++;
@@ -225,7 +232,6 @@ int	main(int argc, char **argv, char **env)
 			{
 				token = ft_token(token, &data, data.cmd_line);
 				// exp_change_value(envp, token);
-				printf("here main\n");
 				cmd = node_per_cmd(token);
 				// mark_cmd(token);
 			}
