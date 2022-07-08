@@ -19,6 +19,8 @@ int	free2d(char **s)
 	int	i;
 
 	i = 0;
+	if(s[i])
+	return 0 ;
 	while (s[i])
 	{
 		free(s[i]);

@@ -58,7 +58,6 @@ int	main(int argc, char **argv, char **env)
 				exit(1);
 			}
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
-						add_history(data.cmd_line);
 
 			if (ft_strlen(data.cmd_line))
 			{

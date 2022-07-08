@@ -131,37 +131,8 @@ void	loop(t_token *token, int pipenbr, t_cmdl *cmd)
 	else
 	{
 		cmd[cmd_iteration].file = (char **)malloc(sizeof(char *) * (1));
-		cmd[cmd_iteration].file[0]= NULL;
+		cmd[cmd_iteration].file[0] = NULL;
 	}
-	// printf("CMD NB %s \n", token->value);
-	// while (token)
-	// {
-	// 	if (token->type == 9 )
-	// 	{
-	// 		printf("ARGS %d CMD NB %d \n", token->args_num, cmd_iteration);
-	// 		printf("FILES %d CMD NB %d  RD NBR %d\n", token->files,
-	// cmd_iteration,token->redi  );
-	// 		cmd[cmd_iteration].args = (char **)malloc(sizeof(char)
-	// 				* (token->args_num + 1));
-	// 	}
-	// 	//  if (token->type == 2 || token->type == 3 || token->type == 4
-	// 	// 	|| token->type == 5 )
-	// 	// {
-	// 		num_of_rd(token, cmd);
-	// 		printf("FILES %d CMD NB %d  RD NBR %d\n", token->files,
-	// cmd_iteration,token->redi  );
-	// 		// cmd[cmd_iteration].count_redire = token->redi;
-	// 		// cmd[cmd_iteration].type = (char **)malloc(sizeof(char *)
-	// 		// 		* (token->redi + 1));
-	// 		// cmd[cmd_iteration].file = (char **)malloc(sizeof(char *)
-	// 		// 		* (token->redi + 1));
-	// 	// }
-	// 	if(token->type ==  PIPE)
-	// 	{
-	// 							cmd_iteration++;
-	// 	}
-	// 	token = token->next;
-	// }
 }
 int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 {
@@ -238,9 +209,6 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 		}
 		token = token->next;
 	}
-	// 	return (0);
-	// }
-	// 	free(cmd);
 	return (0);
 }
 
@@ -255,20 +223,28 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	args = 0;
 	cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr + 1));
 	cmd->cmd_nbr = 0;
+	cmd->count_args = 0;
+	cmd->count_files = 0;
+	cmd->count_redire = 0;
+	cmd->type =NULL;
+	cmd->file =NULL;
+	cmd->args =NULL;
+
+
 	fill_cmd(token, pipenbr, cmd);
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->fd_out = 1;
 	cmd->cmd_iteration = 0;
 	// printf("cmd nbr %d \n", cmd->cmd_nbr);
-	// if (cmd->cmd_nbr == 0)
-	// {
-	// 	heredoc_without_cmd(cmd);
-	// 	if (redirections(cmd) == 3)
-	// 		return (3);
-	// }
 	cmd->count_args = token->args_num;
 	cmd->count_files = token->files;
 	cmd->count_redire = token->redi;
+	if (cmd->cmd_nbr == 0)
+	{
+		heredoc_without_cmd(cmd);
+		if (redirections(cmd, token) == 3)
+			return (3);
+	}
 	if (cmd->cmd_nbr == 1)
 	{
 		// heredoc_without_cmd(cmd);
