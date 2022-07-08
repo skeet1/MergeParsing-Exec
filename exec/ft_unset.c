@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/02 11:39:55 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 13:05:47 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_search_for_variable_in_env(struct s_envp *envp, t_cmdl *list, int arg)
 	while (x < envp->envpitems)
 	{
 		// list->envsplited = ft_split(envp->environment[x], '=');
-		if (ft_strncmp(envp->name[x], list[list->cmd_iteration].args[arg], lenght) == 0)
+		if (ft_strncmp(list[list->cmd_iteration].args[arg],envp->name[x],  ft_strlen(envp->name[x])) == 0)
 		{
 			list->envvarpos = x;
 			return (1);

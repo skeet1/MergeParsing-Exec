@@ -3,16 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_1st_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:44:48 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/04 18:42:37 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 13:04:05 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "../minishell.h"
 #include "../parsing/parse.h"
-#include "../libft/libft.h"
+
+int	ft_split_env_next(struct s_envp *envp, char **env, int i)
+{
+	int	x;
+
+	x = 0;
+	while (env[i][x] != '=' && env[i][x] != '\0')
+	{
+		if (env[i][x] == '=')
+			break ;
+		x++;
+	}
+	envp->name[i] = ft_substr(env[i], 0, x);
+	envp->value[i] = ft_substr(env[i], x + 1, ft_strlen(env[i]) - x);
+	x = 0;
+	return (0);
+}
 
 int	ft_split_env(struct s_envp *envp, char **env)
 {
@@ -23,12 +40,11 @@ int	ft_split_env(struct s_envp *envp, char **env)
 	int		len;
 
 	envp->name = (char **)malloc(sizeof(char *) * envp->envpitems + 1);
-	envp->value =(char **)malloc(sizeof(char *) * envp->envpitems + 1);
+	envp->value = (char **)malloc(sizeof(char *) * envp->envpitems + 1);
 	i = 0;
 	x = 0;
 	len = 0;
 	len = 0;
-
 	while (i < envp->envpitems)
 	{
 		if (!(strchr(env[i], '=')))
@@ -39,20 +55,9 @@ int	ft_split_env(struct s_envp *envp, char **env)
 		}
 		else
 		{
-		while (env[i][x] != '=' && env[i][x] != '\0')
-		{
-			if (env[i][x] == '=')
-				break ;
-			x++;
-		}
-		envp->name[i] = ft_substr(env[i], 0, x);
-		envp->value[i] = ft_substr(env[i], x + 1, ft_strlen(env[i]) - x);
-		// printf("val  =%s\n",	envp->value[i] );
-		x = 0;
+			ft_split_env_next(envp, env, i);
 		i++;
-	}
-	// envp->name[i] = NULL;
-	// envp->value[i] = NULL;
+		}
 	}
 	return (0);
 }
@@ -87,7 +92,7 @@ int	ft_copy_env(struct s_envp *envp, char **env)
 			nbb = ft_itoa(nb + 1);
 			joined = ft_strjoin("SHLVL=", nbb);
 			envp->environment[x] = joined;
-			// free(nbb);
+			free(nbb);
 			x++;
 		}
 		envp->environment[x] = env[x];
