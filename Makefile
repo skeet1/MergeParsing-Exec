@@ -35,6 +35,7 @@ SRC = ./exec/builtins.c \
 	./libft/ft_atoi.c  \
 	./libft/ft_isdigit.c  \
 	./libft/ft_tolower.c \
+	./libft/ft_calloc.c \
 	./exec/ft_here_doc.c \
 	./exec/ft_search_path.c \
 	./exec/is_builtin.c \
@@ -74,6 +75,7 @@ OBJ = builtins.o \
 	 ft_tolower.o\
 	 ftpipe.o \
 	 ft_one_command.o \
+	./libft/ft_calloc.o \
 	 ft_multi_cmds.o   \
 	 ft_strdup.o  \
 	 ft_atoi.o  \
