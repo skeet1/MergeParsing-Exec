@@ -6,27 +6,27 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:50:59 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/06 20:48:38 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 21:31:26 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	redirections(t_cmdl *list, t_token *token)
+int	redirections(t_cmd *list, t_token *token)
 {
 	int	i;
 	int	input;
 	int	output;
 
 	i = 0;
-	while (i < token->redi)
+	while (list->f_type[i])
 	{
 		// input = dup(0);
 		// output = dup(1);
-		if (ft_strncmp(list->type[i], ">", 2) == 0)
+		if (list->f_type[i] == RED_OUT)
 		{
-			list->fd_out = open(list->file[i], O_RDWR | O_CREAT | O_TRUNC,
+			list->fd_out = open(list->f_name[i], O_RDWR | O_CREAT | O_TRUNC,
 					0600);
 			if (list->fd_out == -1)
 			{
@@ -34,9 +34,9 @@ int	redirections(t_cmdl *list, t_token *token)
 				return (3);
 			}
 		}
-		if (ft_strncmp(list[0].type[i], "<", 2) == 0)
+		if (list->f_type[i] == RED_IN)
 		{
-			list->fd_in = open(list[0].file[i], O_RDONLY, 0);
+			list->fd_in = open(list->f_name[i], O_RDONLY, 0);
 			if (list->fd_in == -1)
 			{
 				printf("bash: No such file or directory\n");
@@ -44,14 +44,14 @@ int	redirections(t_cmdl *list, t_token *token)
 
 			}
 		}
-		if (ft_strncmp(list[0].type[i], ">>", 3) == 0)
+		if (list->f_type[i] == RED_OUT_APP)
 		{
-			list->fd_out = open(list[0].file[i], O_RDWR | O_CREAT | O_APPEND,
+			list->fd_out = open(list->f_name[i], O_RDWR | O_CREAT | O_APPEND,
 					0600);
 		}
-		if (ft_strncmp(list[0].type[i] , "<<", 3) == 0)
+		if (list->f_type[i] == RED_IN_APP)
 		{
-			list->fd_in = open("tmp", O_RDWR | O_CREAT | O_TRUNC, 0600);
+			list->fd_in = open("/tmp/tmpfile", O_RDWR | O_CREAT | O_TRUNC, 0600);
 		}
 		i++;
 	}

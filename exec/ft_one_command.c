@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 19:58:11 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 21:36:04 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	one_cmd_1(t_cmdl *list, struct s_envp *envp, t_token *token, t_cmd *cmds)
 	i = 0;
 	if (fork() == 0)
 	{
-		if (redirections(list, token) == 3)
+		if (redirections(cmds, token) == 3)
 			return (3);
 		heredoc_without_cmd(list);
 		while (i < list->count_redire)
@@ -60,31 +60,31 @@ int	one_cmd(struct s_envp *envp,t_token *token, t_cmd *cmds)
 	if (cmds->cmdnbr == 1 && is_builtin(cmds, 0) == 0)
 	{
 		i = 0;
-		// if (redirections(cmd, token) == 3)
-		// 	return (3);
+		if (redirections(cmds, token) == 3)
+			return (3);
 		ft_is_built_in(envp, cmds);
-		// if (cmd[0].type[i] != NULL)
-		// {
-		// 	if (ft_strncmp(cmd[0].type[i], ">", 2) == 0)
-		// 	{
-		// 		close(cmd->fd_out);
-		// 	}
-		// 	if (ft_strncmp(cmd[0].type[i], "<", 2) == 0)
-		// 	{
-		// 		close(cmd->fd_in);
-		// 	}
-		// 	if (ft_strncmp(cmd[0].type[i], ">>", 3) == 0)
-		// 	{
-		// 		close(cmd->fd_out);
-		// 	}
-		// }
+		if (cmds->f_type != NULL)
+		{
+		if (cmds->f_type[i] == RED_OUT)
+			{
+				close(cmds->fd_out);
+			}
+		if (cmds->f_type[i] == RED_IN)
+			{
+				close(cmds->fd_in);
+			}
+		if (cmds->f_type[i] == RED_OUT_APP)
+			{
+				close(cmds->fd_out);
+			}
+		}
 		return (1);
 	}
-	// else if (cmd->cmd_nbr == 1 && is_builtin(cmd, 0) == 3)
-	// {
+	else if (cmd->cmd_nbr == 1 && is_builtin(cmd, 0) == 3)
+	{
 
-	// 	one_cmd_1(cmd, envp, token, cmds);
-	// 	return (1);
-	// }
+		one_cmd_1(cmd, envp, token, cmds);
+		return (1);
+	}
 	return (0);
 }
