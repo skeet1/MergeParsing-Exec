@@ -91,7 +91,7 @@ int	ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp)
 	bin = ft_strjoin(list->new[i], "/");
 	looping_through_split_path(list, i, bin, last, envp);
 	// write(1, "MINISHELL %s command not found\n", 28);
-	printf("MINISHELL %s command not found", list[list->cmd_iteration].cmd);
-	// g_exit_status = 127;
+	printf("MINISHELL %s command not found\n", list[list->cmd_iteration].cmd);
+	g_exit_status = 127;
 	exit(127);
 }

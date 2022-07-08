@@ -81,10 +81,10 @@ void	ft_pipe(t_cmdl *list, struct						s_envp * envp)
 		id = fork();
 		if (id == 0)
 		{
-			printf("here cmd nbr %d  iteration %d  , args %d\n", list->cmd_nbr, list->cmd_iteration,	list->count_args );
+			// printf("here cmd nbr %d  iteration %d  , args %d\n", list->cmd_nbr, list->cmd_iteration,	list->count_args );
 
-			printf("list->there_is_pipe %d\n", list->there_is_pipe);
-		redire_2(list);
+			// printf("list->there_is_pipe %d\n", list->there_is_pipe);
+				redire_2(list);
 			set_rd(list);
 			dup2(list->fd_in, 0);
 			if((list->cmd_iteration < list->there_is_pipe ))

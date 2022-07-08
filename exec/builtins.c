@@ -28,11 +28,12 @@ int	ft_echo(t_cmdl *list, int fd)
 	}
 	else
 	{
-		while (list[list->cmd_iteration].args[i] != NULL)
+		while (i < list->count_args)
 		{
 			if (ft_strncmp(list[list->cmd_iteration].args[i], "$?", 2) == 0)
 			{
 				printf(" %d \n", g_exit_status);
+				return 0 ;
 			}
 			len = ft_strlen(list->args[i]);
 			write(fd, " ", 1);

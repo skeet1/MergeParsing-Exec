@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include "parse.h"
+#include "../parsing/parse.h"
+
 void	free_it(t_cmdl *cmd)
 {
 	int	i;
@@ -160,7 +161,7 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 		if (token->type == ARG)
 		{
 			cmd[cmd_iteration].args[args] = token->value;
-			printf("args   = %s\n\n\n", cmd[cmd_iteration].args[args]);
+			// printf("args   = %s\n\n\n", cmd[cmd_iteration].args[args]);
 			args++;
 			// cmd[cmd_iteration].args[args] = NULL;
 		}
@@ -251,14 +252,14 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 		// free2d(cmd->args);
 		// free_it(cmd, token, pipenbr);
 	}
-	// else if (cmd->cmd_nbr > 1)
-	// {
-	// 	//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
-	// 	// grep 1337 exec/*.c problem
-	// 	ft_pipe(cmd, envp);
-	// 			// free2d(cmd->args);
-	// 		// free_it(cmd, token, pipenbr);
-	// }
+	else if (cmd->cmd_nbr > 1)
+	{
+		//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
+		// grep 1337 exec/*.c problem
+		ft_pipe(cmd, envp);
+				// free2d(cmd->args);
+			// free_it(cmd, token, pipenbr);
+	}
 	// free_it(cmd);
 	free2d(cmd->args);
 	free2d(cmd->type);
