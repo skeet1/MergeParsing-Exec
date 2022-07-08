@@ -6,13 +6,13 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/07 22:11:59 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:00:33 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../parsing/parse.h"
-int	one_cmd_1(t_cmdl *list, struct s_envp *envp, t_token *token)
+int	one_cmd_1(t_cmdl *list, struct s_envp *envp, t_token *token, t_cmd *cmds)
 {
 	int	i;
 
@@ -52,40 +52,40 @@ int	one_cmd_1(t_cmdl *list, struct s_envp *envp, t_token *token)
 	return (g_exit_status);
 }
 
-int	one_cmd(t_cmdl *cmd, struct s_envp *envp,t_token *token)
+int	one_cmd(t_cmdl *cmd, struct s_envp *envp,t_token *token, t_cmd *cmds)
 {
 	int	i;
 	int	x;
 
 	//
-	if (cmd->cmd_nbr == 1 && is_builtin(cmd, 0) == 0)
+	if (cmds->cmdnbr == 1 && is_builtin(cmds, 0) == 0)
 	{
 		i = 0;
-		if (redirections(cmd, token) == 3)
-			return (3);
-		ft_is_built_in(cmd, envp);
-		if (cmd[0].type[i] != NULL)
-		{
-			if (ft_strncmp(cmd[0].type[i], ">", 2) == 0)
-			{
-				close(cmd->fd_out);
-			}
-			if (ft_strncmp(cmd[0].type[i], "<", 2) == 0)
-			{
-				close(cmd->fd_in);
-			}
-			if (ft_strncmp(cmd[0].type[i], ">>", 3) == 0)
-			{
-				close(cmd->fd_out);
-			}
-		}
+		// if (redirections(cmd, token) == 3)
+		// 	return (3);
+		ft_is_built_in(cmd, envp, cmds);
+		// if (cmd[0].type[i] != NULL)
+		// {
+		// 	if (ft_strncmp(cmd[0].type[i], ">", 2) == 0)
+		// 	{
+		// 		close(cmd->fd_out);
+		// 	}
+		// 	if (ft_strncmp(cmd[0].type[i], "<", 2) == 0)
+		// 	{
+		// 		close(cmd->fd_in);
+		// 	}
+		// 	if (ft_strncmp(cmd[0].type[i], ">>", 3) == 0)
+		// 	{
+		// 		close(cmd->fd_out);
+		// 	}
+		// }
 		return (1);
 	}
-	else if (cmd->cmd_nbr == 1 && is_builtin(cmd, 0) == 3)
-	{
+	// else if (cmd->cmd_nbr == 1 && is_builtin(cmd, 0) == 3)
+	// {
 
-		one_cmd_1(cmd, envp, token);
-		return (1);
-	}
+	// 	one_cmd_1(cmd, envp, token, cmds);
+	// 	return (1);
+	// }
 	return (0);
 }

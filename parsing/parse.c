@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 17:32:55 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/08 18:26:11 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ int	main(int argc, char **argv, char **env)
 	t_data data;
 	t_token *token;
 	struct s_envp *envp;
-	t_cmd *cmd;
+	t_cmd *cmd; 
 	envp = (struct s_envp *)malloc((1) * sizeof(struct s_envp));
 	int pipenbr = 0;
 	ft_copy_1st_env(envp, env);
@@ -218,6 +218,8 @@ int	main(int argc, char **argv, char **env)
 	{
 		while (1)
 		{
+			cmd = NULL;
+			
 			signal(SIGQUIT, SIG_IGN);
 			signal(SIGINT, handler);
 			token = NULL;
@@ -235,14 +237,15 @@ int	main(int argc, char **argv, char **env)
 				cmd = node_per_cmd(token);
 				// mark_cmd(token);
 			}
-			print_cmd(cmd);
+			// print_cmd(cmd);
 			// print_token(token);
-			// if(data.cmd_line != NULL && data.error == 0 && token != NULL)
-			// {
-			// 	pipenbr = data.side;
-			// 	pass_to_exec(token, pipenbr, envp);
-			// }
-			// 		free(	data.cmd_line);
+			if(data.cmd_line != NULL && data.error == 0 && cmd != NULL)
+			{
+				pipenbr = data.side;
+				pass_to_exec(token, pipenbr, envp, cmd);
+			}
+					free(	data.cmd_line);
+
 
 		}
 	}

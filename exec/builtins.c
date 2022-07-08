@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 12:42:09 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:48:21 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ int	ft_echo_c(t_cmdl *list, int fd)
 	return (0);
 }
 
-int	ft_echo(t_cmdl *list, int fd)
+int	ft_echo( t_cmd *cmds, int fd)
 {
 	int	len;
 	int	i;
 
 	i = 0;
 	len = 0;
-	if (list[0].args[0] == NULL)
+	if (cmds->cmd[1] == NULL)
 	{
 		write(fd, "\n", 1);
 		return (0);
 	}
-	else
-	{
-		ft_echo_c(list, fd);
-	}
+	// else
+	// {
+	// 	ft_echo_c(list, fd);
+	// }
 	return (0);
 }
 

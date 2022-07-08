@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 16:15:45 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/08 19:46:49 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,11 @@ void				ft_putendl(char *s);
 
 typedef struct s_cmd {
 	char				**cmd;
+	int cmdnbr;
 	char				**f_name;
 	int					*f_type;
+	//mine
+	int fd_out;
 	struct s_cmd		*next;
 }	t_cmd;
 

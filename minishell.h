@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 13:21:32 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:40:03 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct t_list
 static int		g_exit_status;
 /* ----------- START PREEXEC ----------- */
 
-int				pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp);
+int				pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp, 	t_cmd *cmds);
 
 /* ----------- END ----------- */
 
@@ -55,26 +55,26 @@ void			rl_replace_line(const char *text, int clear_undo);
 void			rl_clear_history(void);
 // Builtin Commands
 int				ft_pwd(int fd_out);
-int				builtcheck_1(t_cmdl *cmd, struct s_envp *envp);
+int				builtcheck_1(t_cmd *cmd, struct s_envp *envp);
 int				ftexit(t_cmdl *cmd, struct s_envp *envp);
-int				builtcheck(t_cmdl *cmd, struct s_envp *envp);
+int				builtcheck(t_cmdl *cmd, struct s_envp *envp,  t_cmd *cmds);
 int				ftcd(t_cmdl *cmd, struct s_envp *envp);
 int				ft_export_1(struct s_envp *envp, t_cmdl *cmd);
 int				ft_env(struct s_envp *envp, t_cmdl *list);
-int				ft_echo(t_cmdl *list, int fd);
-int				ft_is_built_in(t_cmdl *list, struct s_envp *envp);
+int				ft_echo( t_cmd *cmds, int fd);
+int				ft_is_built_in(t_cmdl *list, struct s_envp *envp,  t_cmd *cmds);
 int				ft_unset(struct s_envp *envp, t_cmdl *list, int arg);
 int				ft_export(struct s_envp *envp, t_cmdl *cmd, int i);
 //exece
-int				is_builtin(t_cmdl *list, int i);
-int				one_cmd(t_cmdl *list, struct s_envp *envp, t_token *token);
+int				is_builtin( t_cmd *cmds, int i);
+int				one_cmd(t_cmdl *list, struct s_envp *envp, t_token *token, t_cmd *cmds);
 char			*ft_itoa(int n);
 int				ft_split_env(struct s_envp *envp, char **env);
 int				set_rd(t_cmdl *list);
 // int							run_builtin(t_cmdl *list, struct s_envp *envp);
-int				builtcheck(t_cmdl *cmd, struct s_envp *envp);
+int				builtcheck(t_cmdl *cmd, struct s_envp *envp,  t_cmd *cmds);
 int				builtcheck_next(t_cmdl *cmd, struct s_envp *envp);
-int				builtcheck_1(t_cmdl *cmd, struct s_envp *envp);
+// int				builtcheck_1(t_cmdl *cmd, struct s_envp *envp);
 /// redirections I/O
 int				redirections(t_cmdl *list, t_token *token);
 int				heredoc_without_cmd(t_cmdl *list);
@@ -134,5 +134,7 @@ int				ft_equal_sign(struct s_envp *envp, t_cmdl *list, int arg);
 //free
 int				free2d(char **s);
 int				ft_is_alpha_mod(char c);
+//tmp
+void	print_cmd(t_cmd *cmd);
 
 #endif

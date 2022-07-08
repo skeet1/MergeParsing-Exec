@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/07 18:57:04 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:01:59 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_pipe(t_cmdl *list, struct						s_envp * envp)
 				dup2(list->fd[1], 1);
 					
 			close(list->fd[0]);
-			ft_is_built_in(list, envp);
+			// ft_is_built_in(list, envp);
 			ft_bin_usr_sbin(list, envp);
 		}
 		else
