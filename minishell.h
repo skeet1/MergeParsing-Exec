@@ -107,17 +107,17 @@ int							ft_unset(struct s_envp *envp, t_cmdl *list,
 int							ft_export(struct s_envp *envp, t_cmdl *cmd, int i);
 //exece
 int							is_builtin(t_cmdl *list, int i);
-int							one_cmd(t_cmdl *list, struct s_envp *envp);
+int							one_cmd(t_cmdl *list, struct s_envp *envp,t_token *token );
 char						*ft_itoa(int n);
 int	ft_split_env(struct s_envp *envp, char **env);
 int							set_rd(t_cmdl  *list);
 int							run_builtin(t_cmdl *list, struct s_envp *envp);
 /// redirections I/O
-int							redirections(t_cmdl *list);
+int							redirections(t_cmdl *list, t_token *token);
 int							heredoc_without_cmd(t_cmdl *list);
 void	num_of_args(t_token *token, t_cmdl *cmd);
 // Other
-int							ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp);
+int							ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp );
 char						**ft_search_for_path(t_cmdl *list,
 								struct s_envp *envp);
 void						ftcheck_nopath(t_cmdl *list, struct s_envp *envp);

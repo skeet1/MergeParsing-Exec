@@ -12,6 +12,26 @@
 
 #include "../minishell.h"
 #include "parse.h"
+void	free_it(t_cmdl *cmd)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	// args = strlen_list(token, pipenbr, cmd);
+	while (i < cmd->cmd_nbr)
+	{
+		x = 0;
+		while (cmd[i].count_args)
+		{
+			free(cmd[i].args[x]);
+			x++;
+		}
+		free(cmd[i].cmd);
+		free(cmd[i].args);
+		i++;
+	}
+}
 
 void	num_of_rd(t_token *token, t_cmdl *cmd)
 {
@@ -48,6 +68,7 @@ void	num_of_args(t_token *token, t_cmdl *cmd)
 	t_token	*tok;
 	int		arg_num;
 
+	token->count_cmd = 0;
 	while (token)
 	{
 		arg_num = 0;
@@ -71,30 +92,76 @@ void	num_of_args(t_token *token, t_cmdl *cmd)
 void	loop(t_token *token, int pipenbr, t_cmdl *cmd)
 {
 	int	cmd_iteration;
+	int	done;
+	int	i;
 
+	done = 0;
 	cmd_iteration = 0;
-	while (token)
+	num_of_rd(token, cmd);
+	num_of_args(token, cmd);
+	i = 0;
+	if (token->args_num)
 	{
-		if (token->type == 9)
-		{
-			num_of_args(token, cmd);
-			printf("ARGS %d \n", token->args_num);
-			cmd[cmd_iteration].args = (char **)malloc(sizeof(char)
-					* (token->args_num + 1));
-		}
-		if (token->type == 2 || token->type == 3 || token->type == 4
-			|| token->type == 5)
-		{
-			num_of_rd(token, cmd);
-			printf("FILES %d \n", token->files);
-			// cmd[cmd_iteration].count_redire = token->redi;
-			// cmd[cmd_iteration].type = (char **)malloc(sizeof(char *)
-			// 		* (cmd[cmd_iteration].count_redire + 1));
-			// cmd[cmd_iteration].file = (char **)malloc(sizeof(char *)
-			// 		* (cmd[cmd_iteration].count_redire + 1));
-		}
-		token = token->next;
+		printf("ARGS %d CMD NB %d \n", token->args_num, i);
+		cmd[cmd_iteration].args = (char **)malloc(sizeof(char)
+				* (token->args_num + 1));
 	}
+	else
+	{
+		cmd[cmd_iteration].args = (char **)malloc(sizeof(char) * (1));
+		cmd[cmd_iteration].args[0] = NULL;
+	}
+	if (token->redi)
+	{
+		printf("RED %d CMD NB %d \n", token->redi, i);
+		cmd[cmd_iteration].type = (char **)malloc(sizeof(char *) * (token->redi
+					+ 1));
+	}
+	else
+	{
+		cmd[cmd_iteration].type = (char **)malloc(sizeof(char *) * (1));
+		cmd[cmd_iteration].type[0] = NULL;
+	}
+	if (token->files)
+	{
+		printf("FILE %d CMD NB %d \n", token->files, i);
+		cmd[cmd_iteration].file = (char **)malloc(sizeof(char *) * (token->files
+					+ 1));
+	}
+	else
+	{
+		cmd[cmd_iteration].file = (char **)malloc(sizeof(char *) * (1));
+		cmd[cmd_iteration].file[0]= NULL;
+	}
+	// printf("CMD NB %s \n", token->value);
+	// while (token)
+	// {
+	// 	if (token->type == 9 )
+	// 	{
+	// 		printf("ARGS %d CMD NB %d \n", token->args_num, cmd_iteration);
+	// 		printf("FILES %d CMD NB %d  RD NBR %d\n", token->files,
+	// cmd_iteration,token->redi  );
+	// 		cmd[cmd_iteration].args = (char **)malloc(sizeof(char)
+	// 				* (token->args_num + 1));
+	// 	}
+	// 	//  if (token->type == 2 || token->type == 3 || token->type == 4
+	// 	// 	|| token->type == 5 )
+	// 	// {
+	// 		num_of_rd(token, cmd);
+	// 		printf("FILES %d CMD NB %d  RD NBR %d\n", token->files,
+	// cmd_iteration,token->redi  );
+	// 		// cmd[cmd_iteration].count_redire = token->redi;
+	// 		// cmd[cmd_iteration].type = (char **)malloc(sizeof(char *)
+	// 		// 		* (token->redi + 1));
+	// 		// cmd[cmd_iteration].file = (char **)malloc(sizeof(char *)
+	// 		// 		* (token->redi + 1));
+	// 	// }
+	// 	if(token->type ==  PIPE)
+	// 	{
+	// 							cmd_iteration++;
+	// 	}
+	// 	token = token->next;
+	// }
 }
 int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 {
@@ -105,92 +172,74 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 
 	cmd_iteration = 0;
 	cmd->cmd_nbr = pipenbr - 1;
-	cmd[cmd_iteration].count_args = 0;
+	// cmd[cmd_iteration].count_args = 0;
 	loop(token, pipenbr, cmd);
 	i = 0;
 	cmd->cmd_nbr = 0;
 	cmd->count_redire = 0;
 	args = 0;
-	// 	while (token != NULL)
-	// 	{
-	// 		if (token->type == CMD)
-	// 		{
-	// 			cmd[cmd_iteration].cmd = token->value;
-	// 			cmd->cmd_nbr++;
-	// 			// printf("cmd   = %s\n\n\n", cmd[cmd_iteration].cmd );
-	// 		}
-	// 		if (token->type == ARG)
-	// 		{
-	// 			cmd[cmd_iteration].args[args] = token->value;
-	// 			// printf("args   = %s\n\n\n", cmd[cmd_iteration].args[args] );
-	// 			args++;
-	// 			// cmd[cmd_iteration].args[args] = NULL;
-	// 		}
-	// 		if (token->type == RED_OUT)
-	// 		{
-	// 			cmd[cmd_iteration].type[i] = token->value;
-	// 			token = token->next;
-	// 			cmd[cmd_iteration].file[i] = token->value;
-	// 			i++;
-	// 		}
-	// 		if (token->type == RED_IN)
-	// 		{
-	// 			cmd[cmd_iteration].type[i] = token->value;
-	// 			token = token->next;
-	// 			cmd[cmd_iteration].file[i] = token->value;
-	// 			i++;
-	// 		}
-	// 		if (token->type == RED_IN)
-	// 		{
-	// 			cmd[cmd_iteration].type[i] = token->value;
-	// 			token = token->next;
-	// 			cmd[cmd_iteration].file[i] = token->value;
-	// 			i++;
-	// 		}
-	// 		if (token->type == RED_OUT_APP)
-	// 		{
-	// 			cmd[cmd_iteration].type[i] = token->value;
-	// 			token = token->next;
-	// 			cmd[cmd_iteration].file[i] = token->value;
-	// 			i++;
-	// 		}
-	// 		if (token->type == RED_IN_APP)
-	// 		{
-	// 			cmd[cmd_iteration].type[i] = token->value;
-	// 			token = token->next;
-	// 			cmd[cmd_iteration].delimiter = token->value;
-	// 			// wc << d
-	// 			i++;
-	// 		}
-	// 		if (token->type == PIPE)
-	// 		{
-	// 			cmd_iteration++;
-	// 			i = 0;
-	// 			args = 0;
-	// 			// cmd->count_args = args;
-	// 		}
-	// 		token = token->next;
-	// 	}
+	while (token != NULL)
+	{
+		if (token->type == CMD)
+		{
+			cmd[cmd_iteration].cmd = token->value;
+			cmd->cmd_nbr++;
+			// printf("cmd   = %s\n\n\n", cmd[cmd_iteration].cmd );
+		}
+		if (token->type == ARG)
+		{
+			cmd[cmd_iteration].args[args] = token->value;
+			printf("args   = %s\n\n\n", cmd[cmd_iteration].args[args]);
+			args++;
+			// cmd[cmd_iteration].args[args] = NULL;
+		}
+		if (token->type == RED_OUT)
+		{
+			cmd[cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd_iteration].file[i] = token->value;
+			i++;
+		}
+		if (token->type == RED_IN)
+		{
+			cmd[cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd_iteration].file[i] = token->value;
+			i++;
+		}
+		if (token->type == RED_IN)
+		{
+			cmd[cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd_iteration].file[i] = token->value;
+			i++;
+		}
+		if (token->type == RED_OUT_APP)
+		{
+			cmd[cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd_iteration].file[i] = token->value;
+			i++;
+		}
+		if (token->type == RED_IN_APP)
+		{
+			cmd[cmd_iteration].type[i] = token->value;
+			token = token->next;
+			cmd[cmd_iteration].delimiter = token->value;
+			// wc << d
+			i++;
+		}
+		if (token->type == PIPE)
+		{
+			cmd_iteration++;
+			i = 0;
+			args = 0;
+			// cmd->count_args = args;
+		}
+		token = token->next;
+	}
 	// 	return (0);
 	// }
-	// void	free_it(t_cmdl *cmd, t_token *token, int pipenbr)
-	// {
-	// 	int	i;
-	// 	int	x;
-	// 	i = 0;
-	// 	// args = strlen_list(token, pipenbr, cmd);
-	// 	while (i < cmd->cmd_nbr)
-	// 	{
-	// 		x = 0;
-	// 		while (x < cmd[i].count_args)
-	// 		{
-	// 			free(cmd[i].args[x]);
-	// 			x++;
-	// 		}
-	// 		free(cmd[i].cmd);
-	// 		free(cmd[i].args);
-	// 		i++;
-	// 	}
 	// 	free(cmd);
 	return (0);
 }
@@ -217,13 +266,16 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	// 	if (redirections(cmd) == 3)
 	// 		return (3);
 	// }
-	// if (cmd->cmd_nbr == 1)
-	// {
-	// 	// heredoc_without_cmd(cmd);
-	// 	one_cmd(cmd, envp);
-	// 	// free2d(cmd->args);
-	// 	free_it(cmd, token, pipenbr);
-	// }
+	cmd->count_args = token->args_num;
+	cmd->count_files = token->files;
+	cmd->count_redire = token->redi;
+	if (cmd->cmd_nbr == 1)
+	{
+		// heredoc_without_cmd(cmd);
+		one_cmd(cmd, envp, token);
+		// free2d(cmd->args);
+		// free_it(cmd, token, pipenbr);
+	}
 	// else if (cmd->cmd_nbr > 1)
 	// {
 	// 	//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
@@ -232,5 +284,9 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	// 			// free2d(cmd->args);
 	// 		// free_it(cmd, token, pipenbr);
 	// }
+	// free_it(cmd);
+	free2d(cmd->args);
+	free2d(cmd->type);
+	free2d(cmd->file);
 	return (0);
 }

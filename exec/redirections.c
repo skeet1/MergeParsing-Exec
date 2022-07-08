@@ -13,14 +13,14 @@
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	redirections(t_cmdl *list)
+int	redirections(t_cmdl *list, t_token *token)
 {
 	int	i;
 	int	input;
 	int	output;
 
 	i = 0;
-	while (i < list->count_redire)
+	while (i < token->redi)
 	{
 		// input = dup(0);
 		// output = dup(1);
