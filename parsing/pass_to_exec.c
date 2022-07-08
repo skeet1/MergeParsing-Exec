@@ -247,7 +247,6 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	}
 	if (cmd->cmd_nbr == 1)
 	{
-		// heredoc_without_cmd(cmd);
 		one_cmd(cmd, envp, token);
 		// free2d(cmd->args);
 		// free_it(cmd, token, pipenbr);
