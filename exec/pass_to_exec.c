@@ -144,7 +144,6 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 
 	cmd_iteration = 0;
 	cmd->cmd_nbr = pipenbr - 1;
-	// cmd[cmd_iteration].count_args = 0;
 	loop(token, pipenbr, cmd);
 	i = 0;
 	cmd->cmd_nbr = 0;
@@ -156,49 +155,19 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 		{
 			cmd[cmd_iteration].cmd = token->value;
 			cmd->cmd_nbr++;
-			// printf("cmd   = %s\n\n\n", cmd[cmd_iteration].cmd );
 		}
 		if (token->type == ARG)
 		{
 			cmd[cmd_iteration].args[args] = token->value;
-			// printf("args   = %s\n\n\n", cmd[cmd_iteration].args[args]);
 			args++;
-			// cmd[cmd_iteration].args[args] = NULL;
 		}
-		if (token->type == RED_OUT)
+		if (token->type == RED_OUT || token->type == RED_IN
+			|| token->type == RED_OUT_APP || token->type == RED_OUT_APP
+			|| token->type == RED_IN_APP)
 		{
 			cmd[cmd_iteration].type[i] = token->value;
 			token = token->next;
 			cmd[cmd_iteration].file[i] = token->value;
-			i++;
-		}
-		if (token->type == RED_IN)
-		{
-			cmd[cmd_iteration].type[i] = token->value;
-			token = token->next;
-			cmd[cmd_iteration].file[i] = token->value;
-			i++;
-		}
-		if (token->type == RED_IN)
-		{
-			cmd[cmd_iteration].type[i] = token->value;
-			token = token->next;
-			cmd[cmd_iteration].file[i] = token->value;
-			i++;
-		}
-		if (token->type == RED_OUT_APP)
-		{
-			cmd[cmd_iteration].type[i] = token->value;
-			token = token->next;
-			cmd[cmd_iteration].file[i] = token->value;
-			i++;
-		}
-		if (token->type == RED_IN_APP)
-		{
-			cmd[cmd_iteration].type[i] = token->value;
-			token = token->next;
-			cmd[cmd_iteration].delimiter = token->value;
-			// wc << d
 			i++;
 		}
 		if (token->type == PIPE)
@@ -206,7 +175,6 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 			cmd_iteration++;
 			i = 0;
 			args = 0;
-			// cmd->count_args = args;
 		}
 		token = token->next;
 	}
@@ -227,11 +195,9 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 	cmd->count_args = 0;
 	cmd->count_files = 0;
 	cmd->count_redire = 0;
-	cmd->type =NULL;
-	cmd->file =NULL;
-	cmd->args =NULL;
-
-
+	cmd->type = NULL;
+	cmd->file = NULL;
+	cmd->args = NULL;
 	fill_cmd(token, pipenbr, cmd);
 	cmd->there_is_pipe = pipenbr - 1;
 	cmd->fd_out = 1;
@@ -257,8 +223,8 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp)
 		//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
 		// grep 1337 exec/*.c problem
 		ft_pipe(cmd, envp);
-				// free2d(cmd->args);
-			// free_it(cmd, token, pipenbr);
+		// free2d(cmd->args);
+		// free_it(cmd, token, pipenbr);
 	}
 	// free_it(cmd);
 	free2d(cmd->args);
