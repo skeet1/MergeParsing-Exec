@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/07 20:26:48 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 12:44:37 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,10 @@ int							one_cmd(t_cmdl *list, struct s_envp *envp,t_token *token );
 char						*ft_itoa(int n);
 int	ft_split_env(struct s_envp *envp, char **env);
 int							set_rd(t_cmdl  *list);
-int							run_builtin(t_cmdl *list, struct s_envp *envp);
+// int							run_builtin(t_cmdl *list, struct s_envp *envp);
+int	builtcheck(t_cmdl *cmd, struct s_envp *envp);
+int	builtcheck_next(t_cmdl *cmd, struct s_envp *envp);
+int	builtcheck_1(t_cmdl *cmd, struct s_envp *envp);
 /// redirections I/O
 int							redirections(t_cmdl *list, t_token *token);
 int							heredoc_without_cmd(t_cmdl *list);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+         #
+#    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/07 15:16:51 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/08 12:46:54 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC = ./exec/builtins.c \
 	./libft/ft_strcmp.c \
 	./exec/pass_to_exec.c \
 	./parsing/ft_check_syntax.c  \
+	./exec/ft_builtcheck.c   \
 	
 OBJ = builtins.o \
 	 ft_env.o \
@@ -94,6 +95,7 @@ OBJ = builtins.o \
 	 parse.o \
 	 ft_strcmp.o \
 	 pass_to_exec.o \
+	ft_builtcheck.o \
 	 
 all : $(NAME)
 $(OBJ) :
