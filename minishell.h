@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 19:40:03 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 20:33:23 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,23 +57,23 @@ void			rl_clear_history(void);
 int				ft_pwd(int fd_out);
 int				builtcheck_1(t_cmd *cmd, struct s_envp *envp);
 int				ftexit(t_cmdl *cmd, struct s_envp *envp);
-int				builtcheck(t_cmdl *cmd, struct s_envp *envp,  t_cmd *cmds);
-int				ftcd(t_cmdl *cmd, struct s_envp *envp);
-int				ft_export_1(struct s_envp *envp, t_cmdl *cmd);
+int				builtcheck(struct s_envp *envp,  t_cmd *cmds);
+int				ftcd(t_cmd *cmd, struct s_envp *envp);
+int				ft_export_1(struct s_envp *envp, t_cmd *cmd);
 int				ft_env(struct s_envp *envp, t_cmdl *list);
 int				ft_echo( t_cmd *cmds, int fd);
-int				ft_is_built_in(t_cmdl *list, struct s_envp *envp,  t_cmd *cmds);
+int				ft_is_built_in( struct s_envp *envp,  t_cmd *cmds);
 int				ft_unset(struct s_envp *envp, t_cmdl *list, int arg);
 int				ft_export(struct s_envp *envp, t_cmdl *cmd, int i);
 //exece
 int				is_builtin( t_cmd *cmds, int i);
-int				one_cmd(t_cmdl *list, struct s_envp *envp, t_token *token, t_cmd *cmds);
+int				one_cmd(struct s_envp *envp, t_token *token, t_cmd *cmds);
 char			*ft_itoa(int n);
 int				ft_split_env(struct s_envp *envp, char **env);
 int				set_rd(t_cmdl *list);
 // int							run_builtin(t_cmdl *list, struct s_envp *envp);
-int				builtcheck(t_cmdl *cmd, struct s_envp *envp,  t_cmd *cmds);
-int				builtcheck_next(t_cmdl *cmd, struct s_envp *envp);
+// int				builtcheck(t_cmdl *cmd, struct s_envp *envp,  t_cmd *cmds);
+int				builtcheck_next(t_cmd *cmd, struct s_envp *envp);
 // int				builtcheck_1(t_cmdl *cmd, struct s_envp *envp);
 /// redirections I/O
 int				redirections(t_cmdl *list, t_token *token);
@@ -124,9 +124,8 @@ void			handler(int sig);
 // init data
 // struct s_list				*ft_init(struct s_list *blt);
 //export tools
-char			**join_name_and_value(struct s_envp *envp, t_cmdl *cmd);
-char			**ft_sort_env(struct s_envp *envp, t_cmdl *cmd);
-int				ft_export_1(struct s_envp *envp, t_cmdl *cmd);
+char			**join_name_and_value(struct s_envp *envp, t_cmd *cmd);
+char			**ft_sort_env(struct s_envp *envp, t_cmd *cmd);
 int				check_name_is_valid(char **split, int i, t_cmdl *cmd);
 int				modify_name(struct s_envp *envp, t_cmdl *cmd, char **split,
 					int i);

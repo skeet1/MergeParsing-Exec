@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 19:46:49 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 20:07:15 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,18 @@ typedef struct s_cmd {
 	int					*f_type;
 	//mine
 	int fd_out;
+		int				fd_in;
+			char			*delimiter;
+				char			*findhome;
+					int				cmd_iteration;
+						char			*error;
+
+
+
+
 	struct s_cmd		*next;
 }	t_cmd;
+
 
 typedef struct t_cmdl
 {

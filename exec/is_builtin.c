@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:36:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 19:46:17 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 20:28:49 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,25 @@ int	is_builtin( t_cmd *list, int i)
 	return (3);
 }
 
-int	ft_is_built_in(t_cmdl *list, struct s_envp *envp,  t_cmd *cmds)
+int	ft_is_built_in(struct s_envp *envp,  t_cmd *cmds)
 {
 	int	i;
 
 	i = 0;
-	if (builtcheck(list, envp, cmds) == 1)
+	if (builtcheck(envp, cmds) == 1)
 		return (1);
-	//  if (builtcheck_1(cmds, envp) == 1)
-	// 	return (1);
+	 if (builtcheck_1(cmds, envp) == 1)
+		return (1);
 	// else if (ft_strncmp(list[0].cmd, "env", 4) == 0)
 	// {
 	// 	g_exit_status = ft_env(envp, list);
 	// 	return (1);
 	// }
-	// else if (ft_strncmp(list[0].cmd, "pwd", 4) == 0)
-	// {
-	// 	g_exit_status = ft_pwd(list->fd_out);
-	// 	return (1);
-	// }
+	else if (ft_strncmp(cmds->cmd[0], "pwd", 4) == 0)
+	{
+		g_exit_status = ft_pwd(cmds->fd_out);
+		return (1);
+	}
 	// else if (ft_strncmp(list[0].cmd, "exit", 5) == 0)
 	// {
 	// 	ftexit(list, envp);

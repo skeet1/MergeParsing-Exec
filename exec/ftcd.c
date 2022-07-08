@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ftcd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:37:52 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 13:40:29 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 20:21:57 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	check_home_inenv(t_cmdl *cmd, char *findhome, char *error)
+int	check_home_inenv(t_cmd *cmd, char *findhome, char *error)
 {
 	int	len;
 
@@ -29,12 +29,12 @@ int	check_home_inenv(t_cmdl *cmd, char *findhome, char *error)
 	return (0);
 }
 
-int	cd_last_check(t_cmdl *cmd, char *error)
+int	cd_last_check(t_cmd *cmd, char *error)
 {
 	int	len;
 
 	len = 0;
-	if (chdir(cmd[cmd->cmd_iteration].args[0]) == -1)
+	if (chdir(cmd->cmd[1]) == -1)
 	{
 		g_exit_status = 1;
 		error = "Minishell: cd: No such file or directory\n";
@@ -45,19 +45,19 @@ int	cd_last_check(t_cmdl *cmd, char *error)
 	return (0);
 }
 
-int	ftcd_c(t_cmdl *cmd, struct s_envp *envp)
+int	ftcd_c(t_cmd *cmd, struct s_envp *envp)
 {
-	if (cmd[cmd->cmd_iteration].args[0] == NULL)
+	if (cmd->cmd[1] == NULL)
 	{
 		if (check_home_inenv(cmd, cmd->findhome, cmd->error) == 1)
 			return (1);
 	}
-	if (cmd[cmd->cmd_iteration].args[0] == NULL)
+	if (cmd->cmd[1] == NULL)
 	{
 		chdir(cmd->findhome);
 		return (0);
 	}
-	if (cmd[cmd->cmd_iteration].args[1] == NULL)
+	if (cmd->cmd[2] == NULL)
 	{
 		if (cd_last_check(cmd, cmd->error) == 1)
 			return (1);
@@ -65,7 +65,7 @@ int	ftcd_c(t_cmdl *cmd, struct s_envp *envp)
 	return (0);
 }
 
-int	ftcd(t_cmdl *cmd, struct s_envp *envp)
+int	ftcd(t_cmd *cmd, struct s_envp *envp)
 {
 	int	x;
 

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 19:50:03 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:51:15 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,11 +257,11 @@ int	main(int argc, char **argv, char **env)
 			}
 			// print_cmd(cmd);
 			// print_token(token);
-			// if(data.cmd_line != NULL && data.error == 0 && token != NULL)
-			// {
-			// 	pipenbr = data.side;
-			// 	pass_to_exec(token, pipenbr, envp);
-			// }
+			if(data.cmd_line != NULL && data.error == 0 && token != NULL)
+			{
+				pipenbr = data.side;
+				pass_to_exec(token, pipenbr, envp, cmd);
+			}
 			// 		free(	data.cmd_line);
 			free_cmd(&cmd);
 		}

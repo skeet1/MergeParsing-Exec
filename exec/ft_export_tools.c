@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 13:14:17 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 20:37:24 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**join_name_and_value(struct s_envp *envp, t_cmdl *cmd)
+char	**join_name_and_value(struct s_envp *envp, t_cmd *cmd)
 {
 	int		i;
 	char	**joined;
@@ -33,7 +33,7 @@ char	**join_name_and_value(struct s_envp *envp, t_cmdl *cmd)
 	return (joined);
 }
 
-char	**ft_sort_env(struct s_envp *envp, t_cmdl *cmd)
+char	**ft_sort_env(struct s_envp *envp, t_cmd *cmd)
 {
 	int		i;
 	int		j;
@@ -52,7 +52,7 @@ char	**ft_sort_env(struct s_envp *envp, t_cmdl *cmd)
 				tmp = joined[i];
 				joined[i] = joined[j];
 				joined[j] = tmp;
-				free(tmp);
+				// free(tmp);
 			}
 			j++;
 		}
@@ -61,7 +61,7 @@ char	**ft_sort_env(struct s_envp *envp, t_cmdl *cmd)
 	return (joined);
 }
 
-int	ft_export_1(struct s_envp *envp, t_cmdl *cmd)
+int	ft_export_1(struct s_envp *envp, t_cmd *cmd)
 {
 	int		i;
 	char	**new;

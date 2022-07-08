@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 19:48:21 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:53:50 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	ft_echo_c(t_cmdl *list, int fd)
+int	ft_echo_c(t_cmd *cmds, int fd)
 {
 	int	i;
 	int	len;
 
-	i = 0;
+	i = 1;
 	len = 0;
-	while (i < list->count_args)
+	while (cmds->cmd[i])
 	{
-		if (ft_strncmp(list[list->cmd_iteration].args[i], "$?", 2) == 0)
-		{
-			printf(" %d \n", g_exit_status);
-			return (0);
-		}
-		len = ft_strlen(list->args[i]);
+		// if (ft_strncmp(list[list->cmd_iteration].args[i], "$?", 2) == 0)
+		// {
+		// 	printf(" %d \n", g_exit_status);
+		// 	return (0);
+		// }
+		len = ft_strlen(cmds->cmd[i]);
 		write(fd, " ", 1);
-		write(fd, list->args[i], len);
+		write(fd, cmds->cmd[i], len);
 		i++;
 	}
 	write(fd, "\n", 1);
@@ -49,10 +49,10 @@ int	ft_echo( t_cmd *cmds, int fd)
 		write(fd, "\n", 1);
 		return (0);
 	}
-	// else
-	// {
-	// 	ft_echo_c(list, fd);
-	// }
+	else
+	{
+		ft_echo_c(cmds, fd);
+	}
 	return (0);
 }
 

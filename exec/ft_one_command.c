@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 19:00:33 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:58:11 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,17 @@ int	one_cmd_1(t_cmdl *list, struct s_envp *envp, t_token *token, t_cmd *cmds)
 	return (g_exit_status);
 }
 
-int	one_cmd(t_cmdl *cmd, struct s_envp *envp,t_token *token, t_cmd *cmds)
+int	one_cmd(struct s_envp *envp,t_token *token, t_cmd *cmds)
 {
 	int	i;
 	int	x;
 
-	//
 	if (cmds->cmdnbr == 1 && is_builtin(cmds, 0) == 0)
 	{
 		i = 0;
 		// if (redirections(cmd, token) == 3)
 		// 	return (3);
-		ft_is_built_in(cmd, envp, cmds);
+		ft_is_built_in(envp, cmds);
 		// if (cmd[0].type[i] != NULL)
 		// {
 		// 	if (ft_strncmp(cmd[0].type[i], ">", 2) == 0)
