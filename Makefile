@@ -6,7 +6,7 @@
 #    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/08 13:18:51 by mkarim           ###   ########.fr        #
+#    Updated: 2022/07/08 13:27:22 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC = ./exec/builtins.c \
 	./libft/ft_strdup.c  \
 	./libft/ft_atoi.c  \
 	./libft/ft_isdigit.c  \
+	./libft/ft_tolower.c \
 	./exec/ft_here_doc.c \
 	./exec/ft_search_path.c \
 	./exec/is_builtin.c \
@@ -55,6 +56,7 @@ SRC = ./exec/builtins.c \
 	./libft/ft_strcmp.c \
 	./exec/pass_to_exec.c \
 	./parsing/ft_check_syntax.c  \
+	./exec/ft_builtcheck.c   \
 	
 OBJ = builtins.o \
 	 ft_env.o \
@@ -96,6 +98,7 @@ OBJ = builtins.o \
 	 parse.o \
 	 ft_strcmp.o \
 	 pass_to_exec.o \
+	ft_builtcheck.o \
 	 
 all : $(NAME)
 $(OBJ) :

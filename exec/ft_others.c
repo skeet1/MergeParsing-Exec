@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_others.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/07 15:10:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 12:43:27 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,16 @@ char	**create_argv_for_execve(t_cmdl *list)
 	int	i;
 
 	len = 0;
-		i = 0;
-			// len = cmd_args_len(list);
-						len = list->count_args;
-
-	if(len == 0)
+	i = 0;
+	len = list->count_args;
+	if (len == 0)
 	{
-			list->args_execve = (char**)malloc(sizeof(char *) * (len + 2));
-
-				list->args_execve[0] = list[list->cmd_iteration].cmd;
-
+		list->args_execve = (char **)malloc(sizeof(char *) * (len + 2));
+		list->args_execve[0] = list[list->cmd_iteration].cmd;
 		list->args_execve[1] = NULL;
-	return (list->args_execve);
+		return (list->args_execve);
 	}
-	list->args_execve = (char**)malloc(sizeof(char*) * (len + 2));
+	list->args_execve = (char **)malloc(sizeof(char *) * (len + 2));
 	while (i < len)
 	{
 		list->args_execve[0] = list[list->cmd_iteration].cmd;
@@ -83,15 +79,13 @@ int	ft_bin_usr_sbin(t_cmdl *list, struct s_envp *envp)
 	char	*bin;
 	int		i;
 	char	*last;
+
 	i = 0;
-	
 	ft_check_programs(list, envp);
 	ftcheck_nopath(list, envp);
-
 	bin = ft_strjoin(list->new[i], "/");
 	looping_through_split_path(list, i, bin, last, envp);
-	// write(1, "MINISHELL %s command not found\n", 28);
-	printf("MINISHELL %s command not found\n", list[list->cmd_iteration].cmd);
+	write(2, "MINISHELL %s command not found\n", 28);
 	g_exit_status = 127;
 	exit(127);
 }
