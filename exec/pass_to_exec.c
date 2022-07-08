@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 22:38:40 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 23:17:35 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,26 @@ int	ft_lstsize(t_cmd *lst)
 	while (lst)
 	{
 		lst = lst->next;
-		lstlen ++;
+		lstlen++;
 	}
 	return (lstlen);
 }
-int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp, 	t_cmd *cmds)
+int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp, t_cmd *cmds)
 {
+	int	nbr;
 
-print_cmd(cmds);
-int nbr = ft_lstsize(cmds);
-cmds->cmdnbr = 0;
-
+	print_cmd(cmds);
+	nbr = ft_lstsize(cmds);
+	cmds->cmdnbr = 0;
 	cmds->cmdnbr = nbr;
 	if (nbr == 1)
 	{
-		one_cmd( envp, token, cmds);
+		one_cmd(envp, token, cmds);
 	}
-	else if (cmds->cmdnbr  > 1)
+	else if (cmds->cmdnbr > 1)
 	{
-		//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
+		//problem wc  | ls ? in bash ls is printing first and problem in
+		//wc | ls when unset the PATH it must shot 2 errors not one
 		// grep 1337 exec/*.c problem
 		ft_pipe(cmds, envp);
 		// free2d(cmd->args);

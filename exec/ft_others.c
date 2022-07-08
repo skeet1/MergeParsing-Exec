@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 22:53:14 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 23:17:42 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	cmd_args_len(t_cmd *cmd)
 {
 	// int	len;
-
 	// len = 0;
 	// while (cmd[cmd->cmd_iteration].args[len] != NULL)
 	// {
@@ -59,7 +58,7 @@ int	ft_check_programs(t_cmd *cmd, struct s_envp *envp)
 		argv = create_argv_for_execve(cmd);
 		execve(cmd->cmd[0], argv, envp->environment);
 		printf("Minishell : %s : No such file or directory\n",
-			cmd[cmd->cmd_iteration].cmd);
+				cmd[cmd->cmd_iteration].cmd);
 		exit(127);
 	}
 	if (cmd->cmd[0][0] == '/')
@@ -67,7 +66,7 @@ int	ft_check_programs(t_cmd *cmd, struct s_envp *envp)
 		argv = create_argv_for_execve(cmd);
 		execve(cmd->cmd[0], argv, envp->environment);
 		printf("Minishell : %s : No such  file or directory\n",
-			cmd[cmd->cmd_iteration].cmd);
+				cmd[cmd->cmd_iteration].cmd);
 		exit(127);
 	}
 	return (0);
