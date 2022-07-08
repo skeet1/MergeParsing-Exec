@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 18:26:11 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:50:03 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,23 @@ void	print_cmd(t_cmd *cmd)
 	}
 }
 
+void	free_cmd(t_cmd **cmd)
+{
+	t_cmd *c;
+
+	c = *cmd;
+	while (c)
+	{
+		if (c->cmd)
+			free(c->cmd);
+		if (c->f_name)
+			free(c->f_name);
+		if (c->f_type)
+			free(c->f_type);
+		c = c->next;
+	}
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data data;
@@ -223,6 +240,7 @@ int	main(int argc, char **argv, char **env)
 			signal(SIGQUIT, SIG_IGN);
 			signal(SIGINT, handler);
 			token = NULL;
+			cmd = NULL;
 			data.cmd_line = readline(PROMPT);
 			add_history(data.cmd_line);
 			if(data.cmd_line == NULL)
@@ -239,14 +257,13 @@ int	main(int argc, char **argv, char **env)
 			}
 			// print_cmd(cmd);
 			// print_token(token);
-			if(data.cmd_line != NULL && data.error == 0 && cmd != NULL)
-			{
-				pipenbr = data.side;
-				pass_to_exec(token, pipenbr, envp, cmd);
-			}
-					free(	data.cmd_line);
-
-
+			// if(data.cmd_line != NULL && data.error == 0 && token != NULL)
+			// {
+			// 	pipenbr = data.side;
+			// 	pass_to_exec(token, pipenbr, envp);
+			// }
+			// 		free(	data.cmd_line);
+			free_cmd(&cmd);
 		}
 	}
 	return (0);
