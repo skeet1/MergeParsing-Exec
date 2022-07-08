@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 21:54:49 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 22:44:45 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int				builtcheck_next(t_cmd *cmd, struct s_envp *envp);
 // int				builtcheck_1(t_cmdl *cmd, struct s_envp *envp);
 /// redirections I/O
 int				redirections(t_cmd *list, t_token *token);
-int				heredoc_without_cmd(t_cmdl *list);
+int				heredoc_without_cmd(t_cmd *list);
 void			num_of_args(t_token *token, t_cmdl *cmd);
 // Other
 int				ft_bin_usr_sbin(t_cmd *cmd, struct s_envp *envp);

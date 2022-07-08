@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 22:21:22 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 22:51:55 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,11 +192,11 @@ void	print_cmd(t_cmd *cmd)
 		int i = 0;
 		while (cmd && cmd->cmd[i])
 		{
-			// printf("%s\n", cmd->cmd[i++]);
+			// printf("%s\n", cmd->cmd[i]);
 			cmd->count_args = i;
 			i++;
 		}
-		printf(" %d   \n\n", cmd->count_args);
+		// printf(" %d   \n\n", cmd->count_args);
 		// i = 0;
 		// while (cmd && cmd->f_name[i] && cmd->f_type[i])
 		// {

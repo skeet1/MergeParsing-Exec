@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 22:08:07 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 22:45:01 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	one_cmd_1(struct s_envp *envp, t_token *token, t_cmd *cmds)
 	{
 		if (redirections(cmds, token) == 3)
 			return (3);
-		// heredoc_without_cmd(cmds);
+		heredoc_without_cmd(cmds);
 		while (cmds->f_type[i])
 		{
 			if (cmds->f_type[i] == RED_IN_APP)

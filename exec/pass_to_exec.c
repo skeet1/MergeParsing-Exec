@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 22:20:43 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 22:38:40 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,46 +54,18 @@ int nbr = ft_lstsize(cmds);
 cmds->cmdnbr = 0;
 
 	cmds->cmdnbr = nbr;
-	// cmd = NULL;
-	// itre = 0;
-	// args = 0;
-	// cmd = (t_cmdl *)malloc(sizeof(t_cmdl) * (pipenbr + 1));
-	// cmd->cmd_nbr = 0;
-	// cmd->count_args = 0;
-	// cmd->count_files = 0;
-	// cmd->count_redire = 0;
-	// cmd->type = NULL;
-	// cmd->file = NULL;
-	// cmd->args = NULL;
-	// fill_cmd(token, pipenbr, cmd);
-	// cmd->there_is_pipe = pipenbr - 1;
-	// cmd->fd_out = 1;
-	// cmd->cmd_iteration = 0;
-	// // printf("cmd nbr %d \n", cmd->cmd_nbr);
-	// cmd->count_args = token->args_num;
-	// cmd->count_files = token->files;
-	// cmd->count_redire = token->redi;
-	// if (cmd->cmd_nbr == 0)
-	// {
-	// 	heredoc_without_cmd(cmd);
-	// 	if (redirections(cmd, token) == 3)
-	// 		return (3);
-	// }
-	// cmds->fd_out = 0;
 	if (nbr == 1)
 	{
 		one_cmd( envp, token, cmds);
+	}
+	else if (cmds->cmdnbr  > 1)
+	{
+		//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
+		// grep 1337 exec/*.c problem
+		ft_pipe(cmds, envp);
 		// free2d(cmd->args);
 		// free_it(cmd, token, pipenbr);
 	}
-	// else if (cmd->cmd_nbr > 1)
-	// {
-	// 	//problem wc  | ls ? in bash ls is printing first and problem in  wc | ls when unset the PATH it must shot 2 errors not one
-	// 	// grep 1337 exec/*.c problem
-	// 	ft_pipe(cmd, envp);
-	// 	// free2d(cmd->args);
-	// 	// free_it(cmd, token, pipenbr);
-	// }
 	// // free_it(cmd);
 	// free2d(cmd->args);
 	// free2d(cmd->type);
