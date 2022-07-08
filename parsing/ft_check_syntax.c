@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:34:37 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 13:51:08 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/08 11:31:10 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ int	ft_check_syntax(t_data *data, char *s)
 	if (check_pipes(s) || check_quotes(s) || check_red(s))
 	{
 		data->error = 1;
+		g_exit_status = 258;
 		return (reset(), 1);
 	}
 	return (reset(), 0);
