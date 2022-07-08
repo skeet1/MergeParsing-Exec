@@ -90,7 +90,7 @@ void	num_of_args(t_token *token, t_cmdl *cmd)
 	}
 }
 
-void	loop(t_token *token, int pipenbr, t_cmdl *cmd)
+void	loop(t_token *token, int pipenbr, t_cmdl *cmd, int n)
 {
 	int	cmd_iteration;
 	int	done;
@@ -100,6 +100,9 @@ void	loop(t_token *token, int pipenbr, t_cmdl *cmd)
 	cmd_iteration = 0;
 	num_of_rd(token, cmd);
 	num_of_args(token, cmd);
+	i = 0;
+	// while (i < n)
+	// 	token = token->next;
 	i = 0;
 	if (token->args_num)
 	{
@@ -135,6 +138,7 @@ void	loop(t_token *token, int pipenbr, t_cmdl *cmd)
 		cmd[cmd_iteration].file[0] = NULL;
 	}
 }
+
 int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 {
 	int	i;
@@ -144,11 +148,11 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 
 	cmd_iteration = 0;
 	cmd->cmd_nbr = pipenbr - 1;
-	loop(token, pipenbr, cmd);
 	i = 0;
 	cmd->cmd_nbr = 0;
 	cmd->count_redire = 0;
 	args = 0;
+	loop(token, pipenbr, cmd, cmd_iteration);
 	while (token != NULL)
 	{
 		if (token->type == CMD)
@@ -175,6 +179,7 @@ int	fill_cmd(t_token *token, int pipenbr, t_cmdl *cmd)
 			cmd_iteration++;
 			i = 0;
 			args = 0;
+			loop(token, pipenbr, cmd, cmd_iteration);
 		}
 		token = token->next;
 	}
