@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/07 21:01:52 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/08 13:17:59 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	mark_cmd(t_token *tok)
 		if (pipe && token->type == WORD)
 		{
 			token->type = CMD;
+			int	i = -1;
+			while (token->value[++i])
+				token->value[i] = ft_tolower(token->value[i]);
 			pipe = 0;
 		}
 		else if (token->type == WORD)
@@ -80,6 +83,31 @@ void	exp_change_value(struct s_envp *envp, t_token *token)
 	// }
 }
 
+void	node_per_cmd(t_token *token)
+{
+	char	**args;
+	int		*file_type;
+	char	**file_name;
+	int		i[2];
+	int a;
+	int	ft;
+	t_token *tok;
+
+	a = 0;
+	ft = 0;
+	while (token)
+	{
+		tok = token;
+		while (tok && tok->type != PIPE)
+		{
+			if (tok->type == WORD)
+				a++;
+			else if (tok->type == FILEE)
+				ft++;
+			tok = tok->next;
+		}
+	}
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -107,15 +135,17 @@ int	main(int argc, char **argv, char **env)
 			{
 				token = ft_token(token, &data, data.cmd_line);
 				// exp_change_value(envp, token);
+				printf("here main\n");
+				// node_per_cmd(token);
 				mark_cmd(token);
 			}
-			// print_token(token);
-			if(data.cmd_line != NULL && data.error == 0 && token != NULL)
-			{
-				pipenbr = data.side;
-				pass_to_exec(token, pipenbr, envp);
-			}
-					free(	data.cmd_line);
+			print_token(token);
+			// if(data.cmd_line != NULL && data.error == 0 && token != NULL)
+			// {
+			// 	pipenbr = data.side;
+			// 	pass_to_exec(token, pipenbr, envp);
+			// }
+			// 		free(	data.cmd_line);
 
 		}
 	}
