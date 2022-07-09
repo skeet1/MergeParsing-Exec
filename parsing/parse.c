@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/09 09:58:18 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:41:58 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	mark_cmd(t_token *tok)
 {
 	t_token	*token;
 	int		pipe;
-	int 	ssdd;
 	
 	pipe = 1;
 	token = tok;
@@ -256,7 +255,7 @@ int	main(int argc, char **argv, char **env)
 			if(data.cmd_line != NULL && data.error == 0 && token != NULL)
 			{
 				pipenbr = data.side;
-				pass_to_exec(token, pipenbr, envp, cmd);
+				pass_to_exec(envp, cmd);
 			}
 			// 		free(	data.cmd_line);
 			free_cmd(&cmd);

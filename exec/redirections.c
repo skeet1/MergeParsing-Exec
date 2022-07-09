@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:50:59 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 21:31:26 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:27:56 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	redirections(t_cmd *list, t_token *token)
+int	redirections(t_cmd *list)
 {
 	int	i;
-	int	input;
-	int	output;
 
 	i = 0;
 	while (list->f_type[i])
@@ -40,8 +38,7 @@ int	redirections(t_cmd *list, t_token *token)
 			if (list->fd_in == -1)
 			{
 				printf("bash: No such file or directory\n");
-								return (3);
-
+				return (3);
 			}
 		}
 		if (list->f_type[i] == RED_OUT_APP)
@@ -51,7 +48,8 @@ int	redirections(t_cmd *list, t_token *token)
 		}
 		if (list->f_type[i] == RED_IN_APP)
 		{
-			list->fd_in = open("/tmp/tmpfile", O_RDWR | O_CREAT | O_TRUNC, 0600);
+			list->fd_in = open("/tmp/tmpfile", O_RDWR | O_CREAT | O_TRUNC,
+					0600);
 		}
 		i++;
 	}

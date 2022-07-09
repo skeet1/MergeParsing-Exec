@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 20:45:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:40:15 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**join_name_and_value(struct s_envp *envp, t_cmd *cmd)
+char	**join_name_and_value(struct s_envp *envp)
 {
 	int		i;
 	char	**joined;
@@ -33,14 +33,14 @@ char	**join_name_and_value(struct s_envp *envp, t_cmd *cmd)
 	return (joined);
 }
 
-char	**ft_sort_env(struct s_envp *envp, t_cmd *cmd)
+char	**ft_sort_env(struct s_envp *envp)
 {
 	int		i;
 	int		j;
 	char	*tmp;
 	char	**joined;
 
-	joined = join_name_and_value(envp, cmd);
+	joined = join_name_and_value(envp);
 	i = 0;
 	while (i < envp->envpitems)
 	{
@@ -61,18 +61,16 @@ char	**ft_sort_env(struct s_envp *envp, t_cmd *cmd)
 	return (joined);
 }
 
-int	ft_export_1(struct s_envp *envp, t_cmd *cmd)
+int	ft_export_1(struct s_envp *envp)
 {
 	int		i;
-	char	**new;
-	char	*clone;
 	int		x;
 	char	**joined;
 
 	x = 0;
 	i = 0;
 	ft_copy_1st_env(envp, envp->environment);
-	joined = ft_sort_env(envp, cmd);
+	joined = ft_sort_env(envp);
 	i = 0;
 	while (i < envp->envpitems)
 	{

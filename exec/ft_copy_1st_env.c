@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_1st_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:44:48 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 20:36:50 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:38:25 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	ft_split_env(struct s_envp *envp, char **env)
 {
 	int		i;
 	int		x;
-	char	**name;
-	char	**value;
 	int		len;
 
 	envp->name = (char **)malloc(sizeof(char *) * envp->envpitems + 1);

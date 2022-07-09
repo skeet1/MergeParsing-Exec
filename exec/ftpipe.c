@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 09:20:32 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:32:08 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 int	redire_2(t_cmd *list)
 {
 	int	i;
-	int	input;
-	int	output;
 	int	ret;
 
 	i = 0;

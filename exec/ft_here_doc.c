@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 10:42:16 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:35:01 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	handler_in_heredoc(int sig)
 int	heredoc_without_cmd(t_cmd *list) //sigfault
 {
 	// printf(" delimter");
-
+//<< f1 << f2 > f not working
 	int i = 0;
-	int x = 0;
 	while (list->f_type[i] == RED_IN_APP)
 	{
 		// printf(" delimter  =	%s \n",list[list->cmd_iteration].delimiter );

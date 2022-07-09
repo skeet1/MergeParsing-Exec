@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 09:55:58 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:41:44 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct t_list
 static int		g_exit_status;
 /* ----------- START PREEXEC ----------- */
 
-int				pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp, 	t_cmd *cmds);
+int				pass_to_exec(struct s_envp *envp, 	t_cmd *cmds);
 
 /* ----------- END ----------- */
 
@@ -59,21 +59,21 @@ int				builtcheck_1(t_cmd *cmd, struct s_envp *envp);
 int				ftexit(t_cmd *cmd, struct s_envp *envp);
 int				builtcheck(struct s_envp *envp,  t_cmd *cmds);
 int				ftcd(t_cmd *cmd, struct s_envp *envp);
-int				ft_export_1(struct s_envp *envp, t_cmd *cmd);
+int				ft_export_1(struct s_envp *envp);
 int				ft_env(struct s_envp *envp, t_cmd *list);
 int				ft_echo( t_cmd *cmds, int fd);
 int				ft_is_built_in( struct s_envp *envp,  t_cmd *cmds);
 int				ft_unset(struct s_envp *envp, t_cmd *list, int arg);
 int				ft_export(struct s_envp *envp, t_cmd *cmd, int i);
 //exece
-int				is_builtin( t_cmd *cmds, int i);
-int				one_cmd(struct s_envp *envp, t_token *token, t_cmd *cmds);
+int				is_builtin( t_cmd *cmds);
+int				one_cmd(struct s_envp *envp, t_cmd *cmds);
 char			*ft_itoa(int n);
 int				ft_split_env(struct s_envp *envp, char **env);
 int				set_rd(t_cmd *list);
 int				builtcheck_next(t_cmd *cmd, struct s_envp *envp);
 /// redirections I/O
-int				redirections(t_cmd *list, t_token *token);
+int				redirections(t_cmd *list);
 int				heredoc_without_cmd(t_cmd *list);
 // Other
 int				ft_bin_usr_sbin(t_cmd *cmd, struct s_envp *envp);
@@ -98,9 +98,7 @@ char	*ft_strnstr(const char *haystack,
 					size_t len);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_strchr(const char *s, int c);
-static char		*ccleaner(char **arr);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
-static size_t	countblocks(char const *s1, char delimiter);
 char			**ft_split(char const *s, char c);
 char			*ft_strdup(const char *s1);
 void			*ft_memmove(void *s1, void *s2, size_t n);
@@ -118,12 +116,12 @@ void			handler(int sig);
 // init data
 int ft_init( t_cmd *cmds);
 //export tools
-char			**join_name_and_value(struct s_envp *envp, t_cmd *cmd);
-char			**ft_sort_env(struct s_envp *envp, t_cmd *cmd);
+char			**join_name_and_value(struct s_envp *envp);
+char			**ft_sort_env(struct s_envp *envp);
 int				check_name_is_valid(char **split, int i, t_cmd *cmd);
 int				modify_name(struct s_envp *envp, t_cmd *cmd, char **split,
 					int i);
-int				ft_equal_sign(struct s_envp *envp, t_cmd *list, int arg);
+int				ft_equal_sign(t_cmd *list, int arg);
 //free
 int				free2d(char **s);
 int				ft_is_alpha_mod(char c);

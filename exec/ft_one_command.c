@@ -6,20 +6,20 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 09:28:51 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:36:36 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../parsing/parse.h"
-int	one_cmd_1(struct s_envp *envp, t_token *token, t_cmd *cmds)
+int	one_cmd_1(struct s_envp *envp, t_cmd *cmds)
 {
 	int	i;
 
 	i = 0;
 	if (fork() == 0)
 	{
-		if (redirections(cmds, token) == 3)
+		if (redirections(cmds) == 3)
 			return (3);
 		heredoc_without_cmd(cmds);
 		while (cmds->f_type[i])
@@ -52,15 +52,14 @@ int	one_cmd_1(struct s_envp *envp, t_token *token, t_cmd *cmds)
 	return (g_exit_status);
 }
 
-int	one_cmd(struct s_envp *envp, t_token *token, t_cmd *cmds)
+int	one_cmd(struct s_envp *envp, t_cmd *cmds)
 {
 	int	i;
-	int	x;
 
-	if (cmds->cmdnbr == 1 && is_builtin(cmds, 0) == 0)
+	if (cmds->cmdnbr == 1 && is_builtin(cmds) == 0)
 	{
 		i = 0;
-		if (redirections(cmds, token) == 3)
+		if (redirections(cmds) == 3)
 			return (3);
 		ft_is_built_in(envp, cmds);
 		if (cmds->f_type != NULL)
@@ -80,9 +79,9 @@ int	one_cmd(struct s_envp *envp, t_token *token, t_cmd *cmds)
 		}
 		return (1);
 	}
-	else if (cmds->cmdnbr == 1 && is_builtin(cmds, 0) == 3)
+	else if (cmds->cmdnbr == 1 && is_builtin(cmds) == 3)
 	{
-		one_cmd_1(envp, token, cmds);
+		one_cmd_1(envp, cmds);
 		return (1);
 	}
 	return (0);

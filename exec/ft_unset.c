@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 21:09:42 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:29:28 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
-int	ft_equal_sign(struct s_envp *envp, t_cmd *list, int arg)
+int	ft_equal_sign(t_cmd *list, int arg)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ int	ft_equal_sign(struct s_envp *envp, t_cmd *list, int arg)
 		if (list->cmd[arg][i] == '=')
 		{
 			printf("Minishell: unset: `%s': not a valid identifier\n",
-				list->cmd[arg]);
+					list->cmd[arg]);
 			return (0);
 		}
 		i++;
@@ -41,8 +41,8 @@ int	ft_search_for_variable_in_env(struct s_envp *envp, t_cmd *list, int arg)
 	i = 0;
 	while (x < envp->envpitems)
 	{
-		// list->envsplited = ft_split(envp->environment[x], '=');
-		if (ft_strncmp(list->cmd[arg],envp->name[x],  ft_strlen(envp->name[x])) == 0)
+		if (ft_strncmp(list->cmd[arg], envp->name[x],
+				ft_strlen(envp->name[x])) == 0)
 		{
 			list->envvarpos = x;
 			return (1);
@@ -51,23 +51,21 @@ int	ft_search_for_variable_in_env(struct s_envp *envp, t_cmd *list, int arg)
 	}
 	return (0);
 }
-int	ft_unset(struct s_envp *envp, t_cmd  *list, int arg)
+int	ft_unset(struct s_envp *envp, t_cmd *list, int arg)
 {
-	int x = 0;
-	char *to_be_unset;
-	char **new;
-	list->envvarpos = -1;
-	int i = 0;
+	int		x;
+	char	**new;
+	int		i;
+	int		next;
 
 	x = 0;
-	int next = 0;
-			printf("args %s\n",list->cmd[arg] );
-
+	list->envvarpos = -1;
+	i = 0;
+	x = 0;
+	next = 0;
 	if (ft_search_for_variable_in_env(envp, list, arg) == 1)
 	{
-			new = malloc(sizeof(char **) * envp->envpitems - 1);
-	int lenght = ft_strlen(list->cmd[arg]);
-		printf("found  in pos %d \n", list->envvarpos);
+		new = malloc(sizeof(char **) * envp->envpitems - 1);
 		envp->envpitems--;
 		while (x < envp->envpitems)
 		{
@@ -81,7 +79,5 @@ int	ft_unset(struct s_envp *envp, t_cmd  *list, int arg)
 		ft_split_env(envp, envp->environment);
 		return (0);
 	}
-	
-
 	return (0);
 }

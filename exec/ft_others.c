@@ -6,22 +6,11 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 09:48:23 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:31:36 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	cmd_args_len(t_cmd *cmd)
-{
-	int	len;
-	len = 0;
-	// while (cmd[cmd->cmd_iteration].args[len] != NULL)
-	// {
-	// 	len++;
-	// }
-	return (len);
-}
 
 char	**create_argv_for_execve(t_cmd *cmd)
 {
@@ -78,14 +67,13 @@ int	ft_bin_usr_sbin(t_cmd *cmd, struct s_envp *envp)
 	int		i;
 	char	*last;
 
+	last = NULL;
 	i = 0;
 	ft_check_programs(cmd, envp);
 	ftcheck_nopath(cmd, envp);
 	bin = ft_strjoin(cmd->new[i], "/");
 	looping_through_split_path(cmd, i, bin, last, envp);
-	// write(2, "MINISHELL %s command not found  \n   ", 28);
-		printf("MINISHELL %s command not found \n", cmd->cmd[0]);
-
+	printf("MINISHELL %s command not found \n", cmd->cmd[0]);
 	g_exit_status = 127;
 	exit(127);
 }

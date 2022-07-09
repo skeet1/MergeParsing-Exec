@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/09 10:31:43 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:41:39 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_lstsize(t_cmd *lst)
 	}
 	return (lstlen);
 }
-int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp, t_cmd *cmds)
+int	pass_to_exec(struct s_envp *envp, t_cmd *cmds)
 {
 	int	nbr;
 
@@ -60,7 +60,7 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp, t_cmd *cmds)
 	return 1;
 	if (nbr == 1)
 	{
-		one_cmd(envp, token, cmds);
+		one_cmd(envp, cmds);
 	}
 	else if (cmds->cmdnbr > 1)
 	{

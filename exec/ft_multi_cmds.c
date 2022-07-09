@@ -6,44 +6,13 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 09:17:14 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 07:31:00 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:34:34 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	run_builtin_1(t_cmd *list, struct s_envp *envp)
-{
-	// char	**argv;
-
-	// if (ft_strncmp("echo", list[list->cmd_iteration].cmd, 5) == 0)
-	// {
-	// 	argv = create_argv_for_execve(list);
-	// 	execve("builtins_bin/ftecho", argv, envp->environment);
-	// 	exit(127);
-	// }
-	// else if (ft_strncmp("cd", list[list->cmd_iteration].cmd, 3) == 0)
-	// {
-	// 	argv = create_argv_for_execve(list);
-	// 	execve("builtins_bin/ftcd", argv, envp->environment);
-	// 	exit(31);
-	// }
-	// else if (ft_strncmp("exit", list[list->cmd_iteration].cmd, 5) == 0)
-	// {
-	// 	argv = create_argv_for_execve(list);
-	// 	execve("builtins_bin/ftexit", argv, envp->environment);
-	// 	exit(127);
-	// }
-	// else if (ft_strncmp("pwd", list[list->cmd_iteration].cmd, 4) == 0)
-	// {
-	// 	argv = create_argv_for_execve(list);
-	// 	execve("builtins_bin/ftpwd", argv, envp->environment);
-	// 	exit(127);
-	// }
-	return (0);
-}
-
-int	set_rd( t_cmd *list)
+int	set_rd(t_cmd *list)
 {
 	int	i;
 
@@ -66,4 +35,3 @@ int	set_rd( t_cmd *list)
 	}
 	return (0);
 }
-

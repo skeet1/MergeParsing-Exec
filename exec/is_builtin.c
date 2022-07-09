@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:36:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 21:14:57 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:36:26 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_is_alpha_mod(char c)
 	return (0);
 }
 
-int	is_builtin( t_cmd *list, int i)
+int	is_builtin( t_cmd *list)
 {
 	if (list->cmd[0] == NULL)
 		return (0);

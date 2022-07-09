@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 20:55:14 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:30:37 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
 int	modify_name(struct s_envp *envp, t_cmd *cmd, char **split, int i)
 {
@@ -43,7 +43,6 @@ int	modify_name(struct s_envp *envp, t_cmd *cmd, char **split, int i)
 
 int	ft_export(struct s_envp *envp, t_cmd *cmd, int i)
 {
-	char	**var;
 	int		t;
 	char	**new;
 	char	**split;
@@ -100,12 +99,11 @@ int	ft_export(struct s_envp *envp, t_cmd *cmd, int i)
 		new[t] = envp->environment[t];
 		t++;
 	}
-	new[t] =split[0];
+	new[t] = split[0];
 	new[t + 1] = NULL;
 	envp->envpitems++;
 	// envp->environment = new;
 	// ft_split_env(envp, envp->environment);
-	 ft_copy_1st_env(envp, new);
-
+	ft_copy_1st_env(envp, new);
 	return (0);
 }

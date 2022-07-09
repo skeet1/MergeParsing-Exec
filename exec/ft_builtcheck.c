@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtcheck.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:40:43 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 21:04:36 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:40:19 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	builtcheck(struct s_envp *envp,  t_cmd *cmds)
+int	builtcheck(struct s_envp *envp, t_cmd *cmds)
 {
-
 	if (ft_strncmp(cmds->cmd[0], "echo", 5) == 0)
 	{
-	
-
 		g_exit_status = ft_echo(cmds, cmds->fd_out);
 		return (1);
 	}
@@ -46,7 +43,7 @@ int	builtcheck_next(t_cmd *cmd, struct s_envp *envp)
 		}
 		while (cmd->cmd[i])
 		{
-			if (ft_equal_sign(envp, cmd, i) == 0)
+			if (ft_equal_sign(cmd, i) == 0)
 			{
 				g_exit_status = 1;
 				return (1);
@@ -64,11 +61,11 @@ int	builtcheck_1(t_cmd *cmd, struct s_envp *envp)
 	int	i;
 
 	i = 1;
-	if(ft_strncmp(cmd->cmd[0], "export", 7) == 0)
+	if (ft_strncmp(cmd->cmd[0], "export", 7) == 0)
 	{
 		if (cmd->cmd[1] == NULL)
 		{
-			if (ft_export_1(envp, cmd) == 0)
+			if (ft_export_1(envp) == 0)
 				return (0);
 		}
 		while (cmd->cmd[i] != NULL)
