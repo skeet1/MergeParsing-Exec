@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/09 10:10:56 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 10:31:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ int	pass_to_exec(t_token *token, int pipenbr, struct s_envp *envp, t_cmd *cmds)
 	return (0);
 }
 
-q
