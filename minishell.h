@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 07:09:55 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 09:43:10 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int				redirections(t_cmd *list, t_token *token);
 int				heredoc_without_cmd(t_cmd *list);
 // Other
 int				ft_bin_usr_sbin(t_cmd *cmd, struct s_envp *envp);
-char	**ft_search_for_path(t_cmd *list,
+int ft_search_for_path(t_cmd *list,
 							struct s_envp *envp);
 void			ftcheck_nopath(t_cmd *list, struct s_envp *envp);
 void			looping_through_split_path(t_cmd *list, int i, char *bin,

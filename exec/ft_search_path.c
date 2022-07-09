@@ -6,63 +6,56 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 07:02:08 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 09:45:35 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
-char	**ft_search_for_path(t_cmd *list,  struct s_envp *envp)
+int	ft_search_for_path(t_cmd *list, struct s_envp *envp)
 {
 	int		x;
 	char	**new;
 	int		i;
-	int		r;
+
 	x = 0;
-	while(x  < envp->envpitems)
+	while (x < envp->envpitems)
 	{
-		if(ft_strncmp(envp->name[x], "PATH", 5) == 0)
+		if (ft_strncmp(envp->name[x], "PATH", 5) == 0)
 		{
-			break;
+			break ;
 		}
-		if(x == envp->envpitems)
-			return NULL;
+		if (x == envp->envpitems)
+			return (1);
 		x++;
 	}
-	
-	new = ft_split(envp->environment[x], ':');
+	new = ft_split(envp->value[x], ':');
 	i = 0;
-	r = ft_strlen(new[0]);
-	if (ft_search(new[0], "PATH=", 5) == 1)
-	{
-		while (i < r - 5)
-		{
-			new[0][i] = new[0][i + 5];
-			i++;
-		}
-	}
-	
-	return (new);
+	list->new = new;
+	return (0);
 }
 
-void	ftcheck_nopath(t_cmd *list,  struct s_envp *envp)
+void	ftcheck_nopath(t_cmd *list, struct s_envp *envp)
 {
-	list->new = ft_search_for_path(list, envp);
+	list->new = NULL;
+	ft_search_for_path(list, envp);
 	if (list->new == NULL)
 	{
 		printf("MINISHELL : %s No such file or directory\n",
-			list->cmd[0]);
+				list->cmd[0]);
+		g_exit_status = 127;
 		exit(127);
 	}
 }
 
-void	looping_through_split_path(t_cmd *list, int i, char *bin, char *last, struct s_envp *envp)
+void	looping_through_split_path(t_cmd *list, int i, char *bin, char *last,
+		struct s_envp *envp)
 {
 	i = 0;
 	while (list->new[i])
 	{
-		last = ft_strjoin(bin,list->cmd[0]);
+		last = ft_strjoin(bin, list->cmd[0]);
 		if (access(last, F_OK) == 0)
 		{
 			list->args_execve = create_argv_for_execve(list);
@@ -76,7 +69,6 @@ void	looping_through_split_path(t_cmd *list, int i, char *bin, char *last, struc
 			i++;
 		}
 	}
-	
 }
 
 int	ft_search(char *s, char *c, int lenght)
