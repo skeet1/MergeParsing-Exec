@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_multi_cmds.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 09:17:14 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 21:54:25 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 07:31:00 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,23 @@ int	set_rd( t_cmd *list)
 {
 	int	i;
 
-	// i = 0;
-	// while ( i < list->count_redire)
-	// {
-	// 	if (ft_strncmp(list[list->cmd_iteration].type[i], ">", 2) == 0)
-	// 		dup2(list->fd_out, 1);
-	// 	if (ft_strncmp(list[list->cmd_iteration].type[i], "<", 2) == 0)
-	// 		dup2(list->fd_in, 0);
-	// 	if (ft_strncmp(list[list->cmd_iteration].type[i], ">>", 3) == 0)
-	// 		dup2(list->fd_out, 1);
-	// 	if (ft_strncmp(list[list->cmd_iteration].type[i], ">", 2) == 0)
-	// 		close(list->fd_out);
-	// 	if (ft_strncmp(list[list->cmd_iteration].type[i], "<", 2) == 0)
-	// 		close(list->fd_in);
-	// 	if (ft_strncmp(list[list->cmd_iteration].type[i],  ">>", 3) == 0)
-	// 		close(list->fd_out);
-	// 	i++;
-	// }
+	i = 0;
+	while (list->f_type[i])
+	{
+		if (list->f_type[i] == RED_OUT)
+			dup2(list->fd_out, 1);
+		if (list->f_type[i] == RED_IN)
+			dup2(list->fd_in, 0);
+		if (list->f_type[i] == RED_OUT_APP)
+			dup2(list->fd_out, 1);
+		if (list->f_type[i] == RED_OUT)
+			close(list->fd_out);
+		if (list->f_type[i] == RED_IN)
+			close(list->fd_in);
+		if (list->f_type[i] == RED_OUT_APP)
+			close(list->fd_out);
+		i++;
+	}
 	return (0);
 }
 

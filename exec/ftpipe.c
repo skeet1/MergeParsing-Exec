@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 07:26:28 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 08:57:30 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,17 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 		id = fork();
 		if (id == 0)
 		{
-			printf("cmd is %s\n", list->cmd[0]);
-			// printf("list->there_is_pipe %d\n", list->cmdnbr);
-			// redire_2(list);
-			// set_rd(list);
+			redire_2(list);
+			set_rd(list);
 			// if((list->cmd_iteration <  list->cmdnbr ))
 			// && list[0].type[0] == NULL)
 			// || (list->cmd_iteration < list->there_is_pipe
 			// 	&& ft_strncmp(list[0].type[0], ">", 2) != 0))
-			dup2(fd_in, 0);
+			dup2( fd_in, 0);
 			if (list->next)
 				dup2(pipes[1], 1);//
 			close(pipes[0]);
-			// ft_is_built_in(envp, list);
+			ft_is_built_in(envp, list);
 			ft_bin_usr_sbin(list, envp);
 		}
 		else
@@ -103,7 +101,6 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 				g_exit_status = WEXITSTATUS(g_exit_status);
 			close(pipes[1]);//
 			fd_in = pipes[0];//
-			// list->cmd_iteration++;
 			list = list->next;
 		}
 	}
