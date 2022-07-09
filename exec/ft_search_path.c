@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:24:40 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:53:34 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ void	ftcheck_nopath(t_cmd *list, struct s_envp *envp)
 	}
 }
 
-void	looping_through_split_path(t_cmd *list, int i, char *bin, char *last,
+void	looping_through_split_path(t_cmd *list, char *bin, char *last,
 		struct s_envp *envp)
 {
+	int	i;
+
 	i = 0;
 	while (list->new[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:31:36 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 11:54:19 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,13 @@ int	ft_check_programs(t_cmd *cmd, struct s_envp *envp)
 int	ft_bin_usr_sbin(t_cmd *cmd, struct s_envp *envp)
 {
 	char	*bin;
-	int		i;
 	char	*last;
 
 	last = NULL;
-	i = 0;
 	ft_check_programs(cmd, envp);
 	ftcheck_nopath(cmd, envp);
-	bin = ft_strjoin(cmd->new[i], "/");
-	looping_through_split_path(cmd, i, bin, last, envp);
+	bin = ft_strjoin(cmd->new[0], "/");
+	looping_through_split_path(cmd, bin, last, envp);
 	printf("MINISHELL %s command not found \n", cmd->cmd[0]);
 	g_exit_status = 127;
 	exit(127);
