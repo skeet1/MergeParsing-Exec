@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 22:44:45 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 07:09:55 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,10 @@ int				one_cmd(struct s_envp *envp, t_token *token, t_cmd *cmds);
 char			*ft_itoa(int n);
 int				ft_split_env(struct s_envp *envp, char **env);
 int				set_rd(t_cmd *list);
-// int							run_builtin(t_cmdl *list, struct s_envp *envp);
-// int				builtcheck(t_cmdl *cmd, struct s_envp *envp,  t_cmd *cmds);
 int				builtcheck_next(t_cmd *cmd, struct s_envp *envp);
-// int				builtcheck_1(t_cmdl *cmd, struct s_envp *envp);
 /// redirections I/O
 int				redirections(t_cmd *list, t_token *token);
 int				heredoc_without_cmd(t_cmd *list);
-void			num_of_args(t_token *token, t_cmdl *cmd);
 // Other
 int				ft_bin_usr_sbin(t_cmd *cmd, struct s_envp *envp);
 char	**ft_search_for_path(t_cmd *list,
@@ -101,7 +97,6 @@ char	*ft_strnstr(const char *haystack,
 					const char *needle,
 					size_t len);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-// int     ft_memcmp(const void *s1, const void *s2, size_t n);
 char			*ft_strchr(const char *s, int c);
 static char		*ccleaner(char **arr);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
@@ -111,7 +106,6 @@ char			*ft_strdup(const char *s1);
 void			*ft_memmove(void *s1, void *s2, size_t n);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void			*ft_memmove(void *s1, void *s2, size_t len);
-// size_t						ft_strlen(char const *s);
 int				ft_search(char *s, char *c, int lenght);
 // output libft
 void			ft_putstr_fd(char *s, int fd);

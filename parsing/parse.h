@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/08 23:17:47 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 07:09:12 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,39 +110,6 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }					t_cmd;
 
-typedef struct t_cmdl
-{
-	char			*cmd;
-	char			**args;
-	char			*in_red;
-	char			*out_red;
-	int				cmd_iteration;
-	int				cmd_nbr;
-	char			**type;
-	char			**file;
-	int				fd_out;
-	int				fd_in;
-	char			**environ;
-	char			**args_execve;
-	char			*findhome;
-	char			**split;
-	char			*error;
-	int				len;
-	char			**new;
-	char			**myenvp;
-	int				envlen;
-	int				there_is_pipe;
-	int				fd[2];
-	char			**envsplited;
-	char			**envvariables;
-	int				envvarpos;
-	char			*delimiter;
-	int				count_redire;
-	int				count_args;
-	int				count_files;
-	struct s_token	*tmpnext;
-}					t_cmdl;
-
 int					ft_is_alpha(char c);
 char				*rm_spaces(char *s);
 int					check_valid(char *s);
@@ -163,7 +130,7 @@ int					is_special(char c);
 void				remove_quotes(t_token *token);
 void				print_token(t_token *token);
 void				list_files(t_token *token);
-void				num_of_rd(t_token *token, t_cmdl *cmd);
+void				num_of_rd(t_token *token, t_cmd *cmd);
 void				incr_quotes(char c, int *a, int *b);
 void				print_token(t_token *token);
 #endif
