@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 22:49:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 10:06:28 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	heredoc_without_cmd(t_cmd *list) //sigfault
 				// signal(SIGINT, handler_in_heredoc);
 				// signal(SIGQUIT, SIG_IGN);
 				int fd;
-				char *line;
+				char *line = NULL;
 
 				// dup2(fd,0);
 
-				fd = open("/tmp/", O_RDWR | O_CREAT | O_TRUNC, 0777);
+				fd = open("/tmp/tmpfile", O_RDWR | O_CREAT | O_TRUNC, 0777);
 
 				while (1)
 				{
@@ -51,20 +51,24 @@ int	heredoc_without_cmd(t_cmd *list) //sigfault
 					signal(SIGQUIT, handler_in_heredoc);
 
 					line = readline(">");
-					if (line == NULL)
-					{
-						return (1);
-					}
+					// if (line == NULL)
+					// {
+					// 	return (1);
+					// }
 					int len = 0;
-					len = ft_strlen(list->f_name[1]) + 1;
-					if (ft_strncmp(list->f_name[1], line,
+					len = ft_strlen(list->f_name[0]) + 1;
+					if (ft_strncmp(line, list->f_name[0],
 							len) == 0)
 					{
 						break ;
 					}
-
+				if(line != NULL)
+				{
+					
+				
 					write(fd, line, ft_strlen(line));
 					write(fd, "\n", 1);
+				}
 					free(line);
 				}
 				free(line);
@@ -78,7 +82,7 @@ int	heredoc_without_cmd(t_cmd *list) //sigfault
 			else
 			{
 				wait(&g_exit_status);
-				return (g_exit_status);
+				return (1);
 			}
 		}
 	}

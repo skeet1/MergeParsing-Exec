@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 09:43:10 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 09:55:58 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void			ft_pipe(t_cmd *list, struct s_envp *envp);
 // signals
 void			handler(int sig);
 // init data
-// struct s_list				*ft_init(struct s_list *blt);
+int ft_init( t_cmd *cmds);
 //export tools
 char			**join_name_and_value(struct s_envp *envp, t_cmd *cmd);
 char			**ft_sort_env(struct s_envp *envp, t_cmd *cmd);
