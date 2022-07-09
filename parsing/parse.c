@@ -171,12 +171,6 @@ t_cmd	*node_per_cmd(t_token *token)
 		args[i[0]] = NULL;
 		file_type[i[1]] = 0;
 		file_name[i[1]] = NULL;
-		// i[0] = 0;
-		// i[1] = 0;
-		// while (args[i[0]])
-		// {
-		// 	printf("%s\n", args[i[0]++]);
-		// }
 		add_back_cmd(&cmd, args, file_type, file_name);
 		if (token)
 			token = token->next;
