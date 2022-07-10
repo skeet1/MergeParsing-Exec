@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_one_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:36:36 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:21:12 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	one_cmd_1(struct s_envp *envp, t_cmd *cmds)
 	{
 		if (redirections(cmds) == 3)
 			return (3);
-		heredoc_without_cmd(cmds);
+		heredoc_exec(cmds);
 		while (cmds->f_type[i])
 		{
 			if (cmds->f_type[i] == RED_IN_APP)
@@ -59,6 +59,7 @@ int	one_cmd(struct s_envp *envp, t_cmd *cmds)
 	if (cmds->cmdnbr == 1 && is_builtin(cmds) == 0)
 	{
 		i = 0;
+		heredoc_exec(cmds);
 		if (redirections(cmds) == 3)
 			return (3);
 		ft_is_built_in(envp, cmds);

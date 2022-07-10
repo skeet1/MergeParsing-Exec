@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:35:01 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/10 16:06:18 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,64 +20,79 @@ void	handler_in_heredoc(int sig)
 	if (sig == SIGINT)
 		exit(1);
 }
-int	heredoc_without_cmd(t_cmd *list) //sigfault
+int	heredoc_exec_part1(t_cmd *list, int i) //sigfault
+{
+	int id = fork();
+	if (id== 0)
+	{
+		signal(SIGINT, handler_in_heredoc);
+		signal(SIGQUIT, SIG_IGN);
+		int fd;
+		char *line = NULL;
+
+		// dup2(fd,0);
+
+		fd = open("/tmp/tmpfile", O_RDWR | O_CREAT | O_TRUNC, 0777);
+
+		while (1)
+		{
+			signal(SIGQUIT, SIG_IGN);
+			signal(SIGQUIT, handler_in_heredoc);
+
+			line = readline(">");
+			// if (line == NULL)
+			// {
+			// 	return (1);
+			// }
+			int len = 0;
+			len = ft_strlen(list->f_name[i]) + 1;
+			if (ft_strncmp(line, list->f_name[i], len) == 0)
+			{
+				break ;
+			}
+			// if (line != NULL)
+			// {
+				write(fd, line, ft_strlen(line));
+				write(fd, "\n", 1);
+			// }
+			free(line);
+		}
+		free(line);
+		close(fd);
+		exit(0);
+	}
+	else
+	{
+				waitpid(id,&g_exit_status, 0);
+
+		// wait(&g_exit_status);
+		if (WIFEXITED(g_exit_status))
+			g_exit_status = WEXITSTATUS(g_exit_status);
+		return (g_exit_status);
+	}
+}
+int	heredoc_exec(t_cmd *list) //sigfault
 {
 	// printf(" delimter");
-//<< f1 << f2 > f not working
+	//<< f1 << f2 > f not working
 	int i = 0;
-	while (list->f_type[i] == RED_IN_APP)
+	while (list)
 	{
 		// printf(" delimter  =	%s \n",list[list->cmd_iteration].delimiter );
-		if (fork() == 0)
+
+		//i must loop here
+		while (list->f_type[i])
 		{
-			//i must loop here
-			while (list->f_type[i])
+			if (list->f_type[i] == RED_IN_APP)
 			{
-				// signal(SIGINT, handler_in_heredoc);
-				// signal(SIGQUIT, SIG_IGN);
-				int fd;
-				char *line = NULL;
-
-				// dup2(fd,0);
-
-				fd = open("/tmp/tmpfile", O_RDWR | O_CREAT | O_TRUNC, 0777);
-
-				while (1)
-				{
-					signal(SIGQUIT, SIG_IGN);
-					signal(SIGQUIT, handler_in_heredoc);
-
-					line = readline(">");
-					// if (line == NULL)
-					// {
-					// 	return (1);
-					// }
-					int len = 0;
-					len = ft_strlen(list->f_name[i]) + 1;
-					if (ft_strncmp(line, list->f_name[i], len) == 0)
-					{
-						break ;
-					}
-					if (line != NULL)
-					{
-						write(fd, line, ft_strlen(line));
-						write(fd, "\n", 1);
-					}
-					free(line);
-				}
-				free(line);
-				close(fd);
-				exit(0);
+				heredoc_exec_part1(list, i);
+				if(!list->f_type[i])
+					return (1);
 			}
-		}
-		else
-		{
-			wait(&g_exit_status);
-			if(list->f_type[i + 1]  !=RED_IN_APP)
-				return 1;
 			i++;
 		}
-	
+
+		list = list->next;
 	}
 
 	return (0);

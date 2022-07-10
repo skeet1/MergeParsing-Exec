@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/09 11:41:58 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 14:26:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,9 @@ void	print_cmd(t_cmd *cmd)
 		int i = 0;
 		while (cmd && cmd->cmd[i])
 		{
+			
 			// printf("%s\n", cmd->cmd[i]);
+			// printf("len =%d\n", ft_strlen(cmd->cmd[i]));
 			cmd->count_args = i;
 			i++;
 		}
@@ -252,12 +254,12 @@ int	main(int argc, char **argv, char **env)
 			}
 			// print_cmd(cmd);
 			// print_token(token);
-			if(data.cmd_line != NULL && data.error == 0 && token != NULL)
+			if(data.cmd_line != NULL && data.error == 0 && cmd != NULL)
 			{
 				pipenbr = data.side;
 				pass_to_exec(envp, cmd);
 			}
-			// 		free(	data.cmd_line);
+				free(	data.cmd_line);
 			free_cmd(&cmd);
 		}
 	}

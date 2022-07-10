@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass_to_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/09 11:41:39 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:22:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	pass_to_exec(struct s_envp *envp, t_cmd *cmds)
 	nbr = ft_lstsize(cmds);
 	cmds->cmdnbr = nbr;
 
-	if(heredoc_without_cmd(cmds) == 1)
-	return 1;
+	// if(heredoc_exec(cmds) == 1)
+	// return 1;
 	if (nbr == 1)
 	{
 		one_cmd(envp, cmds);

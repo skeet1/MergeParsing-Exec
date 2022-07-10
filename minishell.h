@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:53:18 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/09 19:48:17 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char		**create_argv_for_execve(t_cmd *list);
 int			ft_check_programs(t_cmd *list, struct s_envp *envp);
 /// redirections I/O
 int			redirections(t_cmd *list);
-int			heredoc_without_cmd(t_cmd *list);
+int			heredoc_exec(t_cmd *list);
 
 //env
 int			ft_copy_1st_env(struct s_envp *envp, char **env);
