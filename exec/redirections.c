@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:50:59 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:27:56 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:31:35 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int	redirections(t_cmd *list)
 		}
 		if (list->f_type[i] == RED_IN_APP)
 		{
-			list->fd_in = open("/tmp/tmpfile", O_RDWR | O_CREAT | O_TRUNC,
-					0600);
+			list->fd_in = open("/tmp/tmpherdoc", O_RDONLY);
 		}
 		i++;
 	}

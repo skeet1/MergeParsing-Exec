@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/10 19:32:51 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:29:01 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	heredoc_exec_part1(t_cmd *list, int i) //sigfault
 
 		// dup2(fd,0);
 
-		fd = open("/tmp/tmpfile", O_RDWR | O_CREAT | O_TRUNC, 0777);
+		 fd = open("/tmp/tmpherdoc", O_WRONLY | O_CREAT | O_TRUNC, 0777);
 
 		while (1)
 		{

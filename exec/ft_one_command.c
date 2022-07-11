@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/10 19:55:52 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/10 20:22:19 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int	one_cmd(struct s_envp *envp, t_cmd *cmds)
 
  if (cmds->cmd[0] == NULL)
 	{
-		printf("no cmd\n");
-		// heredoc_exec(cmds);
 		if (redirections(cmds) == 3)
 			return (3);
 				heredoc_exec(cmds);

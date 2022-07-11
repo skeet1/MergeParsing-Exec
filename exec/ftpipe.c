@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftpipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:32:08 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:18:01 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,26 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 	
 	int pipes[2];
 	i = 0;
-	int fd_in = 0;
+	 list->fd_in = 0;
+	int fdin = 0;
 	list->cmd_iteration = 0;
 	list->fd_out = 1;
+	heredoc_exec(list);
 	while (list)
 	{
 		pipe(pipes);//
 		id = fork();
 		if (id == 0)
 		{
-			redire_2(list);
-			set_rd(list);
-			// if((list->cmd_iteration <  list->cmdnbr ))
-			// && list[0].type[0] == NULL)
-			// || (list->cmd_iteration < list->there_is_pipe
-			// 	&& ft_strncmp(list[0].type[0], ">", 2) != 0))
-			dup2( fd_in, 0);
+			dup2(  fdin, 0);
 			if (list->next)
 				dup2(pipes[1], list->fd_out);//
+	
+		
 			close(pipes[0]);
-			ft_is_built_in(envp, list);
+					redirections(list);
+			set_rd(list);
+			// ft_is_built_in(envp, list);
 			ft_bin_usr_sbin(list, envp);
 		}
 		else
@@ -98,8 +98,8 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 			wait(&g_exit_status);
 			if (WIFEXITED(g_exit_status))
 				g_exit_status = WEXITSTATUS(g_exit_status);
-			close(pipes[1]);//
-			fd_in = pipes[0];//
+			close(pipes[1]);
+			fdin= pipes[0];
 			list = list->next;
 		}
 	}

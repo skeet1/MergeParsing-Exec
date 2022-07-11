@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/10 18:22:43 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 09:46:31 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ int	pass_to_exec(struct s_envp *envp, t_cmd *cmds)
 	nbr = ft_lstsize(cmds);
 	cmds->cmdnbr = nbr;
 
-	// if(heredoc_exec(cmds) == 1)
-	// return 1;
 	if (nbr == 1)
 	{
+		
 		one_cmd(envp, cmds);
 	}
 	else if (cmds->cmdnbr > 1)
