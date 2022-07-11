@@ -1,1 +1,1 @@
-/mnt/s/l3id
+MINISHELL lsds command not found 
