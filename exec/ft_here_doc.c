@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/11 15:29:01 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:35:03 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int	heredoc_exec(t_cmd *list) //sigfault
 			if (list->f_type[i] == RED_IN_APP)
 			{
 				heredoc_exec_part1(list, i);
-				if(!list->f_type[i])
-					return (1);
+				// if(!list->f_type[i])
+				// 	return (1);
 			}
 			i++;
 		}

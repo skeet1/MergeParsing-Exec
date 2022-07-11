@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/11 15:18:01 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 17:15:26 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,28 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 	
 	int pipes[2];
 	i = 0;
-	 list->fd_in = 0;
+	//  list->fd_in = 0;
 	int fdin = 0;
 	list->cmd_iteration = 0;
 	list->fd_out = 1;
-	heredoc_exec(list);
+
 	while (list)
 	{
+
+		
+			
+					heredoc_exec(list);
+
+
 		pipe(pipes);//
 		id = fork();
 		if (id == 0)
 		{
-			dup2(  fdin, 0);
+			// if(i != 0)
+			
+			dup2( fdin ,  0);
 			if (list->next)
-				dup2(pipes[1], list->fd_out);//
+				dup2(pipes[1], 1);//
 	
 		
 			close(pipes[0]);
@@ -99,7 +107,9 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 			if (WIFEXITED(g_exit_status))
 				g_exit_status = WEXITSTATUS(g_exit_status);
 			close(pipes[1]);
-			fdin= pipes[0];
+			fdin = pipes[0];
+		// pipes[0] = 	 list->fd_in;
+			i++;
 			list = list->next;
 		}
 	}

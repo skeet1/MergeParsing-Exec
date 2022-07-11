@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 19:48:17 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:10:46 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,6 @@ int			free2d(char **s);
 int			ft_is_alpha_mod(char c);
 //tmp
 void		print_cmd(t_cmd *cmd);
+int	heredoc_exec_part1(t_cmd *list, int i) ;
 
 #endif
