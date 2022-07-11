@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/11 17:15:26 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 19:00:06 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 	
 	int pipes[2];
 	i = 0;
-	//  list->fd_in = 0;
 	int fdin = 0;
 	list->cmd_iteration = 0;
 	list->fd_out = 1;
@@ -98,8 +97,9 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 			close(pipes[0]);
 					redirections(list);
 			set_rd(list);
-			// ft_is_built_in(envp, list);
+			if(ft_is_built_in(envp, list) == 0)
 			ft_bin_usr_sbin(list, envp);
+
 		}
 		else
 		{

@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Mon Jul 11 09:33:01 2022
+# Make data base, printed on Mon Jul 11 18:07:09 2022
 
 # Variables
 
@@ -17,12 +18,11 @@ LC_ALL = C
 # makefile (from 'Makefile', line 17)
 SRC = ./exec/builtins.c ./exec/ft_env.c ./libft/ft_strlen.c ./exec/redirections.c ./libft/ft_strnstr.c ./exec/ft_unset.c ./exec/ft_export.c ./exec/ft_others.c ./exec/ft_readline.c ./exec/ft_init.c ./libft/ft_putchar_fd.c ./libft/ft_putstr_fd.c ./libft/ft_putendl_fd.c ./libft/ft_tolower.c ./exec/ftpipe.c ./exec/ft_one_command.c ./exec/ft_multi_cmds.c ./libft/ft_strdup.c ./libft/ft_atoi.c ./libft/ft_isdigit.c ./libft/ft_tolower.c ./libft/ft_calloc.c ./exec/ft_here_doc.c ./exec/ft_search_path.c ./exec/is_builtin.c ./exec/ft_exit.c ./exec/ftcd.c ./exec/ft_copy_1st_env.c ./exec/ft_export_tools.c ./libft/ft_strncmp.c ./libft/ft_itoa.c ./libft/ft_strjoin.c ./libft/ft_substr.c ./libft/ft_split.c ./parsing/ft_check_syntax.c ./parsing/ft_token.c ./parsing/remove_quotes.c ./libft/ft_strlcpy.c ./libft/ft_strtrim.c ./parsing/parse.c ./libft/ft_strcmp.c ./exec/pass_to_exec.c ./parsing/ft_check_syntax.c ./exec/ft_builtcheck.c 
 # environment
- 
 PULSE_SERVER = /mnt/wslg/PulseServer
 # makefile (from 'Makefile', line 15)
 CFALGS = 
 # environment
-WSLENV = VSCODE_WSL_EXT_LOCATION/up
+WSLENV = VSCODE_WSL_EXT_LOCATION/up:VSCODE_SERVER_TAR/up
 # environment
 VSCODE_CWD = /mnt/c/Users/asus/AppData/Local/Programs/Microsoft VS Code
 # environment
@@ -43,8 +43,6 @@ PWD = /mnt/s/l3id
 %D = $(patsubst %/,%,$(dir $%))
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
-# environment
-VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
@@ -64,8 +62,6 @@ LESS_TERMCAP_so = [01;33m
 # makefile
 CURDIR := /mnt/s/l3id
 # environment
-VSCODE_PIPE_LOGGING = true
-# environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
@@ -83,8 +79,6 @@ WAYLAND_DISPLAY = wayland-0
 MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
-# environment
-VSCODE_VERBOSE_LOGGING = true
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
@@ -108,7 +102,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /home/asus/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/home/asus/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Users/asus/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/asus/AppData/Local/Programs/Microsoft VS Code/bin
+PATH = /home/asus/.vscode-server/bin/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9/bin/remote-cli:/home/asus/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Users/asus/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/asus/AppData/Local/Programs/Microsoft VS Code/bin
 # environment
 LESS_TERMCAP_se = [0m
 # default
@@ -117,12 +111,12 @@ MAKEFILES :=
 ^F = $(notdir $^)
 # environment
 LESS_TERMCAP_mb = [1;31m
-# environment
-VSCODE_LOG_NATIVE = false
 # automatic
 ?F = $(notdir $?)
 # makefile (from 'Makefile', line 13)
 NAME = minishell
+# environment
+VSCODE_SERVER_TAR = /mnt/c/Users/asus/AppData/Local/Temp/vscode-remote-wsl/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9/vscode-server-stable-linux-x64.tar.gz
 # environment
 HOSTTYPE = x86_64
 # environment
@@ -130,7 +124,7 @@ LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 # automatic
 +F = $(notdir $+)
 # environment
-WSL_INTEROP = /run/WSL/11_interop
+WSL_INTEROP = /run/WSL/8_interop
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -146,17 +140,17 @@ USER = asus
 # default
 MAKE_VERSION := 4.3
 # environment
-VSCODE_EXTHOST_WILL_SEND_SOCKET = true
-# environment
-_ = /home/asus/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/node
+_ = /home/asus/.vscode-server/bin/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9/node
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-5906a911-5c6e-461c-acfa-5a07028b6753.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-1c60938e-6935-4260-8f91-6d5c9138ab68.sock
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /home/asus
+# environment
+ELECTRON_RUN_AS_NODE = 1
 # environment
 TERM = xterm-256color
 # default
@@ -172,7 +166,7 @@ WSL_DISTRO_NAME = kali-linux
 # makefile (from 'Makefile', line 14)
 CC = gcc
 # variable set hash-table stats:
-# Load=80/1024=8%, Rehash=0, Collisions=9/115=8%
+# Load=77/1024=8%, Rehash=0, Collisions=8/112=7%
 
 # Pattern-specific Variable Values
 
@@ -180,9 +174,9 @@ CC = gcc
 
 # Directories
 
-# . (device 66, inode 41939771529893955): 54 files, no impossibilities.
+# . (device 66, inode 41939771529893955): 57 files, no impossibilities.
 
-# 54 files, no impossibilities in 1 directories.
+# 57 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -192,7 +186,7 @@ CC = gcc
 
 ft_env.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.4246113
+#  Last modified 2022-07-11 17:15:37.3931656
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -200,7 +194,7 @@ ft_env.o:
 
 ft_putstr_fd.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.1155699
+#  Last modified 2022-07-11 17:15:38.2331995
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -208,7 +202,7 @@ ft_putstr_fd.o:
 
 ft_exit.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.1423304
+#  Last modified 2022-07-11 17:15:39.3928026
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -216,7 +210,7 @@ ft_exit.o:
 
 parse.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:20.1917996
+#  Last modified 2022-07-11 17:15:40.6091585
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -224,7 +218,7 @@ parse.o:
 
 ft_init.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.9768988
+#  Last modified 2022-07-11 17:15:38.049467
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -232,7 +226,7 @@ ft_init.o:
 
 ft_strcmp.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:20.2581102
+#  Last modified 2022-07-11 17:15:40.6939721
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -240,7 +234,7 @@ ft_strcmp.o:
 
 ft_putendl_fd.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.2086146
+#  Last modified 2022-07-11 17:15:38.3091535
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -248,7 +242,7 @@ ft_putendl_fd.o:
 
 minishell: builtins.o ft_env.o ft_strlen.o redirections.o ft_strnstr.o ft_unset.o ft_export.o ft_others.o ft_readline.o ft_init.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_tolower.o ftpipe.o ft_one_command.o ft_calloc.o ft_multi_cmds.o ft_strdup.o ft_atoi.o ft_isdigit.o ft_here_doc.o ft_search_path.o is_builtin.o ft_exit.o ftcd.o ft_copy_1st_env.o ft_export_tools.o ft_strncmp.o ft_itoa.o ft_strjoin.o ft_substr.o ft_split.o ft_check_syntax.o ft_token.o remove_quotes.o ft_strlcpy.o ft_strtrim.o parse.o ft_strcmp.o pass_to_exec.o ft_builtcheck.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:21.0705638
+#  Last modified 2022-07-11 17:15:41.8668052
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 110):
@@ -256,7 +250,7 @@ minishell: builtins.o ft_env.o ft_strlen.o redirections.o ft_strnstr.o ft_unset.
 
 redirections.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.5516244
+#  Last modified 2022-07-11 17:15:37.5770464
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -271,7 +265,7 @@ Makefile:
 
 ft_strlen.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.4875805
+#  Last modified 2022-07-11 17:15:37.4768723
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -279,7 +273,7 @@ ft_strlen.o:
 
 is_builtin.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.0649412
+#  Last modified 2022-07-11 17:15:39.2996506
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -287,7 +281,8 @@ is_builtin.o:
 
 ft_strnstr.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.6220304
+ 
+#  Last modified 2022-07-11 17:15:37.6497638
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -295,8 +290,7 @@ ft_strnstr.o:
 
 ft_strdup.o:
 #  Implicit rule search has not been done.
- 
-#  Last modified 2022-07-10 20:51:18.5596703
+#  Last modified 2022-07-11 17:15:38.7146144
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -312,7 +306,7 @@ clean:
 
 ft_itoa.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.519955
+#  Last modified 2022-07-11 17:15:39.8107969
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -320,7 +314,7 @@ ft_itoa.o:
 
 ft_strtrim.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:20.1030733
+#  Last modified 2022-07-11 17:15:40.5212438
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -333,7 +327,7 @@ re: fclean all
 
 builtins.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.3535794
+#  Last modified 2022-07-11 17:15:37.3153363
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -341,7 +335,7 @@ builtins.o:
 
 ft_others.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.8384666
+#  Last modified 2022-07-11 17:15:37.9027896
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -349,7 +343,7 @@ ft_others.o:
 
 ft_isdigit.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.6921625
+#  Last modified 2022-07-11 17:15:38.864232
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -357,7 +351,7 @@ ft_isdigit.o:
 
 ft_export_tools.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.3884046
+#  Last modified 2022-07-11 17:15:39.6510312
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -365,7 +359,7 @@ ft_export_tools.o:
 
 ft_strjoin.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.5893612
+#  Last modified 2022-07-11 17:15:39.8901992
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -373,7 +367,7 @@ ft_strjoin.o:
 
 ftcd.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.2359011
+#  Last modified 2022-07-11 17:15:39.4790742
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -381,7 +375,7 @@ ftcd.o:
 
 ft_one_command.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.4130503
+#  Last modified 2022-07-11 17:15:38.5637641
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -389,7 +383,7 @@ ft_one_command.o:
 
 ft_search_path.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.9823594
+#  Last modified 2022-07-11 17:15:39.2206417
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -397,7 +391,7 @@ ft_search_path.o:
 
 ft_multi_cmds.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.4830759
+#  Last modified 2022-07-11 17:15:38.6385024
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -411,7 +405,7 @@ ft_multi_cmds.o:
 
 ft_builtcheck.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:20.466826
+#  Last modified 2022-07-11 17:15:40.9825678
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -433,7 +427,7 @@ fclean: clean
 
 ft_copy_1st_env.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.3156858
+#  Last modified 2022-07-11 17:15:39.5726823
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -441,7 +435,7 @@ ft_copy_1st_env.o:
 
 ft_check_syntax.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:20.3997334
+#  Last modified 2022-07-11 17:15:40.8952379
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -449,7 +443,7 @@ ft_check_syntax.o:
 
 ftpipe.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.3426402
+#  Last modified 2022-07-11 17:15:38.4740669
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -457,7 +451,7 @@ ftpipe.o:
 
 ft_unset.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.7040158
+#  Last modified 2022-07-11 17:15:37.7327914
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -465,7 +459,7 @@ ft_unset.o:
 
 remove_quotes.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.976781
+#  Last modified 2022-07-11 17:15:40.3605134
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -473,7 +467,7 @@ remove_quotes.o:
 
 ft_atoi.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.6315118
+#  Last modified 2022-07-11 17:15:38.7875992
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -481,7 +475,7 @@ ft_atoi.o:
 
 ft_strlcpy.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:20.044274
+#  Last modified 2022-07-11 17:15:40.4371076
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -489,7 +483,7 @@ ft_strlcpy.o:
 
 ft_calloc.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.8281501
+#  Last modified 2022-07-11 17:15:39.0337814
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -497,7 +491,7 @@ ft_calloc.o:
 
 ft_split.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.7375652
+#  Last modified 2022-07-11 17:15:40.057096
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -505,7 +499,7 @@ ft_split.o:
 
 ft_token.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.8966382
+#  Last modified 2022-07-11 17:15:40.2715236
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -513,7 +507,7 @@ ft_token.o:
 
 ft_substr.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.6523698
+#  Last modified 2022-07-11 17:15:39.9678846
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -521,7 +515,7 @@ ft_substr.o:
 
 ft_here_doc.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.9171386
+#  Last modified 2022-07-11 17:15:39.1308788
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -529,7 +523,7 @@ ft_here_doc.o:
 
 pass_to_exec.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:20.3211815
+#  Last modified 2022-07-11 17:15:40.7815956
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -537,7 +531,7 @@ pass_to_exec.o:
 
 ft_strncmp.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:19.4472162
+#  Last modified 2022-07-11 17:15:39.7248452
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -545,7 +539,7 @@ ft_strncmp.o:
 
 ft_putchar_fd.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.0438532
+#  Last modified 2022-07-11 17:15:38.1412074
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -553,7 +547,7 @@ ft_putchar_fd.o:
 
 ft_export.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.7700575
+#  Last modified 2022-07-11 17:15:37.8240002
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
@@ -561,22 +555,22 @@ ft_export.o:
 
 ft_readline.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:17.9075216
+#  Last modified 2022-07-11 17:15:37.9753017
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
 	 $(CC) $(CFALGS) -c $(SRC) 
+ 
 
 ft_tolower.o:
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-10 20:51:18.7618375
+#  Last modified 2022-07-11 17:15:38.9429807
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 107):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 # files hash-table stats:
- 
 # Load=50/1024=5%, Rehash=0, Collisions=7/108=6%
 # VPATH Search Paths
 
@@ -584,12 +578,12 @@ ft_tolower.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 62 / storage = 699 B / avg = 11 B
-# current buf: size = 8162 B / used = 699 B / count = 62 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 65 / storage = 710 B / avg = 10 B
+# current buf: size = 8162 B / used = 710 B / count = 65 / avg = 10 B
 
-# strcache performance: lookups = 203 / hit rate = 69%
+# strcache performance: lookups = 206 / hit rate = 68%
 # hash-table stats:
-# Load=62/8192=1%, Rehash=0, Collisions=1/203=0%
-# Finished Make data base on Mon Jul 11 09:33:01 2022
+# Load=65/8192=1%, Rehash=0, Collisions=1/206=0%
+# Finished Make data base on Mon Jul 11 18:07:09 2022
 
  

@@ -1,8 +1,23 @@
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
+MINISHELL a command not found 
 builtins.o
+EOF
 exec
-f3
-fd
+f
+f1
 fd_in
+ff
+file1
+file1
 ft_atoi.o
 ft_builtcheck.o
 ft_calloc.o
@@ -49,3 +64,4 @@ parsing
 pass_to_exec.o
 redirections.o
 remove_quotes.o
+MINISHELL lsds command not found 
