@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/11 15:52:22 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 09:50:24 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,18 @@ int	pass_to_exec(struct s_envp *envp, t_cmd *cmds)
 	int	nbr;
 
 	print_cmd(cmds);
-					ft_init(cmds);
-
+	ft_init(cmds);
 	nbr = ft_lstsize(cmds);
 	cmds->cmdnbr = nbr;
-
 	if (nbr == 1)
 	{
-		
 		one_cmd(envp, cmds);
 	}
 	else if (cmds->cmdnbr > 1)
 	{
 		//problem wc  | ls ? in bash ls is printing first and problem in
-		//wc | ls when unset the PATH it must shot 2 errors not one
-		// grep 1337 exec/*.c problem
+		//wc | ls when unset the PATH it must shot 2 errors not on
 		ft_pipe(cmds, envp);
-		// free2d(cmd->args);
-		// free_it(cmd, token, pipenbr);
 	}
 	// // free_it(cmd);
 	// free2d(cmd->args);
@@ -76,4 +70,3 @@ int	pass_to_exec(struct s_envp *envp, t_cmd *cmds)
 	// free2d(cmd->file);
 	return (0);
 }
-
