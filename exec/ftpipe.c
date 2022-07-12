@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 10:38:38 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 10:53:31 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,25 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 	fdin = 0;
 	while (list)
 	{
+
 		heredoc_exec(list);
 		if (pipe(pipes) < 0)
 			return (0);
 		id = fork();
-								g++;
-
+		g++;
 		if (id == 0)
-		{
-						ft_pipe_c(list, envp, fdin, pipes);
-
-		}
-		else
-		{
-			// wait(&g_exit_status);
-			// if (WIFEXITED(g_exit_status))
-			// 	g_exit_status = WEXITSTATUS(g_exit_status);
-			close(pipes[1]);
-			fdin = pipes[0];
-			list = list->next;
-		}
+			ft_pipe_c(list, envp, fdin, pipes);
+		close(pipes[1]);
+		fdin = pipes[0];
+		list = list->next;
 	}
 	printf(" g is %d\n", g);
 	wait(&g_exit_status);
-			if (WIFEXITED(g_exit_status))
-				g_exit_status = WEXITSTATUS(g_exit_status);
-	while(g)
+	if (WIFEXITED(g_exit_status))
+		g_exit_status = WEXITSTATUS(g_exit_status);
+	while (g)
 	{
 		wait(NULL);
 		g--;
 	}
-	
 }
