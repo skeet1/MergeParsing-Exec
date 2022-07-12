@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 09:17:14 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/11 15:15:33 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 18:03:32 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	set_rd(t_cmd *list)
 			close(list->fd_in);
 		i++;
 	}
+	list->fd_out = 1;
 	return (0);
 }
