@@ -6,11 +6,12 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 08:50:57 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 19:34:14 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../libft/libft.h"
 
 char	**join_name_and_value(struct s_envp *envp)
 {
@@ -47,7 +48,7 @@ char	**ft_sort_env(struct s_envp *envp)
 		j = i + 1;
 		while (j < envp->envpitems)
 		{
-			if (strcmp(envp->name[i], envp->name[j]) > 0)
+			if (ft_strcmp(envp->name[i], envp->name[j]) > 0)
 			{
 				tmp = joined[i];
 				joined[i] = joined[j];
@@ -77,7 +78,7 @@ int	ft_export_1(struct s_envp *envp)
 		printf("declare -x %s\"\n", joined[i]);
 		i++;
 	}
-	// free2d(joined);
+	free2d(joined);
 	return (SUCCESSFUL);
 }
 

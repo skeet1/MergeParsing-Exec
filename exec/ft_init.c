@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:43:04 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 09:59:44 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 19:11:08 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ int	ft_init( t_cmd *cmds)
 	cmds->cmd_iteration = 0;
 	cmds->envvarpos = 0;
 	cmds->delimiter = NULL;
+	cmds->args_execve = NULL;
+	
 	return (0);
 }

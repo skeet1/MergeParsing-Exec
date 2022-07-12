@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/10 20:22:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 19:08:39 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	one_cmd_1(struct s_envp *envp, t_cmd *cmds)
 int	one_cmd(struct s_envp *envp, t_cmd *cmds)
 {
 	int	i;
+	// i  = 0;
 
  if (cmds->cmd[0] == NULL)
 	{

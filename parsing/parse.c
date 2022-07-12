@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/12 11:32:05 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 19:24:03 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,11 @@ int	main(int argc, char **argv, char **env)
 				free(	data.cmd_line);
 			free_cmd(&cmd);
 		}
+		free2d(envp->name);
+		free2d(envp->value);
+				free2d(envp->environment);
+
+		
 	}
 	return (0);
 }
