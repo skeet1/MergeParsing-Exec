@@ -6,14 +6,26 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/12 10:54:29 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 11:32:05 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 #include "parse.h"
+void	handler(int sig)
+{
+	if (sig == SIGINT)
+	{
+				printf("\n");
 
+		rl_replace_line("", 1);
+
+		rl_on_new_line();      
+		rl_redisplay();
+		g_exit_status = 1;  
+	}
+}
 void	mark_cmd(t_token *tok)
 {
 	t_token	*token;
@@ -232,10 +244,11 @@ int	main(int argc, char **argv, char **env)
 	{
 		while (1)
 		{
+			signal(SIGQUIT, SIG_IGN);
+			signal(SIGINT, &handler);
 			cmd = NULL;
 			
-			signal(SIGQUIT, SIG_IGN);
-			signal(SIGINT, handler);
+			
 			token = NULL;
 			cmd = NULL;
 			data.cmd_line = readline(PROMPT);
