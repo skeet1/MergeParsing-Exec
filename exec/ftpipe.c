@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 18:02:36 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 18:41:56 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ list->fd_out = 1;
 	g = 0;
 	i = 0;
 	fdin = 0;
-			if(heredoc_exec(list) == EXIT_FAILURE)
-			return EXIT_FAILURE;
+			
 
 	while (list)
 	{
+		if(heredoc_exec(list) == EXIT_FAILURE)
+			return EXIT_FAILURE;
 		if (pipe(pipes) < 0)
 			return (0);
 		id = fork();
