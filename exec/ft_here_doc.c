@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/11 16:35:03 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 09:09:28 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 void	handler_in_heredoc(int sig)
 {
 	if (sig == SIGINT)
-		exit(1);
+		exit(EXIT_FAILURE);
 }
 int	heredoc_exec_part1(t_cmd *list, int i) //sigfault
 {
 	int id = fork();
+	if(id == -1)
+	return (0);
 	if (id== 0)
 	{
 		signal(SIGINT, handler_in_heredoc);
@@ -40,10 +42,8 @@ int	heredoc_exec_part1(t_cmd *list, int i) //sigfault
 			signal(SIGQUIT, handler_in_heredoc);
 
 			line = readline(">");
-			// if (line == NULL)
-			// {
-			// 	return (1);
-			// }
+			if (!line)
+			exit(EXIT_SUCCESS);
 			int len = 0;
 			len = ft_strlen(list->f_name[i]) + 1;
 			if (ft_strncmp(line, list->f_name[i], len) == 0)
@@ -59,7 +59,7 @@ int	heredoc_exec_part1(t_cmd *list, int i) //sigfault
 		}
 		free(line);
 		close(fd);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{

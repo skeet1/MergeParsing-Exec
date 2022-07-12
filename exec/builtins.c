@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 10:21:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 08:55:51 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	ft_echo_c(t_cmd *cmds, int fd)
 		i++;
 	}
 	write(fd, "\n", 1);
-	return (0);
+	return (SUCCESSFUL);
 }
 
-int	ft_echo( t_cmd *cmds, int fd)
+int	ft_echo(t_cmd *cmds, int fd)
 {
 	int	len;
 	int	i;
@@ -47,25 +47,29 @@ int	ft_echo( t_cmd *cmds, int fd)
 	if (cmds->cmd[1] == NULL)
 	{
 		write(fd, "\n", 1);
-		return (0);
+		return (SUCCESSFUL);
 	}
 	else
 	{
 		ft_echo_c(cmds, fd);
 	}
-	return (0);
+	return (SUCCESSFUL);
 }
 
 int	ft_pwd(int fd_out)
 {
-	char	pw[PATH_MAX];
 	char	*pwd;
 	int		len;
 
 	len = 0;
-	pwd = getcwd(pw, PATH_MAX);
+	pwd = getcwd(NULL, PATH_MAX);
+	if (pwd == NULL)
+	{
+		ft_putstr_fd("getcwd: failed\n", 2);
+		return (UNSUCCESSFUL);
+	}
 	len = ft_strlen(pwd);
 	write(fd_out, pwd, len);
 	write(fd_out, "\n", 1);
-	return (0);
+	return (SUCCESSFUL);
 }

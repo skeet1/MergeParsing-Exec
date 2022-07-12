@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/11 16:10:46 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 09:16:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# define SUCCESSFUL 0
+# define UNSUCCESSFUL 1
 
 struct		s_envp
 {
@@ -101,7 +103,7 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putchar_fd(char c, int fd);
 void		ft_putendl_fd(char *s, int fd);
 // pipes
-void		ft_pipe(t_cmd *list, struct s_envp *envp);
+int		ft_pipe(t_cmd *list, struct s_envp *envp);
 // signals
 void		handler(int sig);
 // init data

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:40:15 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 08:50:57 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_export_1(struct s_envp *envp)
 		i++;
 	}
 	// free2d(joined);
-	return (0);
+	return (SUCCESSFUL);
 }
 
 int	check_name_is_valid(char **split, int i, t_cmd *cmd)

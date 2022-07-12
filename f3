@@ -2,7 +2,6 @@
 2
 3
 4
-a
 as
 builtins.o
 EOF
@@ -54,9 +53,6 @@ ft_token.o
 ft_tolower.o
 ft_unset.o
 is_builtin.o
-j
-jm
-k
 libft
 Makefile
 minishell

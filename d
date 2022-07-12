@@ -5,6 +5,7 @@
 a
 as
 builtins.o
+d
 EOF
 exec
 f

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/11 19:00:06 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 09:25:25 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,89 +17,43 @@
 //  &&  ft_strncmp( list[0].type[1], RDOUT, 7) != 0 not workings
 //check echo asd > f1 > f3 << f4
 //ls > f1 > f2<< FF
-int	redire_2(t_cmd *list)
-{
-	int	i;
-	int	ret;
 
-	i = 0;
-	ret = 0;
-	while (list->f_type[i])
+int	ft_pipe_c(t_cmd *list, struct s_envp *envp, int fdin, int *pipes)
+{
+	// if(i != 0)
+	dup2(fdin, 0);
+	if (list->next)
+		dup2(pipes[1], 1); //
+	close(pipes[0]);
+	redirections(list);
+	set_rd(list);
+	if (ft_is_built_in(envp, list) == 1)
 	{
-		if (list->f_type[i] == RED_IN_APP)
-		{
-			list->fd_in = open("/tmp/tmpherdoc", O_RDWR | O_CREAT | O_TRUNC,
-					0600);
-		}
-		if (list->f_type[i] == RED_OUT)
-		{
-			list->fd_out = open(list->f_name[i],
-								O_RDWR | O_CREAT | O_TRUNC,
-								0600);
-			if (list->fd_out == -1)
-			{
-				printf("bash: No such file or directory\n");
-			}
-			ret = 1;
-		}
-		if (list->f_type[i] == RED_IN)
-		{
-			list->fd_in = open(list->f_name[i], O_RDONLY, 0);
-			if (list->fd_in == -1)
-			{
-				printf("bash: No such file or directory\n");
-			}
-			ret = 1;
-		}
-		if (list->f_type[i] == RED_OUT_APP)
-		{
-			list->fd_out = open(list->f_name[i],
-								O_RDWR | O_CREAT | O_APPEND,
-								0600);
-			ret = 1;
-		}
-		printf("i is %d \n", i);
-		i++;
+		exit(1);
 	}
-	return (ret);
+	ft_bin_usr_sbin(list, envp);
 }
 
-void	ft_pipe(t_cmd *list, struct s_envp *envp)
+int	ft_pipe(t_cmd *list, struct s_envp *envp)
 {
 	int	i;
 	int	id;
-	
-	int pipes[2];
+	int	pipes[2];
+	int	fdin;
+
 	i = 0;
-	int fdin = 0;
+	fdin = 0;
 	list->cmd_iteration = 0;
 	list->fd_out = 1;
-
 	while (list)
 	{
-
-		
-			
-					heredoc_exec(list);
-
-
-		pipe(pipes);//
+		heredoc_exec(list);
+		if (pipe(pipes) < 0)
+			return (0);
 		id = fork();
 		if (id == 0)
 		{
-			// if(i != 0)
-			
-			dup2( fdin ,  0);
-			if (list->next)
-				dup2(pipes[1], 1);//
-	
-		
-			close(pipes[0]);
-					redirections(list);
-			set_rd(list);
-			if(ft_is_built_in(envp, list) == 0)
-			ft_bin_usr_sbin(list, envp);
-
+			ft_pipe_c(list, envp, fdin, pipes);
 		}
 		else
 		{
@@ -108,7 +62,6 @@ void	ft_pipe(t_cmd *list, struct s_envp *envp)
 				g_exit_status = WEXITSTATUS(g_exit_status);
 			close(pipes[1]);
 			fdin = pipes[0];
-		// pipes[0] = 	 list->fd_in;
 			i++;
 			list = list->next;
 		}

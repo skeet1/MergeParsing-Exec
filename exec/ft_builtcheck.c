@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtcheck.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:40:43 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/09 11:40:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/12 08:51:44 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ int	builtcheck_next(t_cmd *cmd, struct s_envp *envp)
 		}
 		while (cmd->cmd[i])
 		{
-			if (ft_equal_sign(cmd, i) == 0)
+			if (ft_equal_sign(cmd, i) == UNSUCCESSFUL)
 			{
 				g_exit_status = 1;
-				return (1);
 			}
-			g_exit_status = ft_unset(envp, cmd, i);
+			else
+			{
+				g_exit_status = ft_unset(envp, cmd, i);
+			}
 			i++;
 		}
 		return (1);
@@ -66,6 +68,7 @@ int	builtcheck_1(t_cmd *cmd, struct s_envp *envp)
 		if (cmd->cmd[1] == NULL)
 		{
 			if (ft_export_1(envp) == 0)
+			g_exit_status = 0;
 				return (0);
 		}
 		while (cmd->cmd[i] != NULL)

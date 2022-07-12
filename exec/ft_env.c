@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:50:22 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/08 21:13:50 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/11 22:43:05 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	ft_env(struct s_envp *envp, t_cmd *list)
 	while (i < envp->envpitems)
 	{
 		if(envp->value[i] != NULL  )
-		ft_putendl_fd(envp->environment[i], list->fd_out);
+		ft_putendl_fd(envp->environment[i],1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
