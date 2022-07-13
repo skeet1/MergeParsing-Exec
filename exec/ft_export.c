@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 10:26:01 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 10:44:51 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,22 @@ int	modify_name(struct s_envp *envp, t_cmd *cmd, char **split, int i)
 	}
 	return (1);
 }
+
 int	valid_identifier(struct s_envp *envp, t_cmd *cmd, int i)
 {
 	if (cmd->cmd[i][0] == '=')
 	{
 		printf("Minishell: export: `%s': not a valid identifier\n",
-				cmd->cmd[i]);
+			cmd->cmd[i]);
 		return (UNSUCCESSFUL);
 	}
 	return (SUCCESSFUL);
 }
 
-int	ft_export_no_equal(struct s_envp *envp, t_cmd *cmd, int i, char **new)
+int	ft_copyenv(struct s_envp *envp, t_cmd *cmd, char **new, int i)
 {
-	int	x;
 	int	t;
 
-	x = 0;
-	t = 0;
-	if (check_name_is_valid(&cmd->cmd[i], i, cmd) == 1)
-		return (UNSUCCESSFUL);
-	while (x < envp->envpitems)
-	{
-		if (ft_strncmp(envp->name[x], cmd->cmd[i], ft_strlen(cmd->cmd[i])
-				+ 1) == 0)
-		{
-			return (SUCCESSFUL);
-		}
-		x++;
-	}
 	t = 0;
 	while (t < envp->envpitems)
 	{
@@ -76,21 +63,18 @@ int	ft_export_no_equal(struct s_envp *envp, t_cmd *cmd, int i, char **new)
 		t++;
 	}
 	new[t] = cmd->cmd[i];
-	new[t + 1] = NULL;
 	envp->envpitems++;
-	ft_copy_1st_env(envp, new);
-	return (SUCCESSFUL);
+	envp->environment = new;
+	ft_split_env(envp, envp->environment);
+	return (0);
 }
 
 int	ft_export(struct s_envp *envp, t_cmd *cmd, int i)
 {
-	int		t;
 	char	**new;
 	char	**split;
-	int		len;
 	int		x;
 
-	len = 0;
 	if (valid_identifier(envp, cmd, i) == UNSUCCESSFUL)
 		return (UNSUCCESSFUL);
 	x = 0;
@@ -104,16 +88,7 @@ int	ft_export(struct s_envp *envp, t_cmd *cmd, int i)
 				return (1);
 			if (modify_name(envp, cmd, split, i) == 0)
 				return (0);
-			t = 0;
-			while (t < envp->envpitems)
-			{
-				new[t] = envp->environment[t];
-				t++;
-			}
-			new[t] = cmd->cmd[i];
-			envp->envpitems++;
-			envp->environment = new;
-			ft_split_env(envp, envp->environment);
+			ft_copyenv(envp, cmd, new, i);
 			return (SUCCESSFUL);
 		}
 		x++;

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:32:35 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 10:31:38 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ char		**ft_sort_env(struct s_envp *envp);
 int			check_name_is_valid(char **split, int i, t_cmd *cmd);
 int			modify_name(struct s_envp *envp, t_cmd *cmd, char **split, int i);
 int			ft_equal_sign(t_cmd *list, int arg);
+int	ft_export_no_equal(struct s_envp *envp, t_cmd *cmd, int i, char **new);
 //free
 int			free2d(char **s);
 int			ft_is_alpha_mod(char c);
