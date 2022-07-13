@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 19:36:43 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 21:07:04 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_pipe_c(t_cmd *list, struct s_envp *envp, int fdin, int *pipes)
 		exit(1);
 	}
 	ft_bin_usr_sbin(list, envp);
-	return (0);
 }
 
 int	ft_pipe_wait(int g)
@@ -47,13 +46,13 @@ int	ft_pipe_wait(int g)
 
 int	ft_pipe_rd(t_cmd *list, int *pipes)
 {
-	if (heredoc_exec(list) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	// if (heredoc_exec(list) == EXIT_FAILURE)
+	// 	return (EXIT_FAILURE);
 	if (pipe(pipes) < 0)
 	{
 		perror("Minishell: ");
 		g_exit_status = 1;
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	return (0);
 }
@@ -75,17 +74,19 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 	fdin = 0;
 	list->fd_out = 1;
 	g = 0;
+	if (heredoc_exec(list) == UNSUCCESSFUL)
+		return (UNSUCCESSFUL);
 	while (list)
 	{
-		if(ft_pipe_rd(list, pipes) == EXIT_FAILURE)
-		return EXIT_FAILURE;
+		if(ft_pipe_rd(list, pipes) == UNSUCCESSFUL)
+		return UNSUCCESSFUL;
 		id = fork();
+				g++;
 		if (id == -1)
 		{
 			perror("Minishell: ");
 			return (1);
 		}
-		g++;
 		if (id == 0)
 			ft_pipe_c(list, envp, fdin, pipes);
 		fdin = savefdin(list, pipes, fdin);

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:44:48 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 18:53:08 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 20:45:18 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	ft_split_env_next(struct s_envp *envp, char **env, int i)
 
 int	ft_split_env(struct s_envp *envp, char **env)
 {
-	int		i;
-	int		x;
-	int		len;
+	int	i;
+	int	x;
+	int	len;
 
 	envp->name = (char **)malloc(sizeof(char *) * envp->envpitems + 1);
 	envp->value = (char **)malloc(sizeof(char *) * envp->envpitems + 1);
@@ -54,7 +54,7 @@ int	ft_split_env(struct s_envp *envp, char **env)
 		else
 		{
 			ft_split_env_next(envp, env, i);
-		i++;
+			i++;
 		}
 	}
 	return (0);

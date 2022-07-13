@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 19:23:03 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 21:18:18 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,35 @@
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
+void	sigg(int sig)
+{
+	if (sig == SIGINT)
+		printf("\n");
+}
+
 int	heredoc_exec_part1(t_cmd *list, int i)
 {
 	int		id;
 	int		fd;
 	char	*line;
+	int		len;
 
 	id = fork();
 	if (id == -1)
-		return (UNSUCCESSFUL);
+		return (0);
 	if (id == 0)
 	{
 		line = NULL;
 		fd = open("/tmp/tmpherdoc", O_WRONLY | O_CREAT | O_TRUNC, 0777);
 		while (1)
 		{
-			line = heredoc_reader(list, i, line);
-			if (ft_strncmp(line, list->f_name[i], (ft_strlen(list->f_name[i])
-						+ 1)) == 0)
+			signal(SIGINT, handler_in_heredoc);
+			line = readline(">");
+			if (!line)
+				exit(EXIT_SUCCESS);
+			len = 0;
+			len = ft_strlen(list->f_name[i]) + 1;
+			if (ft_strncmp(line, list->f_name[i], len) == 0)
 				break ;
 			heredoc_write_fd(line, fd);
 		}
@@ -57,6 +68,7 @@ int	heredoc_exec(t_cmd *list)
 			}
 			i++;
 		}
+		i = 0;
 		list = list->next;
 	}
 	return (SUCCESSFUL);
