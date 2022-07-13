@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftcd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:37:52 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 08:35:09 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 07:17:55 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int	check_home_inenv(char *findhome, char *error)
 	if (findhome == NULL)
 	{
 		g_exit_status = 1;
-		error = "Minishell: cd: HOME not set\n";
-		len = ft_strlen(error);
-		write(2, error, len);
+		// error = "Minishell: cd: HOME not set\n";
+		// len = ft_strlen(error);
+		// write(2, error, len);
+					perror("Minishell: ");
+
 		return (UNSUCCESSFUL);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:50:59 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 06:55:37 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 07:22:36 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	redirections_c(t_cmd *list, int i)
 		list->fd_in = open(list->f_name[i], O_RDONLY, 0);
 		if (list->fd_in == -1)
 		{
-			printf("Minishell: No such file or directory\n");
+			perror("Minishell: ");
 			return (3);
 		}
 	}
@@ -48,7 +48,7 @@ int	redirections(t_cmd *list)
 					0600);
 			if (list->fd_out == -1)
 			{
-				printf("Minishell: No such file or directory\n");
+			perror("Minishell: ");
 				return (3);
 			}
 		}
