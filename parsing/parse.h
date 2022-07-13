@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/13 09:14:40 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:54:58 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,6 @@ typedef enum e_token
 	ARG
 }					t_e_token;
 
-/* ----------- START STRUCT FOR SPLIT ----------- */
-
-// typedef struct s_variables
-// {
-// 	int		l;
-// 	int		i;
-// 	int		j;
-// 	int		cl;
-// }			t_variables;
-
-/* ----------- END STRUCT FOR SPLIT ----------- */
-
 typedef struct s_data
 {
 	char			*cmd_line;
@@ -77,17 +65,8 @@ typedef struct s_files
 	struct s_files	*next;
 }					t_files;
 
-// size_t	ft_strlen(char *s);
 void				ft_putstr(char *s);
 void				ft_putendl(char *s);
-
-// typedef struct s_cmdl {
-// 	char	*cmd;
-// 	char	**args;
-// 	char	*in_red;
-// 	char	*out_red;
-// }		t_cmdl;
-
 typedef struct s_cmd
 {
 	char			**cmd;

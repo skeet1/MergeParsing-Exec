@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:43:04 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 11:49:53 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 12:02:17 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	ft_init(t_cmd *cmds)
 	cmds->envvarpos = 0;
 	cmds->delimiter = NULL;
 	cmds->args_execve = NULL;
+	cmds->fd_out = 1;
 	return (0);
 }
