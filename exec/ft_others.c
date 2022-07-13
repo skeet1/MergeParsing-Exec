@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_others.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 09:52:09 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 08:56:57 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_check_programs(t_cmd *cmd, struct s_envp *envp)
 		argv = create_argv_for_execve(cmd);
 		execve(cmd->cmd[0], argv, envp->environment);
 		printf("Minishell : %s : No such file or directory\n",
-				cmd->cmd[0]);
+			cmd->cmd[0]);
 		exit(127);
 	}
 	if (cmd->cmd[0][0] == '/')
@@ -55,7 +55,7 @@ int	ft_check_programs(t_cmd *cmd, struct s_envp *envp)
 		argv = create_argv_for_execve(cmd);
 		execve(cmd->cmd[0], argv, envp->environment);
 		printf("Minishell : %s : No such  file or directory\n",
-				cmd->cmd[0]);
+			cmd->cmd[0]);
 		exit(127);
 	}
 	return (0);

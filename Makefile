@@ -6,7 +6,7 @@
 #    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/13 08:30:39 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/13 08:56:40 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ SRC = ./exec/builtins.c \
 	./exec/ft_unset.c \
 	./exec/ft_export.c \
 	./exec/ft_others.c \
-	./exec/ft_readline.c \
 	./exec/ft_init.c  \
 	./libft/ft_putchar_fd.c \
 	./libft/ft_putstr_fd.c \
@@ -68,7 +67,6 @@ OBJ = builtins.o \
 	 ft_unset.o \
 	 ft_export.o \
 	 ft_others.o \
-	 ft_readline.o \
 	 ft_init.o  \
 	 ft_putchar_fd.o \
 	 ft_putstr_fd.o \
