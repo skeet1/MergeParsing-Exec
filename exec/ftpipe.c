@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 07:05:22 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 07:11:09 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	ft_pipe_rd(t_cmd *list, struct s_envp *envp, int *pipes)
 	if (heredoc_exec(list) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (pipe(pipes) < 0)
+	{
+		g_exit_status = 1;
 		return (1);
+	}
 	return (0);
 }
 
@@ -69,7 +72,8 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 	fdin = 0;
 	while (list)
 	{
-		ft_pipe_rd(list, envp, pipes);
+		if (ft_pipe_rd(list, envp, pipes) == 1)
+			return (1);
 		id = fork();
 		g++;
 		if (id == 0)
