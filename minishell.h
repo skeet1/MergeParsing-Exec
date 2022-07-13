@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 07:48:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 08:32:35 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,13 @@ int			free2d(char **s);
 int			ft_is_alpha_mod(char c);
 //tmp
 void		print_cmd(t_cmd *cmd);
+//heredoc
 int	heredoc_exec_part1(t_cmd *list, int i) ;
+char	*heredoc_reader(t_cmd *list, int i, char *line);
+int	heredoc_wait(int id);
+void	heredoc_write_fd(char *line, int fd);
+void	heredoc_exec_clean(char *line, int fd);
+void	handler_in_heredoc(int sig);
+int	heredoc_exec(t_cmd *list);
 
 #endif

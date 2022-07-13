@@ -6,7 +6,7 @@
 #    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/13 07:52:01 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/13 08:30:39 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,9 @@ SRC = ./exec/builtins.c \
 	./libft/ft_strcmp.c \
 	./exec/pass_to_exec.c \
 	./parsing/ft_check_syntax.c  \
-	./exec/ft_builtcheck.c   \
-	
+	./exec/ft_builtcheck.c \
+	./exec/ft_heredoc_tools.c \
+	 
 OBJ = builtins.o \
 	 ft_env.o \
 	 ft_strlen.o  \
@@ -101,7 +102,8 @@ OBJ = builtins.o \
 	 ft_strcmp.o \
 	 pass_to_exec.o \
 	ft_builtcheck.o \
-	 
+	ft_heredoc_tools.o \
+	
 all : $(NAME)
 $(OBJ) :
 	 $(CC) $(CFALGS) -c $(SRC) 

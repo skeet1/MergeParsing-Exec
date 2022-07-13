@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:07:15 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 08:31:29 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,61 +14,34 @@
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-void	handler_in_heredoc(int sig)
-{
-	if (sig == SIGINT)
-		printf("\n");
-	exit(EXIT_FAILURE);
-}
-
-void	sigg(int sig)
-{
-	if (sig == SIGINT)
-		printf("\n");
-}
-
 int	heredoc_exec_part1(t_cmd *list, int i)
 {
 	int		id;
-		int fd;
+	int		fd;
 	char	*line;
-	int		len;
 
 	id = fork();
 	if (id == -1)
-		return (0);
+		return (UNSUCCESSFUL);
 	if (id == 0)
 	{
 		line = NULL;
 		fd = open("/tmp/tmpherdoc", O_WRONLY | O_CREAT | O_TRUNC, 0777);
 		while (1)
 		{
-			signal(SIGINT, handler_in_heredoc);
-			line = readline(">");
-			if (!line)
-				exit(EXIT_SUCCESS);
-			len = 0;
-			len = ft_strlen(list->f_name[i]) + 1;
-			if (ft_strncmp(line, list->f_name[i], len) == 0)
-			{
+			line = heredoc_reader(list, i, line);
+			if (ft_strncmp(line, list->f_name[i], (ft_strlen(list->f_name[i])
+						+ 1)) == 0)
 				break ;
-			}
-			write(fd, line, ft_strlen(line));
-			write(fd, "\n", 1);
-			free(line);
+			heredoc_write_fd(line, fd);
 		}
-		free(line);
-		close(fd);
-		exit(SUCCESSFUL);
+		heredoc_exec_clean(line, fd);
 	}
 	else
-	{
-		waitpid(id, &g_exit_status, 0);
-		if (WIFEXITED(g_exit_status))
-			g_exit_status = WEXITSTATUS(g_exit_status);
-		return (g_exit_status);
-	}
+		return (heredoc_wait(id));
+	return (EXIT_SUCCESS);
 }
+
 int	heredoc_exec(t_cmd *list)
 {
 	int	i;
