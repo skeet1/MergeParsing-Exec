@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 07:49:48 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 08:45:12 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_pipe_c(t_cmd *list, struct s_envp *envp, int fdin, int *pipes)
 	if (redirections(list) == 3)
 	{
 		g_exit_status = 1;
-		return (1);
+		exit(1);
 	}
 	set_rd(list);
 	if (ft_is_built_in(envp, list) == 1)
@@ -59,6 +59,13 @@ int	ft_pipe_rd(t_cmd *list, int *pipes)
 	return (0);
 }
 
+int	savefdin(t_cmd *list, int *pipes, int fdin)
+{
+	close(pipes[1]);
+	fdin = pipes[0];
+	return (fdin);
+}
+
 int	ft_pipe(t_cmd *list, struct s_envp *envp)
 {
 	int	id;
@@ -71,8 +78,7 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 	g = 0;
 	while (list)
 	{
-		if (ft_pipe_rd(list, pipes) == 1)
-			return (1);
+		ft_pipe_rd(list, pipes);
 		id = fork();
 		if (id == -1)
 		{
@@ -82,8 +88,7 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 		g++;
 		if (id == 0)
 			ft_pipe_c(list, envp, fdin, pipes);
-		close(pipes[1]);
-		fdin = pipes[0];
+		fdin = savefdin(list, pipes, fdin);
 		list = list->next;
 	}
 	ft_pipe_wait(g);
