@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 08:55:51 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:20:11 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ int	ft_echo_c(t_cmd *cmds, int fd)
 	len = 0;
 	while (cmds->cmd[i])
 	{
-		// if (ft_strncmp(list[list->cmd_iteration].args[i], "$?", 2) == 0)
-		// {
-		// 	printf(" %d \n", g_exit_status);
-		// 	return (0);
-		// }
 		len = ft_strlen(cmds->cmd[i]);
 		write(fd, " ", 1);
 		write(fd, cmds->cmd[i], len);

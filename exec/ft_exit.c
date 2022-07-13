@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:41:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 09:00:41 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:48:44 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ int	check_exit_no_args(t_cmd *cmd, struct s_envp *envp)
 	return (0);
 }
 
+void	exitwithnonnumeric(t_cmd *cmd, struct s_envp *envp, int i)
+
+{
+	if (!(ft_isdigit(cmd->cmd[1][i])))
+	{
+		printf("exit\n");
+		printf("Minishell: exit: %s: numeric argument required\n",
+			cmd->cmd[1]);
+		free2d(envp->name);
+		free2d(envp->value);
+		exit(255);
+	}
+}
+
 int	check_exit_with_args(t_cmd *cmd, struct s_envp *envp)
 {
 	int	i;
@@ -56,15 +70,7 @@ int	check_exit_with_args(t_cmd *cmd, struct s_envp *envp)
 		{
 			while (cmd->cmd[1][i])
 			{
-				if (!(ft_isdigit(cmd->cmd[1][i])))
-				{
-					printf("exit\n");
-					printf("Minishell: exit: %s: numeric argument required\n",
-						cmd->cmd[1]);
-					free2d(envp->name);
-					free2d(envp->value);
-					exit(255);
-				}
+				exitwithnonnumeric(cmd, envp, i);
 				i++;
 			}
 			exit_value = ft_atoi(cmd->cmd[1]);
@@ -78,11 +84,19 @@ int	check_exit_with_args(t_cmd *cmd, struct s_envp *envp)
 
 int	ftexit(t_cmd *cmd, struct s_envp *envp)
 {
+	int	i;
+
+	i = 0;
 	check_exit_no_args(cmd, envp);
 	check_exit_with_args(cmd, envp);
+	if (cmd->cmd[2] != NULL)
+	{
+		while (cmd->cmd[1][i])
+		{
+			exitwithnonnumeric(cmd, envp, i);
+			i++;
+		}
+	}
 	printf("exit\n Minishell : exit : too many arguments\n");
-	free2d(envp->name);
-	free2d(envp->value);
-	g_exit_status = 2;
-	exit(2);
+	return (0);
 }
