@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_multi_cmds.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 09:17:14 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 18:03:32 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:50:07 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	set_rd(t_cmd *list)
 	{
 		if (list->f_type[i] == RED_OUT)
 			dup2(list->fd_out, 1);
-			if (list->f_type[i] == RED_IN_APP)
+		if (list->f_type[i] == RED_IN_APP)
 			dup2(list->fd_in, 0);
 		if (list->f_type[i] == RED_IN)
 			dup2(list->fd_in, 0);
@@ -33,7 +33,7 @@ int	set_rd(t_cmd *list)
 			close(list->fd_in);
 		if (list->f_type[i] == RED_OUT_APP)
 			close(list->fd_out);
-				if (list->f_type[i] == RED_IN_APP)
+		if (list->f_type[i] == RED_IN_APP)
 			close(list->fd_in);
 		i++;
 	}
