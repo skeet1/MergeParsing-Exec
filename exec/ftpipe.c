@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 07:11:09 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 07:26:19 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_pipe_rd(t_cmd *list, struct s_envp *envp, int *pipes)
 		return (EXIT_FAILURE);
 	if (pipe(pipes) < 0)
 	{
+		perror("Minishell: ");
 		g_exit_status = 1;
 		return (1);
 	}
@@ -75,6 +76,11 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 		if (ft_pipe_rd(list, envp, pipes) == 1)
 			return (1);
 		id = fork();
+		if(id == -1)
+		{
+			perror("Minishell: ");
+					return (1);
+		}
 		g++;
 		if (id == 0)
 			ft_pipe_c(list, envp, fdin, pipes);
