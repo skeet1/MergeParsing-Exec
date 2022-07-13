@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:41:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 11:48:44 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 19:01:39 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	free2d(char **s)
 	int	i;
 
 	i = 0;
-	if (s[i])
-		return (0);
+	// if (s[i])
+	// 	return (0);
 	while (s[i])
 	{
 		free(s[i]);
@@ -31,13 +31,24 @@ int	free2d(char **s)
 
 int	check_exit_no_args(t_cmd *cmd, struct s_envp *envp)
 {
+	
 	if (cmd->cmd[1] == NULL)
 	{
 		printf("exit\n");
 		rl_clear_history();
-		free2d(envp->name);
-		free2d(envp->value);
-		free2d(envp->environment);
+		// free2d(envp->name);
+		// free2d(envp->value);
+		int i = 0 ;
+		 while(i < envp->envpitems)
+		 {
+			free(envp->name[i]);
+			free(envp->value[i]);
+			i++;
+		 }
+		 		free2d(envp->environment);
+			free(envp->name);
+			free(envp->value);
+
 		exit(g_exit_status);
 	}
 	return (0);

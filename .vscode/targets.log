@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jul 13 17:36:49 2022
+# Make data base, printed on Wed Jul 13 19:36:02 2022
 
 # Variables
 
@@ -61,7 +61,7 @@ LESS_TERMCAP_so = [01;33m
 # makefile
 CURDIR := /mnt/s/13/07
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -141,7 +141,7 @@ _ = /home/asus/.vscode-server/bin/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9/node
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-33284471-c3ae-412a-85d8-1c3580d05984.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-37592ddd-d717-4f53-98af-ff6b3713ddae.sock
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -163,7 +163,7 @@ WSL_DISTRO_NAME = kali-linux
 # makefile (from 'Makefile', line 14)
 CC = gcc
 # variable set hash-table stats:
-# Load=76/1024=7%, Rehash=0, Collisions=9/117=8%
+# Load=76/1024=7%, Rehash=0, Collisions=8/111=7%
 
 # Pattern-specific Variable Values
 
@@ -171,9 +171,9 @@ CC = gcc
 
 # Directories
 
-# . (device 66, inode 281474976717741): 12 files, no impossibilities.
+# . (device 66, inode 281474976717741): 57 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 57 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -183,74 +183,81 @@ CC = gcc
 
 ft_env.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:20.5870294
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_strchr.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:24.1712282
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_putstr_fd.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.3206811
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_exit.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.4583029
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 parse.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.6557872
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_init.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.1614932
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_strcmp.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.7272356
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_putendl_fd.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.3969152
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 minishell: builtins.o ft_env.o ft_strlen.o redirections.o ft_strnstr.o ft_unset.o ft_export.o ft_others.o ft_init.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_tolower.o ftpipe.o ft_one_command.o ft_calloc.o ft_multi_cmds.o ft_strdup.o ft_atoi.o ft_isdigit.o ft_here_doc.o ft_search_path.o is_builtin.o ft_exit.o ftcd.o ft_copy_1st_env.o ft_export_tools.o ft_strncmp.o ft_itoa.o ft_strjoin.o ft_substr.o ft_split.o ft_check_syntax.o ft_token.o remove_quotes.o ft_strlcpy.o ft_strtrim.o parse.o ft_strcmp.o pass_to_exec.o ft_builtcheck.o ft_heredoc_tools.o ft_strchr.o ft_export_no_equal.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2022-07-13 19:23:25.2683975
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 114):
 	$(CC)  $(OBJ) -o $(NAME)  -lreadline -L /goinfre/$(USER)/.brew/opt/readline/lib -I 	/goinfre/$(USER)/.brew/opt/readline/include 
 
 redirections.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:20.7574695
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
@@ -263,30 +270,34 @@ Makefile:
 
 ft_strlen.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:20.6612845
+#  File has been updated.
+#  Successfully updated.
+ 
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 is_builtin.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.3781258
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
- 
 ft_strnstr.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:20.8333068
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_strdup.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.8238135
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
@@ -300,22 +311,25 @@ clean:
 
 ft_heredoc_tools.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:24.0983815
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_itoa.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.8621577
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_strtrim.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.5584343
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
@@ -326,84 +340,73 @@ re: fclean all
 
 builtins.o:
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  File does not exist.
+#  Last modified 2022-07-13 19:23:20.5061335
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := builtins.o
-# automatic
-# * := 
-# automatic
-# < := 
-# automatic
-# + := 
-# automatic
-# % := 
-# automatic
-# ^ := 
-# automatic
-# ? := 
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/14=14%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_others.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.0892866
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_isdigit.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.9780492
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_export_tools.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.7138384
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_strjoin.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.952155
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ftcd.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.547985
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_one_command.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.6623975
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_search_path.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.2950882
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_multi_cmds.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.7482714
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
@@ -415,8 +418,9 @@ ft_multi_cmds.o:
 
 ft_builtcheck.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:24.0128974
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
@@ -425,14 +429,13 @@ all: minishell
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/6=0%
+#  Successfully updated.
 
 ft_export_no_equal.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:24.2606083
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
@@ -445,132 +448,143 @@ fclean: clean
 
 ft_copy_1st_env.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.6344925
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_check_syntax.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.9241621
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ftpipe.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.5771573
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_unset.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:20.9269425
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 remove_quotes.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.4001493
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_atoi.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.906037
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_strlcpy.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.4848097
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_calloc.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.1285172
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_split.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.1102069
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_token.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.3076699
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_substr.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.0288476
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_here_doc.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.2147292
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 pass_to_exec.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:23.8231755
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_strncmp.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+ 
+#  Last modified 2022-07-13 19:23:22.7872851
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_putchar_fd.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.2510545
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
-# Not a target:
-.SUFFIXES:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
 ft_export.o:
- 
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:21.0133273
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 ft_tolower.o:
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2022-07-13 19:23:22.0553326
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 111):
 	 $(CC) $(CFALGS) -c $(SRC) 
 
 # files hash-table stats:
-# Load=52/1024=5%, Rehash=0, Collisions=9/113=8%
+# Load=52/1024=5%, Rehash=0, Collisions=9/112=8%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
@@ -580,9 +594,9 @@ ft_tolower.o:
 # strcache buffers: 1 (0) / strings = 65 / storage = 752 B / avg = 11 B
 # current buf: size = 8162 B / used = 752 B / count = 65 / avg = 11 B
 
-# strcache performance: lookups = 168 / hit rate = 61%
+# strcache performance: lookups = 212 / hit rate = 69%
 # hash-table stats:
-# Load=65/8192=1%, Rehash=0, Collisions=1/168=1%
-# Finished Make data base on Wed Jul 13 17:36:49 2022
+# Load=65/8192=1%, Rehash=0, Collisions=1/212=0%
+# Finished Make data base on Wed Jul 13 19:36:02 2022
 
  

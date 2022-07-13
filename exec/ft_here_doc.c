@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:31:29 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 19:23:03 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	heredoc_exec_part1(t_cmd *list, int i)
 	}
 	else
 		return (heredoc_wait(id));
-	return (EXIT_SUCCESS);
 }
 
 int	heredoc_exec(t_cmd *list)
@@ -53,7 +52,7 @@ int	heredoc_exec(t_cmd *list)
 		{
 			if (list->f_type[i] == RED_IN_APP)
 			{
-				if (heredoc_exec_part1(list, i) == EXIT_FAILURE)
+				if (heredoc_exec_part1(list, i) == UNSUCCESSFUL)
 					return (UNSUCCESSFUL);
 			}
 			i++;

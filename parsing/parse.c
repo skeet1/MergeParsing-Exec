@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/12 19:24:03 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 19:12:46 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	handler(int sig)
 	if (sig == SIGINT)
 	{
 				printf("\n");
+		rl_on_new_line();      
 
 		rl_replace_line("", 1);
 
-		rl_on_new_line();      
 		rl_redisplay();
 		g_exit_status = 1;  
 	}

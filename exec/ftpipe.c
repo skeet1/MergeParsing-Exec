@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftpipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:45:12 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 19:36:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	ft_pipe_wait(int g)
 		wait(NULL);
 		g--;
 	}
-	return (0);
 }
 
 int	ft_pipe_rd(t_cmd *list, int *pipes)
@@ -78,7 +77,8 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 	g = 0;
 	while (list)
 	{
-		ft_pipe_rd(list, pipes);
+		if(ft_pipe_rd(list, pipes) == EXIT_FAILURE)
+		return EXIT_FAILURE;
 		id = fork();
 		if (id == -1)
 		{
@@ -92,5 +92,4 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 		list = list->next;
 	}
 	ft_pipe_wait(g);
-	return (0);
 }
