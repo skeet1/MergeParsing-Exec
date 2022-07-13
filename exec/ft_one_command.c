@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_one_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 19:08:39 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 07:59:46 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	one_cmd_1(struct s_envp *envp, t_cmd *cmds)
 	if (fork() == 0)
 	{
 		if (redirections(cmds) == 3)
-			return (3);
+			exit(1);
 		heredoc_exec(cmds);
 		while (cmds->f_type[i])
 		{
@@ -55,13 +55,13 @@ int	one_cmd_1(struct s_envp *envp, t_cmd *cmds)
 int	one_cmd(struct s_envp *envp, t_cmd *cmds)
 {
 	int	i;
-	// i  = 0;
 
- if (cmds->cmd[0] == NULL)
+	i = 0;
+	if (cmds->cmd[0] == NULL)
 	{
 		if (redirections(cmds) == 3)
 			return (3);
-				heredoc_exec(cmds);
+		heredoc_exec(cmds);
 		if (cmds->f_type != NULL)
 		{
 			if (cmds->f_type[i] == RED_OUT)
@@ -79,15 +79,13 @@ int	one_cmd(struct s_envp *envp, t_cmd *cmds)
 		}
 		return (1);
 	}
-else	if (cmds->cmd[0])
-	{	
-
+	else if (cmds->cmd[0])
+	{
 		if (is_builtin(cmds) == 0)
 		{
-				// heredoc_exec(cmds);
 			if (redirections(cmds) == 3)
 				return (3);
-					heredoc_exec(cmds);
+			heredoc_exec(cmds);
 			ft_is_built_in(envp, cmds);
 			if (cmds->f_type != NULL)
 			{
@@ -108,12 +106,11 @@ else	if (cmds->cmd[0])
 		}
 		else if (is_builtin(cmds) == 3)
 		{
-				// heredoc_exec(cmds);
+			// heredoc_exec(cmds);
 			one_cmd_1(envp, cmds);
 			return (1);
 		}
 	}
 	// heredoc_exec(cmds);
-	
 	return (0);
 }

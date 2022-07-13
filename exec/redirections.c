@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 09:50:59 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 07:22:36 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 07:55:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	redirections(t_cmd *list)
 					0600);
 			if (list->fd_out == -1)
 			{
-			perror("Minishell: ");
+				perror("Minishell: ");
 				return (3);
 			}
 		}

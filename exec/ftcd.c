@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:37:52 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 07:24:32 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 07:50:45 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_home_inenv(char *findhome, char *error)
 	return (0);
 }
 
-int	cd_last_check(t_cmd *cmd, char *error)
+int	cd_last_check(t_cmd *cmd)
 {
 	int	len;
 
@@ -56,7 +56,7 @@ int	ftcd_c(t_cmd *cmd)
 	}
 	if (cmd->cmd[2] == NULL)
 	{
-		if (cd_last_check(cmd, cmd->error) == 1)
+		if (cd_last_check(cmd) == 1)
 			return (1);
 	}
 	return (SUCCESSFUL);
