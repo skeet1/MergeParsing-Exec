@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtcheck.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:40:43 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/12 08:51:44 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 09:00:00 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	builtcheck_1(t_cmd *cmd, struct s_envp *envp)
 		{
 			if (ft_export_1(envp) == 0)
 			g_exit_status = 0;
-				return (0);
+			return (0);
 		}
 		while (cmd->cmd[i] != NULL)
 		{

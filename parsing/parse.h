@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/13 07:51:10 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 09:14:40 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,9 @@ typedef struct s_cmd
 	char			**args_execve;
 	int				envvarpos;
 	int				pi[2];
+	char **splited;
+	int t;
+	char **exportnew;
 
 	struct s_cmd	*next;
 }					t_cmd;
