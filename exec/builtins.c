@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 11:57:56 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 12:05:09 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	ft_pwd(int fd_out)
 	pwd = getcwd(NULL, PATH_MAX);
 	if (pwd == NULL)
 	{
-		// ft_putstr_fd("getcwd: failed\n", 2);
 		perror("Minishell : ");
 		return (UNSUCCESSFUL);
 	}
