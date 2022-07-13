@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:36:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:36:57 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:17:35 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_is_built_in(struct s_envp *envp, t_cmd *cmds)
 		return (1);
 	else if (ft_strncmp(cmds->cmd[0], "env", 4) == 0)
 	{
-		g_exit_status = ft_env(envp);
+		g_exit_status = ft_env(envp, cmds);
 		return (1);
 	}
 	else if (ft_strncmp(cmds->cmd[0], "pwd", 4) == 0)

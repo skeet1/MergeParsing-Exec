@@ -6,14 +6,14 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:50:22 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 10:15:32 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/13 11:17:29 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	ft_env(struct s_envp *envp)
+int	ft_env(struct s_envp *envp, t_cmd *cmd)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ int	ft_env(struct s_envp *envp)
 	while (i < envp->envpitems)
 	{
 		if (envp->value[i] != NULL)
-			ft_putendl_fd(envp->environment[i], 1);
+			ft_putendl_fd(envp->environment[i], cmd->fd_out);
 		i++;
 	}
 	return (0);
