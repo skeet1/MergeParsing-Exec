@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 18:18:46 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 08:26:48 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 #include "../parsing/parse.h"
+
 int	ft_echo_n(t_cmd *cmds, int fd)
 {
 	int	i;
@@ -37,7 +38,9 @@ int	ft_echo_c(t_cmd *cmds, int fd)
 {
 	int	i;
 	int	len;
-	int check = UNSUCCESSFUL;
+	int	check;
+
+	check = UNSUCCESSFUL;
 	i = 1;
 	len = 0;
 	while (cmds->cmd[i])
@@ -45,8 +48,7 @@ int	ft_echo_c(t_cmd *cmds, int fd)
 		if (ft_echo_n(cmds, fd) == SUCCESSFUL && i == 1)
 		{
 			check = SUCCESSFUL;
-						i++;
-
+			i++;
 		}
 		len = ft_strlen(cmds->cmd[i]);
 		write(fd, cmds->cmd[i], len);
@@ -54,10 +56,10 @@ int	ft_echo_c(t_cmd *cmds, int fd)
 		if (cmds->cmd[i])
 			write(fd, " ", 1);
 		else if (cmds->cmd[i] == NULL && check == UNSUCCESSFUL)
-				write(fd, "\n", 1);
-
+			write(fd, "\n", 1);
 	}
-	write(fd, "\n", 1);
+	if (check == UNSUCCESSFUL)
+		write(fd, "\n", 1);
 	return (SUCCESSFUL);
 }
 
@@ -74,9 +76,7 @@ int	ft_echo(t_cmd *cmds, int fd)
 		return (SUCCESSFUL);
 	}
 	else if (cmds->cmd[1] != NULL)
-	{
 		ft_echo_c(cmds, fd);
-	}
 	return (SUCCESSFUL);
 }
 
