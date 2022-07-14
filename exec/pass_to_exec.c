@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/13 08:36:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:11:04 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	pass_to_exec(struct s_envp *envp, t_cmd *cmds)
 	int	nbr;
 
 	print_cmd(cmds);
-	ft_init(cmds);
+	ft_init(cmds, envp);
 	nbr = ft_lstsize(cmds);
 	cmds->cmdnbr = nbr;
 	if (nbr == 1)

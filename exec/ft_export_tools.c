@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:02:52 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:30:59 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ int	ft_export_1(struct s_envp *envp)
 
 	x = 0;
 	i = 0;
+	if(envp->environment > 0)
+	{
+		
+	
 	ft_copy_1st_env(envp, envp->environment);
 	joined = ft_sort_env(envp);
 	i = 0;
@@ -78,8 +82,11 @@ int	ft_export_1(struct s_envp *envp)
 		printf("declare -x %s\"\n", joined[i]);
 		i++;
 	}
-	free2d(joined);
+	// free2d(joined);
 	return (SUCCESSFUL);
+	}
+		return (UNSUCCESSFUL);
+
 }
 
 int	check_name_is_valid(char **split, int i, t_cmd *cmd)

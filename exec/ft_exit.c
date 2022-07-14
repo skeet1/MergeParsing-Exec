@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:41:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:03:31 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:13:21 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@ int	ft_cleaner(t_cmd *cmd, struct s_envp *envp)
 	{
 		free(envp->name[i]);
 		free(envp->value[i]);
+		if(envp->ismalloced == 1)
+		free(envp->new[i]);
 		i++;
 	}
 	// free2d(envp->environment);
 	free(envp->name);
 	free(envp->value);
+	if(envp->ismalloced == 1)
+		free(envp->new);
 	return (0);
 }
 int	check_exit_no_args(t_cmd *cmd, struct s_envp *envp)

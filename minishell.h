@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 11:17:14 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:08:49 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ struct		s_envp
 	char	**name;
 	char	**value;
 	char	**copy;
+	//free
+	char **new;
+	int ismalloced;
 };
 typedef struct t_list
 {
@@ -108,7 +111,7 @@ int		ft_pipe(t_cmd *list, struct s_envp *envp);
 // signals
 void		handler(int sig);
 // init data
-int			ft_init(t_cmd *cmds);
+int			ft_init(t_cmd *cmds,  struct s_envp *envp);
 //export tools
 char		**join_name_and_value(struct s_envp *envp);
 char		**ft_sort_env(struct s_envp *envp);
