@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:56:00 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:02:31 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	unsetit(struct s_envp *envp, t_cmd *list, int arg)
 	char	**new;
 
 	x = 0;
-	new = malloc(sizeof(char **) * envp->envpitems - 1);
+	new = (char **)malloc(sizeof(char *) * envp->envpitems - 1);
 	envp->envpitems--;
 	while (x < envp->envpitems)
 	{
@@ -70,7 +70,7 @@ int	unsetit(struct s_envp *envp, t_cmd *list, int arg)
 		x++;
 	}
 	envp->environment = new;
-	free2d(new);
+	// free2d(new);
 	ft_split_env(envp, envp->environment);
 	return (SUCCESSFUL);
 }

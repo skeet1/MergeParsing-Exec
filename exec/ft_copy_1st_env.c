@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_1st_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:44:48 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 20:45:18 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:03:00 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	ft_copy_1st_env(struct s_envp *envp, char **env)
 	int	i;
 
 	ft_strlenenv(envp, env);
-	envp->environment = malloc(sizeof(char **) * (envp->envpitems + 1));
+	envp->environment = (char **)malloc(sizeof(char *) * (envp->envpitems + 1));
 	ft_split_env(envp, env);
 	i = 0;
 	ft_copy_env(envp, env);

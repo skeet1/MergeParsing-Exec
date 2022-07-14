@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 10:44:51 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:02:45 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	ft_export(struct s_envp *envp, t_cmd *cmd, int i)
 	if (valid_identifier(envp, cmd, i) == UNSUCCESSFUL)
 		return (UNSUCCESSFUL);
 	x = 0;
-	new = malloc(sizeof(char **) * (envp->envpitems + 2));
+	new = (char **)malloc(sizeof(char *) * (envp->envpitems + 2));
 	while (cmd->cmd[i][x])
 	{
 		if (cmd->cmd[i][x] == '=')

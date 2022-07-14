@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:41:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 09:34:23 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:03:31 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_cleaner(t_cmd *cmd, struct s_envp *envp)
 		free(envp->value[i]);
 		i++;
 	}
-	free2d(envp->environment);
+	// free2d(envp->environment);
 	free(envp->name);
 	free(envp->value);
 	return (0);

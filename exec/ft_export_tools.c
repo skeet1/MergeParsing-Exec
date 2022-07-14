@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 21:18:12 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:02:52 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**join_name_and_value(struct s_envp *envp)
 	char	*tmp1;
 
 	i = 0;
-	joined = malloc(sizeof(char **) * envp->envpitems + 1);
+	joined = (char **)malloc(sizeof(char *) * envp->envpitems + 1);
 	i = 0;
 	while (i < envp->envpitems)
 	{
