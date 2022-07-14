@@ -52,6 +52,32 @@ void	mark_cmd(t_token *tok)
 	}
 }
 
+char	*rm_first_char(char *str)
+{
+	char	*s;
+	int		len;
+	int		i;
+	
+	if (str)
+	{
+		len = ft_strlen(str);
+		s = (char *)malloc(len);
+		if (!s)
+			return (s);
+		i = 0;
+		if (str[i])
+			i++;
+		while (str[i])
+		{
+			s[i - 1] = str[i];
+			i++;
+		}
+		s[i - 1] = '\0';
+		return (s);
+	}
+	return (NULL);
+}
+
 void	exp_change_value(struct s_envp *envp, t_token *token)
 {
 	struct s_envp	*env;
@@ -59,39 +85,22 @@ void	exp_change_value(struct s_envp *envp, t_token *token)
 	int				len;
 	
 	len = 0;
-	// printf("change value\n");
-	// while (token)
-	// {
-	// 	i = 0;
-	// 	env = envp;
-	// 	len = (int)ft_strlen(ft_strchrr(token->value, '$'));
-	// 	if (token->type == WORD && !token->sgl_qt)
-	// 	{
-	// 		while (i < env->envpitems)
-	// 		{
-	// 			// if (ft_strncmp(ft_strchrr(token->value, '$'), env->name[i], len) == 0)
-	// 			// {
-	// 				// printf("%s\t", env->name[i]);
-	// 				// printf("len is: %d\t", len);
-	// 				printf("before: %s\t", token->value);
-	// 				// printf("before CHR: %s\n", ft_strchrr(token->value, '$'));
-	// 				// printf("dif is %d\n", ft_strncmp(env->name[i], ft_strchrr(token->value, '$'), len));
-	// 				if (ft_strncmp(env->name[i], ft_strchrr(token->value, '$'), len) == 0)
-	// 				{
-	// 					token->value = env->value[i];
-	// 				// token->value = env->value[i];
-	// 					printf("After: %s\n", token->value);
-	// 				}	
-	// 			// }
-	// 			// printf("%d\n", ft_strlen(ft_strchrr(token->value, '$')));
-	// 			// printf("%s\n", ft_strchrr(token->value, '$'));
-	// 			// if (ft_strchrr(token->value, '$') == env->name[i])
-	// 			// 	printf("found\n");
-	// 			i++;
-	// 		}
-	// 	}
-	// 	token = token->next;
-	// }
+	while (token)
+	{
+		if (token->type == WORD && !token->sgl_qt)
+		{
+			i = 0;
+			while (envp->name[i])
+			{
+				if (ft_strcmp(rm_first_char(ft_strchr(token->value, '$')), envp->name[i]) == 0)
+				{
+					token->value = envp->value[i];
+				}
+				i++;
+			}
+		}
+		token = token->next;
+	}
 }
 
 t_cmd	*new_node_cmd(char **args, int *file_type, char **file_name)
