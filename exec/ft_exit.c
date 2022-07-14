@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:41:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 19:01:39 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 09:34:23 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,30 @@ int	free2d(char **s)
 	free(s);
 	return (0);
 }
+int	ft_cleaner(t_cmd *cmd, struct s_envp *envp)
+{
+	int	i;
 
+	i = 0;
+	rl_clear_history();
+	while (i < envp->envpitems)
+	{
+		free(envp->name[i]);
+		free(envp->value[i]);
+		i++;
+	}
+	free2d(envp->environment);
+	free(envp->name);
+	free(envp->value);
+	return (0);
+}
 int	check_exit_no_args(t_cmd *cmd, struct s_envp *envp)
 {
-	
 	if (cmd->cmd[1] == NULL)
 	{
 		printf("exit\n");
 		rl_clear_history();
-		// free2d(envp->name);
-		// free2d(envp->value);
-		int i = 0 ;
-		 while(i < envp->envpitems)
-		 {
-			free(envp->name[i]);
-			free(envp->value[i]);
-			i++;
-		 }
-		 		free2d(envp->environment);
-			free(envp->name);
-			free(envp->value);
-
+		ft_cleaner(cmd, envp);
 		exit(g_exit_status);
 	}
 	return (0);
@@ -61,9 +64,9 @@ void	exitwithnonnumeric(t_cmd *cmd, struct s_envp *envp, int i)
 	{
 		printf("exit\n");
 		printf("Minishell: exit: %s: numeric argument required\n",
-			cmd->cmd[1]);
-		free2d(envp->name);
-		free2d(envp->value);
+				cmd->cmd[1]);
+		ft_cleaner(cmd, envp);
+
 		exit(255);
 	}
 }
@@ -85,8 +88,7 @@ int	check_exit_with_args(t_cmd *cmd, struct s_envp *envp)
 				i++;
 			}
 			exit_value = ft_atoi(cmd->cmd[1]);
-			free2d(envp->name);
-			free2d(envp->value);
+			ft_cleaner(cmd, envp);
 			exit(exit_value);
 		}
 	}
