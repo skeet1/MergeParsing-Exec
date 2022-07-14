@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:43:04 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:10:50 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:55:42 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_init(t_cmd *cmds, struct s_envp *envp)
 	cmds->fd_out = 1;
 	//env 
 	envp->ismalloced = 0;
+	envp->malloced = 0;
 	envp->new = NULL;
 	return (0);
 }

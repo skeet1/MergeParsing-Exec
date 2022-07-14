@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftpipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 21:07:04 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 11:07:26 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ int	ft_pipe_wait(int g)
 
 int	ft_pipe_rd(t_cmd *list, int *pipes)
 {
-	// if (heredoc_exec(list) == EXIT_FAILURE)
-	// 	return (EXIT_FAILURE);
-	if (pipe(pipes) < 0)
+		if (pipe(pipes) < 0)
 	{
 		perror("Minishell: ");
 		g_exit_status = 1;

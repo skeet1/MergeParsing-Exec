@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:26:39 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 11:03:28 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	ft_search_for_variable_in_env(struct s_envp *envp, t_cmd *list, int arg)
 int	unsetit(struct s_envp *envp, t_cmd *list, int arg)
 {
 	int		x;
-	// char	**new;
-
 	x = 0;
 	envp->new = (char **)malloc(sizeof(char *) * envp->envpitems) ;
 	envp->ismalloced = 1;
@@ -71,8 +69,6 @@ int	unsetit(struct s_envp *envp, t_cmd *list, int arg)
 		x++;
 	}
 	envp->environment = envp->new;
-	// free2d(envp->new);
-	 ft_split_env(envp,envp->environment );
 	return (SUCCESSFUL);
 }
 

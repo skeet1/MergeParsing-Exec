@@ -6,12 +6,12 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:30:59 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 11:05:57 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
 char	**join_name_and_value(struct s_envp *envp)
 {
@@ -21,6 +21,7 @@ char	**join_name_and_value(struct s_envp *envp)
 
 	i = 0;
 	joined = (char **)malloc(sizeof(char *) * envp->envpitems + 1);
+	envp->malloced = 1;
 	i = 0;
 	while (i < envp->envpitems)
 	{
@@ -41,6 +42,7 @@ char	**ft_sort_env(struct s_envp *envp)
 	char	*tmp;
 	char	**joined;
 
+	ft_split_env(envp, envp->environment);
 	joined = join_name_and_value(envp);
 	i = 0;
 	while (i < envp->envpitems)
@@ -53,7 +55,6 @@ char	**ft_sort_env(struct s_envp *envp)
 				tmp = joined[i];
 				joined[i] = joined[j];
 				joined[j] = tmp;
-				
 			}
 			j++;
 		}
@@ -64,29 +65,24 @@ char	**ft_sort_env(struct s_envp *envp)
 
 int	ft_export_1(struct s_envp *envp)
 {
-	int		i;
-	int		x;
-	char	**joined;
+	int	i;
+	int	x;
 
+	envp->namevalue = NULL;
 	x = 0;
 	i = 0;
-	if(envp->environment > 0)
+	if (envp->environment > 0)
 	{
-		
-	
-	ft_copy_1st_env(envp, envp->environment);
-	joined = ft_sort_env(envp);
-	i = 0;
-	while (i < envp->envpitems)
-	{
-		printf("declare -x %s\"\n", joined[i]);
-		i++;
+		envp->namevalue = ft_sort_env(envp);
+		i = 0;
+		while (i < envp->envpitems)
+		{
+			printf("declare -x %s\"\n", envp->namevalue[i]);
+			i++;
+		}
+		return (SUCCESSFUL);
 	}
-	// free2d(joined);
-	return (SUCCESSFUL);
-	}
-		return (UNSUCCESSFUL);
-
+	return (UNSUCCESSFUL);
 }
 
 int	check_name_is_valid(char **split, int i, t_cmd *cmd)
@@ -94,7 +90,7 @@ int	check_name_is_valid(char **split, int i, t_cmd *cmd)
 	if (ft_is_alpha_mod(split[0][0]) == 0)
 	{
 		printf("Minishell: export: `%s': not a valid identifier\n",
-			cmd->cmd[i]);
+				cmd->cmd[i]);
 		return (1);
 	}
 	return (0);

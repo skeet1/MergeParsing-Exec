@@ -1,6 +1,7 @@
 Makefile
 builtins.o
 exec
+f
 fd
 ft_atoi.o
 ft_builtcheck.o
@@ -45,6 +46,7 @@ libft
 minishell
 minishell.dSYM
 minishell.h
+nofree
 parse.o
 parsing
 pass_to_exec.o

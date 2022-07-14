@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:44:48 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:03:00 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:53:17 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_split_env(struct s_envp *envp, char **env)
 	{
 		if (!(ft_strchr(env[i], '=')))
 		{
-			envp->name[i] = env[i];
+			envp->name[i] = ft_strdup(env[i]);
 			envp->value[i] = NULL;
 			i++;
 		}
@@ -81,6 +81,9 @@ int	ft_copy_env(struct s_envp *envp, char **env)
 	int		nb;
 
 	x = 0;
+	
+
+	
 	while (x < envp->envpitems)
 	{
 		nb = 0;
@@ -93,21 +96,22 @@ int	ft_copy_env(struct s_envp *envp, char **env)
 			envp->environment[x] = joined;
 			x++;
 		}
-		envp->environment[x] = env[x];
+		envp->environment[x] =ft_strdup(env[x]);
 		x++;
 	}
 	envp->environment[x] = NULL;
+	
 	return (0);
 }
 
 int	ft_copy_1st_env(struct s_envp *envp, char **env)
 {
-	int	i;
-
 	ft_strlenenv(envp, env);
+	
 	envp->environment = (char **)malloc(sizeof(char *) * (envp->envpitems + 1));
+	
 	ft_split_env(envp, env);
-	i = 0;
 	ft_copy_env(envp, env);
+	
 	return (0);
 }

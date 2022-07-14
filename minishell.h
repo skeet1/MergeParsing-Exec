@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:08:49 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:55:24 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ struct		s_envp
 	//free
 	char **new;
 	int ismalloced;
+	char **namevalue;
+	int malloced;
 };
 typedef struct t_list
 {
