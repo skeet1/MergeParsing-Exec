@@ -53,7 +53,7 @@ void	print_token(t_token *token)
 {
 	while (token)
 	{
-		printf("type is %d value is %s\n", token->type, token->value);
+		printf("type is %d value is %s single quotes %d\n", token->type, token->value, token->sgl_qt);
 		token = token->next;
 	}
 }
