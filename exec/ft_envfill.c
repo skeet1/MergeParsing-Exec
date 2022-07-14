@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 21:02:44 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 21:45:50 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,35 +106,43 @@ int	ft_split_env_next(struct s_environ *envp, char **en, int i)
 // 			free(tmp->env);
 // 			free(tmp->name);
 // 			free(tmp->next);
-// 			break;
+// 			break ;
 // 		}
 // 		prev = tmp;
 // 		tmp = tmp->next;
 // 	}
 // 	return (SUCCESSFUL);
 // }
-int unsett(struct s_environ **head, char *un)
+int	unsett(struct s_environ **head, int pos)
 {
 	struct s_environ	*current;
 	struct s_environ	*previous;
 
 	current = *head;
 	previous = *head;
-	while (current)
+	if (*head == NULL)
+		return (1);
+	else if (pos == 1)
 	{
-		previous = current;
-		current = current->next;
-		// printf("%s    \n", current->env);
-		if (ft_strncmp(current->env, un, ft_strlen(un)) == 0)
+		*head = current->next;
+		free(current);
+		current = NULL;
+	}
+	else
+	{
+		while (pos != 1)
 		{
-			previous->next = current->next;
-			free(current);
-			current = NULL;
-			return (0);
+			previous = current;
+			current = current->next;
+			pos--;
 		}
+		previous->next = current->next;
+		free(current);
+		current = NULL;
 	}
 	return (SUCCESSFUL);
 }
+
 int	ft_eport(struct s_environ *env)
 {
 	char	**new;
@@ -147,21 +155,34 @@ int	ft_eport(struct s_environ *env)
 
 void	print(struct s_environ *env, char **envp)
 {
-	// ft_eport(env);
+	int					pos;
+	struct s_environ	*tmp;
+
+	pos = 1;
+	tmp = env;
+	ft_eport(env);
 	ft_split_env_next(env, envp, 0);
-	unsett(&env, "HOME");
-	unsett(&env, "PWD");
-	unsett(&env, "USER");
-	unsett(&env, "SHLVL");
-	unsett(&env, "VSCODE_IPC_HOOK_CLI");
-	unsett(&env, "OLDPWD");
-	unsett(&env, "NAME");
-	unsett(&env, "XAUTHORITY");
-	unsett(&env, "LANG");
-	// unsett(&env, "LS_COLORS");
-	unsett(&env, "PATH");
-	unsett(&env, "PULSE_SERVER");
-	unsett(&env, "HOSTTYPE");
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->name, "SHELL", ft_strlen("SHELL")) == 0)
+			break ;
+		pos++;
+		tmp = tmp->next;
+	}
+	unsett(&env, pos);
+	// unsett(&en, "HOME");
+	// unsett(&env, "PWD");
+	// unsett(&env, "USER");
+	// unsett(&env, "SHLVL");
+	// unsett(&env, "VSCODE_IPC_HOOK_CLI");
+	// unsett(&env, "OLDPWD");
+	// unsett(&env, "NAME");
+	// unsett(&env, "XAUTHORITY");
+	// unsett(&env, "LANG");
+	// // unsett(&env, "LS_COLORS");
+	// unsett(&env, "PATH");
+	// unsett(&env, "PULSE_SERVER");
+	// unsett(&env, "HOSTTYPE");
 	while (env)
 	{
 		// printf("%s |  %s \n", env->name, env->value);
