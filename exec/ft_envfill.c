@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 16:19:31 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 16:57:03 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,41 @@ int	ft_split_env_next(struct s_environ *envp, char **en, int i)
 	}
 	return (0);
 }
+int	ft_unsett(struct s_environ *env)
+{
+	struct s_environ	*tmp;
+	int					i;
+
+	i = 0;
+	tmp = env;
+	env = tmp->next;
+	while (env)
+	{
+		if (strncmp(env->name, "anas", ft_strlen("anas") + 1)== 0)
+		{
+			tmp->next = env->next;
+		}
+		else
+		tmp = tmp->next;
+		env = tmp->next;
+	}
+	return (SUCCESSFUL);
+}
+int	ft_eport(struct s_environ *env)
+{
+	char	**new;
+	char	**split;
+	int		x;
+
+	ft_add_back(&env, "anas=", NULL, NULL);
+	return (SUCCESSFUL);
+}
 
 void	print(struct s_environ *env, char **envp)
 {
+	ft_eport(env);
+		// ft_unsett(env);
+
 	ft_split_env_next(env, envp, 0);
 	while (env)
 	{
