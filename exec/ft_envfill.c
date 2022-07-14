@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_envfill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 16:57:03 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 17:23:53 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,38 @@ int	ft_split_env_next(struct s_environ *envp, char **en, int i)
 	}
 	return (0);
 }
-int	ft_unsett(struct s_environ *env)
+int	ft_unsett(struct s_environ **env, char *un)
 {
 	struct s_environ	*tmp;
-	int					i;
+	struct s_environ	*prev;
 
-	i = 0;
-	tmp = env;
-	env = tmp->next;
-	while (env)
+	tmp = *env;
+	prev = *env;
+	if (tmp)
 	{
-		if (strncmp(env->name, "anas", ft_strlen("anas") + 1)== 0)
+		if (ft_strcmp(tmp->name, un) == 0)
 		{
-			tmp->next = env->next;
+			tmp = tmp->next;
+			free(tmp->env);
+			free(tmp->name);
+			free(tmp->next);
+			return ;
 		}
-		else
+		prev = tmp;
 		tmp = tmp->next;
-		env = tmp->next;
+	}
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->name, un) == 0)
+		{
+			prev->next = tmp->next;
+			free(tmp->env);
+			free(tmp->name);
+			free(tmp->next);
+			break;
+		}
+		prev = tmp;
+		tmp = tmp->next;
 	}
 	return (SUCCESSFUL);
 }
