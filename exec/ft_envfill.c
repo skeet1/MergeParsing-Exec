@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_envfill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 17:23:53 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/14 21:02:44 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,38 +78,60 @@ int	ft_split_env_next(struct s_environ *envp, char **en, int i)
 	}
 	return (0);
 }
-int	ft_unsett(struct s_environ **env, char *un)
-{
-	struct s_environ	*tmp;
-	struct s_environ	*prev;
+// int	ft_unsett(struct s_environ **env, char *un)
+// {
+// 	struct s_environ	*tmp;
+// 	struct s_environ	*prev;
 
-	tmp = *env;
-	prev = *env;
-	if (tmp)
+// 	tmp = *env;
+// 	prev = *env;
+// 	if (tmp)
+// 	{
+// 		if (ft_strcmp(tmp->name, un) == 0)
+// 		{
+// 			tmp = tmp->next;
+// 			free(tmp->env);
+// 			free(tmp->name);
+// 			free(tmp->next);
+// 			return ;
+// 		}
+// 		prev = tmp;
+// 		tmp = tmp->next;
+// 	}
+// 	while (tmp)
+// 	{
+// 		if (ft_strcmp(tmp->name, un) == 0)
+// 		{
+// 			prev->next = tmp->next;
+// 			free(tmp->env);
+// 			free(tmp->name);
+// 			free(tmp->next);
+// 			break;
+// 		}
+// 		prev = tmp;
+// 		tmp = tmp->next;
+// 	}
+// 	return (SUCCESSFUL);
+// }
+int unsett(struct s_environ **head, char *un)
+{
+	struct s_environ	*current;
+	struct s_environ	*previous;
+
+	current = *head;
+	previous = *head;
+	while (current)
 	{
-		if (ft_strcmp(tmp->name, un) == 0)
+		previous = current;
+		current = current->next;
+		// printf("%s    \n", current->env);
+		if (ft_strncmp(current->env, un, ft_strlen(un)) == 0)
 		{
-			tmp = tmp->next;
-			free(tmp->env);
-			free(tmp->name);
-			free(tmp->next);
-			return ;
+			previous->next = current->next;
+			free(current);
+			current = NULL;
+			return (0);
 		}
-		prev = tmp;
-		tmp = tmp->next;
-	}
-	while (tmp)
-	{
-		if (ft_strcmp(tmp->name, un) == 0)
-		{
-			prev->next = tmp->next;
-			free(tmp->env);
-			free(tmp->name);
-			free(tmp->next);
-			break;
-		}
-		prev = tmp;
-		tmp = tmp->next;
 	}
 	return (SUCCESSFUL);
 }
@@ -125,13 +147,25 @@ int	ft_eport(struct s_environ *env)
 
 void	print(struct s_environ *env, char **envp)
 {
-	ft_eport(env);
-		// ft_unsett(env);
-
+	// ft_eport(env);
 	ft_split_env_next(env, envp, 0);
+	unsett(&env, "HOME");
+	unsett(&env, "PWD");
+	unsett(&env, "USER");
+	unsett(&env, "SHLVL");
+	unsett(&env, "VSCODE_IPC_HOOK_CLI");
+	unsett(&env, "OLDPWD");
+	unsett(&env, "NAME");
+	unsett(&env, "XAUTHORITY");
+	unsett(&env, "LANG");
+	// unsett(&env, "LS_COLORS");
+	unsett(&env, "PATH");
+	unsett(&env, "PULSE_SERVER");
+	unsett(&env, "HOSTTYPE");
 	while (env)
 	{
-		printf("%s |  %s \n", env->name, env->value);
+		// printf("%s |  %s \n", env->name, env->value);
+		printf("%s \n", env->env);
 		env = env->next;
 	}
 }
