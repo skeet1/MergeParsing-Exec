@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 12:53:28 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/14 13:17:35 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,13 @@ int main(int ac , char **av, char **envp)
     t_token *env;
     int i = 0;
     env = NULL;
-    while (envp[i])
-        i++;
+   
     int x = 0;
-    while(x < i)
+    while(envp[i])
     {
-        if (x == i - 1)
-        ft_add_back(&env,    envp[x] );
-        x++;
+        ft_add_back(&env,    envp[i] );
+        i++;
     }
-    
    print(env);
     return 0;    
 }
