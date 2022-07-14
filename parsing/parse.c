@@ -270,7 +270,7 @@ int	main(int argc, char **argv, char **env)
 			if (ft_strlen(data.cmd_line))
 			{
 				token = ft_token(token, &data, data.cmd_line);
-				// exp_change_value(envp, token);
+				exp_change_value(envp, token);
 				cmd = node_per_cmd(token);
 				// mark_cmd(token);
 			}
