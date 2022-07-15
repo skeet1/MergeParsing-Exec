@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 13:04:16 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 14:36:42 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	ft_search_for_path(t_cmd *list, struct s_environ *environ)
 		if (ft_strncmp(environ->name, "PATH", 5) == 0)
 		{
 			list->new = ft_split(environ->value, ':');
-			printf("%s\n\n", environ->value);
 			return (SUCCESSFUL);
 		}
 		environ = environ->next;
