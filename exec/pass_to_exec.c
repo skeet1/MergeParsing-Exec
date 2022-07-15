@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass_to_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/14 18:00:15 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 12:57:42 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,27 @@ int	ft_lstsize(t_cmd *lst)
 	}
 	return (lstlen);
 }
-void handler2(int sig)
+void	handler2(int sig)
 {
-	if(sig == SIGINT)
-	printf("\n");
+	if (sig == SIGINT)
+		printf("\n");
 }
-int	pass_to_exec(struct s_envp *envp, t_cmd *cmds)
+int	pass_to_exec(struct s_environ *environ, t_cmd *cmds)
 {
 	int	nbr;
 
 	print_cmd(cmds);
-	ft_init(cmds, envp);
+	ft_init(cmds, environ);
 	nbr = ft_lstsize(cmds);
 	cmds->cmdnbr = nbr;
-		signal(SIGINT, handler2);
-
+	signal(SIGINT, handler2);
 	if (nbr == 1)
 	{
-		one_cmd(envp, cmds);
+		one_cmd(environ, cmds);
 	}
 	else if (cmds->cmdnbr > 1)
 	{
-		ft_pipe(cmds, envp);
+		ft_pipe(cmds, environ);
 	}
 	return (0);
 }

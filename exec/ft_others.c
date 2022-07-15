@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:56:57 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 12:52:53 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,28 @@ char	**create_argv_for_execve(t_cmd *cmd)
 	cmd->args_execve[i + 1] = NULL;
 	return (cmd->args_execve);
 }
-
-int	ft_check_programs(t_cmd *cmd, struct s_envp *envp)
+char  **convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
+{
+	int i = 0;
+	char ** envir;
+	envir = (char **)malloc (sizeof(char *) * (environ->envpitems));
+	while(environ)
+	{
+		envir[i] = environ->env;
+		i++;
+		environ = environ->next;
+	
+	}
+	return (envir);
+}
+int	ft_check_programs(t_cmd *cmd, struct s_environ *environ)
 {
 	char	**argv;
-
+	char **en = convertlisttoarray(cmd, environ);
 	if (cmd->cmd[0][0] == '.' && cmd->cmd[0][1] == '/')
 	{
 		argv = create_argv_for_execve(cmd);
-		execve(cmd->cmd[0], argv, envp->environment);
+		execve(cmd->cmd[0], argv, en);
 		printf("Minishell : %s : No such file or directory\n",
 			cmd->cmd[0]);
 		exit(127);
@@ -53,7 +66,7 @@ int	ft_check_programs(t_cmd *cmd, struct s_envp *envp)
 	if (cmd->cmd[0][0] == '/')
 	{
 		argv = create_argv_for_execve(cmd);
-		execve(cmd->cmd[0], argv, envp->environment);
+		execve(cmd->cmd[0], argv, en);
 		printf("Minishell : %s : No such  file or directory\n",
 			cmd->cmd[0]);
 		exit(127);
@@ -61,16 +74,16 @@ int	ft_check_programs(t_cmd *cmd, struct s_envp *envp)
 	return (0);
 }
 
-int	ft_bin_usr_sbin(t_cmd *cmd, struct s_envp *envp)
+int	ft_bin_usr_sbin(t_cmd *cmd, struct s_environ *environ)
 {
 	char	*bin;
 	char	*last;
 
 	last = NULL;
-	ft_check_programs(cmd, envp);
-	ftcheck_nopath(cmd, envp);
+	ft_check_programs(cmd, environ);
+	ftcheck_nopath(cmd, environ);
 	bin = ft_strjoin(cmd->new[0], "/");
-	looping_through_split_path(cmd, bin, last, envp);
+	looping_through_split_path(cmd, bin, last, environ);
 	ft_putstr_fd("Minishell: ", 2);
 	ft_putstr_fd(cmd->cmd[0], 2);
 	write(2, " command not found \n", 21);

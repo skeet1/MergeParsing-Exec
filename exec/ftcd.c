@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:37:52 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 07:50:45 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 09:52:36 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,23 @@ int	ftcd_c(t_cmd *cmd)
 	return (SUCCESSFUL);
 }
 
-int	ftcd(t_cmd *cmd, struct s_envp *envp)
+int	ftcd(t_cmd *cmd, struct s_environ *envp)
 {
 	int	x;
 
 	x = 0;
+
 	cmd->findhome = NULL;
-	while (x < envp->envpitems)
+	while (envp)
 	{
-		if (ft_strncmp(envp->name[x], "HOME", 5) == 0)
+		if (ft_strncmp(envp->name, "HOME", 5) == 0)
 		{
-			cmd->findhome = envp->value[x];
+			cmd->findhome = envp->value;
 			break ;
 		}
-		x++;
+		envp = envp->next;
 	}
+
 	if (ftcd_c(cmd) == UNSUCCESSFUL)
 		return (UNSUCCESSFUL);
 	return (SUCCESSFUL);

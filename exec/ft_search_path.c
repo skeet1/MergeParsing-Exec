@@ -6,54 +6,53 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:56:13 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 13:04:16 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	ft_search_for_path(t_cmd *list, struct s_envp *envp)
+int	ft_search_for_path(t_cmd *list, struct s_environ *environ)
 {
 	int		x;
 	char	**new;
 	int		i;
 
 	x = 0;
-	while (x < envp->envpitems)
+	while (environ)
 	{
-		if (ft_strncmp(envp->name[x], "PATH", 5) == 0)
+		if (ft_strncmp(environ->name, "PATH", 5) == 0)
 		{
-			break ;
+			list->new = ft_split(environ->value, ':');
+			printf("%s\n\n", environ->value);
+			return (SUCCESSFUL);
 		}
-		if (x == envp->envpitems)
-			return (1);
-		x++;
+		environ = environ->next;
 	}
-	new = ft_split(envp->value[x], ':');
-	i = 0;
-	list->new = new;
 	return (0);
 }
 
-void	ftcheck_nopath(t_cmd *list, struct s_envp *envp)
+void	ftcheck_nopath(t_cmd *list, struct s_environ *environ)
 {
 	list->new = NULL;
-	ft_search_for_path(list, envp);
+	ft_search_for_path(list, environ);
 	if (list->new == NULL)
 	{
 		printf("MINISHELL : %s No such file or directory\n",
-			list->cmd[0]);
+				list->cmd[0]);
 		g_exit_status = 127;
 		exit(127);
 	}
 }
 
 void	looping_through_split_path(t_cmd *list, char *bin, char *last,
-		struct s_envp *envp)
+		struct s_environ *environ)
 {
-	int	i;
+	int		i;
+	char	**en;
 
+	en = convertlisttoarray(list, environ);
 	i = 0;
 	while (list->new[i])
 	{
@@ -61,7 +60,7 @@ void	looping_through_split_path(t_cmd *list, char *bin, char *last,
 		if (access(last, F_OK) == 0)
 		{
 			list->args_execve = create_argv_for_execve(list);
-			execve(last, list->args_execve, envp->environment);
+			execve(last, list->args_execve, en);
 			exit(127);
 		}
 		else

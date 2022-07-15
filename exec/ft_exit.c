@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:41:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:56:06 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 09:13:37 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,29 @@ int	free2d(char **s)
 	free(s);
 	return (0);
 }
-int	ft_cleaner(t_cmd *cmd, struct s_envp *envp)
+int	ft_cleaner(t_cmd *cmd, struct s_environ *envp)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
-	rl_clear_history();
-	while (i < envp->envpitems)
-	{
-		free(envp->name[i]);
-		free(envp->value[i]);
-		i++;
-	}
-	if (envp->ismalloced == 1)
-	free2d(envp->environment);
-		if (envp->malloced == 1)
-	free2d(envp->namevalue);
+	// i = 0;
+	// rl_clear_history();
+	// while (i < envp->envpitems)
+	// {
+	// 	free(envp->name[i]);
+	// 	free(envp->value[i]);
+	// 	i++;
+	// }
+	// if (envp->ismalloced == 1)
+	// free2d(envp->environment);
+	// 	if (envp->malloced == 1)
+	// free2d(envp->namevalue);
 
-	free(envp->name);
-	free(envp->value);
+	// free(envp->name);
+	// free(envp->value);
 
 	return (0);
 }
-int	check_exit_no_args(t_cmd *cmd, struct s_envp *envp)
+int	check_exit_no_args(t_cmd *cmd, struct s_environ *envp)
 {
 	if (cmd->cmd[1] == NULL)
 	{
@@ -62,7 +62,7 @@ int	check_exit_no_args(t_cmd *cmd, struct s_envp *envp)
 	return (0);
 }
 
-void	exitwithnonnumeric(t_cmd *cmd, struct s_envp *envp, int i)
+void	exitwithnonnumeric(t_cmd *cmd, struct s_environ *envp, int i)
 
 {
 	if (!(ft_isdigit(cmd->cmd[1][i])))
@@ -76,7 +76,7 @@ void	exitwithnonnumeric(t_cmd *cmd, struct s_envp *envp, int i)
 	}
 }
 
-int	check_exit_with_args(t_cmd *cmd, struct s_envp *envp)
+int	check_exit_with_args(t_cmd *cmd, struct s_environ *envp)
 {
 	int	i;
 	int	exit_value;
@@ -100,7 +100,7 @@ int	check_exit_with_args(t_cmd *cmd, struct s_envp *envp)
 	return (0);
 }
 
-int	ftexit(t_cmd *cmd, struct s_envp *envp)
+int	ftexit(t_cmd *cmd, struct s_environ *envp)
 {
 	int	i;
 

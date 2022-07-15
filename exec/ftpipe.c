@@ -6,14 +6,14 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 11:07:26 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 09:10:00 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	ft_pipe_c(t_cmd *list, struct s_envp *envp, int fdin, int *pipes)
+int	ft_pipe_c(t_cmd *list, struct s_environ *envp, int fdin, int *pipes)
 {
 	dup2(fdin, 0);
 	if (list->next)
@@ -30,6 +30,7 @@ int	ft_pipe_c(t_cmd *list, struct s_envp *envp, int fdin, int *pipes)
 		exit(1);
 	}
 	ft_bin_usr_sbin(list, envp);
+	return 0;
 }
 
 int	ft_pipe_wait(int g)
@@ -42,6 +43,8 @@ int	ft_pipe_wait(int g)
 		wait(NULL);
 		g--;
 	}
+		return 0;
+
 }
 
 int	ft_pipe_rd(t_cmd *list, int *pipes)
@@ -62,7 +65,7 @@ int	savefdin(t_cmd *list, int *pipes, int fdin)
 	return (fdin);
 }
 
-int	ft_pipe(t_cmd *list, struct s_envp *envp)
+int	ft_pipe(t_cmd *list, struct s_environ *envp)
 {
 	int	id;
 	int	pipes[2];
@@ -91,4 +94,6 @@ int	ft_pipe(t_cmd *list, struct s_envp *envp)
 		list = list->next;
 	}
 	ft_pipe_wait(g);
+		return 0;
+
 }

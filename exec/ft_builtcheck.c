@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:40:43 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 09:00:00 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 11:56:58 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	builtcheck(struct s_envp *envp, t_cmd *cmds)
+int	builtcheck(struct s_environ *envp, t_cmd *cmds)
 {
 	if (ft_strncmp(cmds->cmd[0], "echo", 5) == 0)
 	{
@@ -29,7 +29,7 @@ int	builtcheck(struct s_envp *envp, t_cmd *cmds)
 	return (0);
 }
 
-int	builtcheck_next(t_cmd *cmd, struct s_envp *envp)
+int	builtcheck_next(t_cmd *cmd, struct s_environ *envp)
 {
 	int	i;
 
@@ -46,19 +46,21 @@ int	builtcheck_next(t_cmd *cmd, struct s_envp *envp)
 			if (ft_equal_sign(cmd, i) == UNSUCCESSFUL)
 			{
 				g_exit_status = 1;
+				i++;
 			}
 			else
 			{
 				g_exit_status = ft_unset(envp, cmd, i);
+							i++;
+
 			}
-			i++;
 		}
 		return (1);
 	}
 	return (0);
 }
 
-int	builtcheck_1(t_cmd *cmd, struct s_envp *envp)
+int	builtcheck_1(t_cmd *cmd, struct s_environ *envp)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 11:18:32 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 12:41:14 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	dupandclose(t_cmd *cmds)
 	}
 }
 
-int	one_cmd_1(struct s_envp *envp, t_cmd *cmds)
+int	one_cmd_1(struct s_environ *environ, t_cmd *cmds)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ int	one_cmd_1(struct s_envp *envp, t_cmd *cmds)
 			exit(1);
 		heredoc_exec(cmds);
 		dupandclose(cmds);
-		ft_bin_usr_sbin(cmds, envp);
+		ft_bin_usr_sbin(cmds, environ);
 	}
 	else
 	{
@@ -83,7 +83,7 @@ void	closefd(t_cmd *cmds)
 	}
 }
 
-int	noargs(struct s_envp *envp, t_cmd *cmds)
+int	noargs(struct s_environ *environ, t_cmd *cmds)
 {
 	int	i;
 
@@ -95,11 +95,11 @@ int	noargs(struct s_envp *envp, t_cmd *cmds)
 	return (0);
 }
 
-int	one_cmd(struct s_envp *envp, t_cmd *cmds)
+int	one_cmd(struct s_environ *environ, t_cmd *cmds)
 {
 	if (cmds->cmd[0] == NULL)
 	{
-		noargs(envp, cmds);
+		noargs(environ, cmds);
 		return (1);
 	}
 	else if (cmds->cmd[0])
@@ -109,13 +109,13 @@ int	one_cmd(struct s_envp *envp, t_cmd *cmds)
 			if (redirections(cmds) == 3)
 				return (3);
 			heredoc_exec(cmds);
-			ft_is_built_in(envp, cmds);
+			ft_is_built_in(environ, cmds);
 			closefd(cmds);
 			return (1);
 		}
 		else if (is_builtin(cmds) == 3)
 		{
-			one_cmd_1(envp, cmds);
+			one_cmd_1(environ, cmds);
 			return (1);
 		}
 	}

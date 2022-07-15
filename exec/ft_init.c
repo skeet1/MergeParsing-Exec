@@ -6,13 +6,13 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:43:04 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 10:55:42 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 08:52:31 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_init(t_cmd *cmds, struct s_envp *envp)
+int	ft_init(t_cmd *cmds, struct s_environ *envp)
 {
 	cmds->cmdnbr = 0;
 	cmds->new = NULL;
@@ -24,8 +24,8 @@ int	ft_init(t_cmd *cmds, struct s_envp *envp)
 	cmds->args_execve = NULL;
 	cmds->fd_out = 1;
 	//env 
-	envp->ismalloced = 0;
-	envp->malloced = 0;
-	envp->new = NULL;
+	// envp->ismalloced = 0;
+	// envp->malloced = 0;
+	// envp->new = NULL;
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/13 10:43:55 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/15 14:30:44 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,12 @@ SRC = ./exec/builtins.c \
 	./exec/ft_heredoc_tools.c \
 	./libft/ft_strchr.c \
 	./exec/ft_export_no_equal.c \
-	    
+	./parsing/ft_check_syntax.c  \
+	./parsing/ft_check_syntax1.c  \
+	./parsing/ft_check_syntax2.c  \
+	./parsing/ft_check_syntax3.c  \
+	./exec/ft_envfill.c  \
+	 
 OBJ = builtins.o \
 	 ft_env.o \
 	 ft_strlen.o  \
@@ -105,7 +110,11 @@ OBJ = builtins.o \
 	ft_heredoc_tools.o \
 	ft_strchr.o \
 	ft_export_no_equal.o \
-	
+	ft_check_syntax1.o \
+	ft_check_syntax2.o \
+	ft_check_syntax3.o \
+	 ft_envfill.o \
+	 
 all : $(NAME)
 $(OBJ) :
 	 $(CC) $(CFALGS) -c $(SRC) 

@@ -6,46 +6,32 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:30:09 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 10:34:35 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 14:18:50 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	copy(struct s_envp *envp, t_cmd *cmd, int i, char **new)
+int	ft_export_no_equal(struct s_environ *envp, t_cmd *cmd, int i)
 {
-	int	t;
+	int					x;
+	struct s_environ	*tmp;
 
-	t = 0;
-	while (t < envp->envpitems)
-	{
-		new[t] = envp->environment[t];
-		t++;
-	}
-	new[t] = cmd->cmd[i];
-	new[t + 1] = NULL;
-	envp->envpitems++;
-	ft_copy_1st_env(envp, new);
-	return (SUCCESSFUL);
-}
-
-int	ft_export_no_equal(struct s_envp *envp, t_cmd *cmd, int i, char **new)
-{
-	int	x;
-
+	tmp = envp;
 	x = 0;
 	if (check_name_is_valid(&cmd->cmd[i], i, cmd) == 1)
 		return (UNSUCCESSFUL);
-	while (x < envp->envpitems)
+	while (tmp)
 	{
-		if (ft_strncmp(envp->name[x], cmd->cmd[i], ft_strlen(cmd->cmd[i])
-				+ 1) == 0)
+		if (ft_strncmp(tmp->name, cmd->cmd[i], ft_strlen(cmd->cmd[i]) + 1) == 0)
 		{
+			printf(" name %s    args to export %s\n", tmp->name, cmd->cmd[i]);
 			return (SUCCESSFUL);
 		}
-		x++;
+		tmp = tmp->next;
 	}
-	copy(envp, cmd, i, new);
+	ftaddback(&envp, cmd->cmd[i]);
+	ftsplitenv(envp);
 	return (SUCCESSFUL);
 }

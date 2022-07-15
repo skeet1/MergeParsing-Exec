@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:36:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 11:17:35 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 12:41:59 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_builtin(t_cmd *list)
 	return (3);
 }
 
-int	ft_is_built_in(struct s_envp *envp, t_cmd *cmds)
+int	ft_is_built_in(struct s_environ *envp, t_cmd *cmds)
 {
 	int	i;
 
