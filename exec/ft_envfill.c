@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 17:12:37 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 17:22:17 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,15 @@ void	ftaddback(struct s_environ **token, char *envv)
 	last->next = new;
 }
 
-struct s_environ	*ftsplitenv(struct s_environ *environ)
+struct s_environ	*ftsplitenv(struct s_environ *environ, int x)
 {
-	int	x;
-	int	i;
-	int	nb;
-
-	nb = 0;
 	x = 0;
-	i = 0;
 	while (environ != NULL)
 	{
 		if (!(ft_strchr(environ->env, '=')))
 		{
 			environ->name = ft_strdup(environ->env);
 			environ->value = NULL;
-			i++;
 		}
 		else
 		{
@@ -77,7 +70,6 @@ struct s_environ	*ftsplitenv(struct s_environ *environ)
 			x = 0;
 		}
 		environ = environ->next;
-		i++;
 	}
 	return (environ);
 }
@@ -87,22 +79,22 @@ void	print(struct s_environ *env)
 	while (env)
 	{
 		printf("FULL %s| NAME %s | VALUE %s \n", env->env, env->name,
-				env->value);
+			env->value);
 		env = env->next;
 	}
 }
+
 void	increment_shlvl(struct s_environ *envp)
 {
 	char	*tmp;
 	int		nb;
 	char	*joined;
-
+	int x = 0;
 	while (envp)
 	{
 		if (ft_strncmp(envp->name, "SHLVL", 6) == 0)
 		{
-					printf("here\n");
-
+			printf("here\n");
 			nb = ft_atoi(envp->value);
 			tmp = ft_itoa(nb + 1);
 			joined = ft_strjoin("SHLVL=", tmp);
@@ -111,18 +103,23 @@ void	increment_shlvl(struct s_environ *envp)
 		}
 		envp = envp->next;
 	}
-		ftsplitenv(envp);	
+	ftsplitenv(envp, x);
 }
+
 struct s_environ	*ftcopyenv(struct s_environ *environ, char **envp)
 {
-	int i = 0;
+	int	i;
+	int	x;
+
+	i = 0;
+	x = 0;
 	while (envp[i])
 	{
 		ftaddback(&environ, envp[i]);
 		i++;
 	}
 	environ->envpitems = i;
-	ftsplitenv(environ);	
+	ftsplitenv(environ, x);
 	increment_shlvl(environ);
 	return (environ);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_no_equal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:30:09 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 14:18:50 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 17:21:56 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	ft_export_no_equal(struct s_environ *envp, t_cmd *cmd, int i)
 		tmp = tmp->next;
 	}
 	ftaddback(&envp, cmd->cmd[i]);
-	ftsplitenv(envp);
+	ftsplitenv(envp, x);
 	return (SUCCESSFUL);
 }
