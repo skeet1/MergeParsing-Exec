@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/13 11:54:58 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 11:36:14 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,20 @@ void				list_files(t_token *token);
 void				num_of_rd(t_token *token, t_cmd *cmd);
 void				incr_quotes(char c, int *a, int *b);
 void				print_token(t_token *token);
+
+/* ----- START SYNTAX ERROR FUNCTIONS ----- */
+int	check_pipes(char *s);
+int	check_quotes(char *s);
+int	is_special(char c);
+int	ft_isspace(int c);
+int	consec_red1(char *s);
+int	consec_red2(char *s);
+int	consec_redout(char *s);
+int	consec_redin(char *s);
+int	check_parent(char *s);
+int	check_red(char *s);
+void red();
+void reset();
+/* ----- END SYNTAX ERROR FUNCTIONS ----- */
+
 #endif
