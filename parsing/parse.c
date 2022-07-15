@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 16:44:49 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 17:08:28 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,12 +303,9 @@ int	main(int argc, char **argv, char **env)
 {
 	t_data data;
 	t_token *token;
-	// struct s_envp *envp;
 	t_cmd *cmd; 
-	// envp = (struct s_envp *)malloc((1) * sizeof(struct s_envp));
 	int pipenbr = 0;
-	// ft_copy_1st_env(envp, env);
-		struct s_environ *envp;
+	struct s_environ *envp;
 	envp = NULL;
 	envp =	ftcopyenv(envp, env);
 	if (argc == 1)

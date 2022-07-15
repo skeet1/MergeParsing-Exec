@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_envfill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 14:10:10 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 17:12:37 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ struct s_environ	*ftsplitenv(struct s_environ *environ)
 {
 	int	x;
 	int	i;
+	int	nb;
 
+	nb = 0;
 	x = 0;
 	i = 0;
 	while (environ != NULL)
@@ -89,7 +91,28 @@ void	print(struct s_environ *env)
 		env = env->next;
 	}
 }
+void	increment_shlvl(struct s_environ *envp)
+{
+	char	*tmp;
+	int		nb;
+	char	*joined;
 
+	while (envp)
+	{
+		if (ft_strncmp(envp->name, "SHLVL", 6) == 0)
+		{
+					printf("here\n");
+
+			nb = ft_atoi(envp->value);
+			tmp = ft_itoa(nb + 1);
+			joined = ft_strjoin("SHLVL=", tmp);
+			free(tmp);
+			envp->env = joined;
+		}
+		envp = envp->next;
+	}
+		ftsplitenv(envp);	
+}
 struct s_environ	*ftcopyenv(struct s_environ *environ, char **envp)
 {
 	int i = 0;
@@ -99,6 +122,7 @@ struct s_environ	*ftcopyenv(struct s_environ *environ, char **envp)
 		i++;
 	}
 	environ->envpitems = i;
-	ftsplitenv(environ);
+	ftsplitenv(environ);	
+	increment_shlvl(environ);
 	return (environ);
 }

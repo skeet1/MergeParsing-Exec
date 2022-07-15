@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_others.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 12:52:53 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 16:50:57 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char  **convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
 {
 	int i = 0;
 	char ** envir;
-	envir = (char **)malloc (sizeof(char *) * (environ->envpitems));
+	envir = (char **)malloc (sizeof(char *) * (environ->envpitems + 1));
 	while(environ)
 	{
 		envir[i] = environ->env;
@@ -49,6 +49,7 @@ char  **convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
 		environ = environ->next;
 	
 	}
+	envir[i] =NULL;
 	return (envir);
 }
 int	ft_check_programs(t_cmd *cmd, struct s_environ *environ)
