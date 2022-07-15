@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/14 10:49:41 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 10:08:48 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,31 @@ char	*rm_first_char(char *str)
 	return (NULL);
 }
 
+char	*before_dol(char *str)
+{
+	int		i;
+	char	*s;
+
+	i = 0;
+	while (str[i] && str[i] != '$')
+	{
+		i++;
+	}
+	s = malloc(i + 1);
+	i = 0;
+	while (str[i] && str[i] != '$')
+	{
+		s[i] = str[i];
+		i++;
+	}
+	s[i] = '\0';
+	return (s);
+}
+
 void	exp_change_value(struct s_envp *envp, t_token *token)
 {
 	struct s_envp	*env;
+	char			**sp;
 	int				i;
 	int				len;
 	
@@ -89,14 +111,23 @@ void	exp_change_value(struct s_envp *envp, t_token *token)
 	{
 		if (token->type == WORD && !token->sgl_qt)
 		{
-			i = 0;
-			while (envp->name[i])
+			sp = ft_split(token->value, '$');
+			int j = 0;
+			while (sp[j])
 			{
-				if (ft_strcmp(rm_first_char(ft_strchr(token->value, '$')), envp->name[i]) == 0)
+				i = 0;
+				while (envp->name[i])
 				{
-					token->value = envp->value[i];
+					if (ft_strcmp(sp[j], envp->name[i]) == 0)
+					{
+						if (j == 0)
+							token->value = ft_strjoin(before_dol(token->value) ,envp->value[i]);
+						else
+							token->value = ft_strjoin(token->value, envp->value[i]);
+					}
+					i++;
 				}
-				i++;
+				j++;
 			}
 		}
 		token = token->next;
