@@ -84,7 +84,7 @@ int	check_pipes(char *s)
 		if (quotes[0] % 2 || quotes[1] % 2)
 			continue ;
 		if (s[i] == '|')
-			if (check_pipes1(s[i], &i, &j, ft_strlen(s)))
+			if (check_pipes1(s, &i, &j, ft_strlen(s)))
 				return (1);
 	}
 	return (0);
