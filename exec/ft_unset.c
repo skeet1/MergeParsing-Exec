@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 14:47:55 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 20:32:15 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,38 +31,29 @@ int	ft_equal_sign(t_cmd *list, int arg)
 	return (SUCCESSFUL);
 }
 
-int	unsett(struct s_environ **head, int pos, char *argg)
+int	unsett(struct s_environ **head, int pos, char *arg)
 {
-	struct s_environ	*current;
-	struct s_environ	*previous;
+	struct s_environ	*tmp;
+	struct s_environ	*prev;
 	int					x;
 
-	current = *head;
-	previous = *head;
+	tmp = *head;
+	prev = *head;
 	if (*head == NULL)
 		return (1);
-	x = 0;
-	
-	if (ft_strncmp(argg, current->name, ft_strlen(current->name) + 1) == 0 && x == 0)
-		{
-			*head = current->next;
-						previous->next = *head;
-			free(current);
-			current = NULL;
-		}
-	while (current)
+	if (ft_strncmp(tmp->name, arg, ft_strlen(arg)) == 0)
 	{
-		
-	 if (ft_strncmp(argg, current->name, ft_strlen(current->name) + 1) == 0)
+		*head = tmp->next;
+		return (SUCCESSFUL);
+	}
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->name, arg, ft_strlen(arg)) == 0)
 		{
-			previous->next = current->next;
-			free(current);
-			current = NULL;
-			return (0);
+			prev->next = tmp->next;
 		}
-		previous = current;
-		current = current->next;
-		x++;
+		prev = tmp;
+		tmp = tmp->next;
 	}
 	return (SUCCESSFUL);
 }
