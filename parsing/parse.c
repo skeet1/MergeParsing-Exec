@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 15:22:24 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/15 15:40:44 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	handler(int sig)
 	{
 				printf("\n");
 		rl_on_new_line();      
-
 		rl_replace_line("", 1);
-
 		rl_redisplay();
 		g_exit_status = 1;  
 	}
@@ -297,7 +295,8 @@ int	main(int argc, char **argv, char **env)
 			add_history(data.cmd_line);
 			if(data.cmd_line == NULL)
 			{
-				exit(1);
+				write(1, "exit\n", 6);
+							exit(1);
 			}
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
 			if (ft_strlen(data.cmd_line))

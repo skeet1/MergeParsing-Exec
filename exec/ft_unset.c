@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 14:09:17 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 14:47:55 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,18 @@ int	unsett(struct s_environ **head, int pos, char *argg)
 	if (*head == NULL)
 		return (1);
 	x = 0;
+	
+	if (ft_strncmp(argg, current->name, ft_strlen(current->name) + 1) == 0 && x == 0)
+		{
+			*head = current->next;
+						previous->next = *head;
+			free(current);
+			current = NULL;
+		}
 	while (current)
 	{
-		if (ft_strncmp(argg, current->name, ft_strlen(current->name) + 1) == 0)
+		
+	 if (ft_strncmp(argg, current->name, ft_strlen(current->name) + 1) == 0)
 		{
 			previous->next = current->next;
 			free(current);
@@ -61,10 +70,7 @@ int	unsett(struct s_environ **head, int pos, char *argg)
 int	ft_unset(struct s_environ *environ, t_cmd *list, int arg)
 {
 	int					pos;
-	struct s_environ	*tmp;
-
 	pos = 1;
-	tmp = environ;
 	unsett(&environ, pos, list->cmd[arg]);
 	return (SUCCESSFUL);
 }
