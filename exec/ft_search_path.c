@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:30:20 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 23:53:44 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ftcheck_nopath(t_cmd *list, struct s_environ *environ)
 	if (list->new == NULL)
 	{
 		printf("MINISHELL : %s No such file or directory\n",
-				list->cmd[0]);
+			list->cmd[0]);
 		g_exit_status = 127;
 		exit(127);
 	}

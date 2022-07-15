@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass_to_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 12:57:42 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 23:51:12 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ int	ft_lstsize(t_cmd *lst)
 	}
 	return (lstlen);
 }
+
 void	handler2(int sig)
 {
 	if (sig == SIGINT)
 		printf("\n");
 }
+
 int	pass_to_exec(struct s_environ *environ, t_cmd *cmds)
 {
 	int	nbr;

@@ -19,14 +19,15 @@ int	free2d(char **s)
 	int	i;
 
 	i = 0;
-	// if (s[i])
-	// 	return (0);
+	if (s[i])
+		return (0);
 	while (s[i])
 	{
-		free(s[i]);
+		// free(s[i]);
+		printf("%s\n\n", s[i]);
 		i++;
 	}
-	free(s);
+	// free(s);
 	return (0);
 }
 int	ft_cleaner(t_cmd *cmd, struct s_environ *envp)

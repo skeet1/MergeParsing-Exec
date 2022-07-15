@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 20:32:15 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/15 23:44:12 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_equal_sign(t_cmd *list, int arg)
 		if (list->cmd[arg][i] == '=')
 		{
 			printf("Minishell: unset: `%s': not a valid identifier\n",
-					list->cmd[arg]);
+				list->cmd[arg]);
 			return (UNSUCCESSFUL);
 		}
 		i++;
@@ -60,7 +60,8 @@ int	unsett(struct s_environ **head, int pos, char *arg)
 
 int	ft_unset(struct s_environ *environ, t_cmd *list, int arg)
 {
-	int					pos;
+	int	pos;
+
 	pos = 1;
 	unsett(&environ, pos, list->cmd[arg]);
 	return (SUCCESSFUL);

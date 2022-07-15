@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:29:29 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 23:32:55 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ struct					s_environ
 	char				*name;
 	char				*value;
 	int					envpitems;
-		char				**new;
-			char				*namevalue;
+	char				**new;
+	char				*namevalue;
 
 		
 	struct s_environ	*next;

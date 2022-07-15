@@ -6,22 +6,23 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:30:07 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 23:43:01 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int ft_list_items(struct s_environ *environ)
+int	ft_list_items(struct s_environ *environ)
 {
+	int	items;
 
-	int items = 0;
-		while (environ)
+	items = 0;
+	while (environ)
 	{
 		items++;
 		environ = environ->next;
 	}
-	return items;
+	return (items);
 }
 char	**convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
 {
@@ -34,11 +35,10 @@ char	**convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
 	len = ft_list_items(environ);
 	envir = malloc(sizeof(char *) * (len + 1));
 	while (i < len)
-	{ 
+	{
 		envir[i] = environ->env;
 		i++;
-				environ = environ->next;
-
+		environ = environ->next;
 	}
 	envir[i] = NULL;
 	return (envir);

@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 22:09:16 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 23:39:33 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,8 @@ struct s_environ	*ftsplitenv(struct s_environ *environ, int x)
 	return (environ);
 }
 
-void	print(struct s_environ *env)
-{
-	while (env)
-	{
-		printf("FULL %s| NAME %s | VALUE %s \n", env->env, env->name,
-			env->value);
-		env = env->next;
-	}
-}
 
-void	
-increment_shlvl(struct s_environ *envp)
+void	increment_shlvl(struct s_environ *envp)
 {
 	char	*tmp;
 	int		nb;
