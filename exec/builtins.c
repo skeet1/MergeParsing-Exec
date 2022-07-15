@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/14 08:26:48 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 20:59:31 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int	ft_echo_c(t_cmd *cmds, int fd)
 		else if (cmds->cmd[i] == NULL && check == UNSUCCESSFUL)
 			write(fd, "\n", 1);
 	}
-	if (check == UNSUCCESSFUL)
-		write(fd, "\n", 1);
 	return (SUCCESSFUL);
 }
 

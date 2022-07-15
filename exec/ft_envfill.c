@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 17:22:17 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 20:56:04 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	increment_shlvl(struct s_environ *envp)
 	{
 		if (ft_strncmp(envp->name, "SHLVL", 6) == 0)
 		{
-			printf("here\n");
 			nb = ft_atoi(envp->value);
 			tmp = ft_itoa(nb + 1);
 			joined = ft_strjoin("SHLVL=", tmp);
