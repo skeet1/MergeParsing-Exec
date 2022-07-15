@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_search_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 14:36:42 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 23:30:20 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	looping_through_split_path(t_cmd *list, char *bin, char *last,
 		last = ft_strjoin(bin, list->cmd[0]);
 		if (access(last, F_OK) == 0)
 		{
-			list->args_execve = create_argv_for_execve(list);
-			execve(last, list->args_execve, en);
+			execve(last, list->cmd, en);
 			exit(127);
 		}
 		else

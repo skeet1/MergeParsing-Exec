@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 22:10:24 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 23:29:29 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct t_list
 }						t_list;
 
 //   int				g_exit_status;
-   int				g_exit_status;
+   static int				g_exit_status;
 
 //new
 void free_environ(struct s_environ **head);
@@ -105,7 +105,6 @@ int						ft_search_for_path(t_cmd *list, struct s_environ *environ);
 void					ftcheck_nopath(t_cmd *list, struct s_environ *environ);
 void					looping_through_split_path(t_cmd *list, char *bin,
 							char *last, struct s_environ *environ);
-char					**create_argv_for_execve(t_cmd *list);
 int						ft_check_programs(t_cmd *list, struct s_environ *environ);
 /// redirections I/O
 int						redirections(t_cmd *list);

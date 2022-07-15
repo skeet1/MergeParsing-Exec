@@ -6,70 +6,60 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 16:50:57 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 23:30:07 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**create_argv_for_execve(t_cmd *cmd)
+int ft_list_items(struct s_environ *environ)
 {
-	int	len;
-	int	i;
 
-	len = 0;
-	i = 0;
-	len = cmd->count_args;
-	if (len == 0)
+	int items = 0;
+		while (environ)
 	{
-		cmd->args_execve = (char **)malloc(sizeof(char *) * (2));
-		cmd->args_execve[0] = cmd->cmd[0];
-		cmd->args_execve[1] = NULL;
-		return (cmd->args_execve);
+		items++;
+		environ = environ->next;
 	}
-	cmd->args_execve = (char **)malloc(sizeof(char *) * (len + 2));
-	while (i < len)
-	{
-		cmd->args_execve[0] = cmd->cmd[0];
-		cmd->args_execve[i + 1] = cmd->cmd[i + 1];
-		i++;
-	}
-	cmd->args_execve[i + 1] = NULL;
-	return (cmd->args_execve);
+	return items;
 }
-char  **convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
+char	**convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
 {
-	int i = 0;
-	char ** envir;
-	envir = (char **)malloc (sizeof(char *) * (environ->envpitems + 1));
-	while(environ)
-	{
+	int		i;
+	char	**envir;
+	int		len;
+
+	i = 0;
+	len = 0;
+	len = ft_list_items(environ);
+	envir = malloc(sizeof(char *) * (len + 1));
+	while (i < len)
+	{ 
 		envir[i] = environ->env;
 		i++;
-		environ = environ->next;
-	
+				environ = environ->next;
+
 	}
-	envir[i] =NULL;
+	envir[i] = NULL;
 	return (envir);
 }
 int	ft_check_programs(t_cmd *cmd, struct s_environ *environ)
 {
-	char	**argv;
-	char **en = convertlisttoarray(cmd, environ);
+	char	**en;
+
+	en = convertlisttoarray(cmd, environ);
 	if (cmd->cmd[0][0] == '.' && cmd->cmd[0][1] == '/')
 	{
-		argv = create_argv_for_execve(cmd);
-		execve(cmd->cmd[0], argv, en);
+		execve(cmd->cmd[0], cmd->cmd, en);
 		printf("Minishell : %s : No such file or directory\n",
-			cmd->cmd[0]);
+				cmd->cmd[0]);
 		exit(127);
 	}
 	if (cmd->cmd[0][0] == '/')
 	{
-		argv = create_argv_for_execve(cmd);
-		execve(cmd->cmd[0], argv, en);
+		execve(cmd->cmd[0], cmd->cmd, en);
 		printf("Minishell : %s : No such  file or directory\n",
-			cmd->cmd[0]);
+				cmd->cmd[0]);
 		exit(127);
 	}
 	return (0);
