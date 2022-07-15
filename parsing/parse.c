@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 16:17:42 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/15 16:44:49 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,7 +327,7 @@ int	main(int argc, char **argv, char **env)
 			if(data.cmd_line == NULL)
 			{
 				write(1, "exit\n", 6);
-							exit(1);
+							exit(0);
 			}
 			data.cmd_line = ft_strtrim(data.cmd_line, " ");
 			if (ft_strlen(data.cmd_line))
