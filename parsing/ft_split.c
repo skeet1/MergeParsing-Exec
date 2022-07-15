@@ -6,16 +6,16 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 15:33:31 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/03 08:05:31 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/15 11:33:15 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static	int	nbofl(char *s, char c)
+static int	nbofl(char *s, char c)
 {
-	int		l;
-	int		i;
+	int	l;
+	int	i;
 
 	i = 0;
 	l = 0;
@@ -28,11 +28,11 @@ static	int	nbofl(char *s, char c)
 	return (l);
 }
 
-static	char	**remplissage(char **p, char *s, char c, int l)
+static char	**remplissage(char **p, char *s, char c, int l)
 {
-	int		i;
-	int		j;
-	int		cl;
+	int	i;
+	int	j;
+	int	cl;
 
 	i = 0;
 	j = 0;
@@ -55,9 +55,9 @@ static	char	**remplissage(char **p, char *s, char c, int l)
 	return (p);
 }
 
-static	char	**ft_free(char **p, int n)
+static char	**ft_free(char **p, int n)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (i < n)
@@ -71,8 +71,8 @@ static	char	**ft_free(char **p, int n)
 
 char	**ft_split(char *s, char c)
 {
-	char		**p;
-	t_variables	vb;
+	char **p;
+	t_variables vb;
 
 	if (!s)
 		return (NULL);
