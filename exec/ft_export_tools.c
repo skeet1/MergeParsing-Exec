@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 21:04:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 22:08:25 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ void	ftsortenv(struct s_environ **head)
 
 int	ft_export_1(struct s_environ *envp)
 {
-	int	i;
-	int	x;
-struct s_environ *tmp = envp;
+	int					i;
+	int					x;
+	struct s_environ	*tmp;
+
+	tmp = envp;
 	x = 0;
 	i = 0;
 	if (envp != NULL)
@@ -69,13 +71,33 @@ struct s_environ *tmp = envp;
 	return (UNSUCCESSFUL);
 }
 
+int	ft_isalnum(int c)
+{
+	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 90 && c <= 122))
+		return (1);
+	return (0);
+}
+
 int	check_name_is_valid(char **split, int i, t_cmd *cmd)
 {
+	int	x;
+
 	if (ft_is_alpha_mod(split[0][0]) == 0)
 	{
 		printf("Minishell: export: `%s': not a valid identifier\n",
 				cmd->cmd[i]);
 		return (1);
+	}
+	x = 1;
+	while (split[0][x])
+	{
+		if (ft_is_alpha_mod(split[0][x]) == 0 && ft_isalnum(split[0][x]) == 0)
+		{
+			printf("Minishell: export: `%s': not a valid identifier\n",
+					cmd->cmd[i]);
+			return (1);
+		}
+		x++;
 	}
 	return (0);
 }

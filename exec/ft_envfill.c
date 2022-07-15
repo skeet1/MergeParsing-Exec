@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 21:52:42 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 22:09:16 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	print(struct s_environ *env)
 	}
 }
 
-void	increment_shlvl(struct s_environ *envp)
+void	
+increment_shlvl(struct s_environ *envp)
 {
 	char	*tmp;
 	int		nb;
