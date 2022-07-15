@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 14:33:18 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 15:22:24 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,10 @@ char	*before_dol(char *str)
 	return (s);
 }
 
-void	exp_change_value(struct s_envp *envp, t_token *token)
+void	exp_change_value(struct s_environ*envp, t_token *token)
 {
-	struct s_envp	*env;
+	struct s_environ	*env;
 	char			**sp;
-	int				i;
 	int				len;
 	
 	len = 0;
@@ -115,17 +114,17 @@ void	exp_change_value(struct s_envp *envp, t_token *token)
 			int j = 0;
 			while (sp[j])
 			{
-				i = 0;
-				while (envp->name[i])
+				env = envp;
+				while (env)
 				{
-					if (ft_strcmp(sp[j], envp->name[i]) == 0)
+					if (ft_strcmp(sp[j], env->name) == 0)
 					{
 						if (j == 0)
-							token->value = ft_strjoin(before_dol(token->value) ,envp->value[i]);
+							token->value = ft_strjoin(before_dol(token->value) ,env->value);
 						else
-							token->value = ft_strjoin(token->value, envp->value[i]);
+							token->value = ft_strjoin(token->value, env->value);
 					}
-					i++;
+					env = env->next;
 				}
 				j++;
 			}
@@ -304,7 +303,7 @@ int	main(int argc, char **argv, char **env)
 			if (ft_strlen(data.cmd_line))
 			{
 				token = ft_token(token, &data, data.cmd_line);
-				// exp_change_value(envp, token);
+				exp_change_value(envp, token);
 				cmd = node_per_cmd(token);
 				// mark_cmd(token);
 			}
