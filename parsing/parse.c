@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 15:40:44 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 16:17:42 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,38 @@ char	*before_dol(char *str)
 	return (s);
 }
 
-void	exp_change_value(struct s_environ*envp, t_token *token)
+int	dolar_exist(char *s)
+{
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*rest_cmp(char *str, int len)
+{
+	char *s;
+	
+	s = malloc(sizeof(char) * (ft_strlen(str) - len + 1));
+	if (!s)
+		return (s);
+	int i = 0;
+	while (str[len + i])
+	{
+		s[i] = str[len + i];
+		i++;
+	}
+	s[i] = '\0';
+	return (s);
+}
+
+void	exp_change_value(struct s_environ *envp, t_token *token)
 {
 	struct s_environ	*env;
 	char			**sp;
@@ -106,7 +137,7 @@ void	exp_change_value(struct s_environ*envp, t_token *token)
 	len = 0;
 	while (token)
 	{
-		if (token->type == WORD && !token->sgl_qt)
+		if (token->type == WORD && !token->sgl_qt && dolar_exist(token->value))
 		{
 			sp = ft_split(token->value, '$');
 			int j = 0;
@@ -115,12 +146,12 @@ void	exp_change_value(struct s_environ*envp, t_token *token)
 				env = envp;
 				while (env)
 				{
-					if (ft_strcmp(sp[j], env->name) == 0)
+					if (ft_strncmp(sp[j], env->name, ft_strlen(env->name)) == 0)
 					{
-						if (j == 0)
-							token->value = ft_strjoin(before_dol(token->value) ,env->value);
-						else
-							token->value = ft_strjoin(token->value, env->value);
+						token->value = ft_strjoin(before_dol(token->value), env->value);
+						if (ft_strlen(env->name) != ft_strlen(sp[j]))
+							token->value = ft_strjoin(token->value, rest_cmp(sp[j], ft_strlen(env->name)));
+						break;
 					}
 					env = env->next;
 				}
