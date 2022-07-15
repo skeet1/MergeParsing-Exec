@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 17:08:28 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 21:56:55 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -350,24 +350,22 @@ void	free_cmd(t_cmd **cmd)
 	}
 }
 
+
 int	main(int argc, char **argv, char **env)
 {
+	(void) argc;
+	(void)  argv;
 	t_data data;
 	t_token *token;
 	t_cmd *cmd; 
 	int pipenbr = 0;
 	struct s_environ *envp;
 	envp = NULL;
-	envp =	ftcopyenv(envp, env);
-	if (argc == 1)
-	{
+	envp =	ftcopyenv(envp, env);	
 		while (1)
 		{
 			signal(SIGQUIT, SIG_IGN);
 			signal(SIGINT, &handler);
-			cmd = NULL;
-			
-			
 			token = NULL;
 			cmd = NULL;
 			data.cmd_line = readline(PROMPT);
@@ -392,14 +390,9 @@ int	main(int argc, char **argv, char **env)
 				pipenbr = data.side;
 				pass_to_exec(envp, cmd);
 			}
-				free(	data.cmd_line);
+			free(	data.cmd_line);
 			free_cmd(&cmd);
 		}
-		// free2d(envp->name);
-		// free2d(envp->value);
-		// 		free2d(envp->environment);
-
-		
-	}
+	free_environ(&envp);
 	return (0);
 }

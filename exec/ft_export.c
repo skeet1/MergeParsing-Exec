@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 13:30:47 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 21:04:50 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	ft_export(struct s_environ *envp, t_cmd *cmd, int i)
 			if (modify_name(envp, cmd, split, i) == 0)
 				return (0);
 			ftaddback(&envp, cmd->cmd[i]);
+					ftsplitenv(envp, x);
 				envp->envpitems++;
 			return (SUCCESSFUL);
 		}

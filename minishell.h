@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 20:59:37 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 21:36:21 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ typedef struct t_list
 }						t_list;
 
 //   int				g_exit_status;
-   int				g_exit_status;
+  static int				g_exit_status;
 
 //new
+void free_environ(struct s_environ **head);
 struct s_environ  * ftcopyenv(struct s_environ *environ, char **envp);
 struct s_environ  *	ftsplitenv(struct s_environ *environ,int x);
 void	ftaddback(struct s_environ **token, char *envv);

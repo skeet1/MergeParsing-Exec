@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 17:21:38 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 21:04:30 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int	ft_export_1(struct s_environ *envp)
 {
 	int	i;
 	int	x;
-
+struct s_environ *tmp = envp;
 	x = 0;
 	i = 0;
 	if (envp != NULL)
 	{
 		i = 0;
-		ftsplitenv(envp, x);
-		ftsortenv(&envp);
+		ftsplitenv(tmp, x);
+		ftsortenv(&tmp);
 		while (envp)
 		{
 			printf("declare -x %s=\"%s\"\n", envp->name, envp->value);

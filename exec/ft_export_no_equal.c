@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:30:09 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 17:21:56 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 21:50:18 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ int	ft_export_no_equal(struct s_environ *envp, t_cmd *cmd, int i)
 		tmp = tmp->next;
 	}
 	ftaddback(&envp, cmd->cmd[i]);
-	ftsplitenv(envp, x);
 	return (SUCCESSFUL);
+}
+void	free_environ(struct s_environ **head)
+{
+	struct s_environ	*c;
+
+	c = *head;
+	while (c != NULL)
+	{
+		if (c->value)
+			free(c->value);
+		if (c->name)
+			free(c->name);
+		if (c->env)
+			free(c->env);
+		c = c->next;
+	}
 }

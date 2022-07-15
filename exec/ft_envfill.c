@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 20:56:04 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/15 21:52:42 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ struct s_environ	*ftsplitenv(struct s_environ *environ, int x)
 	{
 		if (!(ft_strchr(environ->env, '=')))
 		{
-			environ->name = ft_strdup(environ->env);
+			environ->name = environ->env;
 			environ->value = NULL;
 		}
 		else
