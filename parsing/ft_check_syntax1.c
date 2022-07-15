@@ -49,18 +49,17 @@ int	check_quotes(char *s)
 			1);
 	return (0);
 }
-
-int	check_pipes1(char c, int *i, int *j, int len)
+int	check_pipes1(char *s, int *i, int *j, int len)
 {
 	*j = *i - 1;
-	while (*j >= 0 && ft_isspace(c))
+	while (*j >= 0 && ft_isspace(s[*j]))
 		(*j)--;
-	if (c == '|')
+	if (s[*j] == '|')
 		return (ft_putstr_fd(SNT_ERR, 2), ft_putendl_fd("|'", 2), 1);
 	*j = *i + 1;
-	while (*j < len && ft_isspace(c))
+	while (*j < len && ft_isspace(s[*j]))
 		(*j)++;
-	if (c == '|')
+	if (s[*j] == '|')
 		return (ft_putstr_fd(SNT_ERR, 2), ft_putendl_fd("|'", 2), 1);
 	return (0);
 }
