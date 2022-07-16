@@ -6,7 +6,7 @@
 #    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/16 17:00:30 by mkarim           ###   ########.fr        #
+#    Updated: 2022/07/16 19:09:11 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC = ./exec/builtins.c \
 	./libft/ft_split.c \
 	./parsing/ft_check_syntax.c \
 	./parsing/ft_token.c \
+	./parsing/ft_token1.c \
 	./parsing/remove_quotes.c \
 	./libft/ft_strlcpy.c \
 	./libft/ft_strtrim.c \
@@ -100,6 +101,7 @@ OBJ = builtins.o \
 	 ft_split.o \
 	 ft_check_syntax.o \
 	 ft_token.o \
+	 ft_token1.o \
 	 remove_quotes.o \
 	 ft_strlcpy.o \
 	 ft_strtrim.o \
