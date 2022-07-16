@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 14:36:54 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/12 22:16:27 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 10:17:01 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*trim_quotes(char *s)
 			cmd[j++] = s[i];
 		i++;
 	}
+	cmd[j] = '\0';
 	return (cmd);
 }
 
