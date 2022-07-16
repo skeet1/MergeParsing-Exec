@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_one_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:51:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 16:30:42 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	noargs(struct s_environ *environ, t_cmd *cmds)
 	int	i;
 
 	i = 0;
+	(void)environ;
 	if (redirections(cmds) == 3)
 		return (3);
 	heredoc_exec(cmds);

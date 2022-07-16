@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_search_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 09:07:16 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 16:29:29 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 int	ft_search_for_path(t_cmd *list, struct s_environ *environ)
 {
 	int		x;
-	char	**new;
-	int		i;
 
 	x = 0;
 	while (environ)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_others.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 09:08:17 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 16:32:42 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	**convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
 
 	i = 0;
 	len = 0;
+	(void)cmd;
 	len = ft_list_items(environ);
 	envir = malloc(sizeof(char *) * (len + 1));
 	while (i < len)

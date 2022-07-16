@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:34:37 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 11:54:09 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:43:11 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,31 @@ int	check_parent(char *s)
 	return (0);
 }
 
+int	space_between_red(char *s)
+{
+	int	sp;
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		sp = 0;
+		if (s[i] == '>' || s[i] == '<')
+		{
+			while (s[++i] && ft_isspace(s[i]))
+				sp++;
+			if ((s[i] == '>' || s[i] == '<') && sp)
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	check_red(char *s)
 {
 	int	len;
 	int	i;
-	int	j;
 	int	quotes[2];
 
 	quotes[0] = 0;
@@ -43,7 +63,7 @@ int	check_red(char *s)
 	len = ft_strlen(s);
 	i = 0;
 	if (s[len - 1] == '>' || s[len - 1] == '<' || consec_red1(s)
-		|| consec_red2(s))
+		|| consec_red2(s) || space_between_red(s))
 		return (ft_putstr_fd(SNT_ERR, 1), ft_putendl_fd("newline'", 1), 1);
 	if (consec_redin(s) || consec_redout(s))
 		return (1);

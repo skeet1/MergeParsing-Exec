@@ -6,11 +6,12 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 14:14:44 by mkarim            #+#    #+#             */
-/*   Updated: 2022/06/27 20:02:52 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 15:37:51 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "libft.h"
 
 void	*ft_memmove(void *s1, void *s2, size_t n)
 {

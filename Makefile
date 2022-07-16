@@ -3,17 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
+#    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/16 08:35:33 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/16 16:26:08 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-CFALGS = 
-#\\ -Wall -Werror -Wextra
+CFALGS = -Wall -Werror -Wextra
 SRC = ./exec/builtins.c \
 	./exec/ft_env.c \
 	./libft/ft_strlen.c  \

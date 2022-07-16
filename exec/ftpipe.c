@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftpipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 09:01:53 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 16:34:16 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	ft_pipe_wait(int g)
 
 int	ft_pipe_rd(t_cmd *list, int *pipes)
 {
+	(void)list;
 	if (pipe(pipes) < 0)
 	{
 		perror("Minishell: ");
@@ -59,6 +60,7 @@ int	ft_pipe_rd(t_cmd *list, int *pipes)
 
 int	savefdin(t_cmd *list, int *pipes, int fdin)
 {
+	(void)list;
 	close(pipes[1]);
 	fdin = pipes[0];
 	return (fdin);

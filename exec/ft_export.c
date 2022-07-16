@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 08:29:05 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 16:32:13 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	modify_name(struct s_environ *envp, t_cmd *cmd, char **split, int i)
 
 int	valid_identifier(struct s_environ *envp, t_cmd *cmd, int i)
 {
+	(void)envp;
 	if (cmd->cmd[i][0] == '=')
 	{
 		printf("Minishell: export: `%s': not a valid identifier\n",

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 08:29:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 08:34:04 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 16:28:30 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	heredoc_wait(int id)
 
 char	*heredoc_reader(t_cmd *list, int i, char *line)
 {
+	(void)list;
+	(void)i;
 	signal(SIGINT, handler_in_heredoc);
 	line = readline(">");
 	if (!line)

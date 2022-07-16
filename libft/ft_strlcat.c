@@ -6,11 +6,12 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 07:16:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/06/27 20:03:30 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 15:38:10 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "libft.h"
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {

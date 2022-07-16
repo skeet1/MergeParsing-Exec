@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 20:59:31 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 16:33:40 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ft_echo_n(t_cmd *cmds, int fd)
 	int	i;
 
 	i = 1;
+	(void)fd;
 	if (cmds->cmd[1] != NULL && cmds->cmd[1][0] == '-'
 		&& cmds->cmd[1][1] == 'n')
 	{

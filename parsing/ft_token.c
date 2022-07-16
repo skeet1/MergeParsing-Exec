@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:42:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 10:01:50 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:27:32 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 void	ft_num_cmd_side(t_data *data, char *s)
 {
 	int	i;
-	int side;
+	int	side;
 
 	i = 0;
 	side = 1;
 	while (s[i])
 	{
-		if (s[i] == '|' )
+		if (s[i] == '|')
 			side++;
 		i++;
 	}
@@ -53,16 +53,17 @@ void	print_token(t_token *token)
 {
 	while (token)
 	{
-		printf("type is %d value is %s single quotes %d\n", token->type, token->value, token->sgl_qt);
+		printf("type is %d value is %s single quotes %d\n", token->type,
+				token->value, token->sgl_qt);
 		token = token->next;
 	}
 }
 
 t_files	*ft_new_node_files(int type, char *name)
 {
-	t_files *new;
+	t_files	*new;
 
-	new = (t_files*)malloc(sizeof(t_files));
+	new = (t_files *)malloc(sizeof(t_files));
 	if (!new)
 		return (new);
 	new->name = name;
@@ -74,7 +75,7 @@ t_files	*ft_new_node_files(int type, char *name)
 void	ft_add_back_file(t_files **file, int type, char *name)
 {
 	t_files	*new;
-	t_files *last;
+	t_files	*last;
 
 	last = *file;
 	new = ft_new_node_files(type, name);
@@ -107,7 +108,7 @@ void	add_file_type(t_token *token)
 void	list_files(t_token *token)
 {
 	t_files	*file;
-	t_token *tmp;
+	t_token	*tmp;
 
 	file = NULL;
 	tmp = token;
@@ -121,14 +122,15 @@ void	list_files(t_token *token)
 	}
 	while (file)
 	{
-		printf("name of file is : %s -- type is : %d\n", file->name, file->type);
+		printf("name of file is : %s -- type is : %d\n", file->name,
+				file->type);
 		file = file->next;
 	}
 }
 
 t_token	*ft_new_node(char *value)
 {
-	t_token *new;
+	t_token	*new;
 
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
@@ -144,7 +146,7 @@ t_token	*ft_new_node(char *value)
 
 void	ft_add_back(t_token **token, char *value)
 {
-	t_token *last;
+	t_token	*last;
 	t_token	*new;
 
 	last = *token;
@@ -171,29 +173,31 @@ void	incr_quotes(char c, int *a, int *b)
 		(*b)++;
 }
 
-t_token *ft_token_side(t_token *token, t_data *data, char *s)
+t_token	*ft_token_side(t_token *token, char *s)
 {
-	int		j;
-	int		start;
-	int		quotes[2];
+	int	j;
+	int	start;
+	int	quotes[2];
+	int	node;
 
 	j = 0;
 	start = 0;
 	quotes[0] = 0;
 	quotes[1] = 0;
-	int node= 0;
+	node = 0;
 	while (s[j])
 	{
 		incr_quotes(s[j], &quotes[0], &quotes[1]);
 		if (quotes[1] % 2 || quotes[0] % 2)
 		{
 			j++;
-			continue;
+			continue ;
 		}
 		if (!ft_isspace(s[j]) && !is_special(s[j]))
 		{
 			incr_quotes(s[j], &quotes[0], &quotes[1]);
-			while ((s[j] && !ft_isspace(s[j]) && !is_special(s[j])) || (s[j] && (quotes[1] % 2 || quotes[0] % 2)))
+			while ((s[j] && !ft_isspace(s[j]) && !is_special(s[j])) || (s[j]
+					&& (quotes[1] % 2 || quotes[0] % 2)))
 			{
 				if (s[j] == '\'' && quotes[1] % 2 == 0)
 					quotes[0]++;
@@ -202,11 +206,11 @@ t_token *ft_token_side(t_token *token, t_data *data, char *s)
 				if (quotes[1] % 2 || quotes[0] % 2)
 				{
 					j++;
-					continue;
+					continue ;
 				}
 				j++;
 			}
-			ft_add_back(&token, ft_substr(s, start, j - start + !s[j  + 1]));
+			ft_add_back(&token, ft_substr(s, start, j - start + !s[j + 1]));
 			start = j;
 		}
 		while (s[j] && ft_isspace(s[j]))
@@ -227,10 +231,11 @@ t_token *ft_token_side(t_token *token, t_data *data, char *s)
 
 t_token	*ft_token(t_token *token, t_data *data, char *s)
 {
-	int     i;
-	int		start;
-	int		side = 1;
+	int	i;
+	int	start;
+	int	side;
 
+	side = 1;
 	i = 0;
 	start = i;
 	ft_num_cmd_side(data, s);
@@ -238,5 +243,5 @@ t_token	*ft_token(t_token *token, t_data *data, char *s)
 	// make_cmd_perfect(data, s);
 	if (ft_check_syntax(data, data->cmd_line))
 		return (0);
-	return (ft_token_side(token, data, data->cmd_line));
+	return (ft_token_side(token, data->cmd_line));
 }

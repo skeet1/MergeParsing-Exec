@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass_to_exec.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 08:23:16 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 16:28:48 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	pass_to_exec(struct s_environ *environ, t_cmd *cmds)
 	int	id;
 	int	fd_in;
 
+	id = 0;
 	fd_in = 0;
 	print_cmd(cmds);
 	ft_init(cmds, environ);

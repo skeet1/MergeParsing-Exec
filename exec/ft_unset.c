@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 13:24:57 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:31:54 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	unsett(struct s_environ *head, int pos, char *arg)
 {
 	struct s_environ	*tmp;
 	struct s_environ	*prev;
-	int					x;
 
 	tmp = head;
+	(void)pos;
 	if (head == NULL)
 		return (1);
 	if (ft_strncmp(tmp->name, arg, ft_strlen(arg)) == 0)
