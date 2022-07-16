@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:15:57 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:44:12 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 13:24:57 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,18 @@ int	ft_equal_sign(t_cmd *list, int arg)
 	return (SUCCESSFUL);
 }
 
-int	unsett(struct s_environ **head, int pos, char *arg)
+int	unsett(struct s_environ *head, int pos, char *arg)
 {
 	struct s_environ	*tmp;
 	struct s_environ	*prev;
 	int					x;
 
-	tmp = *head;
-	prev = *head;
-	if (*head == NULL)
+	tmp = head;
+	if (head == NULL)
 		return (1);
 	if (ft_strncmp(tmp->name, arg, ft_strlen(arg)) == 0)
 	{
-		*head = tmp->next;
+		(head)->name= NULL;
 		return (SUCCESSFUL);
 	}
 	while (tmp)
@@ -51,6 +50,7 @@ int	unsett(struct s_environ **head, int pos, char *arg)
 		if (ft_strncmp(tmp->name, arg, ft_strlen(arg)) == 0)
 		{
 			prev->next = tmp->next;
+			// free(tmp);
 		}
 		prev = tmp;
 		tmp = tmp->next;
@@ -63,6 +63,14 @@ int	ft_unset(struct s_environ *environ, t_cmd *list, int arg)
 	int	pos;
 
 	pos = 1;
-	unsett(&environ, pos, list->cmd[arg]);
+	unsett(environ, pos, list->cmd[arg]);
+	
+//	printf(" 33 %s\n", environ->name);
+	// ftsplitenv(environ, 0);
+	// while ((*environ))
+	// {
+	// 	printf("%s = %s\n", (*environ)->name, (*environ)->value);
+	// 	(*environ) = (*environ)->next;
+	// }
 	return (SUCCESSFUL);
 }

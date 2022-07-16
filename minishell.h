@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 08:35:22 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 13:15:05 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,10 @@ int						ft_export_1(struct s_environ *environ);
 int						ft_env(struct s_environ *environ, t_cmd *cmd);
 int						ft_echo(t_cmd *cmds, int fd);
 int						ft_is_built_in(struct s_environ *environ, t_cmd *cmds);
-int						ft_unset(struct s_environ *environ, t_cmd *list,
-							int arg);
+// int						ft_unset(struct s_environ *environ, t_cmd *list,
+							// int arg);
+							int	ft_unset(struct s_environ *environ, t_cmd *list, int arg);
+							
 int						ft_export(struct s_environ *environ, t_cmd *cmd, int i);
 //execve
 int						is_builtin(t_cmd *cmds);

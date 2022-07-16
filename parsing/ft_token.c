@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:42:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 12:18:10 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 10:01:50 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,6 @@ void	list_files(t_token *token)
 		file = file->next;
 	}
 }
-
-// dffdjfs
 
 t_token	*ft_new_node(char *value)
 {
