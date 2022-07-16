@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 08:50:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 10:11:12 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,13 +197,18 @@ void	exp_change_value(struct s_environ *envp, t_token *token)
 				env = envp;
 				while (env)
 				{
-					if (ft_strncmp(sp[j], env->name, ft_strlen(env->name)) == 0)
+					if (ft_strncmp(sp[j], env->name, ft_strlen(sp[j])) == 0)
 					{
 						token->value = ft_strjoin(before_dol(token->value), env->value);
-						if (ft_strlen(env->name) != ft_strlen(sp[j]))
-							token->value = ft_strjoin(token->value, rest_cmp(sp[j], ft_strlen(env->name)));
+						// if (ft_strlen(env->name) != ft_strlen(sp[j]))
+						// {
+						// 	// token->value = ft_strjoin(token->value, rest_cmp(sp[j], ft_strlen(env->name)));
+						// 	token->value = ft_strjoin(token->value, "");
+						// }
 						break;
 					}
+					else
+						token->value = before_dol(token->value);
 					env = env->next;
 				}
 				j++;
