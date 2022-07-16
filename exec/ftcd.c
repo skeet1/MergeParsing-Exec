@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:37:52 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 08:16:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 10:53:18 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	cd_last_check(t_cmd *cmd)
 	len = 0;
 	if (chdir(cmd->cmd[1]) == -1)
 	{
-		perror("Minishell: ");
+		ft_putstr_fd("Minishell: cd : ", 2);
+		ft_putstr_fd(cmd->cmd[1], 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
 		return (UNSUCCESSFUL);
 	}
 	return (SUCCESSFUL);
@@ -54,7 +56,7 @@ int	ftcd_c(t_cmd *cmd)
 		chdir(cmd->findhome);
 		return (SUCCESSFUL);
 	}
-	if (cmd->cmd[2] == NULL)
+	else if (cmd->cmd[1] != NULL)
 	{
 		if (cd_last_check(cmd) == 1)
 			return (1);
