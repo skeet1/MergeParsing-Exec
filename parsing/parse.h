@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 17:06:43 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 19:11:49 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,10 @@ t_cmd				*new_node_cmd(char **args, int *file_type,
 char				*rest_from_index(char *str, int ind);
 char				*before_index(char *str, int ind);
 void				exp_exit_status(char **str);
+void				ft_num_cmd_side(t_data *data, char *s);
+int					ft_token_type(char *value);
+void				add_file_type(t_token *token);
+t_token				*ft_new_node(char *value);
+void				ft_add_back(t_token **token, char *value);
 
 #endif
