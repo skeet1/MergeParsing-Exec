@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 17:34:08 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 20:22:19 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_cmd	*node_per_cmd(t_token *token)
 					c.file_name[i[1]++] = token->value;
 				token = token->next;
 			}
+			break ;
 		}
 		null_and_back(&cmd, &c, i[0], i[1]);
 		if (token)
