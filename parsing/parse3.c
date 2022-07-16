@@ -99,6 +99,7 @@ t_cmd	*node_per_cmd(t_token *token)
 					c.file_name[i[1]++] = token->value;
 				token = token->next;
 			}
+			break ;
 		}
 		null_and_back(&cmd, &c, i[0], i[1]);
 		if (token)
