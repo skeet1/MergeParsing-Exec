@@ -6,7 +6,7 @@
 #    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/16 16:26:08 by mkarim           ###   ########.fr        #
+#    Updated: 2022/07/16 17:00:30 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,9 @@ SRC = ./exec/builtins.c \
 	./libft/ft_strlcpy.c \
 	./libft/ft_strtrim.c \
 	./parsing/parse.c \
+	./parsing/parse1.c \
+	./parsing/parse2.c \
+	./parsing/parse3.c \
 	./libft/ft_strcmp.c \
 	./exec/pass_to_exec.c \
 	./parsing/ft_check_syntax.c  \
@@ -101,6 +104,9 @@ OBJ = builtins.o \
 	 ft_strlcpy.o \
 	 ft_strtrim.o \
 	 parse.o \
+	 parse1.o \
+	 parse2.o \
+	 parse3.o \
 	 ft_strcmp.o \
 	 pass_to_exec.o \
 	ft_builtcheck.o \

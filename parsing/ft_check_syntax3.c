@@ -6,13 +6,23 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 11:38:46 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 12:16:32 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:47:24 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 #include "parse.h"
+
+void	red(void)
+{
+	ft_putstr_fd("\033[1;31m", 0);
+}
+
+void	reset(void)
+{
+	ft_putstr_fd("\033[0m", 0);
+}
 
 int	consec_redout(char *s)
 {

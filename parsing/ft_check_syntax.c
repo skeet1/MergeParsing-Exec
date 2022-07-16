@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 09:34:37 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 16:43:11 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:47:15 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	check_parent(char *s)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -68,16 +68,6 @@ int	check_red(char *s)
 	if (consec_redin(s) || consec_redout(s))
 		return (1);
 	return (0);
-}
-
-void	red(void)
-{
-	ft_putstr_fd("\033[1;31m", 0);
-}
-
-void	reset(void)
-{
-	ft_putstr_fd("\033[0m", 0);
 }
 
 int	ft_check_syntax(t_data *data, char *s)

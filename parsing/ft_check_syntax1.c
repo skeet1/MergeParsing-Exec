@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 11:32:16 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 11:51:40 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:47:34 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	check_quotes(char *s)
 			1);
 	return (0);
 }
+
 int	check_pipes1(char *s, int *i, int *j, int len)
 {
 	*j = *i - 1;

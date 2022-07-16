@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 16:28:48 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 17:04:41 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	pass_to_exec(struct s_environ *environ, t_cmd *cmds)
 
 	id = 0;
 	fd_in = 0;
-	print_cmd(cmds);
+	// print_cmd(cmds);
 	ft_init(cmds, environ);
 	nbr = ft_lstsize(cmds);
 	cmds->cmdnbr = nbr;
