@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 21:04:50 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 08:29:05 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,11 @@ int	valid_identifier(struct s_environ *envp, t_cmd *cmd, int i)
 	if (cmd->cmd[i][0] == '=')
 	{
 		printf("Minishell: export: `%s': not a valid identifier\n",
-				cmd->cmd[i]);
+			cmd->cmd[i]);
 		return (UNSUCCESSFUL);
 	}
 	return (SUCCESSFUL);
 }
-
-// int	ft_copyenv(struct s_environ *envp, t_cmd *cmd, char **new, int i)
-// {
-
-// 	return (0);
-// }
 
 int	ft_export(struct s_environ *envp, t_cmd *cmd, int i)
 {
@@ -76,8 +70,8 @@ int	ft_export(struct s_environ *envp, t_cmd *cmd, int i)
 			if (modify_name(envp, cmd, split, i) == 0)
 				return (0);
 			ftaddback(&envp, cmd->cmd[i]);
-					ftsplitenv(envp, x);
-				envp->envpitems++;
+			ftsplitenv(envp, x);
+			envp->envpitems++;
 			return (SUCCESSFUL);
 		}
 		x++;

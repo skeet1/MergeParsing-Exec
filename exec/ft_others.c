@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_others.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:43:01 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 08:23:54 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	ft_list_items(struct s_environ *environ)
 	}
 	return (items);
 }
+
 char	**convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
 {
 	int		i;
@@ -43,6 +44,7 @@ char	**convertlisttoarray(t_cmd *cmd, struct s_environ *environ)
 	envir[i] = NULL;
 	return (envir);
 }
+
 int	ft_check_programs(t_cmd *cmd, struct s_environ *environ)
 {
 	char	**en;
@@ -52,14 +54,14 @@ int	ft_check_programs(t_cmd *cmd, struct s_environ *environ)
 	{
 		execve(cmd->cmd[0], cmd->cmd, en);
 		printf("Minishell : %s : No such file or directory\n",
-				cmd->cmd[0]);
+			cmd->cmd[0]);
 		exit(127);
 	}
 	if (cmd->cmd[0][0] == '/')
 	{
 		execve(cmd->cmd[0], cmd->cmd, en);
 		printf("Minishell : %s : No such  file or directory\n",
-				cmd->cmd[0]);
+			cmd->cmd[0]);
 		exit(127);
 	}
 	return (0);

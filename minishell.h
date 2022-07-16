@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:32:55 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 08:35:22 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ struct					s_environ
 	char				**new;
 	char				*namevalue;
 
-		
 	struct s_environ	*next;
 };
 
@@ -61,19 +60,18 @@ typedef struct t_list
 	char				*content;
 	void				*next;
 }						t_list;
-
-//   int				g_exit_status;
-   static int				g_exit_status;
+int						g_exit_status;
 
 //new
-void free_environ(struct s_environ **head);
-struct s_environ  * ftcopyenv(struct s_environ *environ, char **envp);
-struct s_environ  *	ftsplitenv(struct s_environ *environ,int x);
-void	ftaddback(struct s_environ **token, char *envv);
-void	print(struct s_environ *env);
-char  **convertlisttoarray(t_cmd *cmd, struct s_environ *environ);
-int						ft_export_no_equal(struct s_environ *environ, t_cmd *cmd,
-							int i);
+void					free_environ(struct s_environ **head);
+struct s_environ		*ftcopyenv(struct s_environ *environ, char **envp);
+struct s_environ		*ftsplitenv(struct s_environ *environ, int x);
+void					ftaddback(struct s_environ **token, char *envv);
+void					print(struct s_environ *env);
+char					**convertlisttoarray(t_cmd *cmd,
+							struct s_environ *environ);
+int						ft_export_no_equal(struct s_environ *environ,
+							t_cmd *cmd, int i);
 int						pass_to_exec(struct s_environ *environ, t_cmd *cmds);
 //input
 void					handler(int sig);
@@ -91,7 +89,8 @@ int						ft_export_1(struct s_environ *environ);
 int						ft_env(struct s_environ *environ, t_cmd *cmd);
 int						ft_echo(t_cmd *cmds, int fd);
 int						ft_is_built_in(struct s_environ *environ, t_cmd *cmds);
-int						ft_unset(struct s_environ *environ, t_cmd *list, int arg);
+int						ft_unset(struct s_environ *environ, t_cmd *list,
+							int arg);
 int						ft_export(struct s_environ *environ, t_cmd *cmd, int i);
 //execve
 int						is_builtin(t_cmd *cmds);
@@ -101,17 +100,18 @@ int						ft_split_env(struct s_environ *environ, char **env);
 int						set_rd(t_cmd *list);
 int						builtcheck_next(t_cmd *cmd, struct s_environ *environ);
 int						ft_bin_usr_sbin(t_cmd *cmd, struct s_environ *environ);
-int						ft_search_for_path(t_cmd *list, struct s_environ *environ);
+int						ft_search_for_path(t_cmd *list,
+							struct s_environ *environ);
 void					ftcheck_nopath(t_cmd *list, struct s_environ *environ);
 void					looping_through_split_path(t_cmd *list, char *bin,
 							char *last, struct s_environ *environ);
-int						ft_check_programs(t_cmd *list, struct s_environ *environ);
+int						ft_check_programs(t_cmd *list,
+							struct s_environ *environ);
 /// redirections I/O
 int						redirections(t_cmd *list);
 int						heredoc_exec(t_cmd *list);
 
 //env
-int						ft_copy_1st_env(struct s_environ *environ, char **env);
 // LIBFT
 int						ft_isalpha(int c);
 int						ft_isalnum(int c);
@@ -135,7 +135,7 @@ void					ft_putstr_fd(char *s, int fd);
 void					ft_putchar_fd(char c, int fd);
 void					ft_putendl_fd(char *s, int fd);
 // pipes
-int						ft_pipe(t_cmd *list, struct s_environ *environ);
+int						ft_pipe(t_cmd *list, struct s_environ *environ, int id, int fdin);
 // signals
 void					handler(int sig);
 // init data
@@ -149,12 +149,11 @@ int						modify_name(struct s_environ *environ, t_cmd *cmd,
 int						ft_equal_sign(t_cmd *list, int arg);
 
 //free
-int						free2d(char **s);
 int						ft_is_alpha_mod(char c);
 //tmp
 void					print_cmd(t_cmd *cmd);
 //heredoc
-int						heredoc_exec_part1(t_cmd *list, int i);
+int	heredoc_exec_part1(t_cmd *list, int i, int id, int len);
 char					*heredoc_reader(t_cmd *list, int i, char *line);
 int						heredoc_wait(int id);
 void					heredoc_write_fd(char *line, int fd);

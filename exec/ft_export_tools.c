@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 22:08:25 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 08:27:39 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	check_name_is_valid(char **split, int i, t_cmd *cmd)
 	if (ft_is_alpha_mod(split[0][0]) == 0)
 	{
 		printf("Minishell: export: `%s': not a valid identifier\n",
-				cmd->cmd[i]);
+			cmd->cmd[i]);
 		return (1);
 	}
 	x = 1;
@@ -94,7 +94,7 @@ int	check_name_is_valid(char **split, int i, t_cmd *cmd)
 		if (ft_is_alpha_mod(split[0][x]) == 0 && ft_isalnum(split[0][x]) == 0)
 		{
 			printf("Minishell: export: `%s': not a valid identifier\n",
-					cmd->cmd[i]);
+				cmd->cmd[i]);
 			return (1);
 		}
 		x++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_envfill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:39:33 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 08:31:30 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,14 @@ struct s_environ	*ftsplitenv(struct s_environ *environ, int x)
 	return (environ);
 }
 
-
 void	increment_shlvl(struct s_environ *envp)
 {
 	char	*tmp;
 	int		nb;
 	char	*joined;
-	int x = 0;
+	int		x;
+
+	x = 0;
 	while (envp)
 	{
 		if (ft_strncmp(envp->name, "SHLVL", 6) == 0)

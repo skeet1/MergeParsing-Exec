@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:40:43 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 11:56:58 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 08:30:59 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,18 @@ int	builtcheck_next(t_cmd *cmd, struct s_environ *envp)
 	{
 		i = 1;
 		if (cmd->cmd[i] == NULL)
-		{
 			return (0);
-		}
 		while (cmd->cmd[i])
 		{
 			if (ft_equal_sign(cmd, i) == UNSUCCESSFUL)
 			{
 				g_exit_status = 1;
-				i++;
 			}
 			else
 			{
 				g_exit_status = ft_unset(envp, cmd, i);
-							i++;
-
 			}
+			i++;
 		}
 		return (1);
 	}
@@ -70,7 +66,7 @@ int	builtcheck_1(t_cmd *cmd, struct s_environ *envp)
 		if (cmd->cmd[1] == NULL)
 		{
 			if (ft_export_1(envp) == 0)
-			g_exit_status = 0;
+				g_exit_status = 0;
 			return (0);
 		}
 		while (cmd->cmd[i] != NULL)

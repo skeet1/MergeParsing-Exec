@@ -6,7 +6,7 @@
 #    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/15 14:30:44 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/16 08:35:33 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRC = ./exec/builtins.c \
 	./exec/is_builtin.c \
 	./exec/ft_exit.c \
 	./exec/ftcd.c \
-	./exec/ft_copy_1st_env.c \
 	./exec/ft_export_tools.c \
 	./libft/ft_strncmp.c  \
 	./libft/ft_itoa.c  \
@@ -91,7 +90,6 @@ OBJ = builtins.o \
 	 is_builtin.o \
 	 ft_exit.o \
 	 ftcd.o \
-	 ft_copy_1st_env.o \
 	 ft_export_tools.o \
 	 ft_strncmp.o  \
 	 ft_itoa.o  \

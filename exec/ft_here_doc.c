@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/13 21:18:18 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 08:25:54 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ void	sigg(int sig)
 		printf("\n");
 }
 
-int	heredoc_exec_part1(t_cmd *list, int i)
+int	heredoc_exec_part1(t_cmd *list, int i, int id, int len)
 {
-	int		id;
 	int		fd;
 	char	*line;
-	int		len;
 
 	id = fork();
 	if (id == -1)
@@ -48,13 +46,14 @@ int	heredoc_exec_part1(t_cmd *list, int i)
 		}
 		heredoc_exec_clean(line, fd);
 	}
-	else
-		return (heredoc_wait(id));
+	return (heredoc_wait(id));
 }
 
 int	heredoc_exec(t_cmd *list)
 {
 	int	i;
+	int	id;
+	int	len;
 
 	i = 0;
 	while (list)
@@ -63,7 +62,7 @@ int	heredoc_exec(t_cmd *list)
 		{
 			if (list->f_type[i] == RED_IN_APP)
 			{
-				if (heredoc_exec_part1(list, i) == UNSUCCESSFUL)
+				if (heredoc_exec_part1(list, i, id, len) == UNSUCCESSFUL)
 					return (UNSUCCESSFUL);
 			}
 			i++;
