@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/15 21:56:55 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 08:50:30 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -365,7 +365,10 @@ int	main(int argc, char **argv, char **env)
 		while (1)
 		{
 			signal(SIGQUIT, SIG_IGN);
+						signal(SIGTERM, SIG_IGN);
+
 			signal(SIGINT, &handler);
+			
 			token = NULL;
 			cmd = NULL;
 			data.cmd_line = readline(PROMPT);
