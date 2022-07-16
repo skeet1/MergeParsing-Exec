@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_search_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 23:53:44 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 09:07:16 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	ftcheck_nopath(t_cmd *list, struct s_environ *environ)
 	ft_search_for_path(list, environ);
 	if (list->new == NULL)
 	{
-		printf("MINISHELL : %s No such file or directory\n",
-			list->cmd[0]);
+		ft_putstr_fd("Minishell : ", 2);
+		ft_putstr_fd(list->cmd[0], 2);
+		ft_putstr_fd("No such file or directory\n", 2);
 		g_exit_status = 127;
 		exit(127);
 	}

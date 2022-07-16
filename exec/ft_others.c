@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 08:23:54 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 09:08:17 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,17 @@ int	ft_check_programs(t_cmd *cmd, struct s_environ *environ)
 	if (cmd->cmd[0][0] == '.' && cmd->cmd[0][1] == '/')
 	{
 		execve(cmd->cmd[0], cmd->cmd, en);
-		printf("Minishell : %s : No such file or directory\n",
-			cmd->cmd[0]);
+		ft_putstr_fd("Minishell : ", 2);
+		ft_putstr_fd(cmd->cmd[0], 2);
+		ft_putstr_fd("No such file or directory\n", 2);
 		exit(127);
 	}
 	if (cmd->cmd[0][0] == '/')
 	{
 		execve(cmd->cmd[0], cmd->cmd, en);
-		printf("Minishell : %s : No such  file or directory\n",
-			cmd->cmd[0]);
+		ft_putstr_fd("Minishell : ", 2);
+		ft_putstr_fd(cmd->cmd[0], 2);
+		ft_putstr_fd("No such file or directory\n", 2);
 		exit(127);
 	}
 	return (0);
