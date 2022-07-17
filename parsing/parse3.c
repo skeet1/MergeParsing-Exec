@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 20:22:19 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 12:24:36 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,27 +66,51 @@ void	ft_init_var(int *a, int *b, int *c, int *d)
 	(*d) = 0;
 }
 
+void	npc_assist(t_token *tok, t_tocmd *c, int *a, int *ft)
+{
+	while (tok && tok->type != PIPE)
+	{
+		incr_a_ft(tok->type, a, ft);
+		tok = tok->next;
+	}
+	c->args = ft_calloc(sizeof(char *), *a + 1);
+	c->file_name = ft_calloc(sizeof(char *), *ft + 1);
+	c->file_type = ft_calloc(sizeof(int), *ft + 1);
+}
+
+void	npc_assist_1(t_token **tok, t_tocmd *c, int *a, int *b)
+{
+	t_token *token;
+
+	token = *tok;
+	while (token)
+	{
+		while (token && token->type != PIPE)
+		{
+			if (token->type == WORD)
+				c->args[(*a)++] = token->value;
+			else if (token->type >= 2 && token->type <= 5)
+				c->file_type[(*b)] = token->type;
+			else if (token->type == FILEE)
+				c->file_name[(*b)++] = token->value;
+			token = token->next;
+		}
+		break ;
+	}
+}
+
 t_cmd	*node_per_cmd(t_token *token)
 {
 	t_tocmd	c;
 	int		i[2];
 	int		a_ft[2];
-	t_token	*tok;
 	t_cmd	*cmd;
 
 	cmd = NULL;
 	while (token)
 	{
 		ft_init_var(&a_ft[0], &a_ft[1], &i[0], &i[1]);
-		tok = token;
-		while (tok && tok->type != PIPE)
-		{
-			incr_a_ft(tok->type, &a_ft[0], &a_ft[1]);
-			tok = tok->next;
-		}
-		c.args = ft_calloc(sizeof(char *), a_ft[0] + 1);
-		c.file_name = ft_calloc(sizeof(char *), a_ft[1] + 1);
-		c.file_type = ft_calloc(sizeof(int), a_ft[1] + 1);
+		npc_assist(token, &c, &a_ft[0], &a_ft[1]);
 		while (token)
 		{
 			while (token && token->type != PIPE)
