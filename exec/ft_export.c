@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:37:12 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:02:45 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_name_is_valid(char *split, int i, t_cmd *cmd)
 	if (ft_is_alpha_mod(split[0]) == 0)
 	{
 		printf("Minishell: export: `%s': not a valid identifier\n",
-			cmd->cmd[i]);
+				cmd->cmd[i]);
 		return (1);
 	}
 	x = 1;
@@ -64,7 +64,7 @@ int	check_name_is_valid(char *split, int i, t_cmd *cmd)
 		if (ft_is_alpha_mod(split[x]) == 0 && ft_isalnum(split[x]) == 0)
 		{
 			printf("Minishell: export: `%s': not a valid identifier\n",
-				cmd->cmd[i]);
+					cmd->cmd[i]);
 			return (1);
 		}
 		x++;
@@ -95,7 +95,7 @@ void	modify(t_lis *envp, t_cmd *cmd, int i, char *name)
 	}
 	en = new_node(name, value);
 	tmp->next = ft_lstnew(en);
-	freeit(name, value);
+	free(value);
 }
 
 int	ft_export(t_lis *envp, t_cmd *cmd, int i)
@@ -106,7 +106,10 @@ int	ft_export(t_lis *envp, t_cmd *cmd, int i)
 		return (UNSUCCESSFUL);
 	name = extractname(cmd, i);
 	if (check_name_is_valid(name, i, cmd) == 1 && name != NULL)
+	{
+		free(name);
 		return (UNSUCCESSFUL);
+	}
 	modify(envp, cmd, i, name);
 	return (SUCCESSFUL);
 }

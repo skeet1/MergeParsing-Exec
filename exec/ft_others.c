@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 10:52:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 10:55:54 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ char	**joinnameandvalue(t_lis *envp)
 		i++;
 		envp = envp->next;
 	}
+	joined[i] = NULL;
 	return (joined);
 }
+
 char	**convertlisttoarray(t_cmd *cmd, t_lis *envp)
 {
 	int		i;
