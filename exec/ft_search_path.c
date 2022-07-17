@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:30:09 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:09:23 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	looping_through_split_path(t_cmd *list, char *bin, char *last,
 	int		i;
 	char	**en;
 
-	en = convertlisttoarray(list, envp);
+	en = convertlisttoarray(envp);
 	i = 0;
 	while (list->new[i])
 	{

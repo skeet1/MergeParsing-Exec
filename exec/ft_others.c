@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 10:55:54 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:09:14 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,8 @@ char	**joinnameandvalue(t_lis *envp)
 	return (joined);
 }
 
-char	**convertlisttoarray(t_cmd *cmd, t_lis *envp)
+char	**convertlisttoarray(t_lis *envp)
 {
-	int		i;
-	char	**envir;
-	int		len;
 	char	**new;
 
 	new = joinnameandvalue(envp);
@@ -67,7 +64,7 @@ int	ft_check_programs(t_cmd *cmd, t_lis *envp)
 {
 	char	**en;
 
-	en = convertlisttoarray(cmd, envp);
+	en = convertlisttoarray(envp);
 	if (cmd->cmd[0][0] == '.' && cmd->cmd[0][1] == '/')
 	{
 		execve(cmd->cmd[0], cmd->cmd, en);

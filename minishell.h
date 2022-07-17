@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 11:06:53 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:09:02 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ t_env		*new_node(char *name, char *value);
 t_lis		*copyenv(t_lis *env_clone, char **env);
 void		free_environ(t_lis *head);
 
-char	**convertlisttoarray(t_cmd *cmd,
-							t_lis *envp);
+char	**convertlisttoarray(t_lis *envp);
 int	ft_export_no_equal(t_lis *envp,
 						t_cmd *cmd,
 						int i);
