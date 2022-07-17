@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:30:09 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:50:50 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 13:26:27 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,6 @@ void	free_environ(t_lis *head)
 	}
 	free(env);
 	free(head);
-}
-
-int	valid_identifier(t_lis *envp, t_cmd *cmd, int i)
-{
-	(void)envp;
-	if (cmd->cmd[i][0] == '=')
-	{
-		printf("Minishell: export: `%s': not a valid identifier\n",
-			cmd->cmd[i]);
-		return (UNSUCCESSFUL);
-	}
-	return (SUCCESSFUL);
 }
 
 char	*extractvalue(t_cmd *cmd, int i)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftpipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 21:36:35 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 13:20:42 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	ft_pipe(t_cmd *list, t_lis *envp, int id, int fdin)
 		if (id == -1)
 		{
 			perror("Minishell: ");
-			return (1);
+			return (UNSUCCESSFUL);
 		}
 		if (id == 0)
 			ft_pipe_c(list, envp, fdin, pipes);
@@ -92,5 +92,5 @@ int	ft_pipe(t_cmd *list, t_lis *envp, int id, int fdin)
 		list = list->next;
 	}
 	ft_pipe_wait(g);
-	return (0);
+	return (SUCCESSFUL);
 }

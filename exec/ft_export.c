@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 11:07:33 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 13:26:37 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ int	ft_export(t_lis *envp, t_cmd *cmd, int i)
 {
 	char	*name;
 
-	if (valid_identifier(envp, cmd, i) == UNSUCCESSFUL)
-		return (UNSUCCESSFUL);
 	name = extractname(cmd, i);
 	if (check_name_is_valid(name, i, cmd) == 1 && name != NULL)
 	{
