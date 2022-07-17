@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 08:34:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 08:34:54 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 21:45:33 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	check_exit_no_args(t_cmd *cmd, struct s_environ *envp)
+int	check_exit_no_args(t_cmd *cmd, t_lis *envp)
 {
 	if (cmd->cmd[1] == NULL)
 	{
 		printf("exit\n");
 		rl_clear_history();
-		free_environ(&envp);
+		// free_environ(&envp);
 		exit(g_exit_status);
 	}
 	return (0);
 }
 
-void	exitwithnonnumeric(t_cmd *cmd, struct s_environ *envp, int i)
+void	exitwithnonnumeric(t_cmd *cmd, t_lis *envp, int i)
 
 {
 	if (!(ft_isdigit(cmd->cmd[1][i])))
@@ -33,12 +33,12 @@ void	exitwithnonnumeric(t_cmd *cmd, struct s_environ *envp, int i)
 		printf("exit\n");
 		printf("Minishell: exit: %s: numeric argument required\n",
 			cmd->cmd[1]);
-		free_environ(&envp);
+		// free_environ(&envp);
 		exit(255);
 	}
 }
 
-int	check_exit_with_args(t_cmd *cmd, struct s_environ *envp)
+int	check_exit_with_args(t_cmd *cmd, t_lis *envp)
 {
 	int	i;
 	int	exit_value;
@@ -55,14 +55,14 @@ int	check_exit_with_args(t_cmd *cmd, struct s_environ *envp)
 				i++;
 			}
 			exit_value = ft_atoi(cmd->cmd[1]);
-			free_environ(&envp);
+			// free_environ(&envp);
 			exit(exit_value);
 		}
 	}
 	return (0);
 }
 
-int	ftexit(t_cmd *cmd, struct s_environ *envp)
+int	ftexit(t_cmd *cmd, t_lis *envp)
 {
 	int	i;
 

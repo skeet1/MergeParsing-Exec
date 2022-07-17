@@ -21,7 +21,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}				t_l;
+}				t_lis;
 
 typedef struct s_variables
 {
@@ -66,13 +66,13 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-t_l	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_l **alst, t_l *new);
-int		ft_lstsize(t_l *lst);
-t_l	*ft_lstlast(t_l *lst);
-void	ft_lstadd_back(t_l **alst, t_l *new);
-void	ft_lstdelone(t_l *lst, void (*del)(void *));
-void	ft_lstclear(t_l **lst, void (*del)(void *));
-void	ft_lstiter(t_l *lst, void (*f)(void *));
+t_lis	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_lis **alst, t_lis *new);
+int		ft_lstsize(t_lis *lst);
+t_lis	*ft_lstlast(t_lis *lst);
+void	ft_lstadd_back(t_lis **alst, t_lis *new);
+void	ft_lstdelone(t_lis *lst, void (*del)(void *));
+void	ft_lstclear(t_lis **lst, void (*del)(void *));
+void	ft_lstiter(t_lis *lst, void (*f)(void *));
 int	ft_strcmp(const char *s1, const char *s2);
 #endif

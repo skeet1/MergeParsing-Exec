@@ -3,35 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_no_equal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:30:09 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 08:28:07 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 23:55:09 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	ft_export_no_equal(struct s_environ *envp, t_cmd *cmd, int i)
+int	ft_export_no_equal(t_lis *envp, t_cmd *cmd, int i)
 {
-	int					x;
-	struct s_environ	*tmp;
+// 	int		x;
+// 	t_env	*en;
+// 	t_lis	*tmp;
+// 	char	*name;
+// 	char	*value;
 
-	tmp = envp;
-	x = 0;
-	if (check_name_is_valid(&cmd->cmd[i], i, cmd) == 1)
-		return (UNSUCCESSFUL);
-	while (tmp)
-	{
-		if (ft_strncmp(tmp->name, cmd->cmd[i], ft_strlen(cmd->cmd[i]) + 1) == 0)
-		{
-			printf(" name %s    args to export %s\n", tmp->name, cmd->cmd[i]);
-			return (SUCCESSFUL);
-		}
-		tmp = tmp->next;
-	}
-	ftaddback(&envp, cmd->cmd[i]);
+// 	tmp = envp;
+// 	// name = envname(cmd->cmd[i]);
+// 	// value = envname(cmd->cmd[i]);
+// 	x = 0;
+// 	if (check_name_is_valid(&cmd->cmd[i], i, cmd) == 1)
+// 		return (UNSUCCESSFUL);
+// 	while (envp != NULL)
+// 	{
+// 		en = envp->content;
+// 		if (ft_strncmp(en->name, cmd->cmd[i], ft_strlen(cmd->cmd[i]) + 1) == 0)
+// 		{
+// 			return (SUCCESSFUL);
+// 		}
+// 		tmp = envp;
+// 		envp = envp->next;
+// 	}
+// 	en = new_node(name, value);
+// 	tmp->next = ft_lstnew(en);
+// 	free(name);
+// 	free(value);
 	return (SUCCESSFUL);
 }
 

@@ -3,26 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:50:22 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 13:21:34 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 07:10:12 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	ft_env(struct s_environ *environ, t_cmd *cmd)
+int	ft_env(t_lis *envp, t_cmd *cmd)
 {
-	int	i;
+	int		i;
+	t_env	*envval;
 
 	i = 0;
-	while (environ != NULL)
+	envp = envp->next;
+	while (envp != NULL)
 	{
-		if (environ->value != NULL && environ->name)
-			ft_putendl_fd(environ->env, cmd->fd_out);
-		environ = environ->next;
+		envval = envp->content;
+		if (envval->value != NULL)
+		{
+			ft_putstr_fd(envval->name, cmd->fd_out);
+		ft_putstr_fd("=", cmd->fd_out);
+		ft_putendl_fd(envval->value, cmd->fd_out);
+		}
+			
+		envp = envp->next;
 	}
 	return (0);
 }

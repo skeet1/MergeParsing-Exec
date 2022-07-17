@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 16:59:41 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 07:58:04 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "./parsing/parse.h"
+# include "./libft/libft.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -60,19 +61,28 @@ typedef struct t_list
 	char				*content;
 	void				*next;
 }						t_list;
-int						g_exit_status;
+static int						g_exit_status;
 
-//new
+	
+typedef struct						s_env
+{
+	char					*name;
+	char					*value;
+} t_env;
+///
+t_env	*new_node(char *name, char *value);
+
+t_lis	* copyenv(t_lis *env_clone, char **env);
 void					free_environ(struct s_environ **head);
-struct s_environ		*ftcopyenv(struct s_environ *environ, char **envp);
-struct s_environ		*ftsplitenv(struct s_environ *environ, int x);
+// struct s_environ		*ftcopyenv( t_lis	*envp, char **envp);
+// struct s_environ		*ftsplitenv( t_lis	*envp, int x);
 void					ftaddback(struct s_environ **token, char *envv);
 void					print(struct s_environ *env);
 char					**convertlisttoarray(t_cmd *cmd,
-							struct s_environ *environ);
-int						ft_export_no_equal(struct s_environ *environ,
+							 t_lis	*envp);
+int						ft_export_no_equal( t_lis	*envp,
 							t_cmd *cmd, int i);
-int						pass_to_exec(struct s_environ *environ, t_cmd *cmds);
+int						pass_to_exec( t_lis	*envp, t_cmd *cmds);
 //input
 void					handler(int sig);
 int						prompt_and_parse(char **upstream, char **downstream,
@@ -81,34 +91,34 @@ void					rl_replace_line(const char *text, int clear_undo);
 void					rl_clear_history(void);
 // Builtin Commands
 int						ft_pwd(int fd_out);
-int						builtcheck_1(t_cmd *cmd, struct s_environ *environ);
-int						ftexit(t_cmd *cmd, struct s_environ *environ);
-int						builtcheck(struct s_environ *environ, t_cmd *cmds);
-int						ftcd(t_cmd *cmd, struct s_environ *environ);
-int						ft_export_1(struct s_environ *environ);
-int						ft_env(struct s_environ *environ, t_cmd *cmd);
+int						builtcheck_1(t_cmd *cmd,  t_lis	*envp);
+int						ftexit(t_cmd *cmd,  t_lis	*envp);
+int						builtcheck( t_lis	*envp, t_cmd *cmds);
+int						ftcd(t_cmd *cmd,  t_lis	*envp);
+int						ft_export_1( t_lis	*envp);
+int						ft_env( t_lis	*envp, t_cmd *cmd);
 int						ft_echo(t_cmd *cmds, int fd);
-int						ft_is_built_in(struct s_environ *environ, t_cmd *cmds);
-// int						ft_unset(struct s_environ *environ, t_cmd *list,
+int						ft_is_built_in( t_lis	*envp, t_cmd *cmds);
+// int						ft_unset( t_lis	*envp, t_cmd *list,
 							// int arg);
-							int	ft_unset(struct s_environ *environ, t_cmd *list, int arg);
+							int	ft_unset( t_lis	*envp, t_cmd *list, int arg);
 							
-int						ft_export(struct s_environ *environ, t_cmd *cmd, int i);
+int						ft_export( t_lis	*envp, t_cmd *cmd, int i);
 //execve
 int						is_builtin(t_cmd *cmds);
-int						one_cmd(struct s_environ *environ, t_cmd *cmds);
+int						one_cmd( t_lis	*envp, t_cmd *cmds);
 char					*ft_itoa(int n);
-int						ft_split_env(struct s_environ *environ, char **env);
+int						ft_split_env( t_lis	*envp, char **env);
 int						set_rd(t_cmd *list);
-int						builtcheck_next(t_cmd *cmd, struct s_environ *environ);
-int						ft_bin_usr_sbin(t_cmd *cmd, struct s_environ *environ);
+int						builtcheck_next(t_cmd *cmd,  t_lis	*envp);
+int						ft_bin_usr_sbin(t_cmd *cmd,  t_lis	*envp);
 int						ft_search_for_path(t_cmd *list,
-							struct s_environ *environ);
-void					ftcheck_nopath(t_cmd *list, struct s_environ *environ);
+							 t_lis	*envp);
+void					ftcheck_nopath(t_cmd *list,  t_lis	*envp);
 void					looping_through_split_path(t_cmd *list, char *bin,
-							char *last, struct s_environ *environ);
+							char *last,  t_lis	*envp);
 int						ft_check_programs(t_cmd *list,
-							struct s_environ *environ);
+							 t_lis	*envp);
 /// redirections I/O
 int						redirections(t_cmd *list);
 int						heredoc_exec(t_cmd *list);
@@ -137,16 +147,16 @@ void					ft_putstr_fd(char *s, int fd);
 void					ft_putchar_fd(char c, int fd);
 void					ft_putendl_fd(char *s, int fd);
 // pipes
-int						ft_pipe(t_cmd *list, struct s_environ *environ, int id, int fdin);
+int						ft_pipe(t_cmd *list,  t_lis	*envp, int id, int fdin);
 // signals
 void					handler(int sig);
 // init data
-int						ft_init(t_cmd *cmds, struct s_environ *environ);
+int						ft_init(t_cmd *cmds,  t_lis	*envp);
 //export tools
-char					*join_name_and_value(struct s_environ *environ);
-char					*ft_sort_env(struct s_environ *environ);
+char					*join_name_and_value( t_lis	*envp);
+char					*ft_sort_env( t_lis	*envp);
 int						check_name_is_valid(char **split, int i, t_cmd *cmd);
-int						modify_name(struct s_environ *environ, t_cmd *cmd,
+int						modify_name( t_lis	*envp, t_cmd *cmd,
 							char **split, int i);
 int						ft_equal_sign(t_cmd *list, int arg);
 

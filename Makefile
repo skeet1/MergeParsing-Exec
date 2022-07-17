@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
+#    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/16 19:09:11 by mkarim           ###   ########.fr        #
+#    Updated: 2022/07/17 08:23:19 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-CFALGS = -Wall -Werror -Wextra
+CFALGS =
+#  -Wall -Werror -Wextra
 SRC = ./exec/builtins.c \
 	./exec/ft_env.c \
 	./libft/ft_strlen.c  \
@@ -67,7 +68,10 @@ SRC = ./exec/builtins.c \
 	./parsing/ft_check_syntax2.c  \
 	./parsing/ft_check_syntax3.c  \
 	./exec/ft_envfill.c  \
-	 
+	 ./libft/ft_lstnew.c  \
+	  ./libft/ft_lstlast.c  \
+	  ./libft/ft_lstadd_back.c  \
+	  
 OBJ = builtins.o \
 	 ft_env.o \
 	 ft_strlen.o  \
@@ -119,6 +123,9 @@ OBJ = builtins.o \
 	ft_check_syntax2.o \
 	ft_check_syntax3.o \
 	 ft_envfill.o \
+	 ft_lstnew.o \
+	 ft_lstlast.o \
+	 ft_lstadd_back.o \
 	 
 all : $(NAME)
 $(OBJ) :

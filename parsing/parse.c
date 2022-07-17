@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 20:21:51 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 08:24:00 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ int	main(int argc, char **argv, char **env)
 	t_token				*token;
 	t_cmd				*cmd;
 	int					pipenbr;
-	struct s_environ	*envp;
+	t_lis	*envp;
 
 	(void)argc;
 	(void)argv;
 	pipenbr = 0;
-	envp = NULL;
-	envp = ftcopyenv(envp, env);
+	envp = copyenv(NULL, env);
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -74,7 +73,7 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(data.cmd_line))
 		{
 			token = ft_token(token, &data, data.cmd_line);
-			exp_change_value(envp, token);
+			// exp_change_value(envp, token);
 			cmd = node_per_cmd(token);
 		}
 		if (data.cmd_line != NULL && data.error == 0 && cmd != NULL)
@@ -85,6 +84,6 @@ int	main(int argc, char **argv, char **env)
 		free(data.cmd_line);
 		free_cmd(&cmd);
 	}
-	free_environ(&envp);
+	// free_environ(&envp);
 	return (0);
 }

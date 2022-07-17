@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtcheck.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:40:43 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 13:13:55 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 21:43:32 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	builtcheck(struct s_environ *envp, t_cmd *cmds)
+int	builtcheck(t_lis *envp, t_cmd *cmds)
 {
 	if (ft_strncmp(cmds->cmd[0], "echo", 5) == 0)
 	{
@@ -29,7 +29,7 @@ int	builtcheck(struct s_environ *envp, t_cmd *cmds)
 	return (0);
 }
 
-int	builtcheck_next(t_cmd *cmd, struct s_environ *envp)
+int	builtcheck_next(t_cmd *cmd, t_lis *envp)
 {
 	int	i;
 
@@ -56,7 +56,7 @@ int	builtcheck_next(t_cmd *cmd, struct s_environ *envp)
 	return (0);
 }
 
-int	builtcheck_1(t_cmd *cmd, struct s_environ *envp)
+int	builtcheck_1(t_cmd *cmd, t_lis *envp)
 {
 	int	i;
 

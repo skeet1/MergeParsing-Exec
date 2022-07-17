@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 10:36:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/15 12:41:59 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 21:36:21 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_builtin(t_cmd *list)
 	return (3);
 }
 
-int	ft_is_built_in(struct s_environ *envp, t_cmd *cmds)
+int	ft_is_built_in(t_lis *envp, t_cmd *cmds)
 {
 	int	i;
 

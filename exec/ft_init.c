@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:43:04 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 16:33:54 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 21:51:19 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "../libft/libft.h"
 
-int	ft_init(t_cmd *cmds, struct s_environ *envp)
+
+int	ft_init(t_cmd *cmds, t_lis	*envp)
 {
 	cmds->cmdnbr = 0;
 	cmds->new = NULL;
@@ -21,6 +23,5 @@ int	ft_init(t_cmd *cmds, struct s_environ *envp)
 	cmds->envvarpos = 0;
 	cmds->delimiter = NULL;
 	cmds->fd_out = 1;
-	(void)envp;
 	return (0);
 }

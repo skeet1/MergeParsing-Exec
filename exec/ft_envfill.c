@@ -3,114 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_envfill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 08:31:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/16 23:50:01 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-struct s_environ	*ftnewnode(char *envv)
+t_env	*new_node(char *name, char *value)
 {
-	struct s_environ	*new;
+	t_env	*new;
 
-	new = (struct s_environ *)malloc(sizeof(struct s_environ));
+	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
-		return (new);
-	new->env = envv;
-	new->next = NULL;
+		return (NULL);
+	new->name = NULL;
+	new->value = NULL;
+	new->name = ft_strdup(name);
+	new->value = ft_strdup(value);
 	return (new);
 }
 
-void	ftaddback(struct s_environ **token, char *envv)
+t_lis	*copyenv(t_lis *env_clone, char **env)
 {
-	struct s_environ	*last;
-	struct s_environ	*new;
-
-	last = *token;
-	new = ftnewnode(envv);
-	if (new == NULL)
-		return ;
-	if (last == NULL)
-	{
-		*token = new;
-		return ;
-	}
-	while (last->next != NULL)
-	{
-		last = last->next;
-	}
-	last->next = new;
-}
-
-struct s_environ	*ftsplitenv(struct s_environ *environ, int x)
-{
-	x = 0;
-	while (environ != NULL)
-	{
-		if (!(ft_strchr(environ->env, '=')))
-		{
-			environ->name = environ->env;
-			environ->value = NULL;
-		}
-		else
-		{
-			while (environ->env[x] != '=' && environ->env[x] != '\0')
-			{
-				if (environ->env[x] == '=')
-					break ;
-				x++;
-			}
-			environ->name = ft_substr(environ->env, 0, x);
-			environ->value = ft_substr(environ->env, x + 1,
-					ft_strlen(environ->env) - x);
-			x = 0;
-		}
-		environ = environ->next;
-	}
-	return (environ);
-}
-
-void	increment_shlvl(struct s_environ *envp)
-{
-	char	*tmp;
-	int		nb;
-	char	*joined;
+	t_lis	*new;
+	t_env	*temp;
+	char	*name;
+	char	*value;
+	int		i;
 	int		x;
-
-	x = 0;
-	while (envp)
-	{
-		if (ft_strncmp(envp->name, "SHLVL", 6) == 0)
-		{
-			nb = ft_atoi(envp->value);
-			tmp = ft_itoa(nb + 1);
-			joined = ft_strjoin("SHLVL=", tmp);
-			free(tmp);
-			envp->env = joined;
-		}
-		envp = envp->next;
-	}
-	ftsplitenv(envp, x);
-}
-
-struct s_environ	*ftcopyenv(struct s_environ *environ, char **envp)
-{
-	int	i;
-	int	x;
 
 	i = 0;
 	x = 0;
-	while (envp[i])
+	while (env[i])
 	{
-		ftaddback(&environ, envp[i]);
+		if (!(ft_strchr(env[i], '=')))
+		{
+			name = env[i];
+			value = ft_strdup("");
+		}
+		else
+		{
+			while (env[i][x] != '=' && env[i][x] != '\0')
+			{
+				if (env[i][x] == '=')
+					break ;
+				x++;
+			}
+			name = ft_substr(env[i], 0, x);
+			value = ft_substr(env[i], x + 1, ft_strlen(env[i]) - x);
+			x = 0;
+		}
+		temp = new_node(name, value);
+		new = ft_lstnew(temp);
+		ft_lstadd_back(&env_clone, new);
+		free(name);
+		free(value);
 		i++;
 	}
-	environ->envpitems = i;
-	ftsplitenv(environ, x);
-	increment_shlvl(environ);
-	return (environ);
+	return (env_clone);
 }

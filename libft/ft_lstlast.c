@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:04:59 by mkarim            #+#    #+#             */
-/*   Updated: 2022/06/27 20:02:35 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 08:23:41 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_lis	*ft_lstlast(t_lis *lst)
 {
 	while (lst)
 	{

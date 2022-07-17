@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ftpipe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:51:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 16:34:16 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 21:36:35 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	ft_pipe_c(t_cmd *list, struct s_environ *envp, int fdin, int *pipes)
+int	ft_pipe_c(t_cmd *list, t_lis *envp, int fdin, int *pipes)
 {
 	dup2(fdin, 0);
 	if (list->next)
@@ -66,7 +66,7 @@ int	savefdin(t_cmd *list, int *pipes, int fdin)
 	return (fdin);
 }
 
-int	ft_pipe(t_cmd *list, struct s_environ *envp, int id, int fdin)
+int	ft_pipe(t_cmd *list, t_lis *envp, int id, int fdin)
 {
 	int	pipes[2];
 	int	g;

@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_one_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 16:30:42 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 21:54:53 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../parsing/parse.h"
+#include "../libft/libft.h"
+
 
 void	dupandclose(t_cmd *cmds)
 {
@@ -38,7 +40,7 @@ void	dupandclose(t_cmd *cmds)
 	}
 }
 
-int	one_cmd_1(struct s_environ *environ, t_cmd *cmds)
+int	one_cmd_1( t_lis	*envp, t_cmd *cmds)
 {
 	int	i;
 
@@ -49,7 +51,7 @@ int	one_cmd_1(struct s_environ *environ, t_cmd *cmds)
 			exit(1);
 		heredoc_exec(cmds);
 		dupandclose(cmds);
-		ft_bin_usr_sbin(cmds, environ);
+		ft_bin_usr_sbin(cmds, envp);
 	}
 	else
 	{
@@ -83,12 +85,11 @@ void	closefd(t_cmd *cmds)
 	}
 }
 
-int	noargs(struct s_environ *environ, t_cmd *cmds)
+int	noargs( t_lis	*envp, t_cmd *cmds)
 {
 	int	i;
 
 	i = 0;
-	(void)environ;
 	if (redirections(cmds) == 3)
 		return (3);
 	heredoc_exec(cmds);
@@ -96,11 +97,12 @@ int	noargs(struct s_environ *environ, t_cmd *cmds)
 	return (0);
 }
 
-int	one_cmd(struct s_environ *environ, t_cmd *cmds)
+int	one_cmd( t_lis	*envp, t_cmd *cmds)
 {
+
 	if (cmds->cmd[0] == NULL)
 	{
-		noargs(environ, cmds);
+		noargs(envp, cmds);
 		return (1);
 	}
 	else if (cmds->cmd[0])
@@ -110,13 +112,13 @@ int	one_cmd(struct s_environ *environ, t_cmd *cmds)
 			if (redirections(cmds) == 3)
 				return (3);
 			heredoc_exec(cmds);
-			ft_is_built_in(environ, cmds);
+			ft_is_built_in(envp, cmds);
 			closefd(cmds);
 			return (1);
 		}
 		else if (is_builtin(cmds) == 3)
 		{
-			one_cmd_1(environ, cmds);
+			one_cmd_1(envp, cmds);
 			return (1);
 		}
 	}

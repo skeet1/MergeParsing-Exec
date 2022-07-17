@@ -3,37 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_search_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 16:29:29 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/16 21:39:06 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	ft_search_for_path(t_cmd *list, struct s_environ *environ)
+int	ft_search_for_path(t_cmd *list, t_lis *envp)
 {
 	int		x;
+	t_env	*envval;
+	envp = envp->next;
 
 	x = 0;
-	while (environ)
+	while (envp)
 	{
-		if (ft_strncmp(environ->name, "PATH", 5) == 0)
+				envval = envp->content;
+
+		if (ft_strncmp(envval->name, "PATH", 5) == 0)
 		{
-			list->new = ft_split(environ->value, ':');
+			list->new = ft_split(envval->value, ':');
 			return (SUCCESSFUL);
 		}
-		environ = environ->next;
+		envp = envp->next;
 	}
 	return (0);
 }
 
-void	ftcheck_nopath(t_cmd *list, struct s_environ *environ)
+void	ftcheck_nopath(t_cmd *list, t_lis *envp)
 {
 	list->new = NULL;
-	ft_search_for_path(list, environ);
+	ft_search_for_path(list, envp);
 	if (list->new == NULL)
 	{
 		ft_putstr_fd("Minishell : ", 2);
@@ -45,12 +49,12 @@ void	ftcheck_nopath(t_cmd *list, struct s_environ *environ)
 }
 
 void	looping_through_split_path(t_cmd *list, char *bin, char *last,
-		struct s_environ *environ)
+		t_lis *envp)
 {
 	int		i;
 	char	**en;
 
-	en = convertlisttoarray(list, environ);
+	en = convertlisttoarray(list, envp);
 	i = 0;
 	while (list->new[i])
 	{
