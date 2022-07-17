@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 12:50:27 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 13:14:02 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,12 @@ t_env		*new_node(char *name, char *value);
 t_lis		*copyenv(t_lis *env_clone, char **env);
 void		free_environ(t_lis *head);
 
-char	**convertlisttoarray(t_lis *envp);
-int	ft_export_no_equal(t_lis *envp,
-						t_cmd *cmd,
-						int i);
+char		**convertlisttoarray(t_lis *envp);
+int			ft_export_no_equal(t_lis *envp, t_cmd *cmd, int i);
 int			pass_to_exec(t_lis *envp, t_cmd *cmds);
-void	signal_init(void);
-void	voidthem(int argc, char **argv);
-void	checkline(t_data data);
+void		signal_init(void);
+void		voidthem(int argc, char **argv);
+void		checkline(t_data data);
 //input
 void		handler(int sig);
 int			prompt_and_parse(char **upstream, char **downstream, char *line);
@@ -81,13 +79,11 @@ int			ft_split_env(t_lis *envp, char **env);
 int			set_rd(t_cmd *list);
 int			builtcheck_next(t_cmd *cmd, t_lis *envp);
 int			ft_bin_usr_sbin(t_cmd *cmd, t_lis *envp);
-int	ft_search_for_path(t_cmd *list,
-						t_lis *envp);
+int			ft_search_for_path(t_cmd *list, t_lis *envp);
 void		ftcheck_nopath(t_cmd *list, t_lis *envp);
 void		looping_through_split_path(t_cmd *list, char *bin, char *last,
 				t_lis *envp);
-int	ft_check_programs(t_cmd *list,
-						t_lis *envp);
+int			ft_check_programs(t_cmd *list, t_lis *envp);
 /// redirections I/O
 int			redirections(t_cmd *list);
 int			heredoc_exec(t_cmd *list);
@@ -143,6 +139,6 @@ void		heredoc_exec_clean(char *line, int fd);
 void		handler_in_heredoc(int sig);
 int			heredoc_exec(t_cmd *list);
 void		exp_change_value(t_lis *envp, t_token *token);
-char				*ft_ass_exp(char **tok_val, char *sp, t_env *env);
+char		*ft_ass_exp(char **tok_val, char *sp, t_env *env);
 
 #endif
