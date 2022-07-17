@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 13:26:22 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 15:26:06 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ char		*extractvalue(t_cmd *cmd, int i);
 
 //free
 void		freeit(char *name, char *value);
+void	free_2dd(char **arr);
 int			ft_is_alpha_mod(char c);
 //tmp
 void		print_cmd(t_cmd *cmd);

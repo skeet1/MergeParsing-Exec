@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 11:40:39 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 15:29:13 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,13 @@ int	ft_bin_usr_sbin(t_cmd *cmd, t_lis *envp)
 	last = NULL;
 	ft_check_programs(cmd, envp);
 	ftcheck_nopath(cmd, envp);
-	bin = ft_strjoin(cmd->new[0], "/");
+	bin = ft_strjoin(cmd->binfolder[0], "/");
 	looping_through_split_path(cmd, bin, last, envp);
 	ft_putstr_fd("Minishell: ", 2);
 	ft_putstr_fd(cmd->cmd[0], 2);
 	write(2, " command not found \n", 21);
 	g_exit_status = 127;
+	free_2dd(cmd->binfolder);
+	free(bin);
 	exit(127);
 }
