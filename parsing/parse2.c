@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 09:55:41 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 10:26:54 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,16 @@ void	exp_exit_status(char **str)
 	}
 }
 
-void	exp_change_value(	t_lis	*envp, t_token *token)
+void	exp_change_value(t_lis	*envp, t_token *token)
 {
 	t_env *env;
-	
+	t_lis *tmp;
 	char				**sp;
 	int					len;
 	int					j;
 
 	len = 0;
+	tmp = envp;
 	envp = envp->next;
 	while (token)
 	{
@@ -85,10 +86,10 @@ void	exp_change_value(	t_lis	*envp, t_token *token)
 			j = 0;
 			while (sp[j])
 			{
-				env = envp->content;
-				while (env)
+				envp = tmp;
+				while (envp)
 				{
-								env = envp->content;
+					env = envp->content;
 					if (ft_strcmp(sp[j], env->name) == 0)
 					{
 						token->value = ft_strjoin(before_dol(token->value),
