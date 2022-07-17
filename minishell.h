@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:18:14 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:46:30 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct						s_env
 t_env	*new_node(char *name, char *value);
 
 t_lis	* copyenv(t_lis *env_clone, char **env);
-void					free_environ(struct s_environ **head);
+void	free_environ(t_lis  *head);
 // struct s_environ		*ftcopyenv( t_lis	*envp, char **envp);
 // struct s_environ		*ftsplitenv( t_lis	*envp, int x);
 void					ftaddback(struct s_environ **token, char *envv);
@@ -151,7 +151,7 @@ int						ft_pipe(t_cmd *list,  t_lis	*envp, int id, int fdin);
 // signals
 void					handler(int sig);
 // init data
-int						ft_init(t_cmd *cmds,  t_lis	*envp);
+int						ft_init(t_cmd *cmds);
 //export tools
 char					*join_name_and_value( t_lis	*envp);
 char					*ft_sort_env( t_lis	*envp);
@@ -159,9 +159,9 @@ int	check_name_is_valid(char *split, int i, t_cmd *cmd);
 int						modify_name( t_lis	*envp, t_cmd *cmd,
 							char **split, int i);
 int						ft_equal_sign(t_cmd *list, int arg);
-char	*extractname(t_lis *envp, t_cmd *cmd, int i);
+char	*extractname(t_cmd *cmd, int i);
 void	modify(t_lis *envp, t_cmd *cmd, int i, char *name);
-char	*extractvalue(t_lis *envp, t_cmd *cmd, int i);
+char	*extractvalue(t_cmd *cmd, int i);
 int	valid_identifier(t_lis *envp, t_cmd *cmd, int i);
 
 //free

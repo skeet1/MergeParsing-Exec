@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 08:27:25 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:35:06 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	pass_to_exec(t_lis *envp, t_cmd *cmds)
 
 	id = 0;
 	fd_in = 0;
-	ft_init(cmds, envp);
+	ft_init(cmds);
 	nbr = ft_ll(cmds);
 	cmds->cmdnbr = nbr;
 	signal(SIGINT, handler2);

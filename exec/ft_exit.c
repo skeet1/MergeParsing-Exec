@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 08:34:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:17:02 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:50:31 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_exit_no_args(t_cmd *cmd, t_lis *envp)
 	{
 		printf("exit\n");
 		rl_clear_history();
-		// free_environ(&envp);
+		free_environ(envp);
 		exit(g_exit_status);
 	}
 	return (0);
@@ -32,8 +32,8 @@ void	exitwithnonnumeric(t_cmd *cmd, t_lis *envp, int i)
 	{
 		printf("exit\n");
 		printf("Minishell: exit: %s: numeric argument required\n",
-				cmd->cmd[1]);
-		// free_environ(&envp);
+			cmd->cmd[1]);
+		free_environ(envp);
 		exit(255);
 	}
 }
@@ -55,7 +55,7 @@ int	check_exit_with_args(t_cmd *cmd, t_lis *envp)
 				i++;
 			}
 			exit_value = ft_atoi(cmd->cmd[1]);
-			// free_environ(&envp);
+			free_environ(envp);
 			exit(exit_value);
 		}
 	}

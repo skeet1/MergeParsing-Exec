@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 08:24:00 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:49:24 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	pipenbr = 0;
 	envp = copyenv(NULL, env);
+	
+
+	
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -84,6 +87,7 @@ int	main(int argc, char **argv, char **env)
 		free(data.cmd_line);
 		free_cmd(&cmd);
 	}
-	// free_environ(&envp);
+	
+	free_environ(envp);
 	return (0);
 }

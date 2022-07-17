@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:13:36 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:37:12 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	modify(t_lis *envp, t_cmd *cmd, int i, char *name)
 	t_lis	*tmp;
 	char	*value;
 
-	value = extractvalue(envp, cmd, i);
+	value = extractvalue(cmd, i);
 	while (envp != NULL)
 	{
 		en = envp->content;
@@ -100,12 +100,11 @@ void	modify(t_lis *envp, t_cmd *cmd, int i, char *name)
 
 int	ft_export(t_lis *envp, t_cmd *cmd, int i)
 {
-	int		x;
 	char	*name;
 
 	if (valid_identifier(envp, cmd, i) == UNSUCCESSFUL)
 		return (UNSUCCESSFUL);
-	name = extractname(envp, cmd, i);
+	name = extractname(cmd, i);
 	if (check_name_is_valid(name, i, cmd) == 1 && name != NULL)
 		return (UNSUCCESSFUL);
 	modify(envp, cmd, i, name);

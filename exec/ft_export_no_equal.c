@@ -6,28 +6,29 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:30:09 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:12:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:50:50 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-void	free_environ(struct s_environ **head)
+void	free_environ(t_lis *head)
 {
-	struct s_environ	*c;
+	t_env	*env;
 
-	c = *head;
-	while (c != NULL)
+	head = head->next;
+	while (head != NULL)
 	{
-		if (c->value)
-			free(c->value);
-		if (c->name)
-			free(c->name);
-		if (c->env)
-			free(c->env);
-		c = c->next;
+		env = head->content;
+		if (env->value)
+			free(env->value);
+		if (env->name)
+			free(env->name);
+		head = head->next;
 	}
+	free(env);
+	free(head);
 }
 
 int	valid_identifier(t_lis *envp, t_cmd *cmd, int i)
@@ -42,7 +43,7 @@ int	valid_identifier(t_lis *envp, t_cmd *cmd, int i)
 	return (SUCCESSFUL);
 }
 
-char	*extractvalue(t_lis *envp, t_cmd *cmd, int i)
+char	*extractvalue(t_cmd *cmd, int i)
 {
 	char	*value;
 	int		x;
@@ -59,7 +60,7 @@ char	*extractvalue(t_lis *envp, t_cmd *cmd, int i)
 	return (value);
 }
 
-char	*extractname(t_lis *envp, t_cmd *cmd, int i)
+char	*extractname(t_cmd *cmd, int i)
 {
 	char	*name;
 	int		x;

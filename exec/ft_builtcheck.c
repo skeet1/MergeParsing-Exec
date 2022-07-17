@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:40:43 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 08:46:52 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:37:34 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	builtcheck_1(t_cmd *cmd, t_lis *envp)
 	int		i;
 	char	**joined;
 
+	joined = NULL;
 	i = 1;
 	if (ft_strncmp(cmd->cmd[0], "export", 7) == 0)
 	{

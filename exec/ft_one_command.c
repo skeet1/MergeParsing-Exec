@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 08:30:25 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:35:51 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	closefd(t_cmd *cmds)
 	}
 }
 
-int	noargs(t_lis *envp, t_cmd *cmds)
+int	noargs(t_cmd *cmds)
 {
 	int	i;
 
@@ -100,7 +100,7 @@ int	one_cmd(t_lis *envp, t_cmd *cmds)
 {
 	if (cmds->cmd[0] == NULL)
 	{
-		noargs(envp, cmds);
+		noargs(cmds);
 		return (1);
 	}
 	else if (cmds->cmd[0])
