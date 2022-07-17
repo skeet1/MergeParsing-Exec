@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:46:30 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:53:59 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,6 @@ void					heredoc_write_fd(char *line, int fd);
 void					heredoc_exec_clean(char *line, int fd);
 void					handler_in_heredoc(int sig);
 int						heredoc_exec(t_cmd *list);
-void	exp_change_value(struct s_environ *envp, t_token *token);
+void	exp_change_value(t_lis	*envp, t_token *token);
 
 #endif

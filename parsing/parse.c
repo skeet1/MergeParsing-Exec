@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 09:49:24 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:51:33 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **env)
 		if (ft_strlen(data.cmd_line))
 		{
 			token = ft_token(token, &data, data.cmd_line);
-			// exp_change_value(envp, token);
+			exp_change_value(envp, token);
 			cmd = node_per_cmd(token);
 		}
 		if (data.cmd_line != NULL && data.error == 0 && cmd != NULL)

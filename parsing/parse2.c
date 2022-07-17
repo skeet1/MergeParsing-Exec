@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 17:52:19 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 09:55:41 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,16 @@ void	exp_exit_status(char **str)
 	}
 }
 
-void	exp_change_value(struct s_environ *envp, t_token *token)
+void	exp_change_value(	t_lis	*envp, t_token *token)
 {
-	struct s_environ	*env;
+	t_env *env;
+	
 	char				**sp;
 	int					len;
 	int					j;
 
 	len = 0;
+	envp = envp->next;
 	while (token)
 	{
 		if (token->type == WORD && !token->sgl_qt && dolar_exist(token->value))
@@ -83,9 +85,10 @@ void	exp_change_value(struct s_environ *envp, t_token *token)
 			j = 0;
 			while (sp[j])
 			{
-				env = envp;
+				env = envp->content;
 				while (env)
 				{
+								env = envp->content;
 					if (ft_strcmp(sp[j], env->name) == 0)
 					{
 						token->value = ft_strjoin(before_dol(token->value),
@@ -94,7 +97,7 @@ void	exp_change_value(struct s_environ *envp, t_token *token)
 					}
 					else
 						token->value = before_dol(token->value);
-					env = env->next;
+					envp = envp->next;
 				}
 				j++;
 			}
