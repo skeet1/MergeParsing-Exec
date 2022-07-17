@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
+#    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/17 11:08:12 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/17 12:12:57 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC = ./exec/builtins.c \
 	./parsing/ft_check_syntax.c \
 	./parsing/ft_token.c \
 	./parsing/ft_token1.c \
+	./parsing/ft_token2.c \
 	./parsing/remove_quotes.c \
 	./libft/ft_strlcpy.c \
 	./libft/ft_strtrim.c \
@@ -106,6 +107,7 @@ OBJ = builtins.o \
 	 ft_check_syntax.o \
 	 ft_token.o \
 	 ft_token1.o \
+	 ft_token2.o \
 	 remove_quotes.o \
 	 ft_strlcpy.o \
 	 ft_strtrim.o \
