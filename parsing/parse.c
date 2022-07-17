@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 12:17:32 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 12:36:17 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,23 @@ void	free_cmd(t_cmd **cmd)
 	}
 }
 
+void	signal_init(void)
+{
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTERM, SIG_IGN);
+	signal(SIGINT, &handler);
+}
+
+void	voidthem(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+}
+
+// int run()
+// {
+	
+// }
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
@@ -51,15 +68,12 @@ int	main(int argc, char **argv, char **env)
 	int		pipenbr;
 	t_lis	*envp;
 
-	(void)argc;
-	(void)argv;
+	voidthem(argc, argv);
 	pipenbr = 0;
 	envp = copyenv(NULL, env);
 	while (1)
 	{
-		signal(SIGQUIT, SIG_IGN);
-		signal(SIGTERM, SIG_IGN);
-		signal(SIGINT, &handler);
+		signal_init();
 		token = NULL;
 		cmd = NULL;
 		data.cmd_line = readline(PROMPT);
