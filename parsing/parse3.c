@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 12:37:44 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 13:09:30 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,12 @@ void	npc_assist_1(t_token **tok, t_tocmd *c, int *a, int *b)
 	t_token	*token;
 
 	token = *tok;
-	while (token)
-	{
-		while (token && token->type != PIPE)
-		{
-			if (token->type == WORD)
-				c->args[(*a)++] = token->value;
-			else if (token->type >= 2 && token->type <= 5)
-				c->file_type[(*b)] = token->type;
-			else if (token->type == FILEE)
-				c->file_name[(*b)++] = token->value;
-			token = token->next;
-		}
-		break ;
-	}
+	if (token->type == WORD)
+		c->args[(*a)++] = token->value;
+	else if (token->type >= 2 && token->type <= 5)
+		c->file_type[*b] = token->type;
+	else if (token->type == FILEE)
+		c->file_name[(*b)++] = token->value;
 }
 
 t_cmd	*node_per_cmd(t_token *token)
@@ -51,12 +43,7 @@ t_cmd	*node_per_cmd(t_token *token)
 		{
 			while (token && token->type != PIPE)
 			{
-				if (token->type == WORD)
-					c.args[i[0]++] = token->value;
-				else if (token->type >= 2 && token->type <= 5)
-					c.file_type[i[1]] = token->type;
-				else if (token->type == FILEE)
-					c.file_name[i[1]++] = token->value;
+				npc_assist_1(&token, &c, &i[0], &i[1]);
 				token = token->next;
 			}
 			break ;

@@ -1,14 +1,14 @@
-// /* ************************************************************************** */
-// /*                                                                            */
-// /*                                                        :::      ::::::::   */
-// /*   libft.h                                            :+:      :+:    :+:   */
-// /*                                                    +:+ +:+         +:+     */
-// /*   By: mkarim <marvin@42.fr>                      +#+  +:+       +#+        */
-// /*                                                +#+#+#+#+#+   +#+           */
-// /*   Created: 2021/11/02 08:43:06 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 15:32:05 by mkarim           ###   ########.fr       */
-// /*                                                                            */
-// /* ************************************************************************** */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/02 08:43:06 by mkarim            #+#    #+#             */
+/*   Updated: 2022/07/17 13:03:44 by mkarim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -74,5 +74,5 @@ void	ft_lstadd_back(t_lis **alst, t_lis *new);
 void	ft_lstdelone(t_lis *lst, void (*del)(void *));
 void	ft_lstclear(t_lis **lst, void (*del)(void *));
 void	ft_lstiter(t_lis *lst, void (*f)(void *));
-int	ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 #endif

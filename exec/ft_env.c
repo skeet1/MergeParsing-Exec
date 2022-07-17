@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 10:50:22 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:16:06 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 12:52:36 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,26 @@ int	ft_isalnum(int c)
 	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 90 && c <= 122))
 		return (1);
 	return (0);
+}
+
+void	signal_init(void)
+{
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTERM, SIG_IGN);
+	signal(SIGINT, &handler);
+}
+
+void	voidthem(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+}
+
+void	checkline(t_data data)
+{
+	if (data.cmd_line == NULL)
+	{
+		write(1, "exit\n", 6);
+		exit(0);
+	}
 }
