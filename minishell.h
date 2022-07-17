@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 11:10:31 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 12:20:38 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,6 @@ void		heredoc_exec_clean(char *line, int fd);
 void		handler_in_heredoc(int sig);
 int			heredoc_exec(t_cmd *list);
 void		exp_change_value(t_lis *envp, t_token *token);
+char				*ft_ass_exp(char **tok_val, char *sp, t_env *env);
 
 #endif
