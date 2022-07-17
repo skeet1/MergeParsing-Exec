@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 10:26:54 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 12:14:22 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,41 +66,45 @@ void	exp_exit_status(char **str)
 	}
 }
 
-void	exp_change_value(t_lis	*envp, t_token *token)
+char	*ft_ass_exp(char **tok_val, char *sp, t_env *env)
 {
-	t_env *env;
-	t_lis *tmp;
-	char				**sp;
-	int					len;
-	int					j;
+	char	*token_value;
 
-	len = 0;
+	token_value = *tok_val;
+	if (ft_strcmp(sp, env->name) == 0)
+	{
+		token_value = ft_strjoin(before_dol(token_value),
+				env->value);
+		return (token_value);
+	}
+	else
+		token_value = before_dol(token_value);
+	return (token_value);
+}
+
+void	exp_change_value(t_lis *envp, t_token *token)
+{
+	t_lis	*tmp;
+	char	**sp;
+	int		j;
+
 	tmp = envp;
-	envp = envp->next;
 	while (token)
 	{
 		if (token->type == WORD && !token->sgl_qt && dolar_exist(token->value))
 		{
 			exp_exit_status(&token->value);
 			sp = ft_split(token->value, '$');
-			j = 0;
-			while (sp[j])
+			j = -1;
+			while (sp[++j])
 			{
 				envp = tmp;
 				while (envp)
 				{
-					env = envp->content;
-					if (ft_strcmp(sp[j], env->name) == 0)
-					{
-						token->value = ft_strjoin(before_dol(token->value),
-								env->value);
-						break ;
-					}
-					else
-						token->value = before_dol(token->value);
+					token->value = ft_ass_exp(&token->value,
+							sp[j], envp->content);
 					envp = envp->next;
 				}
-				j++;
 			}
 		}
 		token = token->next;
