@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_heredoc_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 08:29:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 16:28:30 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 11:11:36 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,4 @@ int	heredoc_wait(int id)
 	if (WIFEXITED(g_exit_status))
 		g_exit_status = WEXITSTATUS(g_exit_status);
 	return (g_exit_status);
-}
-
-char	*heredoc_reader(t_cmd *list, int i, char *line)
-{
-	(void)list;
-	(void)i;
-	signal(SIGINT, handler_in_heredoc);
-	line = readline(">");
-	if (!line)
-		exit(EXIT_SUCCESS);
-	return (line);
 }

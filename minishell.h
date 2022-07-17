@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 11:09:02 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:10:31 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int			ft_is_alpha_mod(char c);
 void		print_cmd(t_cmd *cmd);
 //heredoc
 int			heredoc_exec_part1(t_cmd *list, int i, int id, int len);
-char		*heredoc_reader(t_cmd *list, int i, char *line);
+char		*heredoc_reader(t_cmd *list, char *line);
 int			heredoc_wait(int id);
 void		heredoc_write_fd(char *line, int fd);
 void		heredoc_exec_clean(char *line, int fd);
