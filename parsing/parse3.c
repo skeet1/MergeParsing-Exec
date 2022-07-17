@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 12:33:32 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 12:37:44 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	npc_assist_1(t_token **tok, t_tocmd *c, int *a, int *b)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = *tok;
 	while (token)
