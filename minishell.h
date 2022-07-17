@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:02:05 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:11:05 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,10 @@ int	check_name_is_valid(char *split, int i, t_cmd *cmd);
 int						modify_name( t_lis	*envp, t_cmd *cmd,
 							char **split, int i);
 int						ft_equal_sign(t_cmd *list, int arg);
+char	*extractname(t_lis *envp, t_cmd *cmd, int i);
+void	modify(t_lis *envp, t_cmd *cmd, int i, char *name);
+char	*extractvalue(t_lis *envp, t_cmd *cmd, int i);
+int	valid_identifier(t_lis *envp, t_cmd *cmd, int i);
 
 //free
 int						ft_is_alpha_mod(char c);
