@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 11:26:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 13:26:37 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 13:32:52 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	check_name_is_valid(char *split, int i, t_cmd *cmd)
 void	modify(t_lis *envp, t_cmd *cmd, int i, char *name)
 {
 	t_env	*en;
-	t_lis	*tmp;
+	t_lis	*pre;
 	char	*value;
 
 	value = extractvalue(cmd, i);
@@ -61,11 +61,11 @@ void	modify(t_lis *envp, t_cmd *cmd, int i, char *name)
 		}
 		if (ft_strncmp(en->name, name, ft_strlen(name) + 1) == 0)
 			return ;
-		tmp = envp;
+		pre = envp;
 		envp = envp->next;
 	}
 	en = new_node(name, value);
-	tmp->next = ft_lstnew(en);
+	pre->next = ft_lstnew(en);
 	free(value);
 }
 
