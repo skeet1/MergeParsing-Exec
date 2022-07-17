@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 17:42:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/16 19:10:39 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,51 +27,28 @@ t_token	*ft_token_side(t_token *token, char *s)
 	int	j;
 	int	start;
 	int	quotes[2];
-	int	node;
 
-	j = 0;
-	start = 0;
-	quotes[0] = 0;
-	quotes[1] = 0;
-	node = 0;
+	ft_init_var(&j, &start, &quotes[0], &quotes[1]);
 	while (s[j])
 	{
-		incr_quotes(s[j], &quotes[0], &quotes[1]);
+		incr_quotes_assist_token(s[j], &j, &quotes[0], &quotes[1]);
 		if (quotes[1] % 2 || quotes[0] % 2)
-		{
-			j++;
 			continue ;
-		}
 		if (!ft_isspace(s[j]) && !is_special(s[j]))
 		{
-			incr_quotes(s[j], &quotes[0], &quotes[1]);
-			while ((s[j] && !ft_isspace(s[j]) && !is_special(s[j])) || (s[j]
-					&& (quotes[1] % 2 || quotes[0] % 2)))
-			{
-				incr_quotes(s[j], &quotes[0], &quotes[1]);
-				if (quotes[1] % 2 || quotes[0] % 2)
-				{
-					j++;
-					continue ;
-				}
-				j++;
-			}
+			token_assist(s, &j, &quotes[0], &quotes[1]);
 			ft_add_back(&token, ft_substr(s, start, j - start + !s[j + 1]));
 			start = j;
 		}
-		while (s[j] && ft_isspace(s[j]))
-			j++;
+		scape_spaces_or_special(s, &j, 1);
 		if (is_special(s[j]))
 		{
-			while (s[j] && is_special(s[j]))
-				j++;
+			scape_spaces_or_special(s, &j, 0);
 			ft_add_back(&token, ft_substr(s, start, j - start));
 			start = j;
 		}
 	}
-	add_file_type(token);
-	remove_quotes(token);
-	return (token);
+	return (add_file_type(token), remove_quotes(token), token);
 }
 
 t_token	*ft_token(t_token *token, t_data *data, char *s)
