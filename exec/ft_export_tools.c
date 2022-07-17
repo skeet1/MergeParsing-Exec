@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 08:47:16 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:16:59 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	**joinnameand_value(t_lis *envp)
 	i = 0;
 	envpitems = ft_lstsize(envp);
 	joined = malloc(sizeof(char *) * (envpitems + 1));
+	if (!joined)
+		return (NULL);
 	while (envp != NULL)
 	{
 		en = envp->content;

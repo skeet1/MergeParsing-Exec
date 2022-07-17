@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 11:09:14 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:19:02 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_list_items(t_lis *envp)
 	return (items);
 }
 
-char	**joinnameandvalue(t_lis *envp)
+char	**joinnameandvaluetosort(t_lis *envp)
 {
 	int		i;
 	char	**joined;
@@ -37,6 +37,8 @@ char	**joinnameandvalue(t_lis *envp)
 	len = ft_list_items(envp);
 	i = 0;
 	joined = malloc(sizeof(char **) * (len + 1));
+	if (!joined)
+		return (NULL);
 	i = 0;
 	while (envp)
 	{
@@ -56,7 +58,7 @@ char	**convertlisttoarray(t_lis *envp)
 {
 	char	**new;
 
-	new = joinnameandvalue(envp);
+	new = joinnameandvaluetosort(envp);
 	return (new);
 }
 

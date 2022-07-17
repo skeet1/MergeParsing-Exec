@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:31:47 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:14:54 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_lis	*copyenv(t_lis *env_clone, char **env)
 			value = ft_strdup("");
 		}
 		else
-			name = ft_name(env[i]);
+		name = ft_name(env[i]);
 		value = ft_value(env[i]);
 		temp = new_node(name, value);
 		new = ft_lstnew(temp);
