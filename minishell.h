@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 08:45:48 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:02:05 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ int						ft_init(t_cmd *cmds,  t_lis	*envp);
 //export tools
 char					*join_name_and_value( t_lis	*envp);
 char					*ft_sort_env( t_lis	*envp);
-int						check_name_is_valid(char **split, int i, t_cmd *cmd);
+int	check_name_is_valid(char *split, int i, t_cmd *cmd);
 int						modify_name( t_lis	*envp, t_cmd *cmd,
 							char **split, int i);
 int						ft_equal_sign(t_cmd *list, int arg);
