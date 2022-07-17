@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 10:34:10 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 09:35:06 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 11:22:10 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	handler2(int sig)
 		printf("\n");
 }
 
-int	ft_ll(t_cmd *cmds)
+int	count_cmds(t_cmd *cmds)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ int	pass_to_exec(t_lis *envp, t_cmd *cmds)
 	id = 0;
 	fd_in = 0;
 	ft_init(cmds);
-	nbr = ft_ll(cmds);
+	nbr = count_cmds(cmds);
 	cmds->cmdnbr = nbr;
 	signal(SIGINT, handler2);
 	if (nbr == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_here_doc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 07:14:58 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 16:30:12 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 11:25:39 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	sigg(int sig)
 		printf("\n");
 }
 
-int	heredoc_exec_part1(t_cmd *list, int i, int id, int len)
+int	heredoc_exec_part1(t_cmd *cmds, int i, int id, int len)
 {
 	int		fd;
 	char	*line;
 
 	id = fork();
 	if (id == -1)
-		return (0);
+		return (UNSUCCESSFUL);
 	if (id == 0)
 	{
 		line = NULL;
@@ -39,8 +39,8 @@ int	heredoc_exec_part1(t_cmd *list, int i, int id, int len)
 			if (!line)
 				exit(EXIT_SUCCESS);
 			len = 0;
-			len = ft_strlen(list->f_name[i]) + 1;
-			if (ft_strncmp(line, list->f_name[i], len) == 0)
+			len = ft_strlen(cmds->f_name[i]) + 1;
+			if (ft_strncmp(line, cmds->f_name[i], len) == 0)
 				break ;
 			heredoc_write_fd(line, fd);
 		}
@@ -49,7 +49,7 @@ int	heredoc_exec_part1(t_cmd *list, int i, int id, int len)
 	return (heredoc_wait(id));
 }
 
-int	heredoc_exec(t_cmd *list)
+int	heredoc_exec(t_cmd *cmds)
 {
 	int	i;
 	int	id;
@@ -58,19 +58,19 @@ int	heredoc_exec(t_cmd *list)
 	i = 0;
 	len = 0;
 	id = 0;
-	while (list)
+	while (cmds)
 	{
-		while (list->f_type[i])
+		while (cmds->f_type[i])
 		{
-			if (list->f_type[i] == RED_IN_APP)
+			if (cmds->f_type[i] == RED_IN_APP)
 			{
-				if (heredoc_exec_part1(list, i, id, len) == UNSUCCESSFUL)
+				if (heredoc_exec_part1(cmds, i, id, len) == UNSUCCESSFUL)
 					return (UNSUCCESSFUL);
 			}
 			i++;
 		}
 		i = 0;
-		list = list->next;
+		cmds = cmds->next;
 	}
 	return (SUCCESSFUL);
 }
