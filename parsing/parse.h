@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 11:29:07 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 12:20:28 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,11 @@ void				ft_num_cmd_side(t_data *data, char *s);
 int					ft_token_type(char *value);
 void				add_file_type(t_token *token);
 t_token				*ft_new_node(char *value);
+void				ft_init_var(int *a, int *b, int *c, int *d);
 void				ft_add_back(t_token **token, char *value);
+void				scape_spaces_or_special(char *s, int *j, int spaces);
+void				incr_quotes_assist_token(char c, int *j, int *a, int *b);
+void				token_assist(char *s, int *j, int *a, int *b);
+void				exp_exit_status(char **str);
 
 #endif

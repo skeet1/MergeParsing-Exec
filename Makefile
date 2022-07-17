@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
+#    By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/17 11:08:12 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/17 12:21:10 by mkarim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC = ./exec/builtins.c \
 	./parsing/ft_check_syntax.c \
 	./parsing/ft_token.c \
 	./parsing/ft_token1.c \
+	./parsing/ft_token2.c \
 	./parsing/remove_quotes.c \
 	./libft/ft_strlcpy.c \
 	./libft/ft_strtrim.c \
@@ -55,6 +56,7 @@ SRC = ./exec/builtins.c \
 	./parsing/parse1.c \
 	./parsing/parse2.c \
 	./parsing/parse3.c \
+	./parsing/parse4.c \
 	./libft/ft_strcmp.c \
 	./exec/pass_to_exec.c \
 	./parsing/ft_check_syntax.c  \
@@ -106,6 +108,7 @@ OBJ = builtins.o \
 	 ft_check_syntax.o \
 	 ft_token.o \
 	 ft_token1.o \
+	 ft_token2.o \
 	 remove_quotes.o \
 	 ft_strlcpy.o \
 	 ft_strtrim.o \
@@ -113,6 +116,7 @@ OBJ = builtins.o \
 	 parse1.o \
 	 parse2.o \
 	 parse3.o \
+	 parse4.o \
 	 ft_strcmp.o \
 	 pass_to_exec.o \
 	ft_builtcheck.o \

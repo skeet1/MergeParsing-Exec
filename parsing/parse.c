@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 09:51:33 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 12:17:32 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,16 @@ void	free_cmd(t_cmd **cmd)
 
 int	main(int argc, char **argv, char **env)
 {
-	t_data				data;
-	t_token				*token;
-	t_cmd				*cmd;
-	int					pipenbr;
+	t_data	data;
+	t_token	*token;
+	t_cmd	*cmd;
+	int		pipenbr;
 	t_lis	*envp;
 
 	(void)argc;
 	(void)argv;
 	pipenbr = 0;
 	envp = copyenv(NULL, env);
-	
-
-	
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -87,7 +84,6 @@ int	main(int argc, char **argv, char **env)
 		free(data.cmd_line);
 		free_cmd(&cmd);
 	}
-	
 	free_environ(envp);
 	return (0);
 }
