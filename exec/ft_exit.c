@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 08:34:24 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 21:45:33 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:17:02 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	exitwithnonnumeric(t_cmd *cmd, t_lis *envp, int i)
 	{
 		printf("exit\n");
 		printf("Minishell: exit: %s: numeric argument required\n",
-			cmd->cmd[1]);
+				cmd->cmd[1]);
 		// free_environ(&envp);
 		exit(255);
 	}

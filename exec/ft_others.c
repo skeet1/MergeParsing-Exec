@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 08:30:02 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:30:05 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_check_programs(t_cmd *cmd, t_lis *envp)
 		execve(cmd->cmd[0], cmd->cmd, en);
 		ft_putstr_fd("Minishell : ", 2);
 		ft_putstr_fd(cmd->cmd[0], 2);
-		ft_putstr_fd("No such file or directory\n", 2);
+		ft_putstr_fd(" No such file or directory\n", 2);
 		exit(127);
 	}
 	if (cmd->cmd[0][0] == '/')
@@ -65,7 +65,7 @@ int	ft_check_programs(t_cmd *cmd, t_lis *envp)
 		execve(cmd->cmd[0], cmd->cmd, en);
 		ft_putstr_fd("Minishell : ", 2);
 		ft_putstr_fd(cmd->cmd[0], 2);
-		ft_putstr_fd("No such file or directory\n", 2);
+		ft_putstr_fd(" No such file or directory\n", 2);
 		exit(127);
 	}
 	return (0);

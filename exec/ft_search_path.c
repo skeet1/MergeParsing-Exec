@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 09:58:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 08:29:51 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:30:09 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ftcheck_nopath(t_cmd *list, t_lis *envp)
 	{
 		ft_putstr_fd("Minishell : ", 2);
 		ft_putstr_fd(list->cmd[0], 2);
-		ft_putstr_fd("No such file or directory\n", 2);
+		ft_putstr_fd("  No such file or directory\n", 2);
 		g_exit_status = 127;
 		exit(127);
 	}

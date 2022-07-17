@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_envfill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 11:51:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 23:50:01 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 09:31:47 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,38 @@ t_env	*new_node(char *name, char *value)
 	return (new);
 }
 
+char	*ft_value(char *env)
+{
+	char	*value;
+	int		x;
+
+	x = 0;
+	while (env[x] != '=' && env[x] != '\0')
+	{
+		if (env[x] == '=')
+			break ;
+		x++;
+	}
+	value = ft_substr(env, x + 1, ft_strlen(env) - x);
+	return (value);
+}
+
+char	*ft_name(char *env)
+{
+	char	*name;
+	int		x;
+
+	x = 0;
+	while (env[x] != '=' && env[x] != '\0')
+	{
+		if (env[x] == '=')
+			break ;
+		x++;
+	}
+	name = ft_substr(env, 0, x);
+	return (name);
+}
+
 t_lis	*copyenv(t_lis *env_clone, char **env)
 {
 	t_lis	*new;
@@ -34,10 +66,8 @@ t_lis	*copyenv(t_lis *env_clone, char **env)
 	char	*name;
 	char	*value;
 	int		i;
-	int		x;
 
 	i = 0;
-	x = 0;
 	while (env[i])
 	{
 		if (!(ft_strchr(env[i], '=')))
@@ -46,22 +76,12 @@ t_lis	*copyenv(t_lis *env_clone, char **env)
 			value = ft_strdup("");
 		}
 		else
-		{
-			while (env[i][x] != '=' && env[i][x] != '\0')
-			{
-				if (env[i][x] == '=')
-					break ;
-				x++;
-			}
-			name = ft_substr(env[i], 0, x);
-			value = ft_substr(env[i], x + 1, ft_strlen(env[i]) - x);
-			x = 0;
-		}
+			name = ft_name(env[i]);
+		value = ft_value(env[i]);
 		temp = new_node(name, value);
 		new = ft_lstnew(temp);
 		ft_lstadd_back(&env_clone, new);
-		free(name);
-		free(value);
+		freeit(name, value);
 		i++;
 	}
 	return (env_clone);
