@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 10:54:49 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 12:28:09 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,32 @@ int	ft_echo_n(char *args)
 	return (SUCCESSFUL);
 }
 
-int	ft_echo_c(t_cmd *cmds, int fd)
+int	ft_echo_c(t_cmd *cmds, int fd, int notfound)
 {
 	int	i;
-	int	len;
 	int	check;
-	int	yes;
 
-	yes = 0;
 	check = UNSUCCESSFUL;
 	i = 1;
-	len = 0;
 	while (cmds->cmd[i])
 	{
-		while (ft_echo_n(cmds->cmd[i]) == SUCCESSFUL)
+		if (ft_echo_n(cmds->cmd[i]) == SUCCESSFUL)
+			notfound = 0;
+		if (ft_echo_n(cmds->cmd[i]) == UNSUCCESSFUL)
 		{
-			yes = 1;
-			i++;
+			while (cmds->cmd[i])
+			{
+				write(fd, cmds->cmd[i], ft_strlen(cmds->cmd[i]));
+				if (cmds->cmd[i + 1])
+					write(fd, " ", 1);
+				i++;
+			}
+			if (notfound == 1)
+				write(fd, "\n", 1);
+			return (SUCCESSFUL);
 		}
-		len = ft_strlen(cmds->cmd[i]);
-		write(fd, cmds->cmd[i], len);
 		i++;
-		if (cmds->cmd[i])
-			write(fd, " ", 1);
 	}
-	if (yes == 0)
-		write(fd, "\n", 1);
 	return (SUCCESSFUL);
 }
 
@@ -66,7 +66,9 @@ int	ft_echo(t_cmd *cmds, int fd)
 {
 	int	len;
 	int	i;
+	int	notfound;
 
+	notfound = 1;
 	i = 0;
 	len = 0;
 	if (cmds->cmd[1] == NULL)
@@ -75,7 +77,7 @@ int	ft_echo(t_cmd *cmds, int fd)
 		return (SUCCESSFUL);
 	}
 	else if (cmds->cmd[1] != NULL)
-		ft_echo_c(cmds, fd);
+		ft_echo_c(cmds, fd, notfound);
 	return (SUCCESSFUL);
 }
 
