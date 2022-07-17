@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 09:30:05 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 10:52:30 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,39 @@ int	ft_list_items(t_lis *envp)
 	return (items);
 }
 
+char	**joinnameandvalue(t_lis *envp)
+{
+	int		i;
+	char	**joined;
+	char	*tmp1;
+	t_env	*env;
+	int		len;
+
+	len = ft_list_items(envp);
+	i = 0;
+	joined = malloc(sizeof(char **) * (len + 1));
+	i = 0;
+	while (envp)
+	{
+		env = envp->content;
+		tmp1 = ft_strjoin(env->name, "=");
+		if (env->value == NULL)
+			env->value = NULL;
+		joined[i] = ft_strjoin(tmp1, env->value);
+		i++;
+		envp = envp->next;
+	}
+	return (joined);
+}
 char	**convertlisttoarray(t_cmd *cmd, t_lis *envp)
 {
 	int		i;
 	char	**envir;
 	int		len;
+	char	**new;
 
-	i = 0;
-	len = 0;
-	(void)cmd;
-	len = ft_list_items(envp);
-	envir = malloc(sizeof(char *) * (len + 1));
-	while (i < len)
-	{
-		envir[i] = envp->content;
-		i++;
-		envp = envp->next;
-	}
-	envir[i] = NULL;
-	return (envir);
+	new = joinnameandvalue(envp);
+	return (new);
 }
 
 int	ft_check_programs(t_cmd *cmd, t_lis *envp)

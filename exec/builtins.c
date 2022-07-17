@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:06:50 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 16:33:40 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 10:36:07 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 #include "../minishell.h"
 #include "../parsing/parse.h"
 
-int	ft_echo_n(t_cmd *cmds, int fd)
+int	ft_echo_n(char *args)
 {
 	int	i;
 
 	i = 1;
-	(void)fd;
-	if (cmds->cmd[1] != NULL && cmds->cmd[1][0] == '-'
-		&& cmds->cmd[1][1] == 'n')
+	if (args != NULL && args[0] == '-'
+		&&args[1] == 'n')
 	{
-		while (cmds->cmd[1][i] != '\0')
+		while (args[i] != '\0')
 		{
-			if (cmds->cmd[1][i] != 'n')
+			if (args[i] != 'n')
 				return (UNSUCCESSFUL);
 			i++;
 		}
@@ -40,27 +39,30 @@ int	ft_echo_c(t_cmd *cmds, int fd)
 	int	i;
 	int	len;
 	int	check;
-
+	int yes = 0;
 	check = UNSUCCESSFUL;
 	i = 1;
 	len = 0;
 	while (cmds->cmd[i])
 	{
-		if (ft_echo_n(cmds, fd) == SUCCESSFUL && i == 1)
+		while (ft_echo_n(cmds->cmd[i]) == SUCCESSFUL)
 		{
-			check = SUCCESSFUL;
+			yes = 1;
 			i++;
 		}
+		
 		len = ft_strlen(cmds->cmd[i]);
 		write(fd, cmds->cmd[i], len);
 		i++;
 		if (cmds->cmd[i])
 			write(fd, " ", 1);
-		else if (cmds->cmd[i] == NULL && check == UNSUCCESSFUL)
-			write(fd, "\n", 1);
+		
 	}
+	if (yes == 0)
+			write(fd, "\n", 1);
 	return (SUCCESSFUL);
 }
+
 
 int	ft_echo(t_cmd *cmds, int fd)
 {
