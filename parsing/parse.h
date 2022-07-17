@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 18:56:03 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 12:20:28 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 12:34:21 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ typedef struct s_data
 	char			**cmd_sides;
 	int				error;
 }					t_data;
+
+typedef struct s_tocmd
+{
+	char	**args;
+	int		*file_type;
+	char	**file_name;
+}			t_tocmd;
 
 typedef struct s_token
 {
@@ -143,5 +150,10 @@ void				scape_spaces_or_special(char *s, int *j, int spaces);
 void				incr_quotes_assist_token(char c, int *j, int *a, int *b);
 void				token_assist(char *s, int *j, int *a, int *b);
 void				exp_exit_status(char **str);
+void	npc_assist(t_token *tok, t_tocmd *c, int *a, int *ft);
+void	ft_init_var(int *a, int *b, int *c, int *d);
+void	null_and_back(t_cmd **cmd, t_tocmd *c, int a, int b);
+void	incr_a_ft(int type, int *a, int *ft);
+void	add_back_cmd(t_cmd **cmd, char **args, int *file_type, char **file_name);
 
 #endif
