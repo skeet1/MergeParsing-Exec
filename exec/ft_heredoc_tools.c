@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 08:29:00 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 11:11:36 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 12:50:09 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,38 @@ int	heredoc_wait(int id)
 	if (WIFEXITED(g_exit_status))
 		g_exit_status = WEXITSTATUS(g_exit_status);
 	return (g_exit_status);
+}
+
+void	handler(int sig)
+{
+	if (sig == SIGINT)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 1);
+		rl_redisplay();
+		g_exit_status = 1;
+	}
+}
+
+void	signal_init(void)
+{
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTERM, SIG_IGN);
+	signal(SIGINT, &handler);
+}
+
+void	voidthem(int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+}
+
+void	checkline(t_data data)
+{
+	if (data.cmd_line == NULL)
+	{
+		write(1, "exit\n", 6);
+		exit(0);
+	}
 }

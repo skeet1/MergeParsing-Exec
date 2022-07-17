@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 12:20:38 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 12:50:27 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int	ft_export_no_equal(t_lis *envp,
 						t_cmd *cmd,
 						int i);
 int			pass_to_exec(t_lis *envp, t_cmd *cmds);
+void	signal_init(void);
+void	voidthem(int argc, char **argv);
+void	checkline(t_data data);
 //input
 void		handler(int sig);
 int			prompt_and_parse(char **upstream, char **downstream, char *line);
