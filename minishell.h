@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:10:47 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 08:38:26 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 08:45:48 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int						builtcheck_1(t_cmd *cmd,  t_lis	*envp);
 int						ftexit(t_cmd *cmd,  t_lis	*envp);
 int						builtcheck( t_lis	*envp, t_cmd *cmds);
 int						ftcd(t_cmd *cmd,  t_lis	*envp);
-int						ft_export_1( t_lis	*envp, int envpitems);
+int						ft_export_1( t_lis	*envp, 	char	**joined);
 int						ft_env( t_lis	*envp, t_cmd *cmd);
 int						ft_echo(t_cmd *cmds, int fd);
 int						ft_is_built_in( t_lis	*envp, t_cmd *cmds);

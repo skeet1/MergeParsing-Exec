@@ -6,7 +6,7 @@
 /*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:40:43 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 08:38:02 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 08:46:52 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,15 @@ int	builtcheck_next(t_cmd *cmd, t_lis *envp)
 
 int	builtcheck_1(t_cmd *cmd, t_lis *envp)
 {
-	int	i;
-	int	envpitems;
+	int		i;
+	char	**joined;
 
 	i = 1;
-	envpitems = ft_lstsize(envp);
 	if (ft_strncmp(cmd->cmd[0], "export", 7) == 0)
 	{
 		if (cmd->cmd[1] == NULL)
 		{
-			if (ft_export_1(envp, envpitems) == 0)
+			if (ft_export_1(envp, joined) == 0)
 				g_exit_status = 0;
 			return (0);
 		}
