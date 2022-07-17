@@ -6,14 +6,13 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 11:47:50 by mkarim            #+#    #+#             */
-/*   Updated: 2022/07/17 12:33:42 by mkarim           ###   ########.fr       */
+/*   Updated: 2022/07/17 12:37:32 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 #include "parse.h"
-
 
 void	add_back_cmd(t_cmd **cmd, char **args, int *file_type, char **file_name)
 {
