@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_one_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 07:40:08 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 21:54:53 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 08:30:25 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "../minishell.h"
 #include "../parsing/parse.h"
-#include "../libft/libft.h"
-
 
 void	dupandclose(t_cmd *cmds)
 {
@@ -40,7 +39,7 @@ void	dupandclose(t_cmd *cmds)
 	}
 }
 
-int	one_cmd_1( t_lis	*envp, t_cmd *cmds)
+int	one_cmd_1(t_lis *envp, t_cmd *cmds)
 {
 	int	i;
 
@@ -85,7 +84,7 @@ void	closefd(t_cmd *cmds)
 	}
 }
 
-int	noargs( t_lis	*envp, t_cmd *cmds)
+int	noargs(t_lis *envp, t_cmd *cmds)
 {
 	int	i;
 
@@ -97,9 +96,8 @@ int	noargs( t_lis	*envp, t_cmd *cmds)
 	return (0);
 }
 
-int	one_cmd( t_lis	*envp, t_cmd *cmds)
+int	one_cmd(t_lis *envp, t_cmd *cmds)
 {
-
 	if (cmds->cmd[0] == NULL)
 	{
 		noargs(envp, cmds);

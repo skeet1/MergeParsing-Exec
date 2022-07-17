@@ -6,7 +6,7 @@
 #    By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/20 07:58:53 by atabiti           #+#    #+#              #
-#    Updated: 2022/07/17 08:23:19 by atabiti          ###   ########.fr        #
+#    Updated: 2022/07/17 08:31:30 by atabiti          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,8 @@ SRC = ./exec/builtins.c \
 	 ./libft/ft_lstnew.c  \
 	  ./libft/ft_lstlast.c  \
 	  ./libft/ft_lstadd_back.c  \
-	  
+	    ./libft/ft_lstsize.c    \
+		
 OBJ = builtins.o \
 	 ft_env.o \
 	 ft_strlen.o  \
@@ -126,6 +127,7 @@ OBJ = builtins.o \
 	 ft_lstnew.o \
 	 ft_lstlast.o \
 	 ft_lstadd_back.o \
+	  ft_lstsize.o \
 	 
 all : $(NAME)
 $(OBJ) :

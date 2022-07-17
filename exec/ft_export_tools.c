@@ -3,28 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_tools.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 14:26:32 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/17 06:59:40 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 08:37:43 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../minishell.h"
 
-int	ftlstsize(t_lis *lst)
-{
-	int	lstlen;
-
-	lstlen = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		lstlen++;
-	}
-	return (lstlen);
-}
 void	*ft_free_2d(char **array)
 {
 	int	i;
@@ -37,6 +25,7 @@ void	*ft_free_2d(char **array)
 	free(array);
 	return (NULL);
 }
+
 char	**joinnameand_value(t_lis *envp)
 {
 	int		i;
@@ -46,8 +35,8 @@ char	**joinnameand_value(t_lis *envp)
 	int		envpitems;
 
 	i = 0;
-	envpitems = ftlstsize(envp);
-	joined = malloc(sizeof(char *) *( envpitems + 1));
+	envpitems = ft_lstsize(envp);
+	joined = malloc(sizeof(char *) * (envpitems + 1));
 	while (envp != NULL)
 	{
 		en = envp->content;
@@ -62,18 +51,29 @@ char	**joinnameand_value(t_lis *envp)
 	return (joined);
 }
 
-int	ft_export_1(t_lis *envp)
+int	ft_export_printer(char **joined)
+{
+	int	x;
+
+	x = 0;
+	while (joined[x])
+	{
+		printf("declare -x %s\"\n", joined[x]);
+		x++;
+	}
+	return (SUCCESSFUL);
+}
+
+int	ft_export_1(t_lis *envp, int envpitems)
 {
 	int		i;
 	int		j;
 	char	*tmp;
 	char	**joined;
-	int		envpitems;
-	int		x;
+
 	envp = envp->next;
 	joined = joinnameand_value(envp);
 	i = 0;
-	envpitems = ftlstsize(envp);
 	while (i < envpitems)
 	{
 		j = i + 1;
@@ -89,13 +89,7 @@ int	ft_export_1(t_lis *envp)
 		}
 		i++;
 	}
-	x = 0;
-	while (joined[x])
-	{
-		printf("declare -x %s\"\n", joined[x]);
-		x++;
-	}
-	return (SUCCESSFUL);
+	return (ft_export_printer(joined));
 }
 
 int	ft_isalnum(int c)

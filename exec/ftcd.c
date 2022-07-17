@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ftcd.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 11:37:52 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 21:38:01 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 08:27:40 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,15 @@ int	ftcd_c(t_cmd *cmd)
 
 int	ftcd(t_cmd *cmd, t_lis *envp)
 {
-	int	x;
+	int		x;
+	t_env	*envval;
 
 	x = 0;
-	t_env	*envval;
 	envp = envp->next;
 	cmd->findhome = NULL;
 	while (envp)
 	{
-				envval = envp->content;
-
+		envval = envp->content;
 		if (ft_strncmp(envval->name, "HOME", 5) == 0)
 		{
 			cmd->findhome = envval->value;

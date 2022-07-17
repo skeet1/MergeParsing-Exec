@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 08:43:04 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 21:51:19 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 08:30:32 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
-
-int	ft_init(t_cmd *cmds, t_lis	*envp)
+int	ft_init(t_cmd *cmds, t_lis *envp)
 {
 	cmds->cmdnbr = 0;
 	cmds->new = NULL;

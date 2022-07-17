@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_others.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atabiti <atabiti@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: atabiti <atabiti@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:24:12 by atabiti           #+#    #+#             */
-/*   Updated: 2022/07/16 21:12:57 by atabiti          ###   ########.fr       */
+/*   Updated: 2022/07/17 08:30:02 by atabiti          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "../libft/libft.h"
+#include "../minishell.h"
 
-int	ft_list_items( t_lis	*envp)
+int	ft_list_items(t_lis *envp)
 {
 	int	items;
 
@@ -26,7 +26,7 @@ int	ft_list_items( t_lis	*envp)
 	return (items);
 }
 
-char	**convertlisttoarray(t_cmd *cmd,  t_lis	*envp)
+char	**convertlisttoarray(t_cmd *cmd, t_lis *envp)
 {
 	int		i;
 	char	**envir;
@@ -47,7 +47,7 @@ char	**convertlisttoarray(t_cmd *cmd,  t_lis	*envp)
 	return (envir);
 }
 
-int	ft_check_programs(t_cmd *cmd,  t_lis	*envp)
+int	ft_check_programs(t_cmd *cmd, t_lis *envp)
 {
 	char	**en;
 
@@ -71,7 +71,7 @@ int	ft_check_programs(t_cmd *cmd,  t_lis	*envp)
 	return (0);
 }
 
-int	ft_bin_usr_sbin(t_cmd *cmd,  t_lis	*envp)
+int	ft_bin_usr_sbin(t_cmd *cmd, t_lis *envp)
 {
 	char	*bin;
 	char	*last;
